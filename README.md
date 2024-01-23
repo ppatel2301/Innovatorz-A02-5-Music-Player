@@ -1,12 +1,13 @@
-\[project name]
-==========
+## Sonicmatic Vision Statement
 
-\[clear summary sentance]
+In a world of enchanting language of melodies, Sonicmatic aims to be a music management platform that simplifies the music listening experience. Sonicmatic is a space where users can listen to their own or on demand music while curating their library of songs and sharing their musical experiences with other listeners.  
 
-\[description of the project]
+This platform will allow its diverse users to have the complete music listening experience, as they listen to the songs they have and discover new music from our database. They will be able to organize these songs in custom lists or sort them by genre or artists. Moreover, the users will also get to listen to the songs they love with the people close to them. Our chat feature allows users to share the songs they are listening to with their friends individually or as a group. Listeners can also review and show their love for their favorite artists and songs and watch them rise on the platform’s leaderboards.  
 
-\[target audience]
+Artists will benefit from this platform too, as they will be able to share their music with all users by uploading it to our database, as singles or albums. They will be able to view the stats on their uploaded music like how many people are listening to them, which songs are the most popular, how many times their music has been shared and what their listeners think of them. 
 
-\[value of the project]
+This platform is designed for everyone from new listeners with little to no music to their name, to hardcore audiophiles who have a large library of music. New listeners can discover artists and songs and grow their collection and venture into making their own playlists and customizing their listening experience. Established music lovers can also make playlists, but with this system they can discover even more artists and songs to add to their collection. This system will also replace any management system they were using before, as with this platform they can add songs directly to their library through our database of songs. 
 
-\[success criteria]
+This project’s value lies with the centralization of a person’s music collection and the platform’s powerful music sharing abilities. Firstly, a user can add their personal music collection into this system and manage their library of music. They can then add more music into their collection seamlessly through the platform’s provided library of music. This allows for new listeners to easily start then grow their collection of music, or if they’re already an established audiophile, continue to discover new music easily and instantly have it in their collection. Secondly, the chat feature provides great value in sharing music with friends and loved ones. This not only helps people to become exposed to more music they might enjoy, but also come together and share valuable bonding moments with one another. 
+
+The success of this platform is based off two criteria. The first will be the total number of songs played (both owned by the user and published on our platform by artists) exceeding 25,000 monthly. The second will be the total time all users spend listening to music on our platform, exceeding 100,000 monthly.
