@@ -25,9 +25,6 @@ class Diagram
     DSO: + uuid4 id
     DSO: + String name
 
-    Artist : + int num_plays
-
-    Song : + String
         
 
 ```
