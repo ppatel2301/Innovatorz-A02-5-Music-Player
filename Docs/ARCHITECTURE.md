@@ -20,20 +20,14 @@ title: Domain-Specific Objects
 ---
 
 class Diagram
-    Artist : + 
-        
+    DSO <|-- Artist
+    DSO <|-- Song
+    DSO: + uuid4 id
+    DSO: + String name
 
-```
+    Artist : + int num_plays
 
-``` mermaid
----
-title: Data Persistence
----
-
-class Diagram
-    <<Abstract>> AbstractDB: + MusicTrack getSong(int song_id)
-    <<Abstract>> AbstractDB: + Artist getArtist(int artist_id)
-    <<Abstract>> AbstractDB: + Artist getSongArtist(int song_id)
+    Song : + String
         
 
 ```
