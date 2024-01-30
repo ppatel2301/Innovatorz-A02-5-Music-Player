@@ -19,19 +19,16 @@ contained in the `objects` directory and package.
 title: Domain-Specific Objects
 ---
 
-class Diagram
+classDiagram
     DSO <|-- Artist
     DSO <|-- Song
     DSO: + uuid4 id
     DSO: + String name
 
-    Artist{
-        + int num_plays
-    }
+    Artist: + int num_plays
 
-    Song{
-        + AudioInputStream track
-    }
-        
-
+    Song *--  Artist
+    Song: + AudioInputStream track
+    Song: + Artist artist
+    
 ```
