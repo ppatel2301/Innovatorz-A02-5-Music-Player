@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.presentation;
+package comp3350.sonicmatic.Presentation;
 
 import comp3350.sonicmatic.R;
 
