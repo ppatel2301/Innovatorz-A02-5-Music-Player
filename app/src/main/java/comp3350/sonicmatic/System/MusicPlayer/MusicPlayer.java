@@ -10,7 +10,7 @@ import comp3350.sonicmatic.Interfaces.Song;
 public class MusicPlayer implements Player
 {
 
-    private static enum States {PLAYING, PAUSED, IDLE}
+    private enum States {PLAYING, PAUSED, IDLE}
 
     // ** instance variables **
     private States state;
@@ -19,7 +19,7 @@ public class MusicPlayer implements Player
     // ** constructors **
     public MusicPlayer()
     {
-        initMP3Player(mp3Player);
+        mp3Player = createMP3Player();
 
         state = States.IDLE;
     }
@@ -46,15 +46,16 @@ public class MusicPlayer implements Player
 
     // ** mutators **
 
-    /// @brief Initializes an AudioTrack object passed into an mp3 player
-    private void initMP3Player(AudioTrack initMe)
+    /// @brief Creates an AudioTrack object passed into an mp3 player
+    ///
+    /// @return New AudioTrack mp3 player
+    private AudioTrack createMP3Player()
     {
         final int ENCODING = AudioFormat.ENCODING_PCM_16BIT;
         final int SAMPLE_RATE = 44100;
         final int CHANNEL_CONFIG = AudioFormat.CHANNEL_OUT_STEREO;
 
-        // assign the AudioTrack passed to a brand new mp3 player
-        initMe = new AudioTrack.Builder()
+        AudioTrack create_me = new AudioTrack.Builder()
                 .setAudioAttributes(new AudioAttributes.Builder()
                         .setUsage(AudioAttributes.USAGE_MEDIA)
                         .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
@@ -66,6 +67,8 @@ public class MusicPlayer implements Player
                         .build())
                 .setBufferSizeInBytes(AudioTrack.getMinBufferSize(SAMPLE_RATE, CHANNEL_CONFIG, ENCODING))
                 .build();
+
+        return create_me;
     }
 
     @Override
@@ -114,6 +117,7 @@ public class MusicPlayer implements Player
     {
         // get the byte array that actually makes up the music to play
         // this will be written to the audio track for playing
+
         return null;
     }
 
