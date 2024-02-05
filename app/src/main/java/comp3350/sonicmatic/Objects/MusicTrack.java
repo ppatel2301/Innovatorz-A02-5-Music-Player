@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.objects;
+package comp3350.sonicmatic.Objects;
 
 import comp3350.sonicmatic.Interfaces.Song;
 import comp3350.sonicmatic.Interfaces.Artist;
