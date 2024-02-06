@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.data;
+package comp3350.sonicmatic.Interfaces;
 
 import comp3350.sonicmatic.objects.MusicTrack;
 
