@@ -18,9 +18,9 @@ public class StubDatabase implements Database {
     }
 
     @Override
-    public MusicTrack getSong(int songID) throws Exception {
+    public MusicTrack getSong(String name) throws Exception {
         for (MusicTrack song: this.dbList){
-            if (song.id == songID) return song;
+            if (song.getName().equals(name)) return song;
         }
         throw new Exception("Song not found");
     }
