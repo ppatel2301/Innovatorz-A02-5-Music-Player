@@ -5,30 +5,53 @@ single responsibility. Each layer has its own package and directory in the repo 
 
 - presentation
 - logic
-- persistence
+- data
 
-The application is a music management system with its own music library. This music library belongs in the Data
-Persistence layer, while the file decoding is in the **NEEDS REVISION** Logic layer and the music player UI is
-in the presentation layer. There are classes that belong in more than one layer, like MusicTrack. These classes are
-contained in the `objects` directory and package.
+## 3-tier architecture
+
+The main components in our application are organized as follows.
+
+### Presentation Layer
+
+- **MainActivity**: Main process in the application. Everything runs within it.
+
+- **HomeActivity**: The home page view.
+
+- **UserProfileActivity**: The view for any user profile (listener or artist).
+
+- **LibraryActivity**: The view for the user's music library.
+
+- **SettingsActivity**: The view for the app settings.
+
+- **MusicControlsActivity**: Displays the main music player controls (play, pause, skip, replay, seek).
+
+- **ChatActivity**: The chat feature view.
+
+### Logic Layer
+
+- **MusicPlayer**: Responsible of decoding music tracks from `.mp3` files.
+
+- **BluetoothPeer**: Responsible of sending and receiving Bluetooth messages.
+
+### Data Layer
+
+- **Database**: Interface to a HSQL database.
+
+- **Library**: Interface to the user's device's storage.
+
+### Domain Specific Object
+
+- **MusicTrack**
+
+- **Artist**
+
+- **Album**
+
+- **Playlist**
 
 ## Architecture Diagram
 
 ``` mermaid
----
-title: Domain-Specific Objects
----
 
-classDiagram
-    DSO <|-- Artist
-    DSO <|-- Song
-    DSO: + uuid4 id
-    DSO: + String name
-
-    Artist: + int num_plays
-
-    Song *--  Artist
-    Song: + AudioInputStream track
-    Song: + Artist artist
     
 ```
