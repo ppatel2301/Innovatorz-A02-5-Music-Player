@@ -1,0 +1,21 @@
+Index: .idea/deploymentTargetDropDown.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/deploymentTargetDropDown.xml b/.idea/deploymentTargetDropDown.xml
+deleted file mode 100644
+--- a/.idea/deploymentTargetDropDown.xml	(revision cd00a58521aa0c20de2960ac4bc4a54c95f8aa66)
++++ /dev/null	(revision cd00a58521aa0c20de2960ac4bc4a54c95f8aa66)
+@@ -1,10 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="deploymentTargetDropDown">
+-    <value>
+-      <entry key="app">
+-        <State />
+-      </entry>
+-    </value>
+-  </component>
+-</project>
+\ No newline at end of file
