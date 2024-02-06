@@ -18,7 +18,7 @@ public class MusicTrack implements Song
 
     public MusicTrack(String filePath)
     {
-        if (filePath != null && filePath != "")
+        if (filePath != null && !filePath.equals(""))
         {
             path = filePath;
             initMetadata(path);
