@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.Interfaces;
+package comp3350.sonicmatic.interfaces;
 
 public interface Artist {
 

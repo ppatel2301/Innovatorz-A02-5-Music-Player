@@ -1,8 +1,8 @@
-package comp3350.sonicmatic.Objects;
+package comp3350.sonicmatic.object;
 
-import comp3350.sonicmatic.Interfaces.Song;
-import comp3350.sonicmatic.Interfaces.Artist;
-import comp3350.sonicmatic.Interfaces.SongLength;
+import comp3350.sonicmatic.interfaces.Song;
+import comp3350.sonicmatic.interfaces.Artist;
+import comp3350.sonicmatic.interfaces.SongLength;
 
 public class MusicTrack implements Song
 {

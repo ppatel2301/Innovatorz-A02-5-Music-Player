@@ -1,8 +1,116 @@
+package comp3350.sonicmatic.System.musicplayer;
+
+import java.io.File;
+import java.io.IOException;
+
+import comp3350.sonicmatic.interfaces.Player;
+import comp3350.sonicmatic.interfaces.Song;
+
+public class MusicPlayer implements Player
+{
+
+    private enum States {PLAYING, PAUSED, IDLE, BAD_PATH}
+
+    // ** instance variables **
+    private States state;
+
+    // ** constructors **
+    public MusicPlayer()
+    {
+
+
+        state = States.IDLE;
+    }
+
+    // ** accessors **
+
+    @Override
+    public boolean isPlaying()
+    {
+        return state == States.PLAYING;
+    }
+
+    @Override
+    public boolean isPaused()
+    {
+        return state == States.PAUSED;
+    }
+
+    @Override
+    public boolean isStopped()
+    {
+        return state == States.IDLE;
+    }
+
+    @Override
+    public void start()
+    {
+        if (state == States.IDLE)
+        {
+            state = States.PLAYING;
+        }
+    }
+
+    @Override
+    public void stop()
+    {
+        state = States.IDLE;
+    }
+
+    @Override
+    public void pause()
+    {
+        state = States.PAUSED;
+    }
+
+    @Override
+    public void resume()
+    {
+        if (state == States.PAUSED)
+        {
+            state = States.PLAYING;
+        }
+    }
+
+
+    @Override
+    public void loadSongFromPath(String path)
+    {
+
+        File readme = new File(path);
+
+        if (state == States.IDLE || state == States.BAD_PATH) // only proceed if this is the case
+        {
+            try
+            {
+
+            // put file reading here
+
+            } catch(IOException ioe) {
+                state = States.BAD_PATH;
+                System.out.println(ioe);
+            }
+
+        }
+
+    }
+
+    @Override
+    public void loadSong(Song song)
+    {
+        loadSongFromPath(song.getPath());
+    }
+}
+/*
 package comp3350.sonicmatic.System.MusicPlayer;
 
 import android.media.AudioAttributes;
 import android.media.AudioFormat;
 import android.media.AudioTrack;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 import comp3350.sonicmatic.Interfaces.Player;
 import comp3350.sonicmatic.Interfaces.Song;
@@ -10,7 +118,7 @@ import comp3350.sonicmatic.Interfaces.Song;
 public class MusicPlayer implements Player
 {
 
-    private enum States {PLAYING, PAUSED, IDLE}
+    private enum States {PLAYING, PAUSED, IDLE, BAD_PATH}
 
     // ** instance variables **
     private States state;
@@ -74,7 +182,10 @@ public class MusicPlayer implements Player
     @Override
     public void start()
     {
-        state = States.PLAYING;
+        if (state == States.IDLE)
+        {
+            state = States.PLAYING;
+        }
     }
 
     @Override
@@ -92,7 +203,10 @@ public class MusicPlayer implements Player
     @Override
     public void resume()
     {
-        state = States.PLAYING;
+        if (state == States.PAUSED)
+        {
+            state = States.PLAYING;
+        }
     }
 
 
@@ -100,8 +214,21 @@ public class MusicPlayer implements Player
     public void loadSongFromPath(String path)
     {
 
-        if (state == States.IDLE) // only proceed if this is the case
+        File readme = new File(path);
+        byte bytes[];
+
+        if (state == States.IDLE || state == States.BAD_PATH) // only proceed if this is the case
         {
+            try
+            {
+                bytes = Files.readAllBytes(readme.toPath());
+
+
+
+            } catch(IOException ioe) {
+                state = States.BAD_PATH;
+                System.out.println(ioe);
+            }
 
         }
 
@@ -122,3 +249,4 @@ public class MusicPlayer implements Player
     }
 
 }
+*/

@@ -1,6 +1,6 @@
-package comp3350.sonicmatic.Objects;
+package comp3350.sonicmatic.object;
 
-import comp3350.sonicmatic.Interfaces.SongLength;
+import comp3350.sonicmatic.interfaces.SongLength;
 
 public class SongDuration implements SongLength
 {
