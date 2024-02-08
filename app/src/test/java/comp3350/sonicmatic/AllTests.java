@@ -12,7 +12,10 @@ import comp3350.sonicmatic.objects.PlaylistTest;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         AlbumTest.class,
-        PlaylistTest.class
+        PlaylistTest.class,
+        MusicArtistTest.class,
+        MusicTrackTest.class,
+        SongDurationTest.class
 })
 
 public class AllTests
