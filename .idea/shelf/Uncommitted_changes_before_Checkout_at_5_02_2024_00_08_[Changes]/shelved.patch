@@ -1,0 +1,16 @@
+Index: app/src/main/java/comp3350/sonicmatic/Objects/MusicTrack.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package comp3350.sonicmatic.Objects;\r\n\r\nimport comp3350.sonicmatic.Interfaces.Song;\r\nimport comp3350.sonicmatic.Interfaces.Artist;\r\nimport comp3350.sonicmatic.Interfaces.SongLength;\r\n\r\npublic class MusicTrack implements Song\r\n{\r\n\r\n    // ** instance variables **\r\n    private SongLength songDuration;\r\n    private String path;\r\n    private String name;\r\n    private int sizeInBytes;\r\n    private Artist artist;\r\n\r\n    // ** constructors **\r\n\r\n    public MusicTrack(String filePath)\r\n    {\r\n        if (filePath != null && filePath != \"\")\r\n        {\r\n            path = filePath;\r\n            initMetadata(path);\r\n        }\r\n    }\r\n\r\n    // ** accessors **\r\n\r\n    @Override\r\n    public String getPath()\r\n    {\r\n        return path;\r\n    }\r\n\r\n    @Override\r\n    public String getName()\r\n    {\r\n        return name;\r\n    }\r\n\r\n    @Override\r\n    public int getLength()\r\n    {\r\n        return -1;\r\n    }\r\n\r\n    @Override\r\n    public Artist getArtist()\r\n    {\r\n        return artist;\r\n    }\r\n\r\n    @Override\r\n    public int getSizeInBytes()\r\n    {\r\n        return sizeInBytes;\r\n    }\r\n\r\n    // ** mutators **\r\n    private void initMetadata(String filePath)\r\n    {\r\n        // read file, get needed metadata\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/comp3350/sonicmatic/Objects/MusicTrack.java b/app/src/main/java/comp3350/sonicmatic/Objects/MusicTrack.java
+--- a/app/src/main/java/comp3350/sonicmatic/Objects/MusicTrack.java	(revision c2097ad69ebb71b0ad8c457dd0e8386343415439)
++++ b/app/src/main/java/comp3350/sonicmatic/Objects/MusicTrack.java	(date 1707113299427)
+@@ -1,4 +1,4 @@
+-package comp3350.sonicmatic.Objects;
++package comp3350.sonicmatic.objects;
+ 
+ import comp3350.sonicmatic.Interfaces.Song;
+ import comp3350.sonicmatic.Interfaces.Artist;
