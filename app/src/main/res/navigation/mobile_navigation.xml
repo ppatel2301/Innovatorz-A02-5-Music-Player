@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="comp3350.sonicmatic.ui.home.HomeFragment"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="comp3350.sonicmatic.ui.library.LibraryFragment"
+        tools:layout="@layout/fragment_library" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="comp3350.sonicmatic.ui.Settings.SettingsFragment"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/navigation_create_playlist"
+        android:name="comp3350.sonicmatic.ui.playlist.CreatePlaylistFragment"
+        tools:layout="@layout/fragment_create_playlist"/>
+
+    <fragment
+        android:id="@+id/playlistDetailFragment"
+        android:name="comp3350.sonicmatic.ui.playlist.PlaylistDetailFragment"
+        tools:layout="@layout/fragment_playlist_detail"/>
+
+    <fragment
+        android:id="@+id/musicFragment"
+        android:name="comp3350.sonicmatic.ui.player.MusicFragment"
+        tools:layout="@layout/fragment_music_player"/>
+</navigation>
