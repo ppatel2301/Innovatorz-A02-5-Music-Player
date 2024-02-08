@@ -26,7 +26,7 @@ Sonicmatic aims to be a music management platform that simplifies the music list
 
 ## Architecture
 
-- Our planned [Architecture]() for our project
+- Our planned [Architecture](https://code.cs.umanitoba.ca/comp3350-winter2024/innovators-a02-5/-/blob/Dev/Docs/ARCHITECTURE.md?ref_type=heads) for our project
 
 ## Coding Style
 
