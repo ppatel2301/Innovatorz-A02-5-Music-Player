@@ -51,7 +51,4 @@ The main components in our application are organized as follows.
 
 ## Architecture Diagram
 
-``` mermaid
-
-    
-```
+![Diagram](./ArchitectureDiagram.png)
