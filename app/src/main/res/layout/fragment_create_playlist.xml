@@ -2,63 +2,67 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/createPlayList"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <EditText
         android:id="@+id/playlistName"
-        android:layout_width="210dp"
-        android:layout_height="49dp"
+        android:layout_width="249dp"
+        android:layout_height="76dp"
         android:layout_marginStart="109dp"
-        android:layout_marginTop="24dp"
         android:layout_marginEnd="93dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="32dp"
         android:ems="10"
         android:inputType="text"
         android:text="Playlist #1"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/create_playlist"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="176dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="84dp"
         android:layout_marginEnd="177dp"
+        android:layout_marginBottom="35dp"
         android:text="Playlist Name"
-        android:textSize="24sp"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/playlistName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.438"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/create_playlist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="158dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="159dp"
         android:text="Create Playlist"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.426"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playlistName" />
 
     <Button
         android:id="@+id/cancel_playlist"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="295dp"
-        android:background="@drawable/baseline_cancel_24"
+        android:layout_width="73dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="1148dp"
+        android:background="@drawable/baseline_arrow_back_24"
         android:text="-"
+        android:textColor="@color/purple_500"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

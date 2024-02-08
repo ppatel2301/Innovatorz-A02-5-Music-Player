@@ -8,9 +8,9 @@ public class Artist {
     private ArrayList<MusicTrack> tracks;
     private ArrayList<Album> albums;
 
-    public Artist()
+    public Artist(String artistName)
     {
-        artistName = "";
+        this.artistName = artistName;
         tracks = null;
         albums = null;
     }
@@ -22,7 +22,7 @@ public class Artist {
         this.albums = albums;
     }
 
-    public String getArtistName()
+    public String getName()
     {
         return artistName;
     }
@@ -38,6 +38,10 @@ public class Artist {
 
     public void uploadToAlbum(Album album){
         albums.add(album);
+    }
+
+    public ArrayList<MusicTrack> getTracks (){
+        return tracks;
     }
 
     public ArrayList<Album> getAlbums() {

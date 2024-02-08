@@ -8,13 +8,6 @@ public class Album {
     private Artist artist;
     private ArrayList<MusicTrack> tracks;
 
-    public Album()
-    {
-        title = "";
-        artist = null;
-        tracks = null;
-    }
-
     public Album(String title, Artist artist)
     {
         this.title = title;

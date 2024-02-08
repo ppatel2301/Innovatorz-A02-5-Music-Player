@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.databinding.FragmentLibraryBinding;
 import comp3350.sonicmatic.objects.Playlist;
+import comp3350.sonicmatic.ui.playlist.PlaylistAdapter;
+import comp3350.sonicmatic.ui.playlist.PlaylistViewModel;
 
 public class LibraryFragment extends Fragment{
 
@@ -45,14 +47,14 @@ public class LibraryFragment extends Fragment{
 
         // Getting the ui components by Id
         recyclerView = root.findViewById(R.id.libRecyclerView); // List
-        buttonView = root.findViewById(R.id.add_playlist); // Add Button
+        Button addButton = root.findViewById(R.id.add_playlist); // Add Button
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager((getContext())));
 
         observePlaylist();
 
-        buttonView.setOnClickListener(new View.OnClickListener() {
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -84,7 +86,6 @@ public class LibraryFragment extends Fragment{
 
     private void openCreatePlaylist()
     {
-        System.out.println(adapter);
         Navigation.findNavController(requireView()).navigate(R.id.navigation_create_playlist,null);
     }
 }

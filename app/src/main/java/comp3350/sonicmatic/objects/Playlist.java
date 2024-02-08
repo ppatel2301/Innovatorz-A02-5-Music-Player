@@ -8,6 +8,12 @@ public class Playlist {
     private String playlistName;
     private ArrayList<MusicTrack> playlist;
 
+    public Playlist(String name)
+    {
+        playlistName = name;
+        playlist = null;
+    }
+
     public Playlist(String name, ArrayList<MusicTrack> list)
     {
         playlistName = name;
@@ -17,6 +23,21 @@ public class Playlist {
     public String getPlaylistName()
     {
         return playlistName;
+    }
+
+    public void removePlaylist()
+    {
+        playlist = null;
+    }
+
+    public ArrayList<MusicTrack> getPlaylist()
+    {
+        return playlist;
+    }
+
+    public void addMusicTracks(MusicTrack musicTrack)
+    {
+        playlist.add(musicTrack);
     }
 
     public ArrayList<MusicTrack> filterByArtist ()

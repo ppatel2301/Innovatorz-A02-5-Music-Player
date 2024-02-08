@@ -31,7 +31,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
     public void onBindViewHolder(@NonNull MusicAdapter.MusicViewHolder holder, int position) {
         MusicTrack track = tracks.get(position);
 
-        holder.musicImage.setImageResource(R.drawable.default_song_img);
+//        holder.musicImage.setImageResource(R.drawable.default_song_img);
 //        holder.title.setText(track.getTitle());
 //        holder.artist.setText(track.getArtist());
     }
