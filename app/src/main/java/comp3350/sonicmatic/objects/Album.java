@@ -14,7 +14,7 @@ public class Album {
     {
         this.title = title;
         this.artist = artist;
-        this.tracks = null;
+        this.tracks = new ArrayList<>();
     }
 
     public Album(String title, IArtist artist, ArrayList<MusicTrack> tracks)

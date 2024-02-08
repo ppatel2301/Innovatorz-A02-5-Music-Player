@@ -54,7 +54,7 @@ public class AlbumTest {
     public void testGetTracks()
     {
         System.out.println("\nTesting Album getTracks()");
-        assertNull(album1.getTracks());
+        assertNotNull(album1.getTracks());
         assertNotNull(album2.getTracks());
         assertNull(album3.getTracks());
         System.out.println("\nFinished. Testing Album getTracks()");
@@ -63,7 +63,6 @@ public class AlbumTest {
     @Test
     public void testUploadTpAlbums(){
         System.out.println("\nTesting Album uploadToAlbums");
-        assertNull(album1.getTracks());
         album1.uploadToAlbums(new MusicTrack("Track 1", album1.getArtist(), songLength, "Path"));
         assertEquals(1, album1.getTracks().size());
     }
