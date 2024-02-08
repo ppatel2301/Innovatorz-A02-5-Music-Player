@@ -1,23 +1,42 @@
 package comp3350.sonicmatic.System.musicplayer;
 
-import java.io.File;
+import android.content.Context;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
+import android.media.MediaMetadataRetriever;
+import android.media.MediaPlayer;
+import android.provider.MediaStore;
+
+
+import java.io.FileDescriptor;
 import java.io.IOException;
 
+import comp3350.sonicmatic.exceptions.NoMusicException;
 import comp3350.sonicmatic.interfaces.Player;
 import comp3350.sonicmatic.interfaces.Song;
+import comp3350.sonicmatic.objects.MusicArtist;
+import comp3350.sonicmatic.objects.MusicTrack;
+import comp3350.sonicmatic.objects.SongDuration;
 
 public class MusicPlayer implements Player
 {
 
-    private enum States {PLAYING, PAUSED, IDLE, BAD_PATH}
+    // ** class constants **
+    public static final int NO_MUSIC = -1;
+
+    private enum States {PLAYING, PAUSED, IDLE}
 
     // ** instance variables **
     private States state;
 
-    // ** constructors **
-    public MusicPlayer()
-    {
+    private static MediaPlayer music;
+    private Context context;
+    private Song playMe;
 
+    // ** constructors **
+    public MusicPlayer(Context appEnvironment)
+    {
+        context = appEnvironment;
 
         state = States.IDLE;
     }
@@ -43,52 +62,164 @@ public class MusicPlayer implements Player
     }
 
     @Override
-    public void start()
+    public void start() throws NoMusicException
     {
-        if (state == States.IDLE)
+        if (music != null)
         {
+            music.start();
             state = States.PLAYING;
+        }
+        else
+        {
+            throw new NoMusicException();
         }
     }
 
     @Override
-    public void stop()
+    public void stop() throws NoMusicException
     {
-        state = States.IDLE;
-    }
-
-    @Override
-    public void pause()
-    {
-        state = States.PAUSED;
-    }
-
-    @Override
-    public void resume()
-    {
-        if (state == States.PAUSED)
+        if (music != null && state != States.IDLE)
         {
-            state = States.PLAYING;
+            music.stop();
+            music.release();
+            music = null;
+            state = States.IDLE;
+        }
+        else if (music == null)
+        {
+            throw new NoMusicException();
         }
     }
 
+    @Override
+    public void pause() throws NoMusicException
+    {
+        if (music != null && state == States.PLAYING && music.isPlaying())
+        {
+            music.pause();
+            state = States.PAUSED;
+        }
+        else if (music == null)
+        {
+            throw new NoMusicException();
+        }
+
+    }
+
+    @Override
+    public void resume() throws NoMusicException
+    {
+        if (music != null && state == States.PAUSED)
+        {
+            music.start();
+            state = States.PLAYING;
+        }
+        else if (music == null)
+        {
+            throw new NoMusicException();
+        }
+    }
+
+    @Override
+    public void seek(int seekTo) throws NoMusicException
+    {
+        if (music != null && state != States.IDLE)
+        {
+            if (seekTo >=0 && seekTo < music.getDuration())
+            {
+                music.seekTo(seekTo);
+            }
+        }
+        else
+        {
+            throw new NoMusicException();
+        }
+    }
+
+    @Override
+    public int getMillisecDuration()
+    {
+        int millis = NO_MUSIC;
+
+        if (music != null)
+        {
+            millis = music.getDuration();
+        }
+
+        return  millis;
+    }
+
+    @Override
+    public int getMillisecPosition()
+    {
+        int millis = NO_MUSIC;
+
+        if (music != null)
+        {
+            millis = music.getCurrentPosition();
+        }
+
+        return millis;
+    }
+
+    public String [] getSongPaths()
+    {
+        String [] paths;
+        AssetManager assetManager = context.getAssets();
+
+        try {
+            paths = assetManager.list("music");
+        } catch(IOException ioe)
+        {
+            paths = null;
+        }
+
+        return paths;
+    }
 
     @Override
     public void loadSongFromPath(String path)
     {
 
-        File readme = new File(path);
+        AssetFileDescriptor afd = null;
+        MediaMetadataRetriever metadata = new MediaMetadataRetriever();
 
-        if (state == States.IDLE || state == States.BAD_PATH) // only proceed if this is the case
+        FileDescriptor fd;
+        long start;
+        long length;
+
+        Song loadMe = null;
+
+        String title;
+        String artist;
+        String duration;
+
+        if (state == States.IDLE && music == null)
         {
-            try
+
+            try {
+                afd = context.getAssets().openFd(path);
+
+                fd = afd.getFileDescriptor();
+                start = afd.getStartOffset();
+                length = afd.getLength();
+
+                music = new MediaPlayer();
+
+                metadata.setDataSource(fd, start, length);
+                music.setDataSource(fd, start, length);
+                afd.close();
+
+                title = metadata.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+                artist = metadata.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
+                duration = metadata.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+
+                music.prepare();
+
+                loadSong(new MusicTrack(title, new MusicArtist(artist), new SongDuration(duration), path));
+            } catch (IOException ioe)
             {
-
-            // put file reading here
-
-            } catch(IOException ioe) {
-                state = States.BAD_PATH;
-                System.out.println(ioe);
+               playMe = null;
             }
 
         }
@@ -96,157 +227,24 @@ public class MusicPlayer implements Player
     }
 
     @Override
-    public void loadSong(Song song)
+    public Song getCurrentSong()
     {
-        loadSongFromPath(song.getPath());
+        Song returnMe = null;
+
+        if (playMe != null)
+        {
+            returnMe = new MusicTrack(playMe);
+        }
+
+        return returnMe;
+    }
+
+    private void loadSong(Song song)
+    {
+       if (song != null && state == States.IDLE)
+       {
+           playMe = song;
+       }
+
     }
 }
-/*
-package comp3350.sonicmatic.System.MusicPlayer;
-
-import android.media.AudioAttributes;
-import android.media.AudioFormat;
-import android.media.AudioTrack;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-
-import comp3350.sonicmatic.Interfaces.Player;
-import comp3350.sonicmatic.Interfaces.Song;
-
-public class MusicPlayer implements Player
-{
-
-    private enum States {PLAYING, PAUSED, IDLE, BAD_PATH}
-
-    // ** instance variables **
-    private States state;
-    private AudioTrack mp3Player;
-
-    // ** constructors **
-    public MusicPlayer()
-    {
-        mp3Player = createMP3Player();
-
-        state = States.IDLE;
-    }
-
-    // ** accessors **
-
-    @Override
-    public boolean isPlaying()
-    {
-        return state == States.PLAYING;
-    }
-
-    @Override
-    public boolean isPaused()
-    {
-        return state == States.PAUSED;
-    }
-
-    @Override
-    public boolean isStopped()
-    {
-        return state == States.IDLE;
-    }
-
-    // ** mutators **
-
-    /// @brief Creates an AudioTrack object passed into an mp3 player
-    ///
-    /// @return New AudioTrack mp3 player
-    private AudioTrack createMP3Player()
-    {
-        final int ENCODING = AudioFormat.ENCODING_PCM_16BIT;
-        final int SAMPLE_RATE = 44100;
-        final int CHANNEL_CONFIG = AudioFormat.CHANNEL_OUT_STEREO;
-
-        AudioTrack create_me = new AudioTrack.Builder()
-                .setAudioAttributes(new AudioAttributes.Builder()
-                        .setUsage(AudioAttributes.USAGE_MEDIA)
-                        .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                        .build())
-                .setAudioFormat(new AudioFormat.Builder()
-                        .setEncoding(ENCODING)
-                        .setSampleRate(SAMPLE_RATE)
-                        .setChannelMask(CHANNEL_CONFIG)
-                        .build())
-                .setBufferSizeInBytes(AudioTrack.getMinBufferSize(SAMPLE_RATE, CHANNEL_CONFIG, ENCODING))
-                .build();
-
-        return create_me;
-    }
-
-    @Override
-    public void start()
-    {
-        if (state == States.IDLE)
-        {
-            state = States.PLAYING;
-        }
-    }
-
-    @Override
-    public void stop()
-    {
-        state = States.IDLE;
-    }
-
-    @Override
-    public void pause()
-    {
-        state = States.PAUSED;
-    }
-
-    @Override
-    public void resume()
-    {
-        if (state == States.PAUSED)
-        {
-            state = States.PLAYING;
-        }
-    }
-
-
-    @Override
-    public void loadSongFromPath(String path)
-    {
-
-        File readme = new File(path);
-        byte bytes[];
-
-        if (state == States.IDLE || state == States.BAD_PATH) // only proceed if this is the case
-        {
-            try
-            {
-                bytes = Files.readAllBytes(readme.toPath());
-
-
-
-            } catch(IOException ioe) {
-                state = States.BAD_PATH;
-                System.out.println(ioe);
-            }
-
-        }
-
-    }
-
-    @Override
-    public void loadSong(Song song)
-    {
-        loadSongFromPath(song.getPath());
-    }
-
-    private byte [] getSong()
-    {
-        // get the byte array that actually makes up the music to play
-        // this will be written to the audio track for playing
-
-        return null;
-    }
-
-}
-*/
