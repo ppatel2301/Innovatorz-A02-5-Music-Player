@@ -11,6 +11,10 @@ public class StubDatabase implements Database {
         dbList = new ArrayList<MusicTrack>();
     }
 
+    /* Constructor for testing purposes */
+    public StubDatabase(ArrayList<MusicTrack> bd){
+        dbList = db;
+    }
     @Override
     public void uploadSong(MusicTrack song) {
         dbList.add(song);

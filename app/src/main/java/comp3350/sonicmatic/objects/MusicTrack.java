@@ -25,6 +25,10 @@ public class MusicTrack implements Song
         }
     }
 
+    public MusicTrack(){
+        initMetadata("");
+    }
+
     // ** accessors **
 
     @Override
