@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.Objects;
+package comp3350.sonicmatic.objects;
 
 import comp3350.sonicmatic.Interfaces.SongLength;
 

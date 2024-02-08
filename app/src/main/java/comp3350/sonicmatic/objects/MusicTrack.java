@@ -25,8 +25,9 @@ public class MusicTrack implements Song
         }
     }
 
-    public MusicTrack(){
-        initMetadata("");
+    public MusicTrack(String name, int min, int sec ){
+        this.name = name;
+        this.songDuration = new SongDuration(min, sec);
     }
 
     // ** accessors **
@@ -65,6 +66,11 @@ public class MusicTrack implements Song
     private void initMetadata(String filePath)
     {
         // read file, get needed metadata
+        if (filePath.equals("")){
+            this.name = "Default Song";
+            this.path = "./";
+            this.songDuration = new SongDuration(4, 20);
+        }
     }
 
 }

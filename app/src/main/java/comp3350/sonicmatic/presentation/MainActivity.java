@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.Presentation;
+package comp3350.sonicmatic.presentation;
 
 import android.os.Bundle;
 
