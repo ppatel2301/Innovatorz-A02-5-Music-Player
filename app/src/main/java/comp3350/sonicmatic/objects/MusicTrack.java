@@ -1,33 +1,34 @@
 package comp3350.sonicmatic.objects;
 
-import comp3350.sonicmatic.Interfaces.Song;
-import comp3350.sonicmatic.Interfaces.Artist;
-import comp3350.sonicmatic.Interfaces.SongLength;
+import comp3350.sonicmatic.interfaces.ISong;
+import comp3350.sonicmatic.interfaces.IArtist;
+import comp3350.sonicmatic.interfaces.ISongLength;
 
-public class MusicTrack implements Song
+public class MusicTrack implements ISong
 {
 
     // ** instance variables **
-    private SongLength songDuration;
+    private ISongLength songDuration;
     private String path;
     private String name;
-    private int sizeInBytes;
-    private Artist artist;
+    private IArtist artist;
 
     // ** constructors **
 
-    public MusicTrack(String filePath)
+    public MusicTrack(ISong song)
     {
-        if (filePath != null && !filePath.equals(""))
-        {
-            path = filePath;
-            initMetadata(path);
-        }
+        this.name = song.getTitle();
+        this.artist = song.getArtist();
+        this.songDuration = song.getDuration();
+        this.path = song.getPath();
     }
 
-    public MusicTrack(String name, int min, int sec ){
+    public MusicTrack(String name, IArtist artist, ISongLength songDuration, String path)
+    {
         this.name = name;
-        this.songDuration = new SongDuration(min, sec);
+        this.artist = artist;
+        this.songDuration = songDuration;
+        this.path = path;
     }
 
     // ** accessors **
@@ -39,38 +40,22 @@ public class MusicTrack implements Song
     }
 
     @Override
-    public String getName()
+    public String getTitle()
     {
         return name;
     }
 
     @Override
-    public int getLength()
+    public ISongLength getDuration()
     {
-        return -1;
+        return new SongDuration(songDuration);
     }
 
     @Override
-    public Artist getArtist()
+    public IArtist getArtist()
     {
-        return artist;
+        return new MusicArtist(this.name);
     }
 
-    @Override
-    public int getSizeInBytes()
-    {
-        return sizeInBytes;
-    }
-
-    // ** mutators **
-    private void initMetadata(String filePath)
-    {
-        // read file, get needed metadata
-        if (filePath.equals("")){
-            this.name = "Default Song";
-            this.path = "./";
-            this.songDuration = new SongDuration(4, 20);
-        }
-    }
 
 }
