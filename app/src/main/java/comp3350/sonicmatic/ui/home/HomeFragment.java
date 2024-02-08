@@ -2,7 +2,6 @@ package comp3350.sonicmatic.ui.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
@@ -16,8 +15,12 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.databinding.FragmentHomeBinding;
+import comp3350.sonicmatic.interfaces.IArtist;
+import comp3350.sonicmatic.objects.MusicArtist;
 import comp3350.sonicmatic.objects.MusicTrack;
 import comp3350.sonicmatic.objects.Playlist;
+import comp3350.sonicmatic.objects.SongDuration;
+import comp3350.sonicmatic.ui.player.MusicAdapter;
 import comp3350.sonicmatic.ui.playlist.PlaylistAdapter;
 import comp3350.sonicmatic.ui.playlist.PlaylistViewModel;
 
@@ -54,20 +57,15 @@ public class HomeFragment extends Fragment {
         playlistView.setAdapter(playlistAdapter);
         playlistView.setLayoutManager(new LinearLayoutManager((getContext())));
 
-        // Setting the adapter for the song recyler view
-        songListView = root.findViewById(R.id.song_recycler_view);
-        songListView.setAdapter(playlistAdapter);
-        songListView.setLayoutManager(new LinearLayoutManager((getContext())));
-
-        // Calling the observe method to update the ui of any changes
         observePlaylist();
 
+        // Setting the adapter for the song recyler view
+        musicAdapter = new MusicAdapter(new ArrayList<>());
+        songListView = root.findViewById(R.id.song_recycler_view);
+
+        addMuicToList(songListView);
+
         return root;
-    }
-
-    public void onBackPressed()
-    {
-
     }
 
     @Override
@@ -76,7 +74,25 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
-    private void observePlaylist() {
+    private void addMuicToList(RecyclerView list)
+    {
+        // Creating a list to display muisic to list
+        IArtist artist = new MusicArtist("Bob");
+
+        ArrayList<MusicTrack> tracks = new ArrayList<>();
+        SongDuration songLength = new SongDuration("34");
+        tracks.add(new MusicTrack("Name", artist, songLength, "Path"));
+        tracks.add(new MusicTrack("Name1", artist, songLength, "Path"));
+        tracks.add(new MusicTrack("Name2", artist, songLength, "Path"));
+
+        // Updating the ui of the playlist
+        MusicAdapter musicAdapter = new MusicAdapter(tracks);
+        list.setAdapter(musicAdapter);
+        list.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    private void observePlaylist()
+    {
         playlistViewModel.getPlaylist().observe(getViewLifecycleOwner(), new Observer<ArrayList<Playlist>>() {
             @Override
             public void onChanged(ArrayList<Playlist> playlists) {

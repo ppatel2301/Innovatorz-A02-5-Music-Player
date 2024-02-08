@@ -1,5 +1,6 @@
 package comp3350.sonicmatic.ui.playlist;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,9 +53,13 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
             public void onClick(View view) {
 
                 // Get the playlist object
-//                Playlist playlist = playlists.get(holder.getAdapterPosition());
+                Playlist playlist = playlists.get(holder.getAdapterPosition());
 
-                Navigation.findNavController(view).navigate(R.id.playlistDetailFragment);
+                // Creating a bundle to pass data to the playlistDetail framgment
+                Bundle bundle = new Bundle();
+                bundle.putString("playlistName", playlist.getPlaylistName());
+
+                Navigation.findNavController(view).navigate(R.id.playlistDetailFragment, bundle);
             }
         });
     }

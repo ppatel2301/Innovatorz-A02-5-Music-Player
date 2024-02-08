@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class Playlist {
+public class Playlist{
     private String playlistName;
     private ArrayList<MusicTrack> playlist;
 
     public Playlist(String name)
     {
         playlistName = name;
-        playlist = null;
+        playlist = new ArrayList<>();
     }
 
     public Playlist(String name, ArrayList<MusicTrack> list)
@@ -38,6 +38,11 @@ public class Playlist {
     public void addMusicTracks(MusicTrack musicTrack)
     {
         playlist.add(musicTrack);
+    }
+
+    public void removeMusicTracks(MusicTrack musicTrack)
+    {
+        playlist.remove(musicTrack);
     }
 
     public ArrayList<MusicTrack> filterByArtist ()

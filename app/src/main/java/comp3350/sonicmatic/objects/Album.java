@@ -2,20 +2,22 @@ package comp3350.sonicmatic.objects;
 
 import java.util.ArrayList;
 
+import comp3350.sonicmatic.interfaces.IArtist;
+
 public class Album {
 
     private String title;
-    private Artist artist;
+    private IArtist artist;
     private ArrayList<MusicTrack> tracks;
 
-    public Album(String title, Artist artist)
+    public Album(String title, IArtist artist)
     {
         this.title = title;
         this.artist = artist;
         this.tracks = null;
     }
 
-    public Album(String title, Artist artist, ArrayList<MusicTrack> tracks)
+    public Album(String title, IArtist artist, ArrayList<MusicTrack> tracks)
     {
         this.title = title;
         this.artist = artist;
@@ -27,7 +29,7 @@ public class Album {
         return title;
     }
 
-    public Artist getArtist()
+    public IArtist getArtist()
     {
         return artist;
     }

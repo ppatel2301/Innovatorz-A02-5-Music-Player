@@ -9,22 +9,27 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
+import comp3350.sonicmatic.interfaces.IArtist;
+import comp3350.sonicmatic.interfaces.ISongLength;
+
 @RunWith(JUnit4.class)
 public class AlbumTest {
 
     private Album album1;
     private Album album2;
     private Album album3;
+    private ISongLength songLength;
 
     private ArrayList<MusicTrack> musicTracks;
 
     @Before
     public void setUp()
     {
-        Artist artist = new Artist("John");
+        IArtist artist = new MusicArtist("John");
         album1 = new Album("Album 1", artist);
         album2 = new Album("Album 2", artist, new ArrayList<>());
         album3 = new Album("Album 3", artist, null);
+        songLength = new SongDuration("3432");
     }
 
     @Test
@@ -59,7 +64,7 @@ public class AlbumTest {
     public void testUploadTpAlbums(){
         System.out.println("\nTesting Album uploadToAlbums");
         assertNull(album1.getTracks());
-//        album1.uploadToAlbums(new MusicTrack("Track 1", album1.getArtist()));
-        assertNull(album1.getTracks());
+        album1.uploadToAlbums(new MusicTrack("Track 1", album1.getArtist(), songLength, "Path"));
+        assertEquals(1, album1.getTracks().size());
     }
 }
