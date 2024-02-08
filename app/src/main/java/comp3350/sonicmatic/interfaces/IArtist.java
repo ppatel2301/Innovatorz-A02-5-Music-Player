@@ -1,6 +1,6 @@
 package comp3350.sonicmatic.interfaces;
 
-public interface Artist {
+public interface IArtist {
 
     String getName();
 

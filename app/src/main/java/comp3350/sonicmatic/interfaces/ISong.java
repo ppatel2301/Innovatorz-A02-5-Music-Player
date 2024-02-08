@@ -1,10 +1,10 @@
 package comp3350.sonicmatic.interfaces;
 
-public interface Song {
+public interface ISong {
 
     String getPath();
     String getTitle();
-    SongLength getDuration();
-    Artist getArtist();
+    ISongLength getDuration();
+    IArtist getArtist();
 
 }

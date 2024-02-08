@@ -1,10 +1,8 @@
 package comp3350.sonicmatic.interfaces;
 
-import android.content.Context;
-
 import comp3350.sonicmatic.exceptions.NoMusicException;
 
-public interface Player
+public interface IPlayer
 {
 
     boolean isPlaying();
@@ -22,7 +20,7 @@ public interface Player
 
 
     void loadSongFromPath(String path);
-    Song getCurrentSong();
+    ISong getCurrentSong();
 
     String [] getSongPaths();
 

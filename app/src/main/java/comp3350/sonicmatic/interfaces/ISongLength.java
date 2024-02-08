@@ -1,6 +1,6 @@
 package comp3350.sonicmatic.interfaces;
 
-public interface SongLength
+public interface ISongLength
 {
 
     int getMinutes();

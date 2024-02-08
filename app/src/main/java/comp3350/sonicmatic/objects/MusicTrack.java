@@ -1,21 +1,21 @@
 package comp3350.sonicmatic.objects;
 
-import comp3350.sonicmatic.interfaces.Song;
-import comp3350.sonicmatic.interfaces.Artist;
-import comp3350.sonicmatic.interfaces.SongLength;
+import comp3350.sonicmatic.interfaces.ISong;
+import comp3350.sonicmatic.interfaces.IArtist;
+import comp3350.sonicmatic.interfaces.ISongLength;
 
-public class MusicTrack implements Song
+public class MusicTrack implements ISong
 {
 
     // ** instance variables **
-    private SongLength songDuration;
+    private ISongLength songDuration;
     private String path;
     private String name;
-    private Artist artist;
+    private IArtist artist;
 
     // ** constructors **
 
-    public MusicTrack(Song song)
+    public MusicTrack(ISong song)
     {
         this.name = song.getTitle();
         this.artist = song.getArtist();
@@ -23,7 +23,7 @@ public class MusicTrack implements Song
         this.path = song.getPath();
     }
 
-    public MusicTrack(String name, Artist artist, SongLength songDuration, String path)
+    public MusicTrack(String name, IArtist artist, ISongLength songDuration, String path)
     {
         this.name = name;
         this.artist = artist;
@@ -46,15 +46,15 @@ public class MusicTrack implements Song
     }
 
     @Override
-    public SongLength getDuration()
+    public ISongLength getDuration()
     {
         return new SongDuration(songDuration);
     }
 
     @Override
-    public Artist getArtist()
+    public IArtist getArtist()
     {
-        return new MusicArtist(this.name);
+        return new MusicArtist(this.artist.getName());
     }
 
 

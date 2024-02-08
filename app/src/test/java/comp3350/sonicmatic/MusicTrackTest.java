@@ -6,8 +6,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import comp3350.sonicmatic.interfaces.Artist;
-import comp3350.sonicmatic.interfaces.Song;
+import comp3350.sonicmatic.interfaces.IArtist;
+import comp3350.sonicmatic.interfaces.ISong;
+import comp3350.sonicmatic.interfaces.ISongLength;
 import comp3350.sonicmatic.objects.MusicArtist;
 import comp3350.sonicmatic.objects.MusicTrack;
 import comp3350.sonicmatic.objects.SongDuration;
@@ -17,16 +18,16 @@ public class MusicTrackTest
 
     private final String SONG_NAME = "Sang";
     private final String ARTIST_NAME = "Kanye East";
-    private final String MILLIS = "42069";
+    private final ISongLength DURATION = new SongDuration("42069");
     private final String PATH = "go/to/this/foler/to/get/song.mp3";
 
-    private Song track;
+    private ISong track;
 
 
     @Before
     public void setup()
     {
-        track = new MusicTrack(SONG_NAME, new MusicArtist(ARTIST_NAME), new SongDuration(MILLIS), PATH);
+        track = new MusicTrack(SONG_NAME, new MusicArtist(ARTIST_NAME), DURATION, PATH);
     }
 
     @After
@@ -36,20 +37,48 @@ public class MusicTrackTest
     }
 
     @Test
-    public void getPath()
+    public void getPathTest()
     {
+        String path = track.getPath();
+
+        assertEquals("Paths should be equal", true, path.equals(PATH));
+    }
+
+    @Test
+    public void getTitleTest()
+    {
+        String title = track.getTitle();
+
+        assertEquals("Titles should be equal", true,title.equals(SONG_NAME));
+    }
+
+    @Test
+    public void getDurationTest()
+    {
+        ISongLength testDuration = track.getDuration();
+
+        assertEquals("Duration returned shouldn't be null", true, testDuration != null);
+
+        if (testDuration != null)
+        {
+           assertEquals("Minutes did not match", true, testDuration.getMinutes() == DURATION.getMinutes());
+           assertEquals("Last seconds did not match", true, testDuration.getLastSeconds() == DURATION.getLastSeconds());
+           assertEquals("Total seconds did not match", true, testDuration.getTotalSeconds() == DURATION.getTotalSeconds());
+        }
 
     }
 
     @Test
-    public void getTitle() {
-    }
+    public void getArtistTest()
+    {
+        IArtist testArtist = track.getArtist();
 
-    @Test
-    public void getDuration() {
-    }
+        assertEquals("Artist returned shouldn't be null", true, testArtist != null);
 
-    @Test
-    public void getArtist() {
+        if (testArtist != null)
+        {
+            assertEquals("Artist name did not match", true, testArtist.getName().equals(ARTIST_NAME));
+        }
+
     }
 }

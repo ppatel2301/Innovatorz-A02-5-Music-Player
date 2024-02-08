@@ -1,84 +1,46 @@
 package comp3350.sonicmatic.presentation;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Lifecycle;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
+import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
-
-import java.util.ArrayList;
+import java.util.Objects;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.System.musicplayer.MusicPlayer;
-import comp3350.sonicmatic.exceptions.NoMusicException;
-import comp3350.sonicmatic.interfaces.Player;
-import comp3350.sonicmatic.ui.player.PlayerFragment;
+import comp3350.sonicmatic.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
-    private final static int REQUEST_CODE = 1;
+    private ActivityMainBinding binding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
-        permission();
 
-        Player mp3Player = new MusicPlayer(getApplicationContext());
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        String [] music_paths = mp3Player.getSongPaths();
+        //Hide the status bar
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
-        mp3Player.loadSongFromPath("music/Archetype.mp3");
-        try
-        {
-            mp3Player.start();
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(binding.navView, navController);
 
-        } catch(NoMusicException nme)
-        {
-
-        }
-
+        // required that all instances of the music player have access to the context
+        MusicPlayer.context = getApplicationContext();
 
     }
-
-    private void permission()
-    {
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-           != PackageManager.PERMISSION_GRANTED)
-        {
-            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE);
-        }
-        else
-        {
-            Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String [] permissions, @NonNull int [] grantResults)
-    {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == REQUEST_CODE)
-        {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
-            {
-                ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE);
-            }
-        }
-    }
-
 }

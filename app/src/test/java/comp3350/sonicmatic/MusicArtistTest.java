@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import comp3350.sonicmatic.interfaces.Artist;
+import comp3350.sonicmatic.interfaces.IArtist;
 import comp3350.sonicmatic.objects.MusicArtist;
 
 public class MusicArtistTest {
@@ -14,7 +14,7 @@ public class MusicArtistTest {
     {
         final String ARTIST_NAME = "Elan!";
 
-        Artist artist = new MusicArtist(ARTIST_NAME);
+        IArtist artist = new MusicArtist(ARTIST_NAME);
 
         String testName = artist.getName();
 

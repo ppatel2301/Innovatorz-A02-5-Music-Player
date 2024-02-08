@@ -5,20 +5,19 @@ import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
-import android.provider.MediaStore;
 
 
 import java.io.FileDescriptor;
 import java.io.IOException;
 
 import comp3350.sonicmatic.exceptions.NoMusicException;
-import comp3350.sonicmatic.interfaces.Player;
-import comp3350.sonicmatic.interfaces.Song;
+import comp3350.sonicmatic.interfaces.IPlayer;
+import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.objects.MusicArtist;
 import comp3350.sonicmatic.objects.MusicTrack;
 import comp3350.sonicmatic.objects.SongDuration;
 
-public class MusicPlayer implements Player
+public class MusicPlayer implements IPlayer
 {
 
     // ** class constants **
@@ -26,18 +25,19 @@ public class MusicPlayer implements Player
 
     private enum States {PLAYING, PAUSED, IDLE}
 
+    // ** class variables **
+    public static Context context = null;
+
     // ** instance variables **
     private States state;
 
     private static MediaPlayer music;
-    private Context context;
-    private Song playMe;
+
+    private ISong playMe;
 
     // ** constructors **
-    public MusicPlayer(Context appEnvironment)
+    public MusicPlayer()
     {
-        context = appEnvironment;
-
         state = States.IDLE;
     }
 
@@ -123,12 +123,9 @@ public class MusicPlayer implements Player
     @Override
     public void seek(int seekTo) throws NoMusicException
     {
-        if (music != null && state != States.IDLE)
+        if (music != null && state != States.IDLE && seekTo >=0 && seekTo < music.getDuration())
         {
-            if (seekTo >=0 && seekTo < music.getDuration())
-            {
-                music.seekTo(seekTo);
-            }
+            music.seekTo(seekTo);
         }
         else
         {
@@ -164,14 +161,20 @@ public class MusicPlayer implements Player
 
     public String [] getSongPaths()
     {
-        String [] paths;
-        AssetManager assetManager = context.getAssets();
+        String [] paths = null;
+        AssetManager assetManager;
 
-        try {
-            paths = assetManager.list("music");
-        } catch(IOException ioe)
+        if (context != null)
         {
-            paths = null;
+            assetManager = context.getAssets();
+
+            try {
+                paths = assetManager.list("music");
+            } catch(IOException ioe)
+            {
+                paths = null;
+            }
+
         }
 
         return paths;
@@ -188,13 +191,13 @@ public class MusicPlayer implements Player
         long start;
         long length;
 
-        Song loadMe = null;
+        ISong loadMe = null;
 
         String title;
         String artist;
         String duration;
 
-        if (state == States.IDLE && music == null)
+        if (state == States.IDLE && music == null && context != null)
         {
 
             try {
@@ -227,9 +230,9 @@ public class MusicPlayer implements Player
     }
 
     @Override
-    public Song getCurrentSong()
+    public ISong getCurrentSong()
     {
-        Song returnMe = null;
+        ISong returnMe = null;
 
         if (playMe != null)
         {
@@ -239,7 +242,7 @@ public class MusicPlayer implements Player
         return returnMe;
     }
 
-    private void loadSong(Song song)
+    private void loadSong(ISong song)
     {
        if (song != null && state == States.IDLE)
        {

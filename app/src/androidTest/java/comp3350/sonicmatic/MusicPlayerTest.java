@@ -12,13 +12,13 @@ import org.junit.After;
 
 import comp3350.sonicmatic.System.musicplayer.MusicPlayer;
 import comp3350.sonicmatic.exceptions.NoMusicException;
-import comp3350.sonicmatic.interfaces.Player;
-import comp3350.sonicmatic.interfaces.Song;
+import comp3350.sonicmatic.interfaces.IPlayer;
+import comp3350.sonicmatic.interfaces.ISong;
 
 
 public class MusicPlayerTest {
 
-    private Player player;
+    private IPlayer player;
     private Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
     private final String testSong = "music/Archetype.mp3";
@@ -26,7 +26,8 @@ public class MusicPlayerTest {
     @Before
     public void setup()
     {
-        player = new MusicPlayer(context);
+        MusicPlayer.context = context;
+        player = new MusicPlayer();
         player.loadSongFromPath(testSong);
     }
 
@@ -88,7 +89,7 @@ public class MusicPlayerTest {
             player.start();
             player.pause();
 
-            assertEquals("Player should pause", true, player.isStopped());
+            assertEquals("Player should pause", true, player.isPaused());
 
             player.stop();
 
@@ -285,8 +286,8 @@ public class MusicPlayerTest {
 
         if (pathCount == EXPECTED_COUNT)
         {
-            assertEquals("First song in paths was not Archetype.mp3", true, "Archetype.mp3" == paths[0]);
-            assertEquals("Second song in paths was not Cyberwaste.mp3", true, "Cyberwaste.mp3" == paths[1]);
+            assertEquals("First song in paths was not Archetype.mp3, it was "+paths[0], true, paths[0].equals("Archetype.mp3"));
+            assertEquals("Second song in paths was not Cyberwaste.mp3, is was"+paths[1], true, paths[1].equals("Cyberwaste.mp3"));
         }
 
     }
@@ -296,7 +297,7 @@ public class MusicPlayerTest {
     {
         // already loaded a song in the before column. Expecting it to be Archetype by Fear Factory with path music/Archetype.mp3 and duration of 4:35
 
-        Song test = player.getCurrentSong();
+        ISong test = player.getCurrentSong();
 
         String title = test.getTitle();
         String artist = test.getArtist().getName();

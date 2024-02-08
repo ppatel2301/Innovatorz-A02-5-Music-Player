@@ -1,8 +1,8 @@
 package comp3350.sonicmatic.objects;
 
-import comp3350.sonicmatic.interfaces.Artist;
+import comp3350.sonicmatic.interfaces.IArtist;
 
-public class MusicArtist implements Artist
+public class MusicArtist implements IArtist
 {
 
     // ** instance variables **
