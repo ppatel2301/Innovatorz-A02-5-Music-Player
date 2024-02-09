@@ -1,4 +1,4 @@
-package comp3350.sonicmatic;
+package comp3350.sonicmatic.objects;
 
 import static org.junit.Assert.*;
 
