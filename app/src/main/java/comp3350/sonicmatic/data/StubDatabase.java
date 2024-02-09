@@ -1,6 +1,8 @@
 package comp3350.sonicmatic.data;
 
 import java.util.ArrayList;
+
+import comp3350.sonicmatic.exceptions.SongNotFoundException;
 import comp3350.sonicmatic.interfaces.Database;
 import comp3350.sonicmatic.objects.MusicTrack;
 
@@ -21,10 +23,10 @@ public class StubDatabase implements Database {
     }
 
     @Override
-    public MusicTrack getSong(String name) throws Exception {
+    public MusicTrack getSong(String name) throws SongNotFoundException {
         for (MusicTrack song: this.dbList){
             if (song.getTitle().equals(name)) return song;
         }
-        throw new Exception("Song not found");
+        throw new SongNotFoundException(name);
     }
 }
