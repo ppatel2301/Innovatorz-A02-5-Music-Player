@@ -34,4 +34,4 @@ Sonicmatic aims to be a music management platform that simplifies the music list
 
 ## Retrospective
 
-- Out document for [Retrospective]()
+- Out document for [Retrospective](https://code.cs.umanitoba.ca/comp3350-winter2024/innovators-a02-5/-/blob/main/Docs/iteration_one_retrospective.md?ref_type=heads)
