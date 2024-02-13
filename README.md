@@ -22,7 +22,7 @@ Sonicmatic aims to be a music management platform that simplifies the music list
 
 ## Developer Tasks
 
-- [Developer Task List]()
+- [Developer Task List](https://code.cs.umanitoba.ca/comp3350-winter2024/innovators-a02-5/-/issues/?sort=created_date&state=opened&label_name%5B%5D=Dev%20Task&first_page_size=100)
 
 ## Architecture
 
