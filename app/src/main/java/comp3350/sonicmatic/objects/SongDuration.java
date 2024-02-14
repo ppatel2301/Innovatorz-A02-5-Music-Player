@@ -6,11 +6,11 @@ public class SongDuration implements ISongLength
 {
 
     // ** class constants **
-    private static int NO_DATA = -1;
+    public static int NO_DATA = -1;
 
     // ** instance variables **
-    private int minutes;
-    private int lastSeconds;
+    private int minutes = NO_DATA;
+    private int lastSeconds = NO_DATA;
 
     // ** constructors **
 
@@ -22,6 +22,8 @@ public class SongDuration implements ISongLength
 
     public SongDuration(String millisDurtation)
     {
+        // Note that this is a String and not a long or int because the Metadata reader for our files returns Strings for all pieces of metadata.
+
         // take a string representation of duration in millisecs and load it into this object
         createFromMillisString(millisDurtation);
     }
@@ -55,11 +57,15 @@ public class SongDuration implements ISongLength
             // for this representation, we don't neeed any decimamls with the seconds
             roundedSeconds = Math.round(((float)Integer.parseInt(millisDurtation) / 1000.0f));
 
-            // truncate to only minutes
-            minutes = roundedSeconds/60;
+            if (roundedSeconds >= 0)
+            {
+                // truncate to only minutes
+                minutes = roundedSeconds/60;
 
-            // get the remaining fraction of minute and convert that to real seconds
-            lastSeconds = Math.round(((roundedSeconds/60.0f) - minutes) * 60);
+                // get the remaining fraction of minute and convert that to real seconds
+                lastSeconds = Math.round(((roundedSeconds/60.0f) - minutes) * 60);
+            }
+
 
         } catch (NumberFormatException nfe)
         {

@@ -54,7 +54,7 @@ public class MusicTrack implements ISong
     @Override
     public IArtist getArtist()
     {
-        return new MusicArtist(this.name);
+        return new MusicArtist(this.artist.getName());
     }
 
 

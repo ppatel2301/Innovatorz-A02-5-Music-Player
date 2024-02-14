@@ -4,6 +4,7 @@ import comp3350.sonicmatic.interfaces.IArtist;
 
 public class MusicArtist implements IArtist
 {
+
     // ** instance variables **
     private String name;
 

@@ -6,8 +6,7 @@ import junit.framework.TestSuite;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import comp3350.sonicmatic.objects.AlbumTest;
-import comp3350.sonicmatic.objects.PlaylistTest;
+import comp3350.sonicmatic.objects.*;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({

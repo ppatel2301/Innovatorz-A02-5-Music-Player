@@ -22,11 +22,11 @@ Sonicmatic aims to be a music management platform that simplifies the music list
 
 ## Developer Tasks
 
-- [Developer Task List]()
+- [Developer Task List](https://code.cs.umanitoba.ca/comp3350-winter2024/innovators-a02-5/-/issues/?sort=created_date&state=opened&label_name%5B%5D=Dev%20Task&first_page_size=100)
 
 ## Architecture
 
-- Our planned [Architecture](https://code.cs.umanitoba.ca/comp3350-winter2024/innovators-a02-5/-/blob/Dev/Docs/ARCHITECTURE.md?ref_type=heads) for our project
+- Our planned [Architecture](https://code.cs.umanitoba.ca/comp3350-winter2024/innovators-a02-5/-/blob/main/Docs/ARCHITECTURE.md) for our project
 
 ## Coding Style
 
@@ -34,4 +34,4 @@ Sonicmatic aims to be a music management platform that simplifies the music list
 
 ## Retrospective
 
-- Out document for [Retrospective]()
+- Out document for [Retrospective](https://code.cs.umanitoba.ca/comp3350-winter2024/innovators-a02-5/-/blob/main/Docs/iteration_one_retrospective.md?ref_type=heads)
