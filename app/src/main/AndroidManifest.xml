@@ -11,9 +11,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sonicmatic">
         <activity
-            android:name=".presentation.PlayerActivity"
-            android:exported="false" />
-        <activity
             android:name=".presentation.MainActivity"
             android:exported="true">
             <intent-filter>
