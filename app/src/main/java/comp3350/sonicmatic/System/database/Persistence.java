@@ -18,7 +18,7 @@ public abstract class Persistence
 {
 
     private final String DB_PATH = "database";
-    private final String DB_NAME = "SMDB";
+    private String DB_NAME = "";
 
     public static Context context;
 
@@ -31,9 +31,26 @@ public abstract class Persistence
         try {
 
             assetNames = assetManager.list(DB_PATH);
+            assetNames[0] = dataDirectory.toString() + "/" + assetNames[0]; // add the proper directory path back
+
+/*
+           try{
+            Class.forName("org.hsqldb.jdbcDriver").newInstance();
+           } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+           } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+           } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+           }
+*/
+
+            DB_NAME = assetNames[0];
 
         } catch (IOException ioe)
+
         {
+
 
         }
 

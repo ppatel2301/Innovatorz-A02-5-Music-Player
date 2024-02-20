@@ -2,10 +2,15 @@ package comp3350.sonicmatic.database;
 
 import static org.junit.Assert.*;
 
+import androidx.test.platform.app.InstrumentationRegistry;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.net.ContentHandler;
+
+import comp3350.sonicmatic.System.database.Persistence;
 import comp3350.sonicmatic.System.database.profile.Profile;
 import comp3350.sonicmatic.System.database.profile.ProfilePersistence;
 
@@ -16,6 +21,7 @@ public class ProfilePersistenceTest {
     @Before
     public void setup()
     {
+        Persistence.context = InstrumentationRegistry.getInstrumentation().getTargetContext();
         profilePersistence = new ProfilePersistence();
     }
 
