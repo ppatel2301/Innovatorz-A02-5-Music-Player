@@ -15,7 +15,6 @@ import comp3350.sonicmatic.exceptions.NoMusicException;
 import comp3350.sonicmatic.interfaces.IPlayer;
 import comp3350.sonicmatic.interfaces.ISong;
 
-
 public class MusicPlayerTest {
 
     private IPlayer player;
