@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import comp3350.sonicmatic.comparator.MusicComparatorByArtist;
+import comp3350.sonicmatic.comparator.MusicComparatorByTitle;
+
 public class Playlist{
     private String playlistName;
     private ArrayList<MusicTrack> playlist;
@@ -47,14 +50,14 @@ public class Playlist{
 
     public ArrayList<MusicTrack> filterByArtist ()
     {
-//        return Collections.sort(playlist, Comparator.comparing(MusicTrack::getArtistName));
-        return null;
+        playlist.sort(new MusicComparatorByArtist());
+        return playlist;
     }
 
     public ArrayList<MusicTrack> filterByTitle ()
     {
-//        return Collections.sort(playlist, Comparator.comparing(MusicTrack::getTitle));
-        return null;
+        playlist.sort(new MusicComparatorByTitle());
+        return playlist;
     }
 
     public ArrayList<MusicTrack> filterByAlbum ()

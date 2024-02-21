@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -44,7 +43,7 @@ public class CreatePlaylistFragment extends BottomSheetDialogFragment {
         //Logic to create a playlist for the user
         EditText playlistName = root.findViewById(R.id.playlistName);
         Button createPlaylist = root.findViewById(R.id.create_playlist);
-        Button cancelPlaylist = root.findViewById(R.id.cancel_playlist);
+        ImageView cancelPlaylist = root.findViewById(R.id.cancel_playlist);
 
         createPlaylist.setOnClickListener(new View.OnClickListener() {
             @Override

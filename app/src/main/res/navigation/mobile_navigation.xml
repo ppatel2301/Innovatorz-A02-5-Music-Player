@@ -34,4 +34,14 @@
         android:id="@+id/musicFragment"
         android:name="comp3350.sonicmatic.ui.player.MusicFragment"
         tools:layout="@layout/fragment_music_player"/>
+
+    <fragment
+        android:id="@+id/collapsedFragment"
+        android:name="comp3350.sonicmatic.ui.player.MusicFragment"
+        tools:layout="@layout/fragment_collapsed_music_player"/>
+
+    <fragment
+        android:id="@+id/addToPlaylistFragment"
+        android:name="comp3350.sonicmatic.ui.home.AddToPlaylistFragment"
+        android:layout="@layout/fragment_add_to_playlist"/>
 </navigation>

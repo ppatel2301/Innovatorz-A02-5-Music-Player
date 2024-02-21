@@ -55,7 +55,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
                 // Get the playlist object
                 Playlist playlist = playlists.get(holder.getAdapterPosition());
 
-                // Creating a bundle to pass data to the playlistDetail framgment
+                // Creating a bundle to pass data to the playlistDetail fragment
                 Bundle bundle = new Bundle();
                 bundle.putString("playlistName", playlist.getPlaylistName());
 
@@ -80,8 +80,8 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
             super(view);
 
             playlistImage = itemView.findViewById(R.id.playlist_img);
-            title = itemView.findViewById(R.id.playlist_title);
-            user = itemView.findViewById(R.id.textView3);
+            title = itemView.findViewById(R.id.add_title);
+            user = itemView.findViewById(R.id.add_user);
         }
     }
 }

@@ -1,11 +1,11 @@
 package comp3350.sonicmatic.ui.player;
 
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
@@ -38,6 +38,15 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
         holder.title.setText(track.getTitle());
         holder.artist.setText(track.getArtist().getName());
 
+        holder.addToPlayist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Change this to open the addToPlaylistFragment.xml using the below line
+//                Navigation.findNavController(view).navigate(R.id.addToPlaylistFragment, null);
+                Toast.makeText(view.getContext(), "Add To Playlist",Toast.LENGTH_SHORT).show();
+            }
+        });
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,6 +66,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
         private ImageView musicImage;
         private TextView title;
         private TextView artist;
+        private ImageView addToPlayist;
 
         public MusicViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,6 +74,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
             musicImage = itemView.findViewById(R.id.song_image);
             title = itemView.findViewById(R.id.song_title);
             artist = itemView.findViewById(R.id.song_artist);
+            addToPlayist = itemView.findViewById(R.id.add_to_playlist);
         }
     }
 }

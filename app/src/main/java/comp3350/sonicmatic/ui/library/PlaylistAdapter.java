@@ -63,8 +63,8 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
             super(view);
 
             playlistImage = itemView.findViewById(R.id.playlist_img);
-            title = itemView.findViewById(R.id.playlist_title);
-            user = itemView.findViewById(R.id.textView3);
+            title = itemView.findViewById(R.id.add_title);
+            user = itemView.findViewById(R.id.add_user);
         }
     }
 }

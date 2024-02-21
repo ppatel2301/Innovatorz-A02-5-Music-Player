@@ -4,11 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,8 +28,9 @@ public class MusicFragment extends Fragment {
     // Ui
     private TextView trackName;
     private TextView trackArtist;
-    private Button play_pause;
+    private ImageView play_pause;
     private ImageView trackImage;
+    private ImageView collaspePlayer;
 
     @Nullable
     @Override
@@ -48,13 +46,12 @@ public class MusicFragment extends Fragment {
         trackArtist = root.findViewById(R.id.player_artist);
         play_pause = root.findViewById(R.id.play_pause_button);
         trackImage = root.findViewById(R.id.player_music_image);
-
+        collaspePlayer = root.findViewById(R.id.player_back_button);
 
         trackName.setText(loaded.getTitle());
         trackArtist.setText(loaded.getArtist().getName());
 
-
-        trackImage.setBackgroundResource(R.drawable.baseline_library_music_24);
+        trackImage.setBackgroundResource(R.drawable.default_playlist_img);
 
         play_pause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,16 +63,15 @@ public class MusicFragment extends Fragment {
 
                try
                {
-
                    if (player.isStopped() || player.isPaused())
                    {
                        player.start();
-                       play_pause.setText("Pause");
+                       play_pause.setBackgroundResource(R.drawable.baseline_pause_circle_outline_24);
                    }
                    else if (player.isPlaying())
                    {
                        player.pause();
-                       play_pause.setText("Resume");
+                       play_pause.setBackgroundResource(R.drawable.baseline_play_circle_outline_24);
                    }
 
 
@@ -83,11 +79,15 @@ public class MusicFragment extends Fragment {
                {
 
                }
-
             }
         });
 
-
+        collaspePlayer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getParentFragmentManager().popBackStack();
+            }
+        });
         return root;
     }
 }

@@ -57,5 +57,4 @@ public class MusicTrack implements ISong
         return new MusicArtist(this.artist.getName());
     }
 
-
 }
