@@ -14,6 +14,7 @@ import androidx.navigation.ui.NavigationUI;
 import java.util.Objects;
 
 import comp3350.sonicmatic.R;
+import comp3350.sonicmatic.System.database.Persistence;
 import comp3350.sonicmatic.System.musicplayer.MusicPlayer;
 import comp3350.sonicmatic.databinding.ActivityMainBinding;
 
@@ -41,6 +42,18 @@ public class MainActivity extends AppCompatActivity {
 
         // required that all instances of the music player have access to the context
         MusicPlayer.context = getApplicationContext();
+
+        try {
+            Class.forName("org.hsqldb.jdbcDriver").newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        Persistence.context = getApplicationContext();
 
     }
 }

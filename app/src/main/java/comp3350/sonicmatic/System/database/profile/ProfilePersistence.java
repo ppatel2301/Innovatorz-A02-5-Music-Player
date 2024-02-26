@@ -1,5 +1,7 @@
 package comp3350.sonicmatic.System.database.profile;
 
+import android.util.Log;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,7 +44,8 @@ public class ProfilePersistence extends Persistence
 
         } catch(final SQLException sqle)
         {
-            System.out.println(sqle);
+            //System.out.println(sqle);
+            Log.d("ERROR", "sql exception while trying to connect to db:\n"+sqle.toString());
             return null;
         }
     }
