@@ -28,14 +28,16 @@ public class ProfilePersistence extends Persistence
         try(final Connection c = getConnection())
         {
 
-            final Statement statement = c.createStatement();
-            final ResultSet queryResult = statement.executeQuery("");
+            final PreparedStatement statement = c.prepareStatement("SELECT * FROM profiles WHERE username = ?");
+            statement.setString(1, username);
+
+            final ResultSet queryResult = statement.executeQuery();
 
             queryResult.next();
             retrieved = new Profile(queryResult.getString("username"),
                                     queryResult.getString("displayname"),
                                     queryResult.getString("password"),
-                                    queryResult.getString("isartist").equals("1"));
+                                    queryResult.getInt("isartist") == 1);
 
             queryResult.close();
             statement.close();
@@ -45,7 +47,7 @@ public class ProfilePersistence extends Persistence
         } catch(final SQLException sqle)
         {
             //System.out.println(sqle);
-            Log.d("ERROR", "sql exception while trying to connect to db:\n"+sqle.toString());
+            Log.d("ERROR", "sql exception when getting a profile:\n"+sqle.toString());
             return null;
         }
     }

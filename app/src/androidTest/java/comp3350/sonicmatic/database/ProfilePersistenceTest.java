@@ -34,9 +34,9 @@ public class ProfilePersistenceTest {
     @Test
     public void testGet()
     {
-        Profile profile = profilePersistence.get("BenDover1337");
+        Profile profile = profilePersistence.get("BenD1337");
 
-        assertEquals("Profile was null", profile != null, true);
+        assertEquals("Profile was null", true, profile != null);
 
         String username = profile.getUsername();
         String displayName = profile.getDisplayName();
