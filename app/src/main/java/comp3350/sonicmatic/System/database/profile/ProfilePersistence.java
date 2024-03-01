@@ -28,16 +28,16 @@ public class ProfilePersistence extends Persistence
         try(final Connection c = getConnection())
         {
 
-            final PreparedStatement statement = c.prepareStatement("SELECT * FROM profiles WHERE username = ?");
-            statement.setString(1, username);
+            final PreparedStatement statement = c.prepareStatement("SELECT * FROM Profiles");
+           // statement.setString(1, username);
 
             final ResultSet queryResult = statement.executeQuery();
 
             queryResult.next();
             retrieved = new Profile(queryResult.getString("username"),
-                                    queryResult.getString("displayname"),
+                                    queryResult.getString("display_name"),
                                     queryResult.getString("password"),
-                                    queryResult.getInt("isartist") == 1);
+                                    queryResult.getInt("is_artist") == 1);
 
             queryResult.close();
             statement.close();

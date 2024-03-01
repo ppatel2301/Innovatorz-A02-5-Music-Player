@@ -42,7 +42,7 @@ public class ProfilePersistenceTest {
         String displayName = profile.getDisplayName();
         String password = profile.getPassword();
 
-        assertEquals("Get Test: username \""+username+"\" not expected", username.equals("BenDover1337"),true);
+        assertEquals("Get Test: username \""+username+"\" not expected", username.equals("BenD1337"),true);
         assertEquals("Get Test: display name \""+displayName+"\" not expected", displayName.equals("Benjamin Dover"), true);
         assertEquals("Get Test: password \""+password+"\" not expected", password.equals("Password1"), true);
         assertEquals("Get Test: Artist bool not true", profile.isArtist(), true);

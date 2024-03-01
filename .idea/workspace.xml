@@ -13,17 +13,23 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fdb10a1-bdd7-4b30-a469-148d164e8c30" name="Changes" comment="Getting closer to DB connection, just used and adapted Franklin's code. Not sure why it isn't working so I'll be taking it to Rob on Tuesday (tommorow).">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/checksums/checksums.lock" afterDir="false" />
+    <list default="true" id="4fdb10a1-bdd7-4b30-a469-148d164e8c30" name="Changes" comment="Hope this works! Battery going 2 die">
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script.lck" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script.script" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/androidTestResultsUserPreferences.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/androidTestResultsUserPreferences.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/database/ProfilePersistenceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/database/ProfilePersistenceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/System/database/Persistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/System/database/Persistence.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/System/database/profile/ProfilePersistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/System/database/profile/ProfilePersistence.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/objects/Credentials.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/objects/Credentials.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +44,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\elang\.android\avd\Pixel_Tablet_API_34_2.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\elang\.android\avd\Pixel_Tablet_API_34_2_2.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -110,11 +116,14 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
     &quot;git-widget-placeholder&quot;: &quot;dev-iteration2-database-first__draft&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/dharm/Desktop/Test/innovators-a02-5&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/elang/StudioProjects/innovators-a02-5/app/src/main/assets/database&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\elang\StudioProjects\innovators-a02-5\app\src\main\assets\database" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
@@ -316,14 +325,35 @@
       <option name="project" value="LOCAL" />
       <updated>1708975545396</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Connected to DB. Having issues getting a user from profiles table. Either bad access or object not being created properly">
+      <option name="closed" value="true" />
+      <created>1709140467571</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1709140467571</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="database setup, almost done getting it from assets. Has one unit test in the instrumentation test folder." />
     <MESSAGE value="still working on getting a connection from DB" />
     <MESSAGE value="Getting closer to DB connection, just used and adapted Franklin's code. Not sure why it isn't working so I'll be taking it to Rob on Tuesday (tommorow)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Getting closer to DB connection, just used and adapted Franklin's code. Not sure why it isn't working so I'll be taking it to Rob on Tuesday (tommorow)." />
+    <MESSAGE value="Connected to DB. Having issues getting a user from profiles table. Either bad access or object not being created properly" />
+    <MESSAGE value="Hope this works! Battery going 2 die" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hope this works! Battery going 2 die" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -332,6 +362,11 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/System/database/profile/ProfilePersistence.java</url>
           <line>49</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/database/ProfilePersistenceTest.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

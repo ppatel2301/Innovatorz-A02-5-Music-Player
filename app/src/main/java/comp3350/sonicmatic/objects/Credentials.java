@@ -25,7 +25,7 @@ public abstract class Credentials
 
     public String getPassword()
     {
-        return getPassword();
+        return password;
     }
 
 

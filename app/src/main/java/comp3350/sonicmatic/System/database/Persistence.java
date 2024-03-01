@@ -41,7 +41,7 @@ public abstract class Persistence
 
     protected Connection getConnection() throws SQLException
     {
-        return DriverManager.getConnection("jdbc:hsqldb:file:"+database_path+";shutdown=true", "SA", "ElanElanElanElan");
+        return DriverManager.getConnection("jdbc:hsqldb:file:"+database_path+";shutdown=true", "SA", "");
     }
 
     public abstract IPersistentItem get(String primaryKey);
@@ -64,7 +64,7 @@ public abstract class Persistence
             e.printStackTrace();
         }
 
-        final String DB_PATH = "db";
+        final String DB_PATH = "database";
 
         String[] assetNames;
         File dataDirectory = context.getDir(DB_PATH, Context.MODE_PRIVATE);
