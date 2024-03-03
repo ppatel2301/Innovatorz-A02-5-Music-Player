@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.ui.playlist;
+package comp3350.sonicmatic.presentation.playlist;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,12 +19,9 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.databinding.FragmentPlaylistDetailBinding;
-import comp3350.sonicmatic.interfaces.IArtist;
 import comp3350.sonicmatic.interfaces.ISongLength;
-import comp3350.sonicmatic.objects.MusicArtist;
 import comp3350.sonicmatic.objects.MusicTrack;
-import comp3350.sonicmatic.objects.SongDuration;
-import comp3350.sonicmatic.ui.player.MusicAdapter;
+import comp3350.sonicmatic.objects.Playlist;
 
 public class PlaylistDetailFragment extends Fragment {
     private FragmentPlaylistDetailBinding binding;
@@ -30,13 +29,15 @@ public class PlaylistDetailFragment extends Fragment {
     private ImageView backbutton;
     private TextView playlistName;
 
-    private RecyclerView trackList;
-
     private ISongLength songLength;
+    private ArrayList<Playlist> playlists;
+    private PlaylistViewModel playlistViewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        playlistViewModel = new ViewModelProvider(requireActivity()).get(PlaylistViewModel.class);
+        playlists = playlistViewModel.getPlaylist().getValue();
     }
 
     @Nullable
@@ -47,7 +48,7 @@ public class PlaylistDetailFragment extends Fragment {
 
         playlistImage = root.findViewById(R.id.list_detail_img);
         backbutton = root.findViewById(R.id.detail_back_button);
-        trackList  = root.findViewById(R.id.list_detail_view);
+        RecyclerView trackList = root.findViewById(R.id.list_detail_view);
         playlistName = root.findViewById(R.id.list_detail_name);
 
         backbutton.setImageResource(R.drawable.baseline_arrow_back_24);
@@ -62,28 +63,51 @@ public class PlaylistDetailFragment extends Fragment {
         playlistImage.setImageResource(R.drawable.default_playlist_img);
 
         String listName = getArguments().getString("playlistName");
-        playlistName.setText(listName);
 
-        // Using an adapter to upload a list of music tracks
-        addMuicToList(trackList);
+        System.out.println(listName);
+
+        // Using an adapter to upload a list of music tracks which are in the current list chosen
+        // by the user
+
+        observePlaylist(playlistViewModel);
+
+        addMusicToList(listName, trackList);
 
         return root;
     }
 
-    private void addMuicToList(RecyclerView list)
+    private void addMusicToList(String playlistName,RecyclerView list)
     {
-        // Creating a list to display muisic to list
-        IArtist artist = new MusicArtist("Bob");
+        if(playlists != null)
+        {
+            for(Playlist currentList : playlists)
+            {
+                if(currentList.getPlaylistName().equalsIgnoreCase(playlistName))
+                {
+                    ArrayList<MusicTrack> tracks = currentList.getPlaylist();
+                    if(tracks != null)
+                    {
+                        PlaylistMusicAdapter musicAdapter = new PlaylistMusicAdapter(tracks);
+                        list.setAdapter(musicAdapter);
+                        list.setLayoutManager(new LinearLayoutManager(getContext()));
+                    }
+                }
+            }
+        }
+    }
 
-        ArrayList<MusicTrack> tracks = new ArrayList<>();
-        songLength = new SongDuration("34");
-        tracks.add(new MusicTrack("Name", artist, songLength, "Path"));
-        tracks.add(new MusicTrack("Name1", artist, songLength, "Path"));
-        tracks.add(new MusicTrack("Name2", artist, songLength, "Path"));
+    private void observePlaylist(PlaylistViewModel viewModel)
+    {
+        viewModel.getPlaylist().observe(getViewLifecycleOwner(), new Observer<ArrayList<Playlist>>() {
+            @Override
+            public void onChanged(ArrayList<Playlist> updatedPlaylist) {
+                playlists = updatedPlaylist;
+            }
+        });
+    }
 
-        // Updating the ui of the playlist
-        MusicAdapter musicAdapter = new MusicAdapter(tracks);
-        list.setAdapter(musicAdapter);
-        trackList.setLayoutManager(new LinearLayoutManager(getContext()));
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 }

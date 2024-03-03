@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.ui.home;
+package comp3350.sonicmatic.presentation.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,9 +22,9 @@ import comp3350.sonicmatic.objects.MusicArtist;
 import comp3350.sonicmatic.objects.MusicTrack;
 import comp3350.sonicmatic.objects.Playlist;
 import comp3350.sonicmatic.objects.SongDuration;
-import comp3350.sonicmatic.ui.player.MusicAdapter;
-import comp3350.sonicmatic.ui.playlist.PlaylistAdapter;
-import comp3350.sonicmatic.ui.playlist.PlaylistViewModel;
+import comp3350.sonicmatic.presentation.player.MusicAdapter;
+import comp3350.sonicmatic.presentation.playlist.PlaylistAdapter;
+import comp3350.sonicmatic.presentation.playlist.PlaylistViewModel;
 
 public class HomeFragment extends Fragment {
 
@@ -62,7 +62,6 @@ public class HomeFragment extends Fragment {
         observePlaylist();
 
         // Setting the adapter for the song recyler view
-        musicAdapter = new MusicAdapter(new ArrayList<>());
         songListView = root.findViewById(R.id.song_recycler_view);
 
         addMuicToList(songListView);
@@ -73,7 +72,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
     }
 
     private void addMuicToList(RecyclerView list)
@@ -83,9 +81,9 @@ public class HomeFragment extends Fragment {
 
         ArrayList<MusicTrack> tracks = new ArrayList<>();
         SongDuration songLength = new SongDuration("34");
-        tracks.add(new MusicTrack("Name", artist, songLength, "Path"));
-        tracks.add(new MusicTrack("Name1", artist, songLength, "Path"));
-        tracks.add(new MusicTrack("Name2", artist, songLength, "Path"));
+        tracks.add(new MusicTrack("Name", artist, songLength, "music/Archetype.mp3"));
+        tracks.add(new MusicTrack("Name1", artist, songLength, "music/Archetype.mp3"));
+        tracks.add(new MusicTrack("Name2", artist, songLength, "music/Archetype.mp3"));
 
         // Updating the ui of the playlist
         MusicAdapter musicAdapter = new MusicAdapter(tracks);

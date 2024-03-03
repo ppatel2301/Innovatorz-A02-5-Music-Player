@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.ui.home;
+package comp3350.sonicmatic.presentation.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,11 +14,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.databinding.FragmentAddToPlaylistBinding;
+import comp3350.sonicmatic.objects.MusicTrack;
 import comp3350.sonicmatic.objects.Playlist;
-import comp3350.sonicmatic.ui.playlist.PlaylistViewModel;
+import comp3350.sonicmatic.presentation.player.MusicViewModel;
+import comp3350.sonicmatic.presentation.playlist.PlaylistViewModel;
 
 public class AddToPlaylistFragment extends Fragment {
 
@@ -26,6 +29,8 @@ public class AddToPlaylistFragment extends Fragment {
     private ArrayList<Playlist> playlists;
     private Button addToPlayist;
     private RecyclerView recyclerView;
+    private MusicTrack selectedMusicTrack;
+    private MusicViewModel model;
 
     public AddToPlaylistFragment() {}
 
@@ -33,7 +38,9 @@ public class AddToPlaylistFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         playlistViewModel = new ViewModelProvider(requireActivity()).get(PlaylistViewModel.class);
+        model = new ViewModelProvider(requireActivity()).get(MusicViewModel.class);
         playlists = playlistViewModel.getPlaylist().getValue();
+        System.out.println(playlists);
     }
 
     @Nullable
@@ -53,8 +60,30 @@ public class AddToPlaylistFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                getParentFragmentManager().popBackStack();
                 // Add update the playlist chosen by the user with the correct song.
+                ArrayList<Playlist> lists = adapter.getPlaylistsSelected();
+                System.out.println(Arrays.toString(lists.toArray()));
+                // Update the user data with access of logic layer and then data layer
+
+                // Getting the music to add to the playlist/s selected by the user
+                selectedMusicTrack = model.getSelectedMusicTrack();
+
+                // Update the playlist data into the playlistViewModel for the ui based
+                for(Playlist listSelected: lists)
+                {
+                    for(Playlist playlist: playlists)
+                    {
+                        if(listSelected.getPlaylistName().equalsIgnoreCase(playlist.getPlaylistName()))
+                        {
+                            System.out.println("Music added to playlists");
+                            // Add the song to this playlist
+                            playlist.addMusicTracks(selectedMusicTrack);
+                            System.out.println(Arrays.toString(playlist.getPlaylist().toArray()));
+                        }
+                    }
+                }
+
+                getParentFragmentManager().popBackStack();
             }
         });
         return root;

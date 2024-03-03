@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.ui.playlist;
+package comp3350.sonicmatic.presentation.playlist;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -71,5 +71,10 @@ public class CreatePlaylistFragment extends BottomSheetDialogFragment {
         });
 
         return root;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 }

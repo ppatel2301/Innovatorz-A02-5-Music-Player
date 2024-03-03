@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/add_to_playlist"
+        android:id="@+id/playlist_music_remove"
         android:layout_width="54dp"
         android:layout_height="51dp"
         android:layout_marginTop="28dp"
@@ -15,10 +15,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/baseline_add_24" />
+        app:srcCompat="@drawable/cancel_circle" />
 
     <ImageView
-        android:id="@+id/song_image"
+        android:id="@+id/playlist_music_img"
         android:layout_width="100dp"
         android:layout_height="92dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,24 +26,19 @@
         app:srcCompat="@drawable/baseline_library_music_24" />
 
     <TextView
-        android:id="@+id/song_artist"
+        android:id="@+id/playlist_music_artist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginEnd="128dp"
-        android:layout_marginBottom="11dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginBottom="44dp"
         android:text="Alan Walker"
         android:textAlignment="viewStart"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/song_image"
-        app:layout_constraintTop_toBottomOf="@+id/song_title"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toEndOf="@+id/playlist_music_img" />
 
     <TextView
-        android:id="@+id/song_title"
+        android:id="@+id/playlist_music_song_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="150dp"
@@ -54,6 +49,6 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/song_image"
+        app:layout_constraintStart_toEndOf="@+id/playlist_music_img"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

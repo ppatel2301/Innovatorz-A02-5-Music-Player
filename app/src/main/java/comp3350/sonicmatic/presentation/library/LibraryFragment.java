@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.ui.library;
+package comp3350.sonicmatic.presentation.library;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,15 +19,15 @@ import java.util.ArrayList;
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.databinding.FragmentLibraryBinding;
 import comp3350.sonicmatic.objects.Playlist;
-import comp3350.sonicmatic.ui.playlist.PlaylistAdapter;
-import comp3350.sonicmatic.ui.playlist.PlaylistViewModel;
+import comp3350.sonicmatic.presentation.playlist.PlaylistAdapter;
+import comp3350.sonicmatic.presentation.playlist.PlaylistViewModel;
 
 public class LibraryFragment extends Fragment{
 
     // Declaring the views
     private RecyclerView recyclerView;
     private Button buttonView; // Add button in the library fragments
-    private PlaylistAdapter adapter; // Adapter for the recycler view
+    private comp3350.sonicmatic.presentation.playlist.PlaylistAdapter adapter; // Adapter for the recycler view
     private FragmentLibraryBinding binding;
     private PlaylistViewModel playlistViewModel;
 
@@ -68,7 +68,6 @@ public class LibraryFragment extends Fragment{
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
     }
 
     private void observePlaylist()

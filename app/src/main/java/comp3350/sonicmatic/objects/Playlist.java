@@ -6,6 +6,7 @@ import java.util.Comparator;
 
 import comp3350.sonicmatic.comparator.MusicComparatorByArtist;
 import comp3350.sonicmatic.comparator.MusicComparatorByTitle;
+import comp3350.sonicmatic.interfaces.ISong;
 
 public class Playlist{
     private String playlistName;

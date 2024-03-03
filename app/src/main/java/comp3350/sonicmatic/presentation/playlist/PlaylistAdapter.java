@@ -1,5 +1,6 @@
-package comp3350.sonicmatic.ui.library;
+package comp3350.sonicmatic.presentation.playlist;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStore;
+import androidx.lifecycle.ViewModelStoreOwner;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -17,6 +22,7 @@ import comp3350.sonicmatic.objects.Playlist;
 public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.PlaylistViewHolder>{
 
     private ArrayList<Playlist> playlists;
+    private PlaylistViewModel playlistViewModel;
 
     public PlaylistAdapter(ArrayList<Playlist> playlists) {
         this.playlists = playlists;
@@ -34,6 +40,9 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
         // Inflates the item layout for the user
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_playlist, parent, false);
 
+        ViewModelProvider viewModelProvider = new ViewModelProvider((ViewModelStoreOwner) parent.getContext());
+        playlistViewModel = viewModelProvider.get(PlaylistViewModel.class);
+
         return new PlaylistViewHolder(itemView);
     }
 
@@ -45,6 +54,24 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
         holder.playlistImage.setImageResource(R.drawable.default_playlist_img);
         holder.title.setText(playlist.getPlaylistName());
         holder.user.setText("Playlist - User");
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // Get the playlist object
+                Playlist playlist = playlists.get(holder.getAdapterPosition());
+
+                // Creating a bundle to pass data to the playlistDetail fragment
+                Bundle bundle = new Bundle();
+                bundle.putString("playlistName", playlist.getPlaylistName());
+
+                // Setting the selected playlist
+                playlistViewModel.setSelectedPlaylist(playlist);
+
+                Navigation.findNavController(view).navigate(R.id.playlistDetailFragment, bundle);
+            }
+        });
     }
 
     public int getItemCount()

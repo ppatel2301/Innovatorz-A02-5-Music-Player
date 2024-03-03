@@ -183,7 +183,6 @@ public class MusicPlayer implements IPlayer
     @Override
     public void loadSongFromPath(String path)
     {
-
         AssetFileDescriptor afd = null;
         MediaMetadataRetriever metadata = new MediaMetadataRetriever();
 
@@ -199,7 +198,6 @@ public class MusicPlayer implements IPlayer
 
         if (state == States.IDLE && music == null && context != null)
         {
-
             try {
                 afd = context.getAssets().openFd(path);
 
@@ -224,9 +222,7 @@ public class MusicPlayer implements IPlayer
             {
                playMe = null;
             }
-
         }
-
     }
 
     @Override
@@ -238,7 +234,6 @@ public class MusicPlayer implements IPlayer
         {
             returnMe = new MusicTrack(playMe);
         }
-
         return returnMe;
     }
 
@@ -248,6 +243,5 @@ public class MusicPlayer implements IPlayer
        {
            playMe = song;
        }
-
     }
 }

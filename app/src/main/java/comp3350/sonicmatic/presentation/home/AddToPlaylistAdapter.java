@@ -1,9 +1,10 @@
-package comp3350.sonicmatic.ui.home;
+package comp3350.sonicmatic.presentation.home;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,8 +19,12 @@ import comp3350.sonicmatic.objects.Playlist;
 public class AddToPlaylistAdapter extends RecyclerView.Adapter<AddToPlaylistAdapter.AddToPlaylistHolder> {
 
     private ArrayList<Playlist> playlists;
+    private ArrayList<Playlist> playlistsSelected;
 
-    public AddToPlaylistAdapter(ArrayList<Playlist> playlists){this.playlists = playlists;}
+    public AddToPlaylistAdapter(ArrayList<Playlist> playlists){
+        this.playlists = playlists;
+        playlistsSelected = new ArrayList<>();
+    }
 
     @NonNull
     @Override
@@ -34,6 +39,28 @@ public class AddToPlaylistAdapter extends RecyclerView.Adapter<AddToPlaylistAdap
     public void onBindViewHolder(@NonNull AddToPlaylistHolder holder, int position) {
         // Add Listener to the checkbox
         // and keep track of the selected playlists
+
+        Playlist playlist = playlists.get(position);
+
+        //Setting the playlist name
+        holder.title.setText(playlist.getPlaylistName());
+        holder.image.setBackgroundResource(R.drawable.default_playlist_img);
+        holder.user.setText("Sample User");
+
+        // Checkbox to add music to playlists
+        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if(isChecked)
+                {
+                    playlistsSelected.add(playlist);
+                    // Update the playlist songs in the playlistViewModel and the database
+                    // database update but don't know how???
+                }else{
+                    playlistsSelected.remove(playlist);
+                }
+            }
+        });
     }
 
     @Override
@@ -41,11 +68,16 @@ public class AddToPlaylistAdapter extends RecyclerView.Adapter<AddToPlaylistAdap
         return playlists.size();
     }
 
+    public ArrayList<Playlist> getPlaylistsSelected()
+    {
+        return playlistsSelected;
+    }
+
     public class AddToPlaylistHolder extends RecyclerView.ViewHolder{
 
         private ImageView image;
         private TextView title;
-        private TextView artist;
+        private TextView user;
         private CheckBox checkBox;
 
         public AddToPlaylistHolder(@NonNull View view)
@@ -54,7 +86,7 @@ public class AddToPlaylistAdapter extends RecyclerView.Adapter<AddToPlaylistAdap
 
             image = itemView.findViewById(R.id.add_image);
             title = itemView.findViewById(R.id.add_title);
-            artist = itemView.findViewById(R.id.add_user);
+            user = itemView.findViewById(R.id.add_user);
             checkBox = itemView.findViewById(R.id.add_check_box);
         }
     }

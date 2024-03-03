@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.ui.library;
+package comp3350.sonicmatic.presentation.playlist;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -10,10 +10,12 @@ import comp3350.sonicmatic.objects.Playlist;
 public class PlaylistViewModel extends  ViewModel{
 
     private final MutableLiveData<ArrayList<Playlist>> playlists;
+    private final MutableLiveData<Playlist> selectedPlaylist;
 
     public PlaylistViewModel ()
     {
         playlists = new MutableLiveData<>(new ArrayList<>());
+        selectedPlaylist = new MutableLiveData<>();
     }
 
     public LiveData<ArrayList<Playlist>> getPlaylist(){return playlists;}
@@ -27,5 +29,15 @@ public class PlaylistViewModel extends  ViewModel{
         }
         currentList.add(playlist);
         playlists.setValue(currentList);
+    }
+
+    public void setSelectedPlaylist(Playlist playlist)
+    {
+        selectedPlaylist.setValue(playlist);
+        System.out.println(playlist);
+    }
+
+    public Playlist getSelectedPlaylist() {
+        return selectedPlaylist.getValue();
     }
 }

@@ -1,5 +1,6 @@
-package comp3350.sonicmatic.ui.player;
+package comp3350.sonicmatic.presentation.player;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +9,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
@@ -19,7 +23,8 @@ import comp3350.sonicmatic.objects.MusicTrack;
 
 public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHolder>{
 
-    ArrayList<MusicTrack> tracks;
+    private ArrayList<MusicTrack> tracks;
+    private MusicViewModel musicViewModel;
 
     public MusicAdapter(ArrayList<MusicTrack> tracks) {this.tracks = tracks;}
 
@@ -27,33 +32,41 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
     @Override
     public MusicViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_song, parent,false);
+        musicViewModel = new ViewModelProvider((FragmentActivity) view.getContext()).get(MusicViewModel.class);
         return new MusicViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MusicAdapter.MusicViewHolder holder, int position) {
-        MusicTrack track = tracks.get(position);
+        if(tracks != null)
+        {
+            MusicTrack track = tracks.get(position);
 
-        holder.musicImage.setImageResource(R.drawable.baseline_library_music_24);
-        holder.title.setText(track.getTitle());
-        holder.artist.setText(track.getArtist().getName());
+            holder.musicImage.setImageResource(R.drawable.baseline_library_music_24);
+            holder.title.setText(track.getTitle());
+            holder.artist.setText(track.getArtist().getName());
 
-        holder.addToPlayist.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Change this to open the addToPlaylistFragment.xml using the below line
-//                Navigation.findNavController(view).navigate(R.id.addToPlaylistFragment, null);
-                Toast.makeText(view.getContext(), "Add To Playlist",Toast.LENGTH_SHORT).show();
-            }
-        });
+            holder.addToPlayist.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Change this to open the addToPlaylistFragment.xml using the below line
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.musicFragment, null);
-            }
-        });
+                    // Adding the selected music to the musicViewModel
+                    musicViewModel.setSelectedTrack(track);
 
+                    Navigation.findNavController(view).navigate(R.id.addToPlaylistFragment, null);
+
+                    Toast.makeText(view.getContext(), "Add To Playlist",Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Navigation.findNavController(view).navigate(R.id.musicFragment, null);
+                }
+            });
+        }
     }
 
     @Override

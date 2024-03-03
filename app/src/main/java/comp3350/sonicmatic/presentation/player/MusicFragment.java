@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.ui.player;
+package comp3350.sonicmatic.presentation.player;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -31,6 +31,7 @@ public class MusicFragment extends Fragment {
     private ImageView play_pause;
     private ImageView trackImage;
     private ImageView collaspePlayer;
+    private Boolean playingMusic = false;
 
     @Nullable
     @Override
@@ -53,6 +54,9 @@ public class MusicFragment extends Fragment {
 
         trackImage.setBackgroundResource(R.drawable.default_playlist_img);
 
+        ImageView collaspsed_play_button = root.findViewById(R.id.collasped_play_button);
+
+
         play_pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,11 +70,13 @@ public class MusicFragment extends Fragment {
                    if (player.isStopped() || player.isPaused())
                    {
                        player.start();
+                       playingMusic = true;
                        play_pause.setBackgroundResource(R.drawable.baseline_pause_circle_outline_24);
                    }
                    else if (player.isPlaying())
                    {
                        player.pause();
+                       playingMusic = false;
                        play_pause.setBackgroundResource(R.drawable.baseline_play_circle_outline_24);
                    }
 
@@ -85,9 +91,21 @@ public class MusicFragment extends Fragment {
         collaspePlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Trying to have the collapsed version of music player so user can play music from there and pause
+
+//                if(playingMusic) {
+//                    collaspsed_play_button.setBackgroundResource(R.drawable.baseline_pause_circle_outline_24);
+//                }else{
+//                    collaspsed_play_button.setBackgroundResource(R.drawable.baseline_play_circle_outline_24);
+//                }
                 getParentFragmentManager().popBackStack();
             }
         });
         return root;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 }
