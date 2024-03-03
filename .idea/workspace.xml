@@ -13,15 +13,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fdb10a1-bdd7-4b30-a469-148d164e8c30" name="Changes" comment="ProfilePersistence tests working">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/application/Services.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/database/DummyPersistent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/database/ProfilePersistenceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/database/ProfilePersistenceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/System/persistance/Persistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/System/persistance/Persistence.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/System/persistance/profile/ProfilePersistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/System/persistance/profile/ProfilePersistence.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/exceptions/PersistentTypeMismatchException.java" beforeDir="false" />
-    </list>
+    <list default="true" id="4fdb10a1-bdd7-4b30-a469-148d164e8c30" name="Changes" comment="ProfilePersistence tests working" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
