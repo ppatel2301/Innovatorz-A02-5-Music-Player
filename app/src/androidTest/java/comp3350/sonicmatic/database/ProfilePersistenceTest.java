@@ -2,11 +2,8 @@ package comp3350.sonicmatic.database;
 
 import static org.junit.Assert.*;
 
-import android.util.Log;
-
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,18 +11,17 @@ import comp3350.sonicmatic.System.persistance.Persistence;
 import comp3350.sonicmatic.System.persistance.profile.NullProfile;
 import comp3350.sonicmatic.System.persistance.profile.Profile;
 import comp3350.sonicmatic.System.persistance.profile.ProfilePersistence;
-import comp3350.sonicmatic.exceptions.PersistentTypeMismatchException;
+import comp3350.sonicmatic.application.Services;
 
 public class ProfilePersistenceTest {
 
     private ProfilePersistence profilePersistence;
-    private final String DB_NAME = "SMDB";
 
     @Before
     public void setup()
     {
         Persistence.context = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        profilePersistence = new ProfilePersistence(DB_NAME);
+        profilePersistence = Services.getProfilePersistence();
     }
 
     @Test

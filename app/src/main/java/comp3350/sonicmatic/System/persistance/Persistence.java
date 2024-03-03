@@ -12,7 +12,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import comp3350.sonicmatic.exceptions.PersistentTypeMismatchException;
 import comp3350.sonicmatic.interfaces.IPersistentItem;
 
 import android.util.Log;
@@ -20,22 +19,17 @@ import android.util.Log;
 public abstract class Persistence
 {
 
-    // ** class constants **
-    private final String DB_FOLDER = "database";  // folder in assets where it is located
-
     // ** class variables **
     public static Context context;
-
-    // ** initialized variables **
-    private String database_path = "";
-    private boolean init = false;
+    private static String full_database_path = "";
+    private static boolean init = false;
 
     // ** constructors **
-    public Persistence(String dbName)
+    public Persistence(String dbName, String dbPath)
     {
         if (!init)
         {
-            database_path = initDatabsePersistence(dbName, DB_FOLDER);
+            full_database_path = initDatabsePersistence(dbName, dbPath);
         }
 
     }
@@ -50,7 +44,7 @@ public abstract class Persistence
     // ** class methods **
 
     // most of the code in this method is adapted from sample project, written by Franklin Bristow
-    public String initDatabsePersistence(String dbName, String dbFolder)
+    public static String initDatabsePersistence(String dbName, String dbPath)
     {
 
         String result = "";
@@ -65,17 +59,15 @@ public abstract class Persistence
             e.printStackTrace();
         }
 
-        final String DB_PATH = "database";
-
         String[] assetNames;
-        File dataDirectory = context.getDir(DB_PATH, Context.MODE_PRIVATE);
+        File dataDirectory = context.getDir(dbPath, Context.MODE_PRIVATE);
         AssetManager assetManager = context.getAssets();
 
         try {
 
-            assetNames = assetManager.list(DB_PATH);
+            assetNames = assetManager.list(dbPath);
             for (int i = 0; i < assetNames.length; i++) {
-                assetNames[i] = DB_PATH + "/" + assetNames[i];
+                assetNames[i] = dbPath + "/" + assetNames[i];
             }
 
             copyAssetsToDirectory(assetNames, dataDirectory);
@@ -86,14 +78,13 @@ public abstract class Persistence
             Log.d("WARNING", "Unable to access application data: " + ioe.getMessage());
         }
 
-
         init = true;
         return result;
     }
 
 
     // method adapted from sample project, written by Franklin Bristow
-    private void copyAssetsToDirectory(String[] assets, File directory) throws IOException {
+    private static void copyAssetsToDirectory(String[] assets, File directory) throws IOException {
         AssetManager assetManager = context.getAssets();
 
         for (String asset : assets) {
@@ -125,7 +116,7 @@ public abstract class Persistence
 
     protected Connection getConnection() throws SQLException
     {
-        return DriverManager.getConnection("jdbc:hsqldb:file:"+database_path+";shutdown=true", "SA", "");
+        return DriverManager.getConnection("jdbc:hsqldb:file:"+full_database_path+";shutdown=true", "SA", "");
     }
 
 

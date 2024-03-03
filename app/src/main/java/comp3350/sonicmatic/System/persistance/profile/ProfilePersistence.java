@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import comp3350.sonicmatic.System.persistance.Persistence;
-import comp3350.sonicmatic.exceptions.PersistentTypeMismatchException;
 import comp3350.sonicmatic.interfaces.IPersistentItem;
 
 public class ProfilePersistence extends Persistence
@@ -19,9 +18,9 @@ public class ProfilePersistence extends Persistence
     private static final String IS_NOT_ARTIST_FLAG = "0";
 
     // ** constructors **
-    public ProfilePersistence(String dbName)
+    public ProfilePersistence(String dbName, String dbPath)
     {
-        super(dbName);
+        super(dbName, dbPath);
     }
 
     // ** abstract method overrides **
