@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.System.database;
+package comp3350.sonicmatic.System.persistance;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -9,47 +9,48 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import comp3350.sonicmatic.exceptions.PersistentTypeMismatchException;
 import comp3350.sonicmatic.interfaces.IPersistentItem;
 
-import android.content.res.AssetManager;
 import android.util.Log;
 
 public abstract class Persistence
 {
 
-    private static boolean INIT = false;
-
-    private final String DB_NAME = "SMDB"; // file name
+    // ** class constants **
     private final String DB_FOLDER = "database";  // folder in assets where it is located
 
-    private String database_path = "";
-
-
+    // ** class variables **
     public static Context context;
 
-    public Persistence()
+    // ** initialized variables **
+    private String database_path = "";
+    private boolean init = false;
+
+    // ** constructors **
+    public Persistence(String dbName)
     {
-        if (!INIT)
+        if (!init)
         {
-            database_path = initDatabsePersistence(DB_NAME, DB_FOLDER);
+            database_path = initDatabsePersistence(dbName, DB_FOLDER);
         }
 
     }
 
-    protected Connection getConnection() throws SQLException
-    {
-        return DriverManager.getConnection("jdbc:hsqldb:file:"+database_path+";shutdown=true", "SA", "");
-    }
-
+    // ** abstract methods **
+    protected abstract IPersistentItem fromResultSet(ResultSet rs) throws SQLException;
     public abstract IPersistentItem get(String primaryKey);
-    public abstract void update(IPersistentItem item) throws PersistentTypeMismatchException;
-    public abstract void insert(IPersistentItem item) throws PersistentTypeMismatchException;
-    public abstract void delete(IPersistentItem item) throws PersistentTypeMismatchException;
+    public abstract IPersistentItem update(IPersistentItem item);
+    public abstract boolean insert(IPersistentItem item);
+    public abstract boolean delete(IPersistentItem item);
 
-    public static String initDatabsePersistence(String dbName, String dbFolder)
+    // ** class methods **
+
+    // most of the code in this method is adapted from sample project, written by Franklin Bristow
+    public String initDatabsePersistence(String dbName, String dbFolder)
     {
 
         String result = "";
@@ -86,13 +87,13 @@ public abstract class Persistence
         }
 
 
-        INIT = true;
+        init = true;
         return result;
     }
 
 
-    // adapted from sample project, written by Franklin Bristow
-    private static void copyAssetsToDirectory(String[] assets, File directory) throws IOException {
+    // method adapted from sample project, written by Franklin Bristow
+    private void copyAssetsToDirectory(String[] assets, File directory) throws IOException {
         AssetManager assetManager = context.getAssets();
 
         for (String asset : assets) {
@@ -119,5 +120,13 @@ public abstract class Persistence
             }
         }
     }
+
+    // ** instance methods **
+
+    protected Connection getConnection() throws SQLException
+    {
+        return DriverManager.getConnection("jdbc:hsqldb:file:"+database_path+";shutdown=true", "SA", "");
+    }
+
 
 }

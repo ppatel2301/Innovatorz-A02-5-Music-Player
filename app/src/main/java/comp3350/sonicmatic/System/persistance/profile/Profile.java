@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.System.database.profile;
+package comp3350.sonicmatic.System.persistance.profile;
 
 import comp3350.sonicmatic.interfaces.IPersistentItem;
 import comp3350.sonicmatic.objects.Credentials;
@@ -16,6 +16,12 @@ public class Profile extends Credentials implements IPersistentItem
         this.isArtist = isArtist;
     }
 
+    public Profile(Profile copyMe)
+    {
+        super(copyMe.getUsername(), copyMe.getDisplayName(), copyMe.getPassword());
+        this.isArtist = copyMe.isArtist();
+    }
+
     // ** accessors **
     @Override
     public String getPrimaryKey()
@@ -27,6 +33,8 @@ public class Profile extends Credentials implements IPersistentItem
     {
         return isArtist;
     }
+
+
 
     // ** mutators **
 

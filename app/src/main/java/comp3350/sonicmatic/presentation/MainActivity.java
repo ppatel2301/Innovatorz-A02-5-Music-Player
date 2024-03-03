@@ -2,10 +2,7 @@ package comp3350.sonicmatic.presentation;
 
 import android.os.Bundle;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -14,7 +11,7 @@ import androidx.navigation.ui.NavigationUI;
 import java.util.Objects;
 
 import comp3350.sonicmatic.R;
-import comp3350.sonicmatic.System.database.Persistence;
+import comp3350.sonicmatic.System.persistance.Persistence;
 import comp3350.sonicmatic.System.musicplayer.MusicPlayer;
 import comp3350.sonicmatic.databinding.ActivityMainBinding;
 

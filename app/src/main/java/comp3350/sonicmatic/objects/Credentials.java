@@ -28,6 +28,10 @@ public abstract class Credentials
         return password;
     }
 
+    public boolean equals(Credentials creds)
+    {
+        return username == creds.getUsername();
+    }
 
     public void changeDisplayname(String newDisplayName)
     {
