@@ -167,7 +167,4 @@ public class ProfilePersistence extends Persistence
         return success;
     }
 
-    // ** instance methods **
-
-
 }
