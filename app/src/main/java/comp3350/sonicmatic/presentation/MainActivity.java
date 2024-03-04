@@ -11,8 +11,8 @@ import androidx.navigation.ui.NavigationUI;
 import java.util.Objects;
 
 import comp3350.sonicmatic.R;
-import comp3350.sonicmatic.System.persistance.Persistence;
-import comp3350.sonicmatic.System.musicplayer.MusicPlayer;
+import comp3350.sonicmatic.persistance.Persistence;
+import comp3350.sonicmatic.musicplayer.MusicPlayer;
 import comp3350.sonicmatic.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {

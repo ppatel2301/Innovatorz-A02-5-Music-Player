@@ -1,6 +1,6 @@
 package comp3350.sonicmatic.application;
 
-import comp3350.sonicmatic.System.persistance.profile.ProfilePersistence;
+import comp3350.sonicmatic.persistance.profile.ProfilePersistence;
 
 public class Services
 {

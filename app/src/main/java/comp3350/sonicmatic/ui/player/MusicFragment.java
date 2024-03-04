@@ -6,9 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import comp3350.sonicmatic.R;
 
-import comp3350.sonicmatic.System.musicplayer.MusicPlayer;
+import comp3350.sonicmatic.musicplayer.MusicPlayer;
 import comp3350.sonicmatic.databinding.FragmentMusicPlayerBinding;
 import comp3350.sonicmatic.exceptions.NoMusicException;
 import comp3350.sonicmatic.interfaces.IPlayer;

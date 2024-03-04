@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.System.musicplayer;
+package comp3350.sonicmatic.musicplayer;
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;

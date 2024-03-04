@@ -7,10 +7,10 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import org.junit.Before;
 import org.junit.Test;
 
-import comp3350.sonicmatic.System.persistance.Persistence;
-import comp3350.sonicmatic.System.persistance.profile.NullProfile;
-import comp3350.sonicmatic.System.persistance.profile.Profile;
-import comp3350.sonicmatic.System.persistance.profile.ProfilePersistence;
+import comp3350.sonicmatic.persistance.Persistence;
+import comp3350.sonicmatic.persistance.profile.NullProfile;
+import comp3350.sonicmatic.persistance.profile.Profile;
+import comp3350.sonicmatic.persistance.profile.ProfilePersistence;
 import comp3350.sonicmatic.application.Services;
 
 public class ProfilePersistenceTest {

@@ -1,11 +1,11 @@
-package comp3350.sonicmatic.System.persistance.profile;
+package comp3350.sonicmatic.persistance.profile;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import comp3350.sonicmatic.System.persistance.Persistence;
+import comp3350.sonicmatic.persistance.Persistence;
 import comp3350.sonicmatic.interfaces.IPersistentItem;
 
 public class ProfilePersistence extends Persistence
@@ -13,7 +13,7 @@ public class ProfilePersistence extends Persistence
 
     // ** class constants **
     private static final int IS_ARTIST = 1;
-    private static final NullProfile NULL_PROFILE = new NullProfile();
+    public static final NullProfile NULL_PROFILE = new NullProfile();
     private static final String IS_ARTIST_FLAG = "1";
     private static final String IS_NOT_ARTIST_FLAG = "0";
 

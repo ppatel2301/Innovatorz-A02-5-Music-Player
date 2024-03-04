@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.System.persistance.profile;
+package comp3350.sonicmatic.persistance.profile;
 
 public class NullProfile extends Profile
 {
@@ -6,6 +6,6 @@ public class NullProfile extends Profile
 
     public NullProfile()
     {
-        super("NULL PROFILE", "NULL PROFILE", "NULL PROFILE", false);
+        super(NULL_PROFILE, NULL_PROFILE, NULL_PROFILE, false);
     }
 }

@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.System.persistance;
+package comp3350.sonicmatic.persistance;
 
 import android.content.Context;
 import android.content.res.AssetManager;

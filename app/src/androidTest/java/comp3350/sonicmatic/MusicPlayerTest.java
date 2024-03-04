@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
 
-import comp3350.sonicmatic.System.musicplayer.MusicPlayer;
+import comp3350.sonicmatic.musicplayer.MusicPlayer;
 import comp3350.sonicmatic.exceptions.NoMusicException;
 import comp3350.sonicmatic.interfaces.IPlayer;
 import comp3350.sonicmatic.interfaces.ISong;

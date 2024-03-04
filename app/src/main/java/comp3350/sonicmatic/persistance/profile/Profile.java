@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.System.persistance.profile;
+package comp3350.sonicmatic.persistance.profile;
 
 import comp3350.sonicmatic.interfaces.IPersistentItem;
 import comp3350.sonicmatic.objects.Credentials;
