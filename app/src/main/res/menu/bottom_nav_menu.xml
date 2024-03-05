@@ -9,7 +9,8 @@
     <item
         android:id="@+id/navigation_browse"
         android:icon="@drawable/baseline_browse_24"
-        android:title="Browse" />
+        android:title="Browse"
+        />
 
     <item
         android:id="@+id/navigation_dashboard"
@@ -20,5 +21,4 @@
         android:id="@+id/navigation_profile"
         android:icon="@drawable/baseline_settings_24"
         android:title="Profile" />
-
 </menu>

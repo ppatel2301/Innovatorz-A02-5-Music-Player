@@ -40,7 +40,15 @@
         android:name="comp3350.sonicmatic.presentation.home.AddToPlaylistFragment"
         android:layout="@layout/fragment_add_to_playlist"/>
 
-    <fragment android:id="@+id/navigation_browse"
+    <fragment
+        android:id="@+id/navigation_browse"
         android:name="comp3350.sonicmatic.presentation.browse.BrowseFragment"
-        tools:layout="@layout/fragment_browse"/>
+        android:label="fragment_browse"
+        tools:layout="@layout/fragment_browse" />
+
+    <fragment
+        android:id="@+id/collaspedMusicFragment"
+        android:name="comp3350.sonicmatic.presentation.player.CollaspedMusicFragment"
+        tools:layout="@layout/fragment_collapsed_music_player"/>
+
 </navigation>

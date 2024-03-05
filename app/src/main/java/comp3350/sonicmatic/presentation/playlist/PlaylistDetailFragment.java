@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.databinding.FragmentPlaylistDetailBinding;
+import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.interfaces.ISongLength;
 import comp3350.sonicmatic.objects.MusicTrack;
 import comp3350.sonicmatic.objects.Playlist;
@@ -84,7 +85,7 @@ public class PlaylistDetailFragment extends Fragment {
             {
                 if(currentList.getPlaylistName().equalsIgnoreCase(playlistName))
                 {
-                    ArrayList<MusicTrack> tracks = currentList.getPlaylist();
+                    ArrayList<ISong> tracks = currentList.getPlaylist();
                     if(tracks != null)
                     {
                         PlaylistMusicAdapter musicAdapter = new PlaylistMusicAdapter(tracks);
@@ -109,5 +110,6 @@ public class PlaylistDetailFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        binding = null;
     }
 }

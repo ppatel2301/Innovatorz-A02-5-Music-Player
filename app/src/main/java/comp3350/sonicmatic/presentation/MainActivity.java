@@ -10,6 +10,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.Objects;
 
 import comp3350.sonicmatic.R;
@@ -31,18 +33,19 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         drawer = binding.drawerProfileLayout;
+        BottomNavigationView navView = findViewById(R.id.nav_view);
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_browse, R.id.navigation_profile)
-                .setOpenableLayout(binding.drawerProfileLayout)
+                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_profile, R.id.navigation_browse)
+                .setOpenableLayout(drawer)
                 .build();
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
-        NavigationUI.setupWithNavController(binding.drawerProfileNavView, navController);
+
         // required that all instances of the music player have access to the context
         MusicPlayer.context = getApplicationContext();
 
@@ -56,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
                     drawer.closeDrawer(GravityCompat.END);
                 }
                return true;
+            }else{
+                if(drawer.isDrawerOpen(GravityCompat.END))
+                {
+                    drawer.closeDrawer(GravityCompat.END);
+                }
             }
             return NavigationUI.onNavDestinationSelected(item, navController);
         });

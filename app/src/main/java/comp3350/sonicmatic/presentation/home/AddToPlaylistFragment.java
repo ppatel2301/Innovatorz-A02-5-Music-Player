@@ -18,6 +18,7 @@ import java.util.Arrays;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.databinding.FragmentAddToPlaylistBinding;
+import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.objects.MusicTrack;
 import comp3350.sonicmatic.objects.Playlist;
 import comp3350.sonicmatic.presentation.player.MusicViewModel;
@@ -25,11 +26,12 @@ import comp3350.sonicmatic.presentation.playlist.PlaylistViewModel;
 
 public class AddToPlaylistFragment extends Fragment {
 
+    private FragmentAddToPlaylistBinding binding;
     private PlaylistViewModel playlistViewModel;
     private ArrayList<Playlist> playlists;
     private Button addToPlayist;
     private RecyclerView recyclerView;
-    private MusicTrack selectedMusicTrack;
+    private ISong selectedMusicTrack;
     private MusicViewModel model;
 
     public AddToPlaylistFragment() {}
@@ -46,7 +48,7 @@ public class AddToPlaylistFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        FragmentAddToPlaylistBinding binding = FragmentAddToPlaylistBinding.inflate(inflater, container, false);
+        binding = FragmentAddToPlaylistBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         recyclerView = root.findViewById(R.id.add_list);
@@ -87,5 +89,11 @@ public class AddToPlaylistFragment extends Fragment {
             }
         });
         return root;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

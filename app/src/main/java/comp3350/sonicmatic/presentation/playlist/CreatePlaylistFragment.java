@@ -23,6 +23,7 @@ import comp3350.sonicmatic.objects.Playlist;
 
 public class CreatePlaylistFragment extends BottomSheetDialogFragment {
 
+    private FragmentCreatePlaylistBinding binding;
     private PlaylistViewModel playlistViewModel;
 
     public CreatePlaylistFragment() {}
@@ -37,7 +38,7 @@ public class CreatePlaylistFragment extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        FragmentCreatePlaylistBinding binding = FragmentCreatePlaylistBinding.inflate(inflater, container, false);
+        binding = FragmentCreatePlaylistBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         //Logic to create a playlist for the user
@@ -76,5 +77,6 @@ public class CreatePlaylistFragment extends BottomSheetDialogFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        binding = null;
     }
 }

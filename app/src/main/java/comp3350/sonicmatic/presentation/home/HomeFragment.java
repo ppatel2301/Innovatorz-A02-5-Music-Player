@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.databinding.FragmentHomeBinding;
 import comp3350.sonicmatic.interfaces.IArtist;
+import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.objects.MusicArtist;
 import comp3350.sonicmatic.objects.MusicTrack;
 import comp3350.sonicmatic.objects.Playlist;
@@ -72,6 +73,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        binding = null;
     }
 
     private void addMuicToList(RecyclerView list)
@@ -79,7 +81,7 @@ public class HomeFragment extends Fragment {
         // Creating a list to display muisic to list
         IArtist artist = new MusicArtist("Bob");
 
-        ArrayList<MusicTrack> tracks = new ArrayList<>();
+        ArrayList<ISong> tracks = new ArrayList<>();
         SongDuration songLength = new SongDuration("34");
         tracks.add(new MusicTrack("Name", artist, songLength, "music/Archetype.mp3"));
         tracks.add(new MusicTrack("Name1", artist, songLength, "music/Archetype.mp3"));

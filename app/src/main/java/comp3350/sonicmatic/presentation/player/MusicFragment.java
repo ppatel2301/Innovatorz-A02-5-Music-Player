@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import comp3350.sonicmatic.R;
 
@@ -21,7 +23,7 @@ import comp3350.sonicmatic.interfaces.ISong;
 
 public class MusicFragment extends Fragment {
 
-    private IPlayer player = new MusicPlayer();
+    private IPlayer player;
 
     private FragmentMusicPlayerBinding binding;
 
@@ -33,14 +35,24 @@ public class MusicFragment extends Fragment {
     private ImageView collaspePlayer;
     private Boolean playingMusic = false;
 
+    private MusicViewModel musicViewModel;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        player = new MusicPlayer();
+        player.loadSongFromPath("music/Archetype.mp3");
+        musicViewModel = new ViewModelProvider(requireActivity()).get(MusicViewModel.class);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentMusicPlayerBinding.inflate(inflater, container, false);
+
         View root = binding.getRoot();
 
         // load just one song to play for now
-        player.loadSongFromPath("music/Archetype.mp3");
         ISong loaded = player.getCurrentSong();
 
         trackName = root.findViewById(R.id.player_name);
@@ -56,21 +68,18 @@ public class MusicFragment extends Fragment {
 
         ImageView collaspsed_play_button = root.findViewById(R.id.collasped_play_button);
 
-
         play_pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                int duration = Toast.LENGTH_SHORT;
-                Toast.makeText(getContext(), "Playing Music", duration).show();
-                */
-
                try
                {
                    if (player.isStopped() || player.isPaused())
                    {
                        player.start();
                        playingMusic = true;
+
+                       musicViewModel.updatedListeningHistory(loaded);
+
                        play_pause.setBackgroundResource(R.drawable.baseline_pause_circle_outline_24);
                    }
                    else if (player.isPlaying())
@@ -79,7 +88,6 @@ public class MusicFragment extends Fragment {
                        playingMusic = false;
                        play_pause.setBackgroundResource(R.drawable.baseline_play_circle_outline_24);
                    }
-
 
                } catch (NoMusicException nme)
                {
@@ -107,5 +115,7 @@ public class MusicFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        binding = null;
     }
+
 }

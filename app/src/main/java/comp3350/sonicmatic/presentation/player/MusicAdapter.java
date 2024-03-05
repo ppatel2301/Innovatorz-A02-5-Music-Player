@@ -1,6 +1,5 @@
 package comp3350.sonicmatic.presentation.player;
 
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,19 +13,17 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
-import comp3350.sonicmatic.objects.MusicTrack;
-
+import comp3350.sonicmatic.interfaces.ISong;
 
 public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHolder>{
 
-    private ArrayList<MusicTrack> tracks;
+    private ArrayList<ISong> tracks;
     private MusicViewModel musicViewModel;
 
-    public MusicAdapter(ArrayList<MusicTrack> tracks) {this.tracks = tracks;}
+    public MusicAdapter(ArrayList<ISong> tracks) {this.tracks = tracks;}
 
     @NonNull
     @Override
@@ -40,7 +37,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
     public void onBindViewHolder(@NonNull MusicAdapter.MusicViewHolder holder, int position) {
         if(tracks != null)
         {
-            MusicTrack track = tracks.get(position);
+            ISong track = tracks.get(position);
 
             holder.musicImage.setImageResource(R.drawable.baseline_library_music_24);
             holder.title.setText(track.getTitle());

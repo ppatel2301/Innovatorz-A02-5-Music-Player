@@ -16,15 +16,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
+import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.objects.MusicTrack;
 import comp3350.sonicmatic.objects.Playlist;
 
 public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdapter.PlaylistMusicViewHolder> {
 
-    private ArrayList<MusicTrack> tracks;
+    private ArrayList<ISong> tracks;
     private PlaylistViewModel playlistViewModel;
 
-    public PlaylistMusicAdapter(ArrayList<MusicTrack> tracks)
+    public PlaylistMusicAdapter(ArrayList<ISong> tracks)
     {
         this.tracks = tracks;
     }
@@ -43,7 +44,7 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
 
     @Override
     public void onBindViewHolder(@NonNull PlaylistMusicViewHolder holder, int position) {
-        MusicTrack musicTrack = tracks.get(position);
+        ISong musicTrack = tracks.get(position);
 
         holder.trackImg.setBackgroundResource(R.drawable.baseline_library_music_24);
         holder.trackName.setText(musicTrack.getTitle());
