@@ -63,7 +63,7 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
                 {
                     for(Playlist list: playlists)
                     {
-                        if(list.getPlaylistName().equalsIgnoreCase(currentList.getPlaylistName()))
+                        if(currentList.getPlaylistName().equalsIgnoreCase(list.getPlaylistName()))
                         {
                             list.removeMusicTracks(musicTrack);
                         }

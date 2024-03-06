@@ -84,7 +84,7 @@ public class HomeFragment extends Fragment {
         ArrayList<ISong> tracks = new ArrayList<>();
         SongDuration songLength = new SongDuration("34");
         tracks.add(new MusicTrack("Name", artist, songLength, "music/Archetype.mp3"));
-        tracks.add(new MusicTrack("Name1", artist, songLength, "music/Archetype.mp3"));
+        tracks.add(new MusicTrack("Name1", artist, songLength, "music/Cyberwaste.mp3"));
         tracks.add(new MusicTrack("Name2", artist, songLength, "music/Archetype.mp3"));
 
         // Updating the ui of the playlist

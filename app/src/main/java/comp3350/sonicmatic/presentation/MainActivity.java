@@ -1,6 +1,9 @@
 package comp3350.sonicmatic.presentation;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -9,18 +12,26 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.System.musicplayer.MusicPlayer;
 import comp3350.sonicmatic.databinding.ActivityMainBinding;
+import comp3350.sonicmatic.presentation.home.AddToPlaylistAdapter;
+import comp3350.sonicmatic.presentation.player.ListeningHistoryMusicAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawer;
+    private ListeningHistoryMusicAdapter adapter;
+    private TextView usernameText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +43,12 @@ public class MainActivity extends AppCompatActivity {
         //Hide the status bar
         Objects.requireNonNull(getSupportActionBar()).hide();
 
+        addListeningAdapter();
+
         drawer = binding.drawerProfileLayout;
-        BottomNavigationView navView = findViewById(R.id.nav_view);
+        usernameText =  drawer.findViewById(R.id.profile_username);
+
+        updateGetUsername();
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -67,5 +82,24 @@ public class MainActivity extends AppCompatActivity {
             }
             return NavigationUI.onNavDestinationSelected(item, navController);
         });
+    }
+
+    private void addListeningAdapter()
+    {
+        if(adapter == null)
+        {
+            adapter = ListeningHistoryMusicAdapter.getInstance(new ArrayList<>());
+            RecyclerView historyView = requireViewById(R.id.song_history_view);
+            historyView.setAdapter(adapter);
+            historyView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        }
+    }
+
+    private void updateGetUsername()
+    {
+        // get username from login and update below
+
+        String username = "Robert Guderian";
+        usernameText.setText(username);
     }
 }

@@ -27,7 +27,7 @@ public class LibraryFragment extends Fragment{
     // Declaring the views
     private RecyclerView recyclerView;
     private Button buttonView; // Add button in the library fragments
-    private comp3350.sonicmatic.presentation.playlist.PlaylistAdapter adapter; // Adapter for the recycler view
+    private PlaylistAdapter adapter; // Adapter for the recycler view
     private FragmentLibraryBinding binding;
     private PlaylistViewModel playlistViewModel;
 

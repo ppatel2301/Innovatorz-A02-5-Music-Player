@@ -64,12 +64,10 @@ public class PlaylistDetailFragment extends Fragment {
         playlistImage.setImageResource(R.drawable.default_playlist_img);
 
         String listName = getArguments().getString("playlistName");
-
-        System.out.println(listName);
+        playlistName.setText(listName);
 
         // Using an adapter to upload a list of music tracks which are in the current list chosen
         // by the user
-
         observePlaylist(playlistViewModel);
 
         addMusicToList(listName, trackList);

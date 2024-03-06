@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.interfaces.ISong;
-import comp3350.sonicmatic.objects.MusicTrack;
 
 public class MusicViewModel extends ViewModel {
 
@@ -30,14 +29,18 @@ public class MusicViewModel extends ViewModel {
         ArrayList<ISong> currentList = listeningHistory.getValue();
         if (currentList == null) {
             currentList = new ArrayList<>();
+        }else{
+            if(!currentList.contains(track))
+            {
+                currentList.add(track);
+            }
         }
-        currentList.add(track);
         listeningHistory.setValue(currentList);
     }
 
-    public ArrayList<ISong> getListeningHistory()
+    public MutableLiveData<ArrayList<ISong>> getHistory()
     {
-        return listeningHistory.getValue();
+        return listeningHistory;
     }
 
     public void clearListeningHistory()

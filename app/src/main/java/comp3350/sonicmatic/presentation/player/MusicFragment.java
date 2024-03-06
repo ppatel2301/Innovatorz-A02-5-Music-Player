@@ -11,11 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+
+import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
 
 import comp3350.sonicmatic.System.musicplayer.MusicPlayer;
+import comp3350.sonicmatic.databinding.ActivityMainBinding;
 import comp3350.sonicmatic.databinding.FragmentMusicPlayerBinding;
 import comp3350.sonicmatic.exceptions.NoMusicException;
 import comp3350.sonicmatic.interfaces.IPlayer;
@@ -36,13 +40,15 @@ public class MusicFragment extends Fragment {
     private Boolean playingMusic = false;
 
     private MusicViewModel musicViewModel;
+    private ListeningHistoryMusicAdapter adapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         player = new MusicPlayer();
-        player.loadSongFromPath("music/Archetype.mp3");
         musicViewModel = new ViewModelProvider(requireActivity()).get(MusicViewModel.class);
+        player.loadSongFromPath(musicViewModel.getSelectedMusicTrack().getPath());
+        adapter = ListeningHistoryMusicAdapter.getInstance(null);
     }
 
     @Nullable
@@ -79,6 +85,8 @@ public class MusicFragment extends Fragment {
                        playingMusic = true;
 
                        musicViewModel.updatedListeningHistory(loaded);
+
+                       observeListeningHistory();
 
                        play_pause.setBackgroundResource(R.drawable.baseline_pause_circle_outline_24);
                    }
@@ -118,4 +126,14 @@ public class MusicFragment extends Fragment {
         binding = null;
     }
 
+    private void observeListeningHistory()
+    {
+        musicViewModel.getHistory().observe(getViewLifecycleOwner(), new Observer<ArrayList<ISong>>() {
+            @Override
+            public void onChanged(ArrayList<ISong> iSongs) {
+                adapter.updateHistory(iSongs);
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
 }

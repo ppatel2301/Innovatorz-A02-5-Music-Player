@@ -29,9 +29,8 @@ public class AddToPlaylistAdapter extends RecyclerView.Adapter<AddToPlaylistAdap
     @NonNull
     @Override
     public AddToPlaylistHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         // Inflates the itemAddToPlaylist
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_add_music_to_playlist, null);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_add_music_to_playlist, parent, false);
         return new AddToPlaylistHolder(itemView);
     }
 

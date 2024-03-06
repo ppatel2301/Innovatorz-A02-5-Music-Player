@@ -23,7 +23,9 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
     private ArrayList<ISong> tracks;
     private MusicViewModel musicViewModel;
 
-    public MusicAdapter(ArrayList<ISong> tracks) {this.tracks = tracks;}
+    public MusicAdapter(ArrayList<ISong> tracks) {
+        this.tracks = tracks;
+    }
 
     @NonNull
     @Override
@@ -35,8 +37,8 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 
     @Override
     public void onBindViewHolder(@NonNull MusicAdapter.MusicViewHolder holder, int position) {
-        if(tracks != null)
-        {
+//        if(tracks != null)
+//        {
             ISong track = tracks.get(position);
 
             holder.musicImage.setImageResource(R.drawable.baseline_library_music_24);
@@ -46,8 +48,6 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
             holder.addToPlayist.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // Change this to open the addToPlaylistFragment.xml using the below line
-
                     // Adding the selected music to the musicViewModel
                     musicViewModel.setSelectedTrack(track);
 
@@ -60,10 +60,11 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    musicViewModel.setSelectedTrack(track);
                     Navigation.findNavController(view).navigate(R.id.musicFragment, null);
                 }
             });
-        }
+//        }
     }
 
     @Override
