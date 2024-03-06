@@ -69,8 +69,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e88d3ca6-68d2-4cac-91db-d6f4c47530c1" name="Changes" comment="Testing access profile in poggers, making stub db">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/business/AccessProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/business/AccessProfile.java" afterDir="false" />
+    <list default="true" id="e88d3ca6-68d2-4cac-91db-d6f4c47530c1" name="Changes" comment="quick small change i forgot">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/application/Services.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/application/Services.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -581,7 +582,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709698205240</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="quick small change i forgot">
+      <option name="closed" value="true" />
+      <created>1709698312041</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1709698312041</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -600,7 +609,8 @@
     <MESSAGE value="access profile object started, also renamed branch" />
     <MESSAGE value="Access Profile object created (not tested) and SongPersistence object created and tested, AccessSong created (unfinished)" />
     <MESSAGE value="Testing access profile in poggers, making stub db" />
-    <option name="LAST_COMMIT_MESSAGE" value="Testing access profile in poggers, making stub db" />
+    <MESSAGE value="quick small change i forgot" />
+    <option name="LAST_COMMIT_MESSAGE" value="quick small change i forgot" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Sonicmatic$MusicArtistTest.ic" NAME="MusicArtistTest Coverage Results" MODIFIED="1707884168742" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

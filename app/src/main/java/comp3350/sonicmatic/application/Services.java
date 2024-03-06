@@ -24,7 +24,7 @@ public class Services
     private static final String DB_NAME = "SMDB";
     private static final String DB_PATH = "database";
 
-    private static Context context;
+    private static Context context = null;
 
     // ** class variables **
     private static ProfilePersistence profilePersistence = null;
@@ -34,7 +34,7 @@ public class Services
     // ** class methods **
     public static void setContext(Context env)
     {
-        if (env != null)
+        if (env == null)
         {
             context = env;
 
@@ -93,7 +93,7 @@ public class Services
     // ** locked access methods **
     public static synchronized ProfilePersistence getProfilePersistence()
     {
-        if (profilePersistence == null)
+        if (context != null && profilePersistence == null)
         {
             profilePersistence = new ProfilePersistence(DB_NAME, DB_PATH);
         }
@@ -103,7 +103,7 @@ public class Services
 
     public static synchronized SongPersistence getSongPersistence()
     {
-        if (songPersistence == null)
+        if (context != null && songPersistence == null)
         {
             songPersistence = new SongPersistence(DB_NAME, DB_PATH);
         }
