@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStore;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,18 +16,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
-import comp3350.sonicmatic.objects.Playlist;
+import comp3350.sonicmatic.interfaces.IPlaylist;
 
 public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.PlaylistViewHolder>{
 
-    private ArrayList<Playlist> playlists;
+    private ArrayList<IPlaylist> playlists;
     private PlaylistViewModel playlistViewModel;
 
-    public PlaylistAdapter(ArrayList<Playlist> playlists) {
+    public PlaylistAdapter(ArrayList<IPlaylist> playlists) {
         this.playlists = playlists;
     }
 
-    public void setPlaylists(ArrayList<Playlist> playlists)
+    public void setPlaylists(ArrayList<IPlaylist> playlists)
     {
         this.playlists = playlists;
     }
@@ -49,7 +48,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
     @Override
     public void onBindViewHolder(@NonNull PlaylistViewHolder holder, int position){
 
-        Playlist playlist = playlists.get(position);
+        IPlaylist playlist = playlists.get(position);
 
         holder.playlistImage.setImageResource(R.drawable.default_playlist_img);
         holder.title.setText(playlist.getPlaylistName());
@@ -60,7 +59,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
             public void onClick(View view) {
 
                 // Get the playlist object
-                Playlist playlist = playlists.get(holder.getAdapterPosition());
+                IPlaylist playlist = playlists.get(holder.getAdapterPosition());
 
                 // Creating a bundle to pass data to the playlistDetail fragment
                 Bundle bundle = new Bundle();

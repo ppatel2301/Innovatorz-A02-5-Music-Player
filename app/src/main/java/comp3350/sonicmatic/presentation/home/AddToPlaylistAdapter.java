@@ -14,14 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
-import comp3350.sonicmatic.objects.Playlist;
+import comp3350.sonicmatic.interfaces.IPlaylist;
 
 public class AddToPlaylistAdapter extends RecyclerView.Adapter<AddToPlaylistAdapter.AddToPlaylistHolder> {
 
-    private ArrayList<Playlist> playlists;
-    private ArrayList<Playlist> playlistsSelected;
+    private ArrayList<IPlaylist> playlists;
+    private ArrayList<IPlaylist> playlistsSelected;
 
-    public AddToPlaylistAdapter(ArrayList<Playlist> playlists){
+    public AddToPlaylistAdapter(ArrayList<IPlaylist> playlists){
         this.playlists = playlists;
         playlistsSelected = new ArrayList<>();
     }
@@ -39,7 +39,7 @@ public class AddToPlaylistAdapter extends RecyclerView.Adapter<AddToPlaylistAdap
         // Add Listener to the checkbox
         // and keep track of the selected playlists
 
-        Playlist playlist = playlists.get(position);
+        IPlaylist playlist = playlists.get(position);
 
         //Setting the playlist name
         holder.title.setText(playlist.getPlaylistName());
@@ -67,7 +67,7 @@ public class AddToPlaylistAdapter extends RecyclerView.Adapter<AddToPlaylistAdap
         return playlists.size();
     }
 
-    public ArrayList<Playlist> getPlaylistsSelected()
+    public ArrayList<IPlaylist> getPlaylistsSelected()
     {
         return playlistsSelected;
     }

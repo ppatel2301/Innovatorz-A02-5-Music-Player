@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.databinding.FragmentLibraryBinding;
+import comp3350.sonicmatic.interfaces.IPlaylist;
 import comp3350.sonicmatic.objects.Playlist;
 import comp3350.sonicmatic.presentation.playlist.PlaylistAdapter;
 import comp3350.sonicmatic.presentation.playlist.PlaylistViewModel;
@@ -73,9 +74,9 @@ public class LibraryFragment extends Fragment{
 
     private void observePlaylist()
     {
-        playlistViewModel.getPlaylist().observe(getViewLifecycleOwner(), new Observer<ArrayList<Playlist>>() {
+        playlistViewModel.getPlaylist().observe(getViewLifecycleOwner(), new Observer<ArrayList<IPlaylist>>() {
             @Override
-            public void onChanged(ArrayList<Playlist> playlists) {
+            public void onChanged(ArrayList<IPlaylist> playlists) {
                 adapter.setPlaylists(playlists);
                 adapter.notifyDataSetChanged();
 

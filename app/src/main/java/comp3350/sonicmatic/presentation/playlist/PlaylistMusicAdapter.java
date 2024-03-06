@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
+import comp3350.sonicmatic.interfaces.IPlaylist;
 import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.objects.MusicTrack;
 import comp3350.sonicmatic.objects.Playlist;
@@ -56,12 +57,12 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
 
                 // Update this to have remove song from the current playlist and update the database
                 // to have the updated database
-                Playlist currentList = playlistViewModel.getSelectedPlaylist();
-                ArrayList<Playlist> playlists = playlistViewModel.getPlaylist().getValue();
+                IPlaylist currentList = playlistViewModel.getSelectedPlaylist();
+                ArrayList<IPlaylist> playlists = playlistViewModel.getPlaylist().getValue();
 
                 if(playlists != null)
                 {
-                    for(Playlist list: playlists)
+                    for(IPlaylist list: playlists)
                     {
                         if(currentList.getPlaylistName().equalsIgnoreCase(list.getPlaylistName()))
                         {
