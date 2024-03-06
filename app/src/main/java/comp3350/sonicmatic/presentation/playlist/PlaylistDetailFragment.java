@@ -22,7 +22,7 @@ import comp3350.sonicmatic.databinding.FragmentPlaylistDetailBinding;
 import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.interfaces.ISongLength;
 import comp3350.sonicmatic.objects.MusicTrack;
-import comp3350.sonicmatic.objects.Playlist;
+import comp3350.sonicmatic.objects.MusicTrackPlaylist;
 
 public class PlaylistDetailFragment extends Fragment {
     private FragmentPlaylistDetailBinding binding;
@@ -31,7 +31,7 @@ public class PlaylistDetailFragment extends Fragment {
     private TextView playlistName;
 
     private ISongLength songLength;
-    private ArrayList<Playlist> playlists;
+    private ArrayList<MusicTrackPlaylist> playlists;
     private PlaylistViewModel playlistViewModel;
 
     @Override
@@ -79,7 +79,7 @@ public class PlaylistDetailFragment extends Fragment {
     {
         if(playlists != null)
         {
-            for(Playlist currentList : playlists)
+            for(MusicTrackPlaylist currentList : playlists)
             {
                 if(currentList.getPlaylistName().equalsIgnoreCase(playlistName))
                 {
@@ -97,9 +97,9 @@ public class PlaylistDetailFragment extends Fragment {
 
     private void observePlaylist(PlaylistViewModel viewModel)
     {
-        viewModel.getPlaylist().observe(getViewLifecycleOwner(), new Observer<ArrayList<Playlist>>() {
+        viewModel.getPlaylist().observe(getViewLifecycleOwner(), new Observer<ArrayList<MusicTrackPlaylist>>() {
             @Override
-            public void onChanged(ArrayList<Playlist> updatedPlaylist) {
+            public void onChanged(ArrayList<MusicTrackPlaylist> updatedPlaylist) {
                 playlists = updatedPlaylist;
             }
         });

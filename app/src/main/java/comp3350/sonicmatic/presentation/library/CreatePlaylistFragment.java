@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import comp3350.sonicmatic.R;
 
 import comp3350.sonicmatic.databinding.FragmentCreatePlaylistBinding;
-import comp3350.sonicmatic.objects.Playlist;
+import comp3350.sonicmatic.objects.MusicTrackPlaylist;
 import comp3350.sonicmatic.presentation.playlist.PlaylistViewModel;
 
 public class CreatePlaylistFragment extends BottomSheetDialogFragment {
@@ -53,7 +53,7 @@ public class CreatePlaylistFragment extends BottomSheetDialogFragment {
                 String listName = playlistName.getText().toString();
 
                 // Creating a playlist in the ui with the given name
-                playlistViewModel.addPlaylist(new Playlist(listName, new ArrayList<>()));
+                playlistViewModel.addPlaylist(new MusicTrackPlaylist(listName, new ArrayList<>()));
 
                 dismiss();
 
