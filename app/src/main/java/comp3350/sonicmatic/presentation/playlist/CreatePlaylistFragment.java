@@ -67,18 +67,8 @@ public class CreatePlaylistFragment extends BottomSheetDialogFragment {
 
                     getParentFragmentManager().popBackStack();
                 }else{
-                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
-                    alertDialog.setTitle("Sonicmatic Warning")
-                            .setMessage("Text to small or contains a space")
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.dismiss();
-                                }
-                            })
-                            .show();
+                    showDialog("Text to small or contains a space");
                 }
-
             }
         });
 
@@ -101,6 +91,20 @@ public class CreatePlaylistFragment extends BottomSheetDialogFragment {
         binding = null;
     }
 
+    private void showDialog(String text)
+    {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+        alertDialog.setTitle("Sonicmatic Warning")
+                .setMessage(text)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .show();
+    }
+
     private boolean validitePlaylist(String username)
     {
         return (!username.equals(" ") && username.length() < 20);
@@ -108,6 +112,6 @@ public class CreatePlaylistFragment extends BottomSheetDialogFragment {
 
     private void addPlaylistToUser(String user)
     {
-        
+
     }
 }
