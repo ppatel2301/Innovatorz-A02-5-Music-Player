@@ -86,7 +86,7 @@ public class AccessProfile
         boolean success = false;
         Profile new_password_applied;
 
-        // do not proceed if the new name is the current one
+        // do not proceed if the new name is the current one, also if we're logged in as the guest or null
         if ((!(loggedIn.equals(GuestProfile.getGuestProfile()) || loggedIn.equals(NullProfile.getNullProfile())))
              &&  (Persistence.isStringOkay(newPassword) && !newPassword.equals(loggedIn.getPassword())))
         {
