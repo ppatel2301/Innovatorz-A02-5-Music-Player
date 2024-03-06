@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class Playlist{
+import comp3350.sonicmatic.comparator.MusicComparatorByArtist;
+import comp3350.sonicmatic.comparator.MusicComparatorByTitle;
+import comp3350.sonicmatic.interfaces.IPlaylist;
+import comp3350.sonicmatic.interfaces.ISong;
+
+public class Playlist implements IPlaylist {
     private String playlistName;
-    private ArrayList<MusicTrack> playlist;
+    private ArrayList<ISong> playlist;
 
     public Playlist(String name)
     {
@@ -14,7 +19,7 @@ public class Playlist{
         playlist = new ArrayList<>();
     }
 
-    public Playlist(String name, ArrayList<MusicTrack> list)
+    public Playlist(String name, ArrayList<ISong> list)
     {
         playlistName = name;
         playlist = list;
@@ -30,31 +35,31 @@ public class Playlist{
         playlist = null;
     }
 
-    public ArrayList<MusicTrack> getPlaylist()
+    public ArrayList<ISong> getPlaylist()
     {
         return playlist;
     }
 
-    public void addMusicTracks(MusicTrack musicTrack)
+    public void addMusicTracks(ISong musicTrack)
     {
         playlist.add(musicTrack);
     }
 
-    public void removeMusicTracks(MusicTrack musicTrack)
+    public void removeMusicTracks(ISong musicTrack)
     {
         playlist.remove(musicTrack);
     }
 
-    public ArrayList<MusicTrack> filterByArtist ()
+    public ArrayList<ISong> filterByArtist ()
     {
-//        return Collections.sort(playlist, Comparator.comparing(MusicTrack::getArtistName));
-        return null;
+        playlist.sort(new MusicComparatorByArtist());
+        return playlist;
     }
 
-    public ArrayList<MusicTrack> filterByTitle ()
+    public ArrayList<ISong> filterByTitle ()
     {
-//        return Collections.sort(playlist, Comparator.comparing(MusicTrack::getTitle));
-        return null;
+        playlist.sort(new MusicComparatorByTitle());
+        return playlist;
     }
 
     public ArrayList<MusicTrack> filterByAlbum ()

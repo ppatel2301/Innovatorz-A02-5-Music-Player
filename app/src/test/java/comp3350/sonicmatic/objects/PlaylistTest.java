@@ -1,5 +1,6 @@
 package comp3350.sonicmatic.objects;
 
+import org.hamcrest.core.Is;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 import comp3350.sonicmatic.interfaces.IArtist;
+import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.interfaces.ISongLength;
 
 @RunWith(JUnit4.class)
@@ -18,8 +20,8 @@ public class PlaylistTest {
     private Playlist playlist;
 
     //Tracks
-    private MusicTrack musicTrack1;
-    private MusicTrack musicTrack3;
+    private ISong musicTrack1;
+    private ISong musicTrack3;
 
     private String songPath;
 
@@ -32,7 +34,7 @@ public class PlaylistTest {
         MusicTrack musicTrack2 = new MusicTrack("Title2", artist, length, songPath);
         musicTrack3 = new MusicTrack("Title3", artist, length, songPath);
 
-        ArrayList<MusicTrack> musicTracks = new ArrayList<>();
+        ArrayList<ISong> musicTracks = new ArrayList<>();
         musicTracks.add(musicTrack1);
         musicTracks.add(musicTrack2);
         musicTracks.add(musicTrack3);
