@@ -6,8 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +18,7 @@ import java.util.ArrayList;
 import comp3350.sonicmatic.R;
 
 import comp3350.sonicmatic.databinding.FragmentCreatePlaylistBinding;
-import comp3350.sonicmatic.objects.Playlist;
+import comp3350.sonicmatic.objects.MusicTrackPlaylist;
 
 public class CreatePlaylistFragment extends BottomSheetDialogFragment {
 
@@ -53,7 +51,7 @@ public class CreatePlaylistFragment extends BottomSheetDialogFragment {
                 String listName = playlistName.getText().toString();
 
                 // Creating a playlist in the ui with the given name
-                playlistViewModel.addPlaylist(new Playlist(listName, new ArrayList<>()));
+                playlistViewModel.addPlaylist(new MusicTrackPlaylist(listName, new ArrayList<>()));
 
                 dismiss();
 

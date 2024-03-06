@@ -1,12 +1,6 @@
 package comp3350.sonicmatic.ui.library;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import java.util.ArrayList;
-
-import comp3350.sonicmatic.objects.Playlist;
 
 public class LibraryViewModel extends ViewModel {
 

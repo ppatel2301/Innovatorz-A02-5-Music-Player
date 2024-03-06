@@ -28,14 +28,9 @@ public class Profile extends Credentials implements IPersistentItem
     {
         return getUsername();
     }
-
     public boolean isArtist()
     {
         return isArtist;
     }
-
-
-
-    // ** mutators **
 
 }

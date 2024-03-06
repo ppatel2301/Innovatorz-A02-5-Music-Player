@@ -1,6 +1,7 @@
 package comp3350.sonicmatic.business;
 
 import comp3350.sonicmatic.application.Services;
+import comp3350.sonicmatic.persistance.Persistence;
 import comp3350.sonicmatic.persistance.profile.GuestProfile;
 import comp3350.sonicmatic.persistance.profile.NullProfile;
 import comp3350.sonicmatic.persistance.profile.Profile;
@@ -11,7 +12,7 @@ public class AccessProfile
 
     // ** instance variables **
     private ProfilePersistence profilePersistence;
-    private Profile loggedIn = new GuestProfile();;
+    private Profile loggedIn = ProfilePersistence.GUEST_PROFILE;
 
     // ** constructors **
     public AccessProfile()
@@ -30,6 +31,108 @@ public class AccessProfile
         return loggedIn.getDisplayName();
     }
 
+    public String getUsername()
+    {
+        return loggedIn.getUsername();
+    }
 
+    // ** mutators **
+    public boolean login(String username, String password)
+    {
+        Profile from_db = profilePersistence.get(username);
+        boolean success = from_db.getPassword().equals(password);
+
+        if (success && !from_db.equals(loggedIn)) // if not already logged in and correct password
+        {
+            loggedIn = from_db;
+        }
+
+        return success;
+    }
+
+    public void logout()
+    {
+        loggedIn = ProfilePersistence.GUEST_PROFILE;
+    }
+
+    public boolean changeDisplayName(String newName)
+    {
+        boolean success = false;
+        Profile newly_named;
+
+        // do not proceed if the new name is the current one
+        if (Persistence.isStringOkay(newName) && !newName.equals(loggedIn.getDisplayName()))
+        {
+            newly_named = new Profile(loggedIn); // copy logged in data
+            newly_named.changeDisplayname(newName); // change the name in the copy
+
+            newly_named = profilePersistence.update(newly_named); // change it, get result
+
+            success = newly_named.getDisplayName().equals(newName); // if it worked these should be equal
+
+            if (success)
+            {
+                loggedIn.changeDisplayname(newName);
+            }
+        }
+
+        return success;
+    }
+
+    public boolean changePassword(String newPassword)
+    {
+        // same logic as the above changeDisplayName method
+
+        boolean success = false;
+        Profile new_password_applied;
+
+        // do not proceed if the new name is the current one
+        if (Persistence.isStringOkay(newPassword) && !newPassword.equals(loggedIn.getPassword()))
+        {
+            new_password_applied = new Profile(loggedIn);
+            new_password_applied.changePassword(newPassword);
+
+            new_password_applied = profilePersistence.update(new_password_applied);
+
+            success = new_password_applied.getPassword().equals(newPassword);
+
+            if (success)
+            {
+                loggedIn.changePassword(newPassword);
+            }
+        }
+
+        return success;
+    }
+
+    public boolean newProfile(String username, String displayName, String password, boolean isArtist)
+    {
+        boolean success = false;
+        Profile newly_created;
+
+        // check all parameters
+        if (Persistence.isStringOkay(username) && Persistence.isStringOkay(displayName)
+                && Persistence.isStringOkay(password))
+        {
+            newly_created = new Profile(username, displayName, password, isArtist);
+
+            success = profilePersistence.insert(newly_created);
+        }
+
+        return success;
+    }
+
+    // removes logged in user from the database entirely
+    public boolean deleteProfile()
+    {
+        boolean success = false;
+
+        if (!(loggedIn.equals(ProfilePersistence.GUEST_PROFILE) || loggedIn.equals(ProfilePersistence.NULL_PROFILE)))
+        {
+            success = profilePersistence.delete(loggedIn);
+        }
+
+        return success;
+    }
 
 }

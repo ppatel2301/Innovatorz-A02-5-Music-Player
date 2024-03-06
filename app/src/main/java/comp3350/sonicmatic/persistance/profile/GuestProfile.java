@@ -1,8 +1,8 @@
 package comp3350.sonicmatic.persistance.profile;
 
-public class GuestProfile extends Profile
+public class GuestProfile extends ImmutableProfile
 {
-    public static final String GUEST_PROFILE = "GUEST PROFILE";
+    private static final String GUEST_PROFILE = "GUEST PROFILE";
 
     public GuestProfile()
     {

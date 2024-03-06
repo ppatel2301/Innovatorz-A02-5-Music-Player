@@ -14,17 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
-import comp3350.sonicmatic.objects.Playlist;
+import comp3350.sonicmatic.objects.MusicTrackPlaylist;
 
 public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.PlaylistViewHolder>{
 
-    private ArrayList<Playlist> playlists;
+    private ArrayList<MusicTrackPlaylist> playlists;
 
-    public PlaylistAdapter(ArrayList<Playlist> playlists) {
+    public PlaylistAdapter(ArrayList<MusicTrackPlaylist> playlists) {
         this.playlists = playlists;
     }
 
-    public void setPlaylists(ArrayList<Playlist> playlists)
+    public void setPlaylists(ArrayList<MusicTrackPlaylist> playlists)
     {
         this.playlists = playlists;
     }
@@ -42,7 +42,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
     @Override
     public void onBindViewHolder(@NonNull PlaylistViewHolder holder, int position){
 
-        Playlist playlist = playlists.get(position);
+        MusicTrackPlaylist playlist = playlists.get(position);
 
         holder.playlistImage.setImageResource(R.drawable.default_playlist_img);
         holder.title.setText(playlist.getPlaylistName());
@@ -53,7 +53,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
             public void onClick(View view) {
 
                 // Get the playlist object
-                Playlist playlist = playlists.get(holder.getAdapterPosition());
+                MusicTrackPlaylist playlist = playlists.get(holder.getAdapterPosition());
 
                 // Creating a bundle to pass data to the playlistDetail framgment
                 Bundle bundle = new Bundle();

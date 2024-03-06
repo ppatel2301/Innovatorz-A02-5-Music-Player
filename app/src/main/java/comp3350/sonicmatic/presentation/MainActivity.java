@@ -11,6 +11,7 @@ import androidx.navigation.ui.NavigationUI;
 import java.util.Objects;
 
 import comp3350.sonicmatic.R;
+import comp3350.sonicmatic.application.Services;
 import comp3350.sonicmatic.persistance.Persistence;
 import comp3350.sonicmatic.musicplayer.MusicPlayer;
 import comp3350.sonicmatic.databinding.ActivityMainBinding;
@@ -37,9 +38,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        // required that all instances of the music player have access to the context
-        MusicPlayer.context = getApplicationContext();
-        Persistence.context = getApplicationContext();
+        // services need application context to access assets folder
+        Services.setContext(getApplicationContext());
 
     }
 }

@@ -20,6 +20,7 @@ public abstract class Persistence
 {
 
     // ** class variables **
+    private static final int DB_STRING_LENGTH = 64; // all strings in the database are of this length
     public static Context context;
     private static String full_database_path = "";
     private static boolean init = false;
@@ -42,6 +43,13 @@ public abstract class Persistence
     public abstract boolean delete(IPersistentItem item);
 
     // ** class methods **
+
+    // determines if a string is suitable to be in the database
+    public static boolean isStringOkay(String testMe)
+    {
+        return testMe != null
+                && testMe.length() > 0 && testMe.length() <= DB_STRING_LENGTH;
+    }
 
     // most of the code in this method is adapted from sample project, written by Franklin Bristow
     public static String initDatabsePersistence(String dbName, String dbPath)
@@ -118,6 +126,5 @@ public abstract class Persistence
     {
         return DriverManager.getConnection("jdbc:hsqldb:file:"+full_database_path+";shutdown=true", "SA", "");
     }
-
 
 }

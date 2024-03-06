@@ -20,7 +20,7 @@ public class ProfilePersistenceTest {
     @Before
     public void setup()
     {
-        Persistence.context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        Services.setContext(InstrumentationRegistry.getInstrumentation().getTargetContext());
         profilePersistence = Services.getProfilePersistence();
     }
 
@@ -53,9 +53,9 @@ public class ProfilePersistenceTest {
         String displayName = profile.getDisplayName();
         String password = profile.getPassword();
 
-        assertEquals("Profile Get Test: username \""+username+"\" should have been \""+ NullProfile.NULL_PROFILE +"\"", username.equals(NullProfile.NULL_PROFILE),true);
-        assertEquals("Profile Get Test: display name \""+displayName+"\"should have been \""+ NullProfile.NULL_PROFILE +"\"", displayName.equals(NullProfile.NULL_PROFILE), true);
-        assertEquals("Profile Get Test: password \""+password+"\" should have been \""+ NullProfile.NULL_PROFILE +"\"", password.equals(NullProfile.NULL_PROFILE), true);
+        assertEquals("Profile Get Test: username \""+username+"\" should have been \""+ ProfilePersistence.NULL_PROFILE.getUsername() +"\"", username.equals(ProfilePersistence.NULL_PROFILE.getUsername()),true);
+        assertEquals("Profile Get Test: display name \""+displayName+"\"should have been \""+ ProfilePersistence.NULL_PROFILE.getDisplayName() +"\"", displayName.equals(ProfilePersistence.NULL_PROFILE.getDisplayName()), true);
+        assertEquals("Profile Get Test: password \""+password+"\" should have been \""+ ProfilePersistence.NULL_PROFILE.getPassword() +"\"", password.equals(ProfilePersistence.NULL_PROFILE.getPassword()), true);
     }
 
     @Test

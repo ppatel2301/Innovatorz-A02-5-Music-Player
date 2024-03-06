@@ -1,20 +1,22 @@
 package comp3350.sonicmatic.objects;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
-public class Playlist{
+import comp3350.sonicmatic.comparator.MusicComparatorByArtist;
+import comp3350.sonicmatic.comparator.MusicComparatorByTitle;
+
+
+public class MusicTrackPlaylist {
     private String playlistName;
     private ArrayList<MusicTrack> playlist;
 
-    public Playlist(String name)
+    public MusicTrackPlaylist(String name)
     {
         playlistName = name;
         playlist = new ArrayList<>();
     }
 
-    public Playlist(String name, ArrayList<MusicTrack> list)
+    public MusicTrackPlaylist(String name, ArrayList<MusicTrack> list)
     {
         playlistName = name;
         playlist = list;
@@ -47,19 +49,14 @@ public class Playlist{
 
     public ArrayList<MusicTrack> filterByArtist ()
     {
-//        return Collections.sort(playlist, Comparator.comparing(MusicTrack::getArtistName));
-        return null;
+        playlist.sort(new MusicComparatorByArtist());
+        return playlist;
     }
 
     public ArrayList<MusicTrack> filterByTitle ()
     {
-//        return Collections.sort(playlist, Comparator.comparing(MusicTrack::getTitle));
-        return null;
+        playlist.sort(new MusicComparatorByTitle());
+        return playlist;
     }
 
-    public ArrayList<MusicTrack> filterByAlbum ()
-    {
-//        return Collections.sort(playlist, Comparator.comparing(MusicTrack::getAlbumTitle));
-        return null;
-    }
 }

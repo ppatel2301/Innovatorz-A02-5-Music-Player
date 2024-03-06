@@ -14,6 +14,7 @@ public class ProfilePersistence extends Persistence
     // ** class constants **
     private static final int IS_ARTIST = 1;
     public static final NullProfile NULL_PROFILE = new NullProfile();
+    public static final GuestProfile GUEST_PROFILE = new GuestProfile();
     private static final String IS_ARTIST_FLAG = "1";
     private static final String IS_NOT_ARTIST_FLAG = "0";
 
@@ -78,7 +79,7 @@ public class ProfilePersistence extends Persistence
                 statement.setString(1, profile.getDisplayName());
                 statement.setString(2, profile.getPassword());
                 statement.setString(3, profile.isArtist() ?  IS_ARTIST_FLAG :  IS_NOT_ARTIST_FLAG);
-                statement.setString(4, profile.getUsername());
+                statement.setString(4, profile.getPrimaryKey());
 
                 statement.executeUpdate();
 
@@ -140,7 +141,6 @@ public class ProfilePersistence extends Persistence
     public boolean delete(IPersistentItem item)
     {
         boolean success = true;
-        Profile profile;
 
         if (item instanceof Profile)
         {
@@ -166,5 +166,6 @@ public class ProfilePersistence extends Persistence
 
         return success;
     }
+
 
 }

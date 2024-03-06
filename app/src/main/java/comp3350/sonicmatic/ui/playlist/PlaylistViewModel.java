@@ -6,11 +6,11 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
-import comp3350.sonicmatic.objects.Playlist;
+import comp3350.sonicmatic.objects.MusicTrackPlaylist;
 public class PlaylistViewModel extends  ViewModel{
 
-    private final MutableLiveData<ArrayList<Playlist>> playlists;
-    private final MutableLiveData<Playlist> selectedPlaylist;
+    private final MutableLiveData<ArrayList<MusicTrackPlaylist>> playlists;
+    private final MutableLiveData<MusicTrackPlaylist> selectedPlaylist;
 
     public PlaylistViewModel ()
     {
@@ -18,11 +18,11 @@ public class PlaylistViewModel extends  ViewModel{
         selectedPlaylist = new MutableLiveData<>();
     }
 
-    public LiveData<ArrayList<Playlist>> getPlaylist(){return playlists;}
+    public LiveData<ArrayList<MusicTrackPlaylist>> getPlaylist(){return playlists;}
 
-    public void addPlaylist(Playlist playlist)
+    public void addPlaylist(MusicTrackPlaylist playlist)
     {
-        ArrayList<Playlist> currentList = playlists.getValue();
+        ArrayList<MusicTrackPlaylist> currentList = playlists.getValue();
         if(currentList == null)
         {
             currentList = new ArrayList<>();
@@ -31,12 +31,12 @@ public class PlaylistViewModel extends  ViewModel{
         playlists.setValue(currentList);
     }
 
-    public void setSelectedPlaylist(Playlist playlist)
+    public void setSelectedPlaylist(MusicTrackPlaylist playlist)
     {
         selectedPlaylist.setValue(playlist);
     }
 
-    public LiveData<Playlist> getSelectedPlaylist()
+    public LiveData<MusicTrackPlaylist> getSelectedPlaylist()
     {
         return selectedPlaylist;
     }

@@ -57,10 +57,6 @@ public class MusicFragment extends Fragment {
         play_pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                int duration = Toast.LENGTH_SHORT;
-                Toast.makeText(getContext(), "Playing Music", duration).show();
-                */
 
                try
                {
@@ -79,7 +75,8 @@ public class MusicFragment extends Fragment {
 
                } catch (NoMusicException nme)
                {
-
+                    // Toast a message with
+                   //"sorry, we're having trouble playing your music right now"
                }
 
             }
