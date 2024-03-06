@@ -68,6 +68,9 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
                 // Setting the selected playlist
                 playlistViewModel.setSelectedPlaylist(playlist);
 
+                View layout = view.getRootView().findViewById(R.id.collasped_music_layout1);
+                layout.setVisibility(View.GONE);
+
                 Navigation.findNavController(view).navigate(R.id.playlistDetailFragment, bundle);
             }
         });

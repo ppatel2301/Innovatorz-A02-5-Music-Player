@@ -49,7 +49,10 @@ public class MusicFragment extends Fragment {
         super.onCreate(savedInstanceState);
         player = new MusicPlayer();
         musicViewModel = new ViewModelProvider(requireActivity()).get(MusicViewModel.class);
-        player.loadSongFromPath(musicViewModel.getSelectedMusicTrack().getPath());
+
+        // Calling load song to load the correct song
+        loadSong();
+
         adapter = ListeningHistoryMusicAdapter.getInstance(null);
         collaspedMusicPlayer = requireActivity().findViewById(R.id.collasped_music_layout1);
     }
@@ -152,5 +155,15 @@ public class MusicFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    private void loadSong()
+    {
+        if(musicViewModel.getPlayer() == null)
+        {
+            player.loadSongFromPath(musicViewModel.getSelectedMusicTrack().getPath());
+        }else{
+            player.loadSongFromPath(musicViewModel.getPlayer().getCurrentSong().getPath());
+        }
     }
 }

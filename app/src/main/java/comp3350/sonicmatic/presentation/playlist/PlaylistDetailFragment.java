@@ -21,7 +21,6 @@ import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.databinding.FragmentPlaylistDetailBinding;
 import comp3350.sonicmatic.interfaces.IPlaylist;
 import comp3350.sonicmatic.interfaces.ISong;
-import comp3350.sonicmatic.interfaces.ISongLength;
 
 public class PlaylistDetailFragment extends Fragment {
     private FragmentPlaylistDetailBinding binding;
@@ -29,7 +28,6 @@ public class PlaylistDetailFragment extends Fragment {
     private ImageView backbutton;
     private TextView playlistName;
 
-    private ISongLength songLength;
     private ArrayList<IPlaylist> playlists;
     private PlaylistViewModel playlistViewModel;
 
@@ -56,6 +54,8 @@ public class PlaylistDetailFragment extends Fragment {
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                View layout = requireActivity().findViewById(R.id.collasped_music_layout1);
+                layout.setVisibility(View.VISIBLE);
                 getParentFragmentManager().popBackStack();
             }
         });

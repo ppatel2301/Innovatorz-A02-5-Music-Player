@@ -84,6 +84,9 @@ public class AddToPlaylistFragment extends Fragment {
                     }
                 }
 
+                String user = "";
+                addMusicToPlaylist(selectedMusicTrack, user);
+
                 getParentFragmentManager().popBackStack();
             }
         });
@@ -94,5 +97,10 @@ public class AddToPlaylistFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void addMusicToPlaylist(ISong song, String user)
+    {
+
     }
 }

@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private View layout;
     private IPlayer player;
     private MusicViewModel musicViewModel;
+    private View trackHistoryView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         drawer = binding.drawerProfileLayout;
         usernameText =  drawer.findViewById(R.id.profile_username);
+        trackHistoryView = findViewById(R.id.track_history_layout);
 
         updateGetUsername();
 
@@ -94,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
+
+                usernameText.setText("Robert Guderian");
+                trackHistoryView.setVisibility(View.VISIBLE);
                 layout.setVisibility(View.VISIBLE);
             }
         });
@@ -103,21 +108,26 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 player = musicViewModel.getPlayer();
-                if(player.isPaused())
+                if(player != null)
                 {
-                    try {
-                        player.resume();
-                        play_pause_collasped.setImageResource(R.drawable.baseline_pause_circle_outline_24);
-                    } catch (NoMusicException e) {
-                        throw new RuntimeException(e);
+                    if(player.isPaused())
+                    {
+                        try {
+                            player.resume();
+                            play_pause_collasped.setImageResource(R.drawable.baseline_pause_circle_outline_24);
+                        } catch (NoMusicException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }else{
+                        try {
+                            player.pause();
+                            play_pause_collasped.setImageResource(R.drawable.baseline_play_circle_outline_24);
+                        } catch (NoMusicException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }else{
-                    try {
-                        player.pause();
-                        play_pause_collasped.setImageResource(R.drawable.baseline_play_circle_outline_24);
-                    } catch (NoMusicException e) {
-                        throw new RuntimeException(e);
-                    }
+                    // Tell the user to select a music to play
                 }
             }
         });

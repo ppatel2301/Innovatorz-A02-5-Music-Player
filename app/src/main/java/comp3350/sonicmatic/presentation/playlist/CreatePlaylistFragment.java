@@ -1,5 +1,7 @@
 package comp3350.sonicmatic.presentation.playlist;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,15 +51,34 @@ public class CreatePlaylistFragment extends BottomSheetDialogFragment {
         createPlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Gets the playlist name from the text input by the user
-                String listName = playlistName.getText().toString();
 
-                // Creating a playlist in the ui with the given name
-                playlistViewModel.addPlaylist(new Playlist(listName, new ArrayList<>()));
+                if(validitePlaylist(playlistName.getText().toString()))
+                {
+                    // Gets the playlist name from the text input by the user
+                    String listName = playlistName.getText().toString();
 
-                dismiss();
+                    // Creating a playlist in the ui with the given name
+                    playlistViewModel.addPlaylist(new Playlist(listName, new ArrayList<>()));
 
-                getParentFragmentManager().popBackStack();
+                    String user = "";
+                    addPlaylistToUser(user);
+
+                    dismiss();
+
+                    getParentFragmentManager().popBackStack();
+                }else{
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+                    alertDialog.setTitle("Sonicmatic Warning")
+                            .setMessage("Text to small or contains a space")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            })
+                            .show();
+                }
+
             }
         });
 
@@ -78,5 +99,15 @@ public class CreatePlaylistFragment extends BottomSheetDialogFragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private boolean validitePlaylist(String username)
+    {
+        return (!username.equals(" ") && username.length() < 20);
+    }
+
+    private void addPlaylistToUser(String user)
+    {
+        
     }
 }

@@ -72,6 +72,8 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
                 }
                 notifyItemRemoved(holder.getAdapterPosition());
                 Toast.makeText(view.getContext(), "Remove Song",Toast.LENGTH_SHORT).show();
+
+                removeMusicFromPlaylist(currentList);
             }
         });
 
@@ -87,6 +89,11 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
     @Override
     public int getItemCount() {
         return tracks.size();
+    }
+
+    private void removeMusicFromPlaylist(IPlaylist playlist)
+    {
+
     }
 
     public class PlaylistMusicViewHolder extends RecyclerView.ViewHolder {
