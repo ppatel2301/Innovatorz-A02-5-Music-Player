@@ -1,0 +1,99 @@
+package comp3350.sonicmatic.database;
+
+import androidx.test.platform.app.InstrumentationRegistry;
+
+import junit.framework.TestCase;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import comp3350.sonicmatic.application.Services;
+import comp3350.sonicmatic.persistance.song.Song;
+import comp3350.sonicmatic.persistance.song.SongPersistence;
+
+public class SongPersistenceTest extends TestCase {
+
+    private SongPersistence songPersistence;
+    final String FNAME_EXT = "Archetype.mp3"; // common song to test
+
+    @Before
+    public void setUp()
+    {
+        Services.setContext(InstrumentationRegistry.getInstrumentation().getTargetContext());
+        songPersistence = Services.getSongPersistence();
+    }
+
+    @Test
+    public void testGet()
+    {
+
+        Song song = songPersistence.get(FNAME_EXT);
+        String file_name_ext = song.getFileNameExt();
+
+
+        assertEquals("Song file name wasn't expected, it was "+file_name_ext, true, file_name_ext.equals(FNAME_EXT));
+
+    }
+
+    @Test
+    public void testBadGet()
+    {
+        final String FNAME_EXT = "not in here .mp420";
+
+        Song song = songPersistence.get(FNAME_EXT);
+        String file_name_ext = song.getFileNameExt();
+
+        assertEquals("Song file should have been NULL SONG, but it was "+file_name_ext, true, SongPersistence.NULL_SONG.getFileNameExt().equals(file_name_ext));
+
+    }
+
+    @Test
+    public void testUpdate()
+    {
+        // since we just keep track of file paths per row, this test makes sure we can't update a path (makes more sense to just insert)
+        Song song = songPersistence.update(new Song(FNAME_EXT));
+
+        assertEquals("Wanted the null song from this update call", true, song.getFileNameExt().equals(SongPersistence.NULL_SONG.getFileNameExt()));
+    }
+
+    @Test
+    public void testInsert()
+    {
+        Song insert_me = new Song("Cyberwaste.mp3");
+
+        boolean success = songPersistence.insert(insert_me);
+
+        assertEquals("Unsuccessful song insert", true, success);
+
+        // delete now that we're done
+        if (success)
+        {
+            songPersistence.delete(insert_me);
+        }
+
+    }
+
+    @Test
+    public void  testBadInsert()
+    {
+        Song dont_insert_me = new Song(FNAME_EXT); // this song is already in the DB
+
+        boolean success = songPersistence.insert(dont_insert_me);
+
+        assertEquals("Successful song insert...should have not been", false, success);
+
+    }
+
+    @Test
+    public void testDelete()
+    {
+        boolean success;
+        Song delete_me = new Song("Cyberwaste.mp3");
+
+        songPersistence.insert(delete_me); // have to put something in here to delete
+        success = songPersistence.delete(delete_me);
+
+        assertEquals("Unsuccessful song delete", true, success);
+    }
+
+}

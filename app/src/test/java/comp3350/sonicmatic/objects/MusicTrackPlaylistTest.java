@@ -15,9 +15,9 @@ import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.interfaces.ISongLength;
 
 @RunWith(JUnit4.class)
-public class PlaylistTest {
+public class MusicTrackPlaylistTest {
 
-    private Playlist playlist;
+    private MusicTrackPlaylist playlist;
 
     //Tracks
     private ISong musicTrack1;
@@ -39,7 +39,7 @@ public class PlaylistTest {
         musicTracks.add(musicTrack2);
         musicTracks.add(musicTrack3);
 
-        playlist = new Playlist("Playlist1");
+        playlist = new MusicTrackPlaylist("Playlist1");
         playlist.addMusicTracks(musicTrack1);
         playlist.addMusicTracks(musicTrack2);
     }

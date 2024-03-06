@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import comp3350.sonicmatic.R;
-import comp3350.sonicmatic.System.musicplayer.MusicPlayer;
+import comp3350.sonicmatic.application.Services;
 import comp3350.sonicmatic.databinding.ActivityMainBinding;
 import comp3350.sonicmatic.presentation.home.AddToPlaylistAdapter;
 import comp3350.sonicmatic.presentation.player.ListeningHistoryMusicAdapter;
@@ -61,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        // required that all instances of the music player have access to the context
-        MusicPlayer.context = getApplicationContext();
+        // services need application context to access assets folder
+        Services.setContext(getApplicationContext());
 
         binding.navView.setOnItemSelectedListener(item -> {
             if(item.getItemId() == R.id.navigation_profile)

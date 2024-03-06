@@ -21,7 +21,7 @@ import comp3350.sonicmatic.interfaces.IArtist;
 import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.objects.MusicArtist;
 import comp3350.sonicmatic.objects.MusicTrack;
-import comp3350.sonicmatic.objects.Playlist;
+import comp3350.sonicmatic.objects.MusicTrackPlaylist;
 import comp3350.sonicmatic.objects.SongDuration;
 import comp3350.sonicmatic.presentation.player.MusicAdapter;
 import comp3350.sonicmatic.presentation.playlist.PlaylistAdapter;
@@ -95,9 +95,9 @@ public class HomeFragment extends Fragment {
 
     private void observePlaylist()
     {
-        playlistViewModel.getPlaylist().observe(getViewLifecycleOwner(), new Observer<ArrayList<Playlist>>() {
+        playlistViewModel.getPlaylist().observe(getViewLifecycleOwner(), new Observer<ArrayList<MusicTrackPlaylist>>() {
             @Override
-            public void onChanged(ArrayList<Playlist> playlists) {
+            public void onChanged(ArrayList<MusicTrackPlaylist> playlists) {
                 playlistAdapter.setPlaylists(playlists);
                 playlistAdapter.notifyDataSetChanged();
 
