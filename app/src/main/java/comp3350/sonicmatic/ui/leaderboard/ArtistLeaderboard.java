@@ -2,7 +2,9 @@ package comp3350.sonicmatic.ui.leaderboard;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -36,7 +38,7 @@ public class ArtistLeaderboard extends Fragment {
 
      */
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         binding = FragmentArtistLeaderboardBinding.inflate(inflater, container, false);
@@ -46,6 +48,12 @@ public class ArtistLeaderboard extends Fragment {
         if (adapter == null){
             adapter = new LeaderboardAdapter(new ArrayList<>());
         }
+
+        // Get components
+        recyclerView = root.findViewById(R.id.leaderboardRecyclerView);
+
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager((getContext())));
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_artist_leaderboard, container, false);
