@@ -8,9 +8,6 @@
       <entry key="ProfilePersistenceTest">
         <State />
       </entry>
-      <entry key="SongPersistenceTest">
-        <State />
-      </entry>
       <entry key="app">
         <State>
           <targetSelectedWithDropDown>
@@ -27,10 +24,13 @@
           <timeTargetWasSelectedWithDropDown value="2024-02-06T21:05:52.629318100Z" />
         </State>
       </entry>
-      <entry key="getMillisecDurationTestNoSong()">
+      <entry key="getSongPathsTest()">
         <State />
       </entry>
-      <entry key="getSongPathsTest()">
+      <entry key="testBadInsert()">
+        <State />
+      </entry>
+      <entry key="testGetAll()">
         <State />
       </entry>
     </value>

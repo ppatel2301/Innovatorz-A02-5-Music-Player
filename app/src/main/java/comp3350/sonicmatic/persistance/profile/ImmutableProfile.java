@@ -9,6 +9,9 @@ public abstract class ImmutableProfile extends Profile
         super(username, displayName, password, isArtist);
     }
 
+
+    // do not allow any changes to this profile
+
     public ImmutableProfile(ImmutableProfile copyMe)
     {
         super(copyMe);

@@ -1,6 +1,5 @@
 package comp3350.sonicmatic.ui.player;
 
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
-import comp3350.sonicmatic.objects.MusicTrack;
+import comp3350.sonicmatic.objects.musictrack.MusicTrack;
 
 
 public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHolder>{

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.databinding.FragmentLibraryBinding;
-import comp3350.sonicmatic.objects.MusicTrackPlaylist;
+import comp3350.sonicmatic.objects.abstracts.MusicTrackPlaylist;
 import comp3350.sonicmatic.ui.playlist.PlaylistAdapter;
 import comp3350.sonicmatic.ui.playlist.PlaylistViewModel;
 

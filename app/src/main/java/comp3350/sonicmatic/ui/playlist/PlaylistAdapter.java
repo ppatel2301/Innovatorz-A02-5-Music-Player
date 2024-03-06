@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
-import comp3350.sonicmatic.objects.MusicTrackPlaylist;
+import comp3350.sonicmatic.objects.abstracts.MusicTrackPlaylist;
 
 public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.PlaylistViewHolder>{
 
