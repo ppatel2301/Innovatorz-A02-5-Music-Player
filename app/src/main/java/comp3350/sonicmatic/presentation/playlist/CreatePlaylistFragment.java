@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import comp3350.sonicmatic.R;
 
 import comp3350.sonicmatic.databinding.FragmentCreatePlaylistBinding;
-import comp3350.sonicmatic.objects.abstracts.MusicTrackPlaylist;
+import comp3350.sonicmatic.objects.MusicTrackPlaylist;
 
 public class CreatePlaylistFragment extends BottomSheetDialogFragment {
 
