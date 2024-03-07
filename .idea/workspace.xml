@@ -129,21 +129,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e88d3ca6-68d2-4cac-91db-d6f4c47530c1" name="Changes" comment="trying to get rid of that foreign key error &gt;:(">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/config.properties" afterDir="false" />
+    <list default="true" id="e88d3ca6-68d2-4cac-91db-d6f4c47530c1" name="Changes" comment="music crashed fixed.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script.script" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/application/Services.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/application/Services.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/business/AccessProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/business/AccessProfile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlist/PlaylistPersistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlist/PlaylistPersistence.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/AccessProfile/AccessProfileTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/AccessProfile/AccessProfileTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/AccessProfile/StubProfileDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/AccessProfile/StubProfileDB.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,8 +171,8 @@
       <list>
         <option value="resourceFile" />
         <option value="Interface" />
-        <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -214,7 +206,6 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "android-custom-viewC:/Users/dharm/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED": "RecyclerView",
@@ -222,15 +213,9 @@
     "cidr.known.project.marker": "true",
     "com.google.services.firebase.aqiPopupShown": "true",
     "git-widget-placeholder": "dev-iteration2-persistence",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/elang/StudioProjects/innovators-a02-5/app/src/main/assets/database"
+    "last_opened_file_path": "C:/Users/dharm/Desktop/Test F/innovators-a02-5"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\elang\StudioProjects\innovators-a02-5\app\src\main\assets\database" />
-    </key>
-  </component>
   <component name="RunManager" selected="Android App.app">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="Sonicmatic.app.main" />
@@ -473,10 +458,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.PlaylistTest.testGetPlaylistName" />
+        <item itemvalue="Gradle.PlaylistTest" />
         <item itemvalue="Android Instrumented Tests.testGet()" />
         <item itemvalue="Android Instrumented Tests.ProfilePersistenceTest" />
         <item itemvalue="Gradle.PlaylistTest" />
-        <item itemvalue="Gradle.PlaylistTest.testGetPlaylistName" />
       </list>
     </recent_temporary>
   </component>
@@ -505,63 +491,7 @@
       <option name="project" value="LOCAL" />
       <updated>1709778397313</updated>
     </task>
-    <task id="LOCAL-00003" summary="merge issues resolved">
-      <option name="closed" value="true" />
-      <created>1709786197979</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1709786197979</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Some work done on playlists plus access all songs in DB as MusicTracks in AccesSong.java">
-      <option name="closed" value="true" />
-      <created>1709787755529</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1709787755529</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Playlist and PlaylistSong persistence built, untested">
-      <option name="closed" value="true" />
-      <created>1709792828187</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1709792828187</updated>
-    </task>
-    <task id="LOCAL-00006" summary="AccessPlaylist written, untested.">
-      <option name="closed" value="true" />
-      <created>1709795425674</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1709795425674</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Final changes of the night">
-      <option name="closed" value="true" />
-      <created>1709796129402</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1709796129402</updated>
-    </task>
-    <task id="LOCAL-00008" summary="some more changes lol">
-      <option name="closed" value="true" />
-      <created>1709796963862</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1709796963862</updated>
-    </task>
-    <task id="LOCAL-00009" summary="trying to get rid of that foreign key error &gt;:(">
-      <option name="closed" value="true" />
-      <created>1709800144339</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1709800144339</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -576,33 +506,11 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="updated MainActivity.java" />
     <MESSAGE value="music crashed fixed." />
-    <MESSAGE value="merge issues resolved" />
-    <MESSAGE value="Some work done on playlists plus access all songs in DB as MusicTracks in AccesSong.java" />
-    <MESSAGE value="Playlist and PlaylistSong persistence built, untested" />
-    <MESSAGE value="AccessPlaylist written, untested." />
-    <MESSAGE value="Final changes of the night" />
-    <MESSAGE value="some more changes lol" />
-    <MESSAGE value="trying to get rid of that foreign key error &gt;:(" />
-    <option name="LAST_COMMIT_MESSAGE" value="trying to get rid of that foreign key error &gt;:(" />
+    <option name="LAST_COMMIT_MESSAGE" value="music crashed fixed." />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/business/AccessPlaylist.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/MainActivity.java</url>
-          <line>65</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="AndroidRunConfigurationType">
         <watch expression="img" />

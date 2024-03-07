@@ -218,7 +218,7 @@ public class PlaylistPersistence extends Persistence
         try(final Connection c = getConnection())
         {
 
-            final PreparedStatement statement = c.prepareStatement("SELECT * FROM playlists WHERE name = ?, creator_username = ?");
+            final PreparedStatement statement = c.prepareStatement("SELECT * FROM playlists WHERE name = ? AND creator_username = ?");
             final ResultSet query_result;
 
             statement.setString(1, name);

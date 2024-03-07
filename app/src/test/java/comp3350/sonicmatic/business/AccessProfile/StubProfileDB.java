@@ -1,5 +1,8 @@
 package comp3350.sonicmatic.business.AccessProfile;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.interfaces.IPersistentItem;
@@ -14,15 +17,12 @@ public class StubProfileDB extends ProfilePersistence
     private ArrayList<Profile> stubProfiles;
 
     // ** constructor **
-    public StubProfileDB()
+    public StubProfileDB(Profile init)
     {
         super("", "");
 
         stubProfiles = new ArrayList<Profile>();
-        stubProfiles.add(new Profile("firstUsername", "firstDisplayName", "pwd!!!", false));
-        stubProfiles.add(new Profile("robG", "robert, G", "robsPassword", true));
-        stubProfiles.add(new Profile("gahooey!", "pleth", "Y U C K", false));
-        stubProfiles.add(new Profile("onetwothreefour", "1234", "4321lel", true));
+        stubProfiles.add(init);
     }
 
     // ** instance methods **
@@ -91,7 +91,49 @@ public class StubProfileDB extends ProfilePersistence
     @Override
     public boolean insert(IPersistentItem item)
     {
-        return false; //for now....
+        boolean inserted;
+        Profile to_insert;
+
+        if (item instanceof Profile)
+        {
+            to_insert = ((Profile)(item));
+
+            // if not in db already, can insert
+            if (!get(to_insert.getPrimaryKey()).equals(to_insert))
+            {
+                stubProfiles.add(new Profile(to_insert));
+
+                inserted = get(to_insert.getPrimaryKey()).equals(to_insert);
+            }
+            else
+            {
+                inserted = false;
+            }
+        }
+        else
+        {
+            inserted = false;
+        }
+
+        return inserted;
+    }
+
+    @Override
+    public boolean delete(IPersistentItem item)
+    {
+        boolean success = true;
+
+        if (item instanceof Profile && !get(item.getPrimaryKey()).equals(NullProfile.getNullProfile()))
+        {
+            stubProfiles.remove(((Profile)(item)));
+            success = get(item.getPrimaryKey()).equals(NullProfile.getNullProfile());
+        }
+        else
+        {
+            success = false;
+        }
+
+        return success;
     }
 
 }
