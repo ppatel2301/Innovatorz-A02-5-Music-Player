@@ -19,10 +19,8 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.databinding.FragmentPlaylistDetailBinding;
+import comp3350.sonicmatic.interfaces.IPlaylist;
 import comp3350.sonicmatic.interfaces.ISong;
-import comp3350.sonicmatic.interfaces.ISongLength;
-import comp3350.sonicmatic.objects.MusicTrack;
-import comp3350.sonicmatic.objects.MusicTrackPlaylist;
 
 public class PlaylistDetailFragment extends Fragment {
     private FragmentPlaylistDetailBinding binding;
@@ -30,8 +28,7 @@ public class PlaylistDetailFragment extends Fragment {
     private ImageView backbutton;
     private TextView playlistName;
 
-    private ISongLength songLength;
-    private ArrayList<MusicTrackPlaylist> playlists;
+    private ArrayList<IPlaylist> playlists;
     private PlaylistViewModel playlistViewModel;
 
     @Override
@@ -57,6 +54,8 @@ public class PlaylistDetailFragment extends Fragment {
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                View layout = requireActivity().findViewById(R.id.collasped_music_layout1);
+                layout.setVisibility(View.VISIBLE);
                 getParentFragmentManager().popBackStack();
             }
         });
@@ -79,7 +78,7 @@ public class PlaylistDetailFragment extends Fragment {
     {
         if(playlists != null)
         {
-            for(MusicTrackPlaylist currentList : playlists)
+            for(IPlaylist currentList : playlists)
             {
                 if(currentList.getPlaylistName().equalsIgnoreCase(playlistName))
                 {
@@ -97,9 +96,9 @@ public class PlaylistDetailFragment extends Fragment {
 
     private void observePlaylist(PlaylistViewModel viewModel)
     {
-        viewModel.getPlaylist().observe(getViewLifecycleOwner(), new Observer<ArrayList<MusicTrackPlaylist>>() {
+        viewModel.getPlaylist().observe(getViewLifecycleOwner(), new Observer<ArrayList<IPlaylist>>() {
             @Override
-            public void onChanged(ArrayList<MusicTrackPlaylist> updatedPlaylist) {
+            public void onChanged(ArrayList<IPlaylist> updatedPlaylist) {
                 playlists = updatedPlaylist;
             }
         });

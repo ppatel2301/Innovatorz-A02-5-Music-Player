@@ -1,13 +1,14 @@
 package comp3350.sonicmatic.presentation;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -15,23 +16,26 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
-
 import java.util.ArrayList;
 import java.util.Objects;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.application.Services;
 import comp3350.sonicmatic.databinding.ActivityMainBinding;
-import comp3350.sonicmatic.presentation.home.AddToPlaylistAdapter;
+import comp3350.sonicmatic.exceptions.NoMusicException;
+import comp3350.sonicmatic.interfaces.IPlayer;
 import comp3350.sonicmatic.presentation.player.ListeningHistoryMusicAdapter;
+import comp3350.sonicmatic.presentation.player.MusicViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawer;
     private ListeningHistoryMusicAdapter adapter;
     private TextView usernameText;
+    private View layout;
+    private IPlayer player;
+    private MusicViewModel musicViewModel;
+    private View trackHistoryView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        musicViewModel = new ViewModelProvider(this).get(MusicViewModel.class);
+
         //Hide the status bar
         Objects.requireNonNull(getSupportActionBar()).hide();
 
@@ -47,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         drawer = binding.drawerProfileLayout;
         usernameText =  drawer.findViewById(R.id.profile_username);
+        trackHistoryView = findViewById(R.id.track_history_layout);
 
         updateGetUsername();
 
@@ -61,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+        layout = requireViewById(R.id.collasped_music_layout1);
+
+        // required that all instances of the music player have access to the context
         // services need application context to access assets folder
         Services.setContext(getApplicationContext());
 
@@ -81,6 +91,46 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             return NavigationUI.onNavDestinationSelected(item, navController);
+        });
+
+        drawer.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+
+                usernameText.setText("Robert Guderian");
+                trackHistoryView.setVisibility(View.VISIBLE);
+                layout.setVisibility(View.VISIBLE);
+            }
+        });
+
+        ImageView play_pause_collasped = layout.findViewById(R.id.collasped_play_button);
+        play_pause_collasped.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                player = musicViewModel.getPlayer();
+                if(player != null)
+                {
+                    if(player.isPaused())
+                    {
+                        try {
+                            player.resume();
+                            play_pause_collasped.setImageResource(R.drawable.baseline_pause_circle_outline_24);
+                        } catch (NoMusicException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }else{
+                        try {
+                            player.pause();
+                            play_pause_collasped.setImageResource(R.drawable.baseline_play_circle_outline_24);
+                        } catch (NoMusicException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }else{
+                    // Tell the user to select a music to play
+                }
+            }
         });
     }
 

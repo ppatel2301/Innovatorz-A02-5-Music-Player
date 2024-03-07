@@ -1,5 +1,7 @@
 package comp3350.sonicmatic.presentation.playlist;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +21,6 @@ import java.util.ArrayList;
 import comp3350.sonicmatic.R;
 
 import comp3350.sonicmatic.databinding.FragmentCreatePlaylistBinding;
-import comp3350.sonicmatic.objects.MusicTrackPlaylist;
 
 public class CreatePlaylistFragment extends BottomSheetDialogFragment {
 
@@ -49,15 +50,24 @@ public class CreatePlaylistFragment extends BottomSheetDialogFragment {
         createPlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Gets the playlist name from the text input by the user
-                String listName = playlistName.getText().toString();
 
-                // Creating a playlist in the ui with the given name
-                playlistViewModel.addPlaylist(new MusicTrackPlaylist(listName, new ArrayList<>()));
+                if(validitePlaylist(playlistName.getText().toString()))
+                {
+                    // Gets the playlist name from the text input by the user
+                    String listName = playlistName.getText().toString();
 
-                dismiss();
+                    // Creating a playlist in the ui with the given name
+                    playlistViewModel.addPlaylist(new Playlist(listName, new ArrayList<>()));
 
-                getParentFragmentManager().popBackStack();
+                    String user = "";
+                    addPlaylistToUser(user);
+
+                    dismiss();
+
+                    getParentFragmentManager().popBackStack();
+                }else{
+                    showDialog("Not a valid Playlist name!! Maybe: Playlist name to big or contains a space");
+                }
             }
         });
 
@@ -78,5 +88,29 @@ public class CreatePlaylistFragment extends BottomSheetDialogFragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void showDialog(String text)
+    {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+        alertDialog.setTitle("Sonicmatic Warning")
+                .setMessage(text)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .show();
+    }
+
+    private boolean validitePlaylist(String username)
+    {
+        return (!username.isEmpty() && !username.equals(" ") && username.length() < 20);
+    }
+
+    private void addPlaylistToUser(String user)
+    {
+
     }
 }

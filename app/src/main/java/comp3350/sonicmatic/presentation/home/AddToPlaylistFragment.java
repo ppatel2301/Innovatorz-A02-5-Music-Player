@@ -18,8 +18,8 @@ import java.util.Arrays;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.databinding.FragmentAddToPlaylistBinding;
+import comp3350.sonicmatic.interfaces.IPlaylist;
 import comp3350.sonicmatic.interfaces.ISong;
-import comp3350.sonicmatic.objects.MusicTrackPlaylist;
 import comp3350.sonicmatic.presentation.player.MusicViewModel;
 import comp3350.sonicmatic.presentation.playlist.PlaylistViewModel;
 
@@ -27,7 +27,7 @@ public class AddToPlaylistFragment extends Fragment {
 
     private FragmentAddToPlaylistBinding binding;
     private PlaylistViewModel playlistViewModel;
-    private ArrayList<MusicTrackPlaylist> playlists;
+    private ArrayList<IPlaylist> playlists;
     private Button addToPlayist;
     private RecyclerView recyclerView;
     private ISong selectedMusicTrack;
@@ -62,7 +62,7 @@ public class AddToPlaylistFragment extends Fragment {
             public void onClick(View view) {
 
                 // Add update the playlist chosen by the user with the correct song.
-                ArrayList<MusicTrackPlaylist> lists = adapter.getPlaylistsSelected();
+                ArrayList<IPlaylist> lists = adapter.getPlaylistsSelected();
                 System.out.println(Arrays.toString(lists.toArray()));
                 // Update the user data with access of logic layer and then data layer
 
@@ -70,9 +70,9 @@ public class AddToPlaylistFragment extends Fragment {
                 selectedMusicTrack = model.getSelectedMusicTrack();
 
                 // Update the playlist data into the playlistViewModel for the ui based
-                for(MusicTrackPlaylist listSelected: lists)
+                for(IPlaylist listSelected: lists)
                 {
-                    for(MusicTrackPlaylist playlist: playlists)
+                    for(IPlaylist playlist: playlists)
                     {
                         if(listSelected.getPlaylistName().equalsIgnoreCase(playlist.getPlaylistName()))
                         {

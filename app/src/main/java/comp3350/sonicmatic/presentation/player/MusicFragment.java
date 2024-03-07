@@ -40,19 +40,27 @@ public class MusicFragment extends Fragment {
     private MusicViewModel musicViewModel;
     private ListeningHistoryMusicAdapter adapter;
 
+    private View collaspedMusicPlayer;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         player = new MusicPlayer();
         musicViewModel = new ViewModelProvider(requireActivity()).get(MusicViewModel.class);
-        player.loadSongFromPath(musicViewModel.getSelectedMusicTrack().getPath());
+
+        // Calling load song to load the correct song
+        loadSong();
+
         adapter = ListeningHistoryMusicAdapter.getInstance(null);
+        collaspedMusicPlayer = requireActivity().findViewById(R.id.collasped_music_layout1);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentMusicPlayerBinding.inflate(inflater, container, false);
+
+        collaspedMusicPlayer.setVisibility(View.GONE);
 
         View root = binding.getRoot();
 
@@ -86,13 +94,13 @@ public class MusicFragment extends Fragment {
 
                        observeListeningHistory();
 
-                       play_pause.setBackgroundResource(R.drawable.baseline_pause_circle_outline_24);
+                       play_pause.setImageResource(R.drawable.baseline_pause_circle_outline_24);
                    }
                    else if (player.isPlaying())
                    {
                        player.pause();
                        playingMusic = false;
-                       play_pause.setBackgroundResource(R.drawable.baseline_play_circle_outline_24);
+                       play_pause.setImageResource(R.drawable.baseline_play_circle_outline_24);
                    }
 
                } catch (NoMusicException nme)
@@ -105,13 +113,25 @@ public class MusicFragment extends Fragment {
         collaspePlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Trying to have the collapsed version of music player so user can play music from there and pause
+                collaspedMusicPlayer.setVisibility(View.VISIBLE);
 
-//                if(playingMusic) {
-//                    collaspsed_play_button.setBackgroundResource(R.drawable.baseline_pause_circle_outline_24);
-//                }else{
-//                    collaspsed_play_button.setBackgroundResource(R.drawable.baseline_play_circle_outline_24);
-//                }
+                View layout = root.getRootView().findViewById(R.id.collasped_music_layout1);
+                TextView trackName = layout.findViewById(R.id.collasped_music_name);
+                TextView artist = layout.findViewById(R.id.collasped_music_artist);
+                ImageView play_pause = layout.findViewById(R.id.collasped_play_button);
+
+                if(player.isPaused())
+                {
+                    play_pause.setImageResource(R.drawable.baseline_play_circle_outline_24);
+                }else{
+                    play_pause.setImageResource(R.drawable.baseline_pause_circle_outline_24);
+                }
+
+                musicViewModel.setPlayer(player);
+
+                trackName.setText(player.getCurrentSong().getTitle());
+                artist.setText(player.getCurrentSong().getArtist().getName());
+
                 getParentFragmentManager().popBackStack();
             }
         });
@@ -133,5 +153,15 @@ public class MusicFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    private void loadSong()
+    {
+        if(musicViewModel.getPlayer() == null)
+        {
+            player.loadSongFromPath(musicViewModel.getSelectedMusicTrack().getPath());
+        }else{
+            player.loadSongFromPath(musicViewModel.getPlayer().getCurrentSong().getPath());
+        }
     }
 }

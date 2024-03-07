@@ -26,11 +26,11 @@ public class CollaspedMusicFragment extends Fragment {
         binding = FragmentCollapsedMusicPlayerBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        ConstraintLayout layout = root.findViewById(R.id.collasped_music_layout);
+        View layout = root.findViewById(R.id.collasped_music_layout1);
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Yes");
+                System.out.println("Yes expand");
 //                Navigation.findNavController(view).navigate(R.id.musicFragment, null);
             }
         });
