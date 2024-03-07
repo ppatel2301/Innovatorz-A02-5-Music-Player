@@ -20,30 +20,25 @@ public class AccessPlaylist {
     // ** instance variables **
     private PlaylistPersistence playlistPersistence;
     private PlaylistSongPersistence playlistSongPersistence;
-    private ProfilePersistence profilePersistence;
 
     // ** constructors **
     public AccessPlaylist(){
         this.playlistPersistence = Services.getPlaylistPersistence();
         this.playlistSongPersistence = Services.getPlaylistSongPersistence();
-        this.profilePersistence = Services.getProfilePersistence();
     }
 
     public AccessPlaylist(final PlaylistPersistence playlistPersistence, final PlaylistSongPersistence playlistSongPersistence, final ProfilePersistence profilePersistence)
     {
         this.playlistPersistence = playlistPersistence;
         this.playlistSongPersistence = playlistSongPersistence;
-        this.profilePersistence = profilePersistence;
     }
 
     // ** mutators **
-    public ArrayList<IPlaylist> getPlaylists()
+    public ArrayList<IPlaylist> getPlaylists(AccessProfile profileAccess)
     {
         ArrayList<IPlaylist> playlists = new ArrayList<IPlaylist>();
         ArrayList<Playlist> playlists_from_db; // the list of playlists the user who is logged in has
         ArrayList<PlaylistSong> playlist_songs_from_db; // songs in the playlist from a database
-
-        AccessProfile profileAccess = new AccessProfile(profilePersistence);
 
         String curr_playlist;
         String username = profileAccess.getUsername();
@@ -71,10 +66,9 @@ public class AccessPlaylist {
         return playlists;
     }
 
-    public boolean newPlaylist(String name)
+    public boolean newPlaylist(String name, AccessProfile profileAccess)
     {
         boolean success = false;
-        AccessProfile profileAccess = new AccessProfile(profilePersistence);
         String username = profileAccess.getUsername();
 
         if (!(username.equals(GuestProfile.getGuestProfile().getUsername()) || username.equals(NullProfile.getNullProfile().getUsername())))
@@ -88,10 +82,9 @@ public class AccessPlaylist {
         return success;
     }
 
-    public boolean deletePlaylist(String name)
+    public boolean deletePlaylist(String name, AccessProfile profileAccess)
     {
         boolean success = false;
-        AccessProfile profileAccess = new AccessProfile(profilePersistence);
         String username = profileAccess.getUsername();
 
         if (!(username.equals(GuestProfile.getGuestProfile().getUsername()) || username.equals(NullProfile.getNullProfile().getUsername())))
@@ -102,10 +95,9 @@ public class AccessPlaylist {
         return success;
     }
 
-    public boolean insertIntoPlaylist(String name, ISong song)
+    public boolean insertIntoPlaylist(String name, ISong song, AccessProfile profileAccess)
     {
         boolean success = false;
-        AccessProfile profileAccess = new AccessProfile(profilePersistence);
         String username = profileAccess.getUsername();
         Playlist from_db;
         PlaylistSong new_song;
@@ -122,10 +114,9 @@ public class AccessPlaylist {
         return success;
     }
 
-    public boolean deleteFromPlaylist(String name, ISong song)
+    public boolean deleteFromPlaylist(String name, ISong song, AccessProfile profileAccess)
     {
         boolean success = false;
-        AccessProfile profileAccess = new AccessProfile(profilePersistence);
         String username = profileAccess.getUsername();
         Playlist from_db;
         PlaylistSong delete_song;

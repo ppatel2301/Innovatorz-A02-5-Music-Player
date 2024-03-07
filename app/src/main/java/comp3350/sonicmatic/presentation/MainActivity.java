@@ -22,10 +22,12 @@ import java.util.Objects;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.application.Services;
+import comp3350.sonicmatic.business.AccessPlaylist;
 import comp3350.sonicmatic.business.AccessProfile;
 import comp3350.sonicmatic.databinding.ActivityMainBinding;
 import comp3350.sonicmatic.exceptions.NoMusicException;
 import comp3350.sonicmatic.interfaces.IPlayer;
+import comp3350.sonicmatic.objects.musictrack.MusicTrack;
 import comp3350.sonicmatic.persistance.profile.Profile;
 import comp3350.sonicmatic.presentation.player.ListeningHistoryMusicAdapter;
 import comp3350.sonicmatic.presentation.player.MusicViewModel;
@@ -50,6 +52,20 @@ public class MainActivity extends AppCompatActivity {
         // required that all instances of the music player have access to the context
         // services need application context to access assets folder
         Services.setContext(getApplicationContext());
+
+        AccessProfile accessProfile = new AccessProfile();
+        boolean success = accessProfile.login("Profile11","comp3350");
+        if (success)
+        {
+            AccessPlaylist accessPlaylist = new AccessPlaylist();
+            boolean newPlist = accessPlaylist.newPlaylist("HELLO", accessProfile);
+            boolean insertSucc =  accessPlaylist.insertIntoPlaylist("HELLO",Services.createSongFromPath("Archetype.mp3"), accessProfile);
+
+            ArrayList playlists = accessPlaylist.getPlaylists(accessProfile);
+        }
+
+
+
 
         musicViewModel = new ViewModelProvider(this).get(MusicViewModel.class);
 

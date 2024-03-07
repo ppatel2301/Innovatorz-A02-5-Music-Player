@@ -125,9 +125,10 @@ public class PlaylistPersistence extends Persistence
             {
                 try(final Connection c = getConnection())
                 {
-                    final String insert = "INSERT INTO playlists VALUES(?, ?)";
+                    final String insert = "INSERT INTO PLAYLISTS (name, creator_username) VALUES (?, ?)";//"INSERT INTO playlists VALUES(?, ?)";
                     final PreparedStatement statement = c.prepareStatement(insert);
 
+                    //statement.setString(1, "0");
                     statement.setString(1, playlist.getName());
                     statement.setString(2, playlist.getCreatorUsername());
 

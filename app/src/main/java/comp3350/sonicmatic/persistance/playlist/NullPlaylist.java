@@ -4,7 +4,7 @@ public class NullPlaylist extends Playlist
 {
     private static final String NULL_CREATOR = "NULL CREATOR";
     private static final String NULL_NAME = "NULL NAME";
-    private static final int NULL_ID = -1;
+    private static final int NULL_ID = -2; // for this NullPlaylist object ONLY!!!
     private static NullPlaylist nullPlaylist = null;
 
     public static NullPlaylist getNullPlaylist()
