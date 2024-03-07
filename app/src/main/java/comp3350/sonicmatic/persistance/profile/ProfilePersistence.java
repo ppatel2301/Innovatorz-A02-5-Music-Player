@@ -39,7 +39,7 @@ public class ProfilePersistence extends Persistence
         try(final Connection c = getConnection())
         {
 
-            final PreparedStatement statement = c.prepareStatement("SELECT * FROM Profiles WHERE username = ?");
+            final PreparedStatement statement = c.prepareStatement("SELECT * FROM profiles WHERE username = ?");
             final ResultSet query_result;
 
             statement.setString(1, username);

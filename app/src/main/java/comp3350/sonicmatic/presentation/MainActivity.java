@@ -26,6 +26,7 @@ import comp3350.sonicmatic.business.AccessProfile;
 import comp3350.sonicmatic.databinding.ActivityMainBinding;
 import comp3350.sonicmatic.exceptions.NoMusicException;
 import comp3350.sonicmatic.interfaces.IPlayer;
+import comp3350.sonicmatic.persistance.profile.Profile;
 import comp3350.sonicmatic.presentation.player.ListeningHistoryMusicAdapter;
 import comp3350.sonicmatic.presentation.player.MusicViewModel;
 

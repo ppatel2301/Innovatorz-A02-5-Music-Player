@@ -39,6 +39,18 @@ public class ProfilePersistenceTest {
         assertEquals("Get Test: password \""+password+"\" not expected", password.equals("Password1"), true);
         assertEquals("Get Test: Artist bool not true", profile.isArtist(), true);
 
+        // get another
+        profile = profilePersistence.get("Profile11");
+
+        username = profile.getUsername();
+        display_name = profile.getDisplayName();
+        password = profile.getPassword();
+
+        assertEquals("Get Test: username \""+username+"\" not expected", username.equals("Profile11"),true);
+        assertEquals("Get Test: display name \""+display_name+"\" not expected", display_name.equals("Ronald Gooderian"), true);
+        assertEquals("Get Test: password \""+password+"\" not expected", password.equals("comp3350"), true);
+        assertEquals("Get Test: Artist bool not true", profile.isArtist(), false);
+
     }
 
     @Test

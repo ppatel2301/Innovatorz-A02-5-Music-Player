@@ -40,11 +40,12 @@ public class AccessProfile
     public boolean login(String username, String password)
     {
         Profile from_db = profilePersistence.get(username);
-        boolean success = from_db.getPassword().equals(password);
+        boolean success = false;
 
-        if (success && !from_db.equals(loggedIn)) // if not already logged in and correct password
+        if (from_db.getPassword().equals(password) && !from_db.equals(loggedIn)) // if not already logged in and correct password
         {
             loggedIn = from_db;
+            success = true;
         }
 
         return success;
