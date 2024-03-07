@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.business.AccessProfile;
+package comp3350.sonicmatic.business.AccessProfileTest;
 
 import static org.junit.Assert.*;
 
@@ -111,7 +111,7 @@ public class AccessProfileTest {
     }
 
     @Test
-    void testBadChangePassword()
+    public void testBadChangePassword()
     {
         accessProfile.login(FIRST_UNAME, FIRST_PWD);
         boolean success = !accessProfile.changePassword(FIRST_PWD); // changing it to the current password is not allowed
@@ -129,12 +129,39 @@ public class AccessProfileTest {
 
         boolean success = accessProfile.newProfile(NEW_UNAME, NEW_DNAME, NEW_PWD, IS_ARTIST);
 
-      //  assertEquals("Access Profile test: ");
+        assertEquals("Access Profile test: couldn't insert new profile", true, success);
+    }
+
+    @Test
+    public void testNewBadProfile()
+    {
+        boolean success = !accessProfile.newProfile(FIRST_UNAME, FIRST_DNAME, FIRST_PWD, FIRST_PROFILE_IS_ARTIST);
+
+        assertEquals("Access Profile test: could insert new profile already in Db", true, success);
     }
 
     @Test
     public void testDeleteProfile()
     {
+        final String NEW_UNAME = "delete me!";
+        final String NEW_DNAME = "delete this!";
+        final String NEW_PWD= "delete pwd!";
+        final boolean IS_ARTIST = false;
 
+        boolean inserted = accessProfile.newProfile(NEW_UNAME, NEW_DNAME, NEW_PWD, IS_ARTIST);
+        accessProfile.login(NEW_UNAME, NEW_PWD);
+
+        boolean deleted = accessProfile.deleteProfile();
+
+        assertEquals("Access Profile Test: couldn't delete", true, deleted);
+    }
+
+    @Test
+    public void testBadDeleteProfile()
+    {
+        // delete guest, shound't work
+        boolean not_deleted = !accessProfile.deleteProfile();
+
+        assertEquals("Access Profile Test: deleted something I shouldn't have", true, not_deleted);
     }
 }

@@ -1,8 +1,5 @@
-package comp3350.sonicmatic.business.AccessProfile;
+package comp3350.sonicmatic.business.AccessProfileTest;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.interfaces.IPersistentItem;
@@ -126,7 +123,7 @@ public class StubProfileDB extends ProfilePersistence
         if (item instanceof Profile && !get(item.getPrimaryKey()).equals(NullProfile.getNullProfile()))
         {
             stubProfiles.remove(((Profile)(item)));
-            success = get(item.getPrimaryKey()).equals(NullProfile.getNullProfile());
+            success = !get(item.getPrimaryKey()).equals(NullProfile.getNullProfile());
         }
         else
         {

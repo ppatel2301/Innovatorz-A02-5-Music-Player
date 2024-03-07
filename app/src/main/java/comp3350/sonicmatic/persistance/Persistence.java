@@ -82,26 +82,30 @@ public abstract class Persistence
             e.printStackTrace();
         }
 
-        String[] assetNames;
-        File dataDirectory = context.getDir(dbPath, Context.MODE_PRIVATE);
-        AssetManager assetManager = context.getAssets();
+        if (context != null)
+        {
+            String[] assetNames;
+            File dataDirectory = context.getDir(dbPath, Context.MODE_PRIVATE);
+            AssetManager assetManager = context.getAssets();
 
-        try {
+            try {
 
-            assetNames = assetManager.list(dbPath);
-            for (int i = 0; i < assetNames.length; i++) {
-                assetNames[i] = dbPath + "/" + assetNames[i];
+                assetNames = assetManager.list(dbPath);
+                for (int i = 0; i < assetNames.length; i++) {
+                    assetNames[i] = dbPath + "/" + assetNames[i];
+                }
+
+                copyAssetsToDirectory(assetNames, dataDirectory);
+
+                result = dataDirectory.toString() + "/" + dbName;
+
+            } catch (final IOException ioe) {
+                Log.d("WARNING", "Unable to access application data: " + ioe.getMessage());
             }
 
-            copyAssetsToDirectory(assetNames, dataDirectory);
-
-            result = dataDirectory.toString() + "/" + dbName;
-
-        } catch (final IOException ioe) {
-            Log.d("WARNING", "Unable to access application data: " + ioe.getMessage());
+            init = true;
         }
 
-        init = true;
         return result;
     }
 
