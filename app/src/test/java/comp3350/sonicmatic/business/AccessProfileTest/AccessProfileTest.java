@@ -12,7 +12,6 @@ import comp3350.sonicmatic.persistance.profile.Profile;
 public class AccessProfileTest {
 
     private AccessProfile accessProfile;
-
     private static final String FIRST_UNAME = "firstUsername";
     private static final String FIRST_DNAME = "firstDisplayName";
     private static final String FIRST_PWD ="pwd";
@@ -21,7 +20,7 @@ public class AccessProfileTest {
     @Before
     public void setUp()
     {
-        accessProfile = new AccessProfile(new StubProfileDB((new Profile(FIRST_UNAME, FIRST_DNAME, FIRST_PWD, FIRST_PROFILE_IS_ARTIST))));
+        accessProfile = new AccessProfile(new FakeProfileDB((new Profile(FIRST_UNAME, FIRST_DNAME, FIRST_PWD, FIRST_PROFILE_IS_ARTIST))));
     }
 
     @Test

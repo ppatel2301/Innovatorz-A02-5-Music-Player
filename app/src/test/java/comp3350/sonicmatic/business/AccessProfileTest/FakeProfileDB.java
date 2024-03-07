@@ -7,19 +7,19 @@ import comp3350.sonicmatic.persistance.profile.NullProfile;
 import comp3350.sonicmatic.persistance.profile.Profile;
 import comp3350.sonicmatic.persistance.profile.ProfilePersistence;
 
-public class StubProfileDB extends ProfilePersistence
+public class FakeProfileDB extends ProfilePersistence
 {
 
     // ** instance variables **
-    private ArrayList<Profile> stubProfiles;
+    private ArrayList<Profile> fakeProfiles;
 
     // ** constructor **
-    public StubProfileDB(Profile init)
+    public FakeProfileDB(Profile init)
     {
         super("", "");
 
-        stubProfiles = new ArrayList<Profile>();
-        stubProfiles.add(init);
+        fakeProfiles = new ArrayList<Profile>();
+        fakeProfiles.add(init);
     }
 
     // ** instance methods **
@@ -28,7 +28,7 @@ public class StubProfileDB extends ProfilePersistence
         Profile found = NullProfile.getNullProfile();
 
         // just linear search
-        for(Profile p : stubProfiles)
+        for(Profile p : fakeProfiles)
         {
             if (p.getUsername().equals(username))
             {
@@ -44,7 +44,7 @@ public class StubProfileDB extends ProfilePersistence
     {
         Profile p_found = NullProfile.getNullProfile();
 
-        for(Profile p : stubProfiles)
+        for(Profile p : fakeProfiles)
         {
             if (p.getUsername().equals(username))
             {
@@ -66,7 +66,7 @@ public class StubProfileDB extends ProfilePersistence
     @Override
     public Profile update(IPersistentItem item)
     {
-        Profile update_me = null;
+        Profile update_me = NullProfile.getNullProfile();
         Profile update_to;
 
         if (item != null && item instanceof Profile)
@@ -98,7 +98,7 @@ public class StubProfileDB extends ProfilePersistence
             // if not in db already, can insert
             if (!get(to_insert.getPrimaryKey()).equals(to_insert))
             {
-                stubProfiles.add(new Profile(to_insert));
+                fakeProfiles.add(new Profile(to_insert));
 
                 inserted = get(to_insert.getPrimaryKey()).equals(to_insert);
             }
@@ -122,7 +122,7 @@ public class StubProfileDB extends ProfilePersistence
 
         if (item instanceof Profile && !get(item.getPrimaryKey()).equals(NullProfile.getNullProfile()))
         {
-            stubProfiles.remove(((Profile)(item)));
+            fakeProfiles.remove(((Profile)(item)));
             success = !get(item.getPrimaryKey()).equals(NullProfile.getNullProfile());
         }
         else
