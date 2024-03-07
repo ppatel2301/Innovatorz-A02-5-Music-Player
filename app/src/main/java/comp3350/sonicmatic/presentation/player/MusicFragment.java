@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,11 +46,15 @@ public class MusicFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        player = new MusicPlayer();
+
         musicViewModel = new ViewModelProvider(requireActivity()).get(MusicViewModel.class);
 
         // Calling load song to load the correct song
-        loadSong();
+        try {
+            loadSong();
+        } catch (NoMusicException e) {
+            Toast.makeText(getContext(), "Music didn't load properly", Toast.LENGTH_SHORT).show();
+        }
 
         adapter = ListeningHistoryMusicAdapter.getInstance(null);
         collaspedMusicPlayer = requireActivity().findViewById(R.id.collasped_music_layout1);
@@ -155,13 +160,20 @@ public class MusicFragment extends Fragment {
         });
     }
 
-    private void loadSong()
-    {
+    private void loadSong() throws NoMusicException {
         if(musicViewModel.getPlayer() == null)
         {
+            player = new MusicPlayer();
             player.loadSongFromPath(musicViewModel.getSelectedMusicTrack().getPath());
         }else{
-            player.loadSongFromPath(musicViewModel.getPlayer().getCurrentSong().getPath());
+            this.player = musicViewModel.getPlayer();
+            ISong trackToPlay = musicViewModel.getSelectedMusicTrack();
+            ISong trackPlaying = player.getCurrentSong();
+
+            if(!trackToPlay.getPath().equals(trackPlaying.getPath())) {
+                player.stop();
+                player.loadSongFromPath(trackToPlay.getPath());
+            }
         }
     }
 }
