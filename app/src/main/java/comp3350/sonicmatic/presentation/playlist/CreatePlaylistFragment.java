@@ -107,7 +107,7 @@ public class CreatePlaylistFragment extends BottomSheetDialogFragment {
 
     private boolean validitePlaylist(String username)
     {
-        return (username != null && !username.equals(" ") && username.length() < 20);
+        return (!username.isEmpty() && !username.equals(" ") && username.length() < 20);
     }
 
     private void addPlaylistToUser(String user)
