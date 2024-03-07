@@ -4,6 +4,7 @@ import android.content.Context;
 
 import comp3350.sonicmatic.musicplayer.MusicPlayer;
 import comp3350.sonicmatic.persistance.Persistence;
+import comp3350.sonicmatic.persistance.playlist.PlaylistPersistence;
 import comp3350.sonicmatic.persistance.profile.ProfilePersistence;
 import comp3350.sonicmatic.persistance.song.SongPersistence;
 
@@ -19,7 +20,7 @@ public class Services
     // ** class variables **
     private static ProfilePersistence profilePersistence = null;
     private static SongPersistence songPersistence = null;
-
+    private static PlaylistPersistence playlistPersistence = null;
 
     // ** class methods **
     public static void setContext(Context env)
@@ -54,5 +55,12 @@ public class Services
         return songPersistence;
     }
 
-
+    public static synchronized PlaylistPersistence getPlaylistPersistence()
+    {
+        if(playlistPersistence == null)
+        {
+            playlistPersistence = new PlaylistPersistence(DB_NAME, DB_PATH);
+        }
+        return playlistPersistence;
+    }
 }

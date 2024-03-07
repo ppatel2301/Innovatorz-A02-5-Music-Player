@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.ui.leaderboard;
+package comp3350.sonicmatic.presentation.leaderboard;
 
 import android.os.Bundle;
 
@@ -15,13 +15,7 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.databinding.FragmentArtistLeaderboardBinding;
-import comp3350.sonicmatic.databinding.FragmentLibraryBinding;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ArtistLeaderboard#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ArtistLeaderboard extends Fragment {
 
     private RecyclerView recyclerView;
@@ -34,9 +28,6 @@ public class ArtistLeaderboard extends Fragment {
         // Required empty public constructor
     }
 
-    /*
-
-     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
