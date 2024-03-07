@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.objects.MusicArtist;
@@ -169,12 +170,16 @@ public class ProfilePersistence extends Persistence
         return success;
     }
 
-    public static ArrayList<MusicArtist> getArtistLeaderboard(){
+    public ArrayList<MusicArtist> getArtistLeaderboard(){
+        ArrayList<MusicArtist> leaderboard = new ArrayList<>();
         try (final Connection conn = getConnection()){
-            final String leaderboardQuery = "";
+            final String leaderboardQuery = "WITH artists_per_playlist as (SELECT PLAYLISTS.name as playlist_name FROM PLAYLISTS on PROFILES.username = PLAYLISTS.creator_username LEFT JOIN PLAYLIST_SONGS on PLAYLISTS.playlist_id = PLAYLIST_SONGS.playlist_id LEFT JOIN SONGS on PLAYLIST_SONGS.file_name_ext = SONGS.file_name_ext LEFT JOIN ALBUMS on SONGS.album_id = ALBUMS.album_id LEFT JOIN PROFILES on ALBUMS.artist_id = PROFILES username) SELECT PROFILES.display_name, count(playlist_name) GROUP BY ALBUMS.artist_id;";
+            final Statement query = conn.createStatement();
+            ResultSet rset = query.executeQuery(leaderboardQuery);
         } catch (final SQLException sqle){
 
         }
+        return leaderboard;
     }
 
 
