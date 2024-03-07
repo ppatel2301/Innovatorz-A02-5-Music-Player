@@ -2,8 +2,6 @@ package comp3350.sonicmatic.business;
 
 import comp3350.sonicmatic.application.Services;
 import comp3350.sonicmatic.persistance.Persistence;
-import comp3350.sonicmatic.persistance.profile.GuestProfile;
-import comp3350.sonicmatic.persistance.profile.NullProfile;
 import comp3350.sonicmatic.persistance.profile.Profile;
 import comp3350.sonicmatic.persistance.profile.ProfilePersistence;
 

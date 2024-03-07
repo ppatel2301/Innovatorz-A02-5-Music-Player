@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStore;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,18 +17,17 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.interfaces.IPlaylist;
-import comp3350.sonicmatic.objects.MusicTrackPlaylist;
 
 public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.PlaylistViewHolder>{
 
+    private ArrayList<IPlaylist> playlists;
     private PlaylistViewModel playlistViewModel;
-    private ArrayList<MusicTrackPlaylist> playlists;
 
-    public PlaylistAdapter(ArrayList<MusicTrackPlaylist> playlists) {
+    public PlaylistAdapter(ArrayList<IPlaylist> playlists) {
         this.playlists = playlists;
     }
 
-    public void setPlaylists(ArrayList<MusicTrackPlaylist> playlists)
+    public void setPlaylists(ArrayList<IPlaylist> playlists)
     {
         this.playlists = playlists;
     }
@@ -61,7 +59,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
             public void onClick(View view) {
 
                 // Get the playlist object
-                MusicTrackPlaylist playlist = playlists.get(holder.getAdapterPosition());
+                IPlaylist playlist = playlists.get(holder.getAdapterPosition());
 
                 // Creating a bundle to pass data to the playlistDetail fragment
                 Bundle bundle = new Bundle();
@@ -69,6 +67,9 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
 
                 // Setting the selected playlist
                 playlistViewModel.setSelectedPlaylist(playlist);
+
+                View layout = view.getRootView().findViewById(R.id.collasped_music_layout1);
+                layout.setVisibility(View.GONE);
 
                 Navigation.findNavController(view).navigate(R.id.playlistDetailFragment, bundle);
             }
