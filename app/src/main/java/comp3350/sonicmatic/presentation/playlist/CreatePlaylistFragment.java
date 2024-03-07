@@ -67,7 +67,7 @@ public class CreatePlaylistFragment extends BottomSheetDialogFragment {
 
                     getParentFragmentManager().popBackStack();
                 }else{
-                    showDialog("Text to small or contains a space");
+                    showDialog("Not a valid Playlist name!! Maybe: Playlist name to big or contains a space");
                 }
             }
         });
@@ -107,7 +107,7 @@ public class CreatePlaylistFragment extends BottomSheetDialogFragment {
 
     private boolean validitePlaylist(String username)
     {
-        return (!username.equals(" ") && username.length() < 20);
+        return (username != null && !username.equals(" ") && username.length() < 20);
     }
 
     private void addPlaylistToUser(String user)
