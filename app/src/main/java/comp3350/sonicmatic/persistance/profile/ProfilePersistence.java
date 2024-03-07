@@ -65,7 +65,7 @@ public class ProfilePersistence extends Persistence
 
         Profile updated;
 
-        if (item != null && item instanceof Profile)
+        if (item instanceof Profile)
         {
             Profile profile = ((Profile)(item)); // cast it to get methods
 
@@ -102,7 +102,7 @@ public class ProfilePersistence extends Persistence
         boolean success = true;
         Profile profile;
 
-        if (item != null && item instanceof Profile)
+        if (item instanceof Profile)
         {
             profile = ((Profile)(item));
 
@@ -144,7 +144,7 @@ public class ProfilePersistence extends Persistence
     {
         boolean success = true;
 
-        if (item != null && item instanceof Profile)
+        if (item instanceof Profile)
         {
 
             try(final Connection c = getConnection())

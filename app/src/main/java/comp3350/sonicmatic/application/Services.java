@@ -15,6 +15,7 @@ import comp3350.sonicmatic.objects.musictrack.NullMusicTrack;
 import comp3350.sonicmatic.objects.songduration.SongDuration;
 import comp3350.sonicmatic.persistance.Persistence;
 import comp3350.sonicmatic.persistance.playlist.PlaylistPersistence;
+import comp3350.sonicmatic.persistance.playlistsong.PlaylistSongPersistence;
 import comp3350.sonicmatic.persistance.profile.ProfilePersistence;
 import comp3350.sonicmatic.persistance.song.SongPersistence;
 
@@ -31,6 +32,7 @@ public class Services
     private static ProfilePersistence profilePersistence = null;
     private static SongPersistence songPersistence = null;
     private static PlaylistPersistence playlistPersistence = null;
+    private static PlaylistSongPersistence playlistSongPersistence = null;
 
     // ** class methods **
     public static void setContext(Context env)
@@ -119,5 +121,14 @@ public class Services
             playlistPersistence = new PlaylistPersistence(DB_NAME, DB_PATH);
         }
         return playlistPersistence;
+    }
+
+    public static synchronized PlaylistSongPersistence getPlaylistSongPersistence()
+    {
+        if(playlistSongPersistence == null)
+        {
+            playlistSongPersistence = new PlaylistSongPersistence(DB_NAME, DB_PATH);
+        }
+        return playlistSongPersistence;
     }
 }

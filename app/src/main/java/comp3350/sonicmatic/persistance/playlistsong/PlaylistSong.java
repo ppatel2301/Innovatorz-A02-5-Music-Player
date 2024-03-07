@@ -1,9 +1,13 @@
-package comp3350.sonicmatic.persistance.playlistsongs;
+package comp3350.sonicmatic.persistance.playlistsong;
 
 import comp3350.sonicmatic.interfaces.IPersistentItem;
 
 public class PlaylistSong implements IPersistentItem
 {
+
+    // ** class constants **
+    public final static int FNAME_INDEX = 0;
+    public final static int ID_INDEX = 1;
 
     // ** instance variables **
     private String fileNameExt;
@@ -27,7 +31,8 @@ public class PlaylistSong implements IPersistentItem
     @Override
     public String getPrimaryKey()
     {
-        return ""; // no pk for this, only combination of foreign keys
+        // no pk for this, only combination of foreign keys
+        return "";
     }
 
     public String getFileNameExt()
@@ -40,5 +45,14 @@ public class PlaylistSong implements IPersistentItem
         return playlistId;
     }
 
+    public String [] makePrimaryKey()
+    {
+        return new String[]{getFileNameExt(), ""+getPlaylistId()};
+    }
+
+    public boolean equals(PlaylistSong other)
+    {
+        return other != null && fileNameExt.equals(other.getFileNameExt()) && playlistId == other.getPlaylistId();
+    }
 }
 

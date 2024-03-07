@@ -102,12 +102,12 @@ public class SongPersistence extends Persistence
         boolean success = true;
         Song to_insert;
 
-        if (item != null && item instanceof Song)
+        if (item instanceof Song)
         {
             to_insert = ((Song)(item));
 
             // if we can't get an equivalent song from the database, this song is not inside and we can insert
-            if (!get(to_insert.getPrimaryKey()).equals(to_insert.getPrimaryKey()))
+            if (!get(to_insert.getPrimaryKey()).getPrimaryKey().equals(to_insert.getPrimaryKey()))
             {
                 try(final Connection c = getConnection())
                 {
@@ -137,7 +137,7 @@ public class SongPersistence extends Persistence
     {
         boolean success = true;
 
-        if (item != null && item instanceof Song)
+        if (item instanceof Song)
         {
 
             try(final Connection c = getConnection())

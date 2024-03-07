@@ -11,15 +11,13 @@ public class Playlist implements IPersistentItem
     private int id;
     private String creatorUsername;
     private String name;
-    private ArrayList<ISong> songs;
 
     // ** constructors **
-    public Playlist(int id, String creatorUsername, String name, ArrayList<ISong> songs)
+    public Playlist(int id, String creatorUsername, String name)
     {
         this.id = id;
         this.creatorUsername = creatorUsername;
         this.name = name;
-        this.songs = songs;
     }
 
     // ** accessors **
@@ -38,8 +36,5 @@ public class Playlist implements IPersistentItem
         return name;
     }
 
-    public ArrayList<ISong> getSongs() {
-        return songs;
-    }
 }
 

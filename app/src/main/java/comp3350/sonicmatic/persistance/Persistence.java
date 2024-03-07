@@ -42,6 +42,21 @@ public abstract class Persistence
     public abstract boolean insert(IPersistentItem item);
     public abstract boolean delete(IPersistentItem item);
 
+    public IPersistentItem get(String [] primaryKey)
+    {
+        IPersistentItem return_me;
+
+        if (primaryKey != null && primaryKey.length > 0)
+        {
+            return_me = get(primaryKey[0]);
+        }
+        else
+        {
+            return_me = null;
+        }
+
+        return return_me;
+    }
     // ** class methods **
 
     // determines if a string is suitable to be in the database
