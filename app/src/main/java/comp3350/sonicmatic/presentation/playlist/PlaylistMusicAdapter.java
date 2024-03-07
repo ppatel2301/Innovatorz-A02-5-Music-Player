@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
+import comp3350.sonicmatic.interfaces.IPlaylist;
 import comp3350.sonicmatic.interfaces.ISong;
-import comp3350.sonicmatic.objects.MusicTrackPlaylist;
 
 public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdapter.PlaylistMusicViewHolder> {
 
@@ -55,12 +55,12 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
 
                 // Update this to have remove song from the current playlist and update the database
                 // to have the updated database
-                MusicTrackPlaylist currentList = playlistViewModel.getSelectedPlaylist();
-                ArrayList<MusicTrackPlaylist> playlists = playlistViewModel.getPlaylist().getValue();
+                IPlaylist currentList = playlistViewModel.getSelectedPlaylist();
+                ArrayList<IPlaylist> playlists = playlistViewModel.getPlaylist().getValue();
 
                 if(playlists != null)
                 {
-                    for(MusicTrackPlaylist list: playlists)
+                    for(IPlaylist list: playlists)
                     {
                         if(currentList.getPlaylistName().equalsIgnoreCase(list.getPlaylistName()))
                         {
@@ -70,6 +70,8 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
                 }
                 notifyItemRemoved(holder.getAdapterPosition());
                 Toast.makeText(view.getContext(), "Remove Song",Toast.LENGTH_SHORT).show();
+
+                removeMusicFromPlaylist(currentList);
             }
         });
 
@@ -85,6 +87,11 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
     @Override
     public int getItemCount() {
         return tracks.size();
+    }
+
+    private void removeMusicFromPlaylist(IPlaylist playlist)
+    {
+
     }
 
     public class PlaylistMusicViewHolder extends RecyclerView.ViewHolder {

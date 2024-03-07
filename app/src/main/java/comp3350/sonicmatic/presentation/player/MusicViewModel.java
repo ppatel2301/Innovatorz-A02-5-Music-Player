@@ -5,12 +5,14 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
+import comp3350.sonicmatic.interfaces.IPlayer;
 import comp3350.sonicmatic.interfaces.ISong;
 
 public class MusicViewModel extends ViewModel {
 
     private ISong musicTrack;
     private MutableLiveData<ArrayList<ISong>> listeningHistory;
+    private IPlayer player;
 
     public MusicViewModel()
     {
@@ -43,6 +45,15 @@ public class MusicViewModel extends ViewModel {
         return listeningHistory;
     }
 
+    public void setPlayer(IPlayer player)
+    {
+        this.player = player;
+    }
+
+    public IPlayer getPlayer()
+    {
+        return player;
+    }
     public void clearListeningHistory()
     {
         listeningHistory = new MutableLiveData<>();
