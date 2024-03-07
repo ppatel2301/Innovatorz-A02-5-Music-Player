@@ -1,7 +1,11 @@
 package comp3350.sonicmatic.persistance.profile;
 
+import java.sql.Array;
+import java.util.ArrayList;
+
 import comp3350.sonicmatic.interfaces.IPersistentItem;
 import comp3350.sonicmatic.objects.Credentials;
+import comp3350.sonicmatic.objects.MusicArtist;
 
 public class Profile extends Credentials implements IPersistentItem
 {

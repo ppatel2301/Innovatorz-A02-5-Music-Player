@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.ui.leaderboard;
+package comp3350.sonicmatic.presentation.leaderboard;
 
 import android.os.Bundle;
 
@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.databinding.FragmentArtistLeaderboardBinding;
-import comp3350.sonicmatic.databinding.FragmentLibraryBinding;
 
 /**
  * A simple {@link Fragment} subclass.

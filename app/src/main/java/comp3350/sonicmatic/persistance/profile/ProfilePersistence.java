@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import comp3350.sonicmatic.objects.MusicArtist;
 import comp3350.sonicmatic.persistance.Persistence;
 import comp3350.sonicmatic.interfaces.IPersistentItem;
 
@@ -165,6 +167,14 @@ public class ProfilePersistence extends Persistence
         }
 
         return success;
+    }
+
+    public static ArrayList<MusicArtist> getArtistLeaderboard(){
+        try (final Connection conn = getConnection()){
+            final String leaderboardQuery = "";
+        } catch (final SQLException sqle){
+
+        }
     }
 
 

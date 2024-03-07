@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.ui.leaderboard;
+package comp3350.sonicmatic.presentation.leaderboard;
 
 import android.view.LayoutInflater;
 import android.view.View;
