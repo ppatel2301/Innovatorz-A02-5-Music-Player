@@ -1,14 +1,10 @@
 package comp3350.sonicmatic.business;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.application.Services;
 import comp3350.sonicmatic.interfaces.ISong;
-import comp3350.sonicmatic.musicplayer.MusicPlayer;
-import comp3350.sonicmatic.objects.MusicTrackPlaylist;
-import comp3350.sonicmatic.objects.musictrack.MusicTrack;
-import comp3350.sonicmatic.objects.musictrack.NullMusicTrack;
+import comp3350.sonicmatic.objects.musicTrack.NullMusicTrack;
 import comp3350.sonicmatic.persistance.Persistence;
 import comp3350.sonicmatic.persistance.song.Song;
 import comp3350.sonicmatic.persistance.song.SongPersistence;

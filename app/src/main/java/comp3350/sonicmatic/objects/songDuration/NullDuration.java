@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.objects.songduration;
+package comp3350.sonicmatic.objects.songDuration;
 
 public class NullDuration extends SongDuration
 {

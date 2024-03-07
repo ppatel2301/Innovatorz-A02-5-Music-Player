@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import comp3350.sonicmatic.interfaces.ISongLength;
-import comp3350.sonicmatic.objects.songduration.SongDuration;
+import comp3350.sonicmatic.objects.songDuration.SongDuration;
 
 public class SongDurationTest {
 

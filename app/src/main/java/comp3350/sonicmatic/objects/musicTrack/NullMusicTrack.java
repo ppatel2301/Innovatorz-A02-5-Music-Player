@@ -1,7 +1,7 @@
-package comp3350.sonicmatic.objects.musictrack;
+package comp3350.sonicmatic.objects.musicTrack;
 
-import comp3350.sonicmatic.objects.musicartist.NullMusicArtist;
-import comp3350.sonicmatic.objects.songduration.NullDuration;
+import comp3350.sonicmatic.objects.musicArtist.NullMusicArtist;
+import comp3350.sonicmatic.objects.songDuration.NullDuration;
 
 public class NullMusicTrack extends MusicTrack
 {

@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.objects.musicartist;
+package comp3350.sonicmatic.objects.musicArtist;
 
 
 

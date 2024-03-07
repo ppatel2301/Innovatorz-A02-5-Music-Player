@@ -8,14 +8,14 @@ import java.io.FileDescriptor;
 import java.io.IOException;
 
 import comp3350.sonicmatic.interfaces.ISong;
-import comp3350.sonicmatic.musicplayer.MusicPlayer;
-import comp3350.sonicmatic.objects.musicartist.MusicArtist;
-import comp3350.sonicmatic.objects.musictrack.MusicTrack;
-import comp3350.sonicmatic.objects.musictrack.NullMusicTrack;
-import comp3350.sonicmatic.objects.songduration.SongDuration;
+import comp3350.sonicmatic.musicPlayer.MusicPlayer;
+import comp3350.sonicmatic.objects.musicArtist.MusicArtist;
+import comp3350.sonicmatic.objects.musicTrack.MusicTrack;
+import comp3350.sonicmatic.objects.musicTrack.NullMusicTrack;
+import comp3350.sonicmatic.objects.songDuration.SongDuration;
 import comp3350.sonicmatic.persistance.Persistence;
 import comp3350.sonicmatic.persistance.playlist.PlaylistPersistence;
-import comp3350.sonicmatic.persistance.playlistsong.PlaylistSongPersistence;
+import comp3350.sonicmatic.persistance.playlistSong.PlaylistSongPersistence;
 import comp3350.sonicmatic.persistance.profile.ProfilePersistence;
 import comp3350.sonicmatic.persistance.song.SongPersistence;
 

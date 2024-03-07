@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.interfaces.IPersistentItem;
 import comp3350.sonicmatic.persistance.Persistence;
-import comp3350.sonicmatic.persistance.playlistsong.PlaylistSong;
-import comp3350.sonicmatic.persistance.playlistsong.PlaylistSongPersistence;
 
 public class PlaylistPersistence extends Persistence
 {

@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.business.AccessProfileTest;
+package comp3350.sonicmatic.business.accessProfileTest;
 
 import static org.junit.Assert.*;
 

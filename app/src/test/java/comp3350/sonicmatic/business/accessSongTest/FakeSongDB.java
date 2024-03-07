@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.business.AccessSongTest;
+package comp3350.sonicmatic.business.accessSongTest;
 
 import java.util.ArrayList;
 

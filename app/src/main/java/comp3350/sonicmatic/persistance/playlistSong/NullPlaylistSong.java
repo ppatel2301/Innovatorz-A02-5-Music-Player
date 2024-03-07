@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.persistance.playlistsong;
+package comp3350.sonicmatic.persistance.playlistSong;
 
 public class NullPlaylistSong extends PlaylistSong
 {

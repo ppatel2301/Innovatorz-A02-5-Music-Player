@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.business.AccessSongTest;
+package comp3350.sonicmatic.business.accessSongTest;
 
 import static org.junit.Assert.*;
 
@@ -11,7 +11,6 @@ import comp3350.sonicmatic.business.AccessSong;
 import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.persistance.song.NullSong;
 import comp3350.sonicmatic.persistance.song.Song;
-import comp3350.sonicmatic.objects.musictrack.MusicTrack;
 
 public class AccessSongTest {
 

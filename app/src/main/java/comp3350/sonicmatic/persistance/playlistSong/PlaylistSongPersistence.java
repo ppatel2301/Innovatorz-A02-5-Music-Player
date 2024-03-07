@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.persistance.playlistsong;
+package comp3350.sonicmatic.persistance.playlistSong;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.interfaces.IPersistentItem;
 import comp3350.sonicmatic.persistance.Persistence;
-import comp3350.sonicmatic.persistance.playlist.Playlist;
 
 public class PlaylistSongPersistence extends Persistence
 {

@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.musicplayer;
+package comp3350.sonicmatic.musicPlayer;
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
@@ -13,10 +13,9 @@ import java.io.IOException;
 import comp3350.sonicmatic.exceptions.NoMusicException;
 import comp3350.sonicmatic.interfaces.IPlayer;
 import comp3350.sonicmatic.interfaces.ISong;
-import comp3350.sonicmatic.objects.musicartist.MusicArtist;
-import comp3350.sonicmatic.objects.musictrack.MusicTrack;
-import comp3350.sonicmatic.objects.musictrack.NullMusicTrack;
-import comp3350.sonicmatic.objects.songduration.SongDuration;
+import comp3350.sonicmatic.objects.musicArtist.MusicArtist;
+import comp3350.sonicmatic.objects.musicTrack.MusicTrack;
+import comp3350.sonicmatic.objects.songDuration.SongDuration;
 
 public class MusicPlayer implements IPlayer
 {

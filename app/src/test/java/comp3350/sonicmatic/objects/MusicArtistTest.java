@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import comp3350.sonicmatic.interfaces.IArtist;
-import comp3350.sonicmatic.objects.musicartist.MusicArtist;
+import comp3350.sonicmatic.objects.musicArtist.MusicArtist;
 
 public class MusicArtistTest {
 

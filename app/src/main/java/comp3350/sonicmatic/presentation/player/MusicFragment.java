@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
 
-import comp3350.sonicmatic.musicplayer.MusicPlayer;
+import comp3350.sonicmatic.musicPlayer.MusicPlayer;
 import comp3350.sonicmatic.databinding.FragmentMusicPlayerBinding;
 import comp3350.sonicmatic.exceptions.NoMusicException;
 import comp3350.sonicmatic.interfaces.IPlayer;
