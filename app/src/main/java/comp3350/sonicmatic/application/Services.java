@@ -34,7 +34,7 @@ public class Services
     // ** class methods **
     public static void setContext(Context env)
     {
-        if (env == null)
+        if (env != null)
         {
             context = env;
 

@@ -12,6 +12,7 @@ import java.util.Objects;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.application.Services;
+import comp3350.sonicmatic.business.AccessProfile;
 import comp3350.sonicmatic.persistance.Persistence;
 import comp3350.sonicmatic.musicplayer.MusicPlayer;
 import comp3350.sonicmatic.databinding.ActivityMainBinding;

@@ -30,17 +30,33 @@ public class StubProfileDB extends ProfilePersistence
     {
         Profile found = NullProfile.getNullProfile();
 
-        // linear search
+        // just linear search
         for(Profile p : stubProfiles)
         {
             if (p.getUsername().equals(username))
             {
-                found = new Profile(p);
+                found = new Profile(p); // hard copy
                 break; // learned on a co-op work term that this is okay!
             }
         }
 
         return found;
+    }
+
+    private Profile getPointerFromStub(String username)
+    {
+        Profile p_found = NullProfile.getNullProfile();
+
+        for(Profile p : stubProfiles)
+        {
+            if (p.getUsername().equals(username))
+            {
+                p_found = p; // soft copy
+                break; // learned on a co-op work term that this is okay!
+            }
+        }
+
+        return p_found;
     }
 
     // method overrides to make stub
@@ -54,13 +70,28 @@ public class StubProfileDB extends ProfilePersistence
     public Profile update(IPersistentItem item)
     {
         Profile update_me = null;
+        Profile update_to;
 
         if (item != null && item instanceof Profile)
         {
-           // update_me
+            update_to = ((Profile)(item));
+
+            update_me = getPointerFromStub(item.getPrimaryKey());
+
+            // manipulate the data at the pointer given
+
+            update_me.changePassword(update_to.getPassword());
+            update_me.changeDisplayname(update_to.getDisplayName());
+            update_me.setArtist(update_to.isArtist());
         }
 
         return update_me;
+    }
+
+    @Override
+    public boolean insert(IPersistentItem item)
+    {
+        return false; //for now....
     }
 
 }
