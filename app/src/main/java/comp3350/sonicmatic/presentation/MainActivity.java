@@ -53,15 +53,19 @@ public class MainActivity extends AppCompatActivity {
         // services need application context to access assets folder
         Services.setContext(getApplicationContext());
 
+        // DELETE THIS WHEN WORKING!!!
         AccessProfile accessProfile = new AccessProfile();
         boolean success = accessProfile.login("Profile11","comp3350");
         if (success)
         {
             AccessPlaylist accessPlaylist = new AccessPlaylist();
+
+           // ArrayList playlists = accessPlaylist.getPlaylists(accessProfile);
+
             boolean newPlist = accessPlaylist.newPlaylist("HELLO", accessProfile);
             boolean insertSucc =  accessPlaylist.insertIntoPlaylist("HELLO",Services.createSongFromPath("Archetype.mp3"), accessProfile);
 
-            ArrayList playlists = accessPlaylist.getPlaylists(accessProfile);
+
         }
 
 

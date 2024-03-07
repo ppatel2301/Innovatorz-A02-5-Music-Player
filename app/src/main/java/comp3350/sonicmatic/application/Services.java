@@ -65,7 +65,7 @@ public class Services
             String duration;
 
             try {
-                afd = context.getAssets().openFd(path);
+                afd = context.getAssets().openFd("music/"+path);
                 fd = afd.getFileDescriptor();
                 start = afd.getStartOffset();
                 length = afd.getLength();

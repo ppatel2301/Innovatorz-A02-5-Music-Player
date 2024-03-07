@@ -125,10 +125,9 @@ public class PlaylistPersistence extends Persistence
             {
                 try(final Connection c = getConnection())
                 {
-                    final String insert = "INSERT INTO PLAYLISTS (name, creator_username) VALUES (?, ?)";//"INSERT INTO playlists VALUES(?, ?)";
+                    final String insert = "INSERT INTO playlists (playlist_id, name, creator_username) VALUES (DEFAULT, ?, ?)";//"INSERT INTO playlists VALUES(?, ?)";
                     final PreparedStatement statement = c.prepareStatement(insert);
 
-                    //statement.setString(1, "0");
                     statement.setString(1, playlist.getName());
                     statement.setString(2, playlist.getCreatorUsername());
 
@@ -190,7 +189,7 @@ public class PlaylistPersistence extends Persistence
         try(final Connection c = getConnection())
         {
 
-            final PreparedStatement statement = c.prepareStatement("SELECT * FROM playlist WHERE creator_username = ?");
+            final PreparedStatement statement = c.prepareStatement("SELECT * FROM playlists WHERE creator_username = ?");
             final ResultSet query_result;
 
             statement.setString(1, username);
