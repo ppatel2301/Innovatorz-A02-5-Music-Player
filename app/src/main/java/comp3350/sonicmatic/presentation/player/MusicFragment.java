@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,10 +37,11 @@ public class MusicFragment extends Fragment {
     private ImageView play_pause;
     private ImageView trackImage;
     private ImageView collaspePlayer;
-    private Boolean playingMusic = false;
-
     private MusicViewModel musicViewModel;
     private ListeningHistoryMusicAdapter adapter;
+    private SeekBar seekBar;
+    private ImageView restart;
+    private ImageView next;
 
     private View collaspedMusicPlayer;
 
@@ -77,13 +79,54 @@ public class MusicFragment extends Fragment {
         play_pause = root.findViewById(R.id.play_pause_button);
         trackImage = root.findViewById(R.id.player_music_image);
         collaspePlayer = root.findViewById(R.id.player_back_button);
+        restart = root.findViewById(R.id.player_prev);
+        next = root.findViewById(R.id.player_next);
+
+        next.setVisibility(View.GONE);
+
+        seekBar = root.findViewById(R.id.seekBar);
+        seekBar.setMax(player.getMillisecDuration());
 
         trackName.setText(loaded.getTitle());
         trackArtist.setText(loaded.getArtist().getName());
 
         trackImage.setBackgroundResource(R.drawable.default_playlist_img);
 
-        ImageView collaspsed_play_button = root.findViewById(R.id.collasped_play_button);
+        restart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    player.seek(0);
+                    seekBar.setProgress(0);
+                } catch (NoMusicException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+                if(player != null)
+                {
+                    if(fromUser)
+                    {
+                        // by the user
+                        try {
+                            player.seek(progress);
+                        } catch (NoMusicException e) {
+
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
 
         play_pause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,8 +136,6 @@ public class MusicFragment extends Fragment {
                    if (player.isStopped() || player.isPaused())
                    {
                        player.start();
-                       playingMusic = true;
-
                        musicViewModel.updatedListeningHistory(loaded);
 
                        observeListeningHistory();
@@ -104,13 +145,12 @@ public class MusicFragment extends Fragment {
                    else if (player.isPlaying())
                    {
                        player.pause();
-                       playingMusic = false;
                        play_pause.setImageResource(R.drawable.baseline_play_circle_outline_24);
                    }
 
                } catch (NoMusicException nme)
                {
-
+                   Toast.makeText(getContext(), "Sorry, we're having trouble playing your music right now :(", Toast.LENGTH_SHORT).show();
                }
             }
         });

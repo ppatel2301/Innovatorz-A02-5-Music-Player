@@ -152,6 +152,8 @@ public class MainActivity extends AppCompatActivity {
     {
         // get username from login and update below
         AccessProfile accessProfile = new AccessProfile();
+        accessProfile.login("Profile11","comp3350");
+
         String displayName = accessProfile.getDisplayName();
 
         usernameText.setText(displayName);

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
 
+import comp3350.sonicmatic.business.AccessSong;
 import comp3350.sonicmatic.databinding.FragmentBrowseBinding;
 import comp3350.sonicmatic.interfaces.IArtist;
 import comp3350.sonicmatic.interfaces.ISong;
@@ -32,6 +33,8 @@ public class BrowseFragment extends Fragment {
 
     private MusicAdapter musicAdapter;
     private ArtistAdapter artistAdapter;
+
+    private ArrayList<ISong> tracks;
 
     @Nullable
     @Override
@@ -57,18 +60,9 @@ public class BrowseFragment extends Fragment {
 
     private ArrayList<ISong> getSongs()
     {
-        // for now will update with real data:
-
-        // Creating a list to display muisic to list
-        IArtist artist = new MusicArtist("Bob");
-
-        ArrayList<ISong> tracks = new ArrayList<>();
-        SongDuration songLength = new SongDuration("34");
-        tracks.add(new MusicTrack("Name", artist, songLength, "music/Archetype.mp3"));
-        tracks.add(new MusicTrack("Name1", artist, songLength, "music/Cyberwaste.mp3"));
-        tracks.add(new MusicTrack("Name2", artist, songLength, "music/Archetype.mp3"));
-
-        return  tracks;
+        AccessSong accessSong = new AccessSong();
+        tracks = accessSong.getAllSongs();
+        return tracks;
     }
 
     private void updateTrackList(RecyclerView list)
@@ -87,9 +81,11 @@ public class BrowseFragment extends Fragment {
     private ArrayList<IArtist> getArtists()
     {
         ArrayList<IArtist> artists = new ArrayList<>();
-        artists.add(new MusicArtist("Drake"));
-        artists.add(new MusicArtist("Singh"));
-        artists.add(new MusicArtist("Taylor"));
+
+        for(ISong songs: tracks)
+        {
+            artists.add(songs.getArtist());
+        }
 
         return artists;
     }

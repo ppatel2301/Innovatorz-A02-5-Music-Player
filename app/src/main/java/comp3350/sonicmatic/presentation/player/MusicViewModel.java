@@ -13,6 +13,7 @@ public class MusicViewModel extends ViewModel {
     private ISong musicTrack;
     private MutableLiveData<ArrayList<ISong>> listeningHistory;
     private IPlayer player;
+    private ArrayList<ISong> songs;
 
     public MusicViewModel()
     {
@@ -54,6 +55,17 @@ public class MusicViewModel extends ViewModel {
     {
         return player;
     }
+
+    public void setSongs(ArrayList<ISong> songs)
+    {
+        this.songs = songs;
+    }
+
+    public ArrayList<ISong> getSongs()
+    {
+        return songs;
+    }
+
     public void clearListeningHistory()
     {
         listeningHistory = new MutableLiveData<>();

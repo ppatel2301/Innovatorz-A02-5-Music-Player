@@ -50,6 +50,8 @@ public class Services
     {
         ISong create_me = null;
 
+        path = "music/"+path;
+
         if (context != null)
         {
             AssetFileDescriptor afd = null;
@@ -65,7 +67,7 @@ public class Services
             String duration;
 
             try {
-                afd = context.getAssets().openFd("music/"+path);
+                afd = context.getAssets().openFd(path);
                 fd = afd.getFileDescriptor();
                 start = afd.getStartOffset();
                 length = afd.getLength();
