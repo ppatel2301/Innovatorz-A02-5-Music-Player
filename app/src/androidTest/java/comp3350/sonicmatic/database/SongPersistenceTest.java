@@ -10,12 +10,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.application.Services;
-import comp3350.sonicmatic.business.AccessPlaylist;
-import comp3350.sonicmatic.business.AccessProfile;
-import comp3350.sonicmatic.business.AccessSong;
-import comp3350.sonicmatic.interfaces.IPlaylist;
-import comp3350.sonicmatic.interfaces.ISong;
-import comp3350.sonicmatic.persistance.playlist.Playlist;
 import comp3350.sonicmatic.persistance.song.NullSong;
 import comp3350.sonicmatic.persistance.song.Song;
 import comp3350.sonicmatic.persistance.song.SongPersistence;
@@ -35,23 +29,7 @@ public class SongPersistenceTest extends TestCase {
     @Test
     public void testGet()
     {
-        AccessSong accessSong = new AccessSong();
-        ArrayList<ISong> songs = accessSong.getAllSongs();
 
-        AccessProfile accessProfile = new AccessProfile();
-        boolean success = accessProfile.login("Profile11","comp3350");
-
-        if (success)
-        {
-            AccessPlaylist accessPlaylist = new AccessPlaylist();
-            boolean newPlist = accessPlaylist.newPlaylist("HELLO", accessProfile);
-            ArrayList<IPlaylist> from_db = accessPlaylist.getPlaylists(accessProfile);
-
-            boolean insertSucc =  accessPlaylist.insertIntoPlaylist("HELLO",Services.createSongFromPath("Archetype.mp3"), accessProfile);
-
-            ArrayList<IPlaylist> playlists = accessPlaylist.getPlaylists(accessProfile);
-
-        }
         Song song = songPersistence.get(FNAME_EXT);
         String file_name_ext = song.getFileNameExt();
 
