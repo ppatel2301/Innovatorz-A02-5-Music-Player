@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
 
@@ -12,6 +14,7 @@ import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.persistance.song.NullSong;
 import comp3350.sonicmatic.persistance.song.Song;
 
+@RunWith(JUnit4.class)
 public class AccessSongTest {
 
     private AccessSong accessSong;

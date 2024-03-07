@@ -129,38 +129,26 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e88d3ca6-68d2-4cac-91db-d6f4c47530c1" name="Changes" comment="Access Songs tested">
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/database/PlaylistSongPersistenceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/accessPlaylistTest/AccessPlaylistTest.java" afterDir="false" />
+    <list default="true" id="e88d3ca6-68d2-4cac-91db-d6f4c47530c1" name="Changes" comment="Playlist testing underway">
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/MusicPlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/MusicPlayerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/database/PlaylistSongPersistenceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/application/Services.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/application/Services.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/business/AccessPlaylist.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/business/AccessPlaylist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/business/AccessSong.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/business/AccessSong.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/musicplayer/MusicPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/musicPlayer/MusicPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/objects/Album.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/objects/Album.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/objects/MusicTrackPlaylist.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/objects/MusicTrackPlaylist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/objects/musicartist/MusicArtist.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/objects/musicArtist/MusicArtist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/objects/musicartist/NullMusicArtist.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/objects/musicArtist/NullMusicArtist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/objects/musictrack/MusicTrack.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/objects/musicTrack/MusicTrack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/objects/musictrack/NullMusicTrack.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/objects/musicTrack/NullMusicTrack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/objects/songduration/NullDuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/objects/songDuration/NullDuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/objects/songduration/SongDuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/objects/songDuration/SongDuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlist/PlaylistPersistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlist/PlaylistPersistence.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlistsong/NullPlaylistSong.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlistSong/NullPlaylistSong.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlistsong/PlaylistSong.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlistSong/PlaylistSong.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlistsong/PlaylistSongPersistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlistSong/PlaylistSongPersistence.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/browse/BrowseFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/browse/BrowseFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/home/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/home/HomeFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/player/MusicFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/player/MusicFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/AccessProfileTest/AccessProfileTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/accessProfileTest/AccessProfileTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/AccessProfileTest/FakeProfileDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/accessProfileTest/FakeProfileDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/AccessSongTest/AccessSongTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/accessSongTest/AccessSongTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/AccessSongTest/FakeSongDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/accessSongTest/FakeSongDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/objects/AlbumTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/objects/AlbumTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/business/AccessPlaylist.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlist/NullPlaylist.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlist/Playlist.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlist/PlaylistPersistence.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlistSong/NullPlaylistSong.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlistSong/PlaylistSong.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlistSong/PlaylistSongPersistence.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/AllTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/AllTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/accessPlaylistTest/AccessPlaylistTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/accessSongTest/AccessSongTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/accessSongTest/AccessSongTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/objects/MusicArtistTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/objects/MusicArtistTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/objects/MusicTrackPlaylistTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/objects/MusicTrackPlaylistTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/objects/MusicTrackTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/objects/MusicTrackTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/objects/SongDurationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/objects/SongDurationTest.java" afterDir="false" />
     </list>
@@ -207,7 +195,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="megere_test" />
+        <entry key="$PROJECT_DIR$" value="dev-iteration2-persistence" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -242,7 +230,8 @@
     "com.google.services.firebase.aqiPopupShown": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
-    "git-widget-placeholder": "dev-iteration2-persistence",
+    "git-widget-placeholder": "dev-iteration2-finalized-persistence",
+    "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/dharm/Desktop/Test F/innovators-a02-5"
   }
 }]]></component>
@@ -255,7 +244,7 @@
       <recent name="comp3350.sonicmatic.business" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.AccessSongTest">
+  <component name="RunManager" selected="Gradle.AlbumTest">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="Sonicmatic.app.main" />
       <option name="DEPLOY" value="true" />
@@ -323,7 +312,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AccessProfileTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AccessProfileTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -336,7 +325,7 @@
           <list>
             <option value=":app:testDebugUnitTest" />
             <option value="--tests" />
-            <option value="&quot;comp3350.sonicmatic.business.AccessProfileTest.AccessProfileTest&quot;" />
+            <option value="&quot;comp3350.sonicmatic.business.accessProfileTest.AccessProfileTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -371,30 +360,6 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="AccessSongTest.testBadInsertSong" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":app:testDebugUnitTest" />
-            <option value="--tests" />
-            <option value="&quot;comp3350.sonicmatic.business.AccessSongTest.AccessSongTest.testBadInsertSong&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>true</ForceTestExec>
-      <method v="2" />
-    </configuration>
     <configuration name="AccessSongTest.testGetAllSongs" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -419,7 +384,7 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="AccessSongTest.testInsertSong" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AlbumTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -432,7 +397,31 @@
           <list>
             <option value=":app:testDebugUnitTest" />
             <option value="--tests" />
-            <option value="&quot;comp3350.sonicmatic.business.AccessSongTest.AccessSongTest.testInsertSong&quot;" />
+            <option value="&quot;comp3350.sonicmatic.objects.AlbumTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="AllTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":app:testDebugUnitTest" />
+            <option value="--tests" />
+            <option value="&quot;comp3350.sonicmatic.AllTests&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -445,11 +434,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.AlbumTest" />
+        <item itemvalue="Gradle.AllTests" />
+        <item itemvalue="Gradle.AccessProfileTest" />
         <item itemvalue="Gradle.AccessSongTest" />
         <item itemvalue="Gradle.AccessSongTest.testGetAllSongs" />
-        <item itemvalue="Gradle.AccessSongTest.testBadInsertSong" />
-        <item itemvalue="Gradle.AccessSongTest.testInsertSong" />
-        <item itemvalue="Gradle.AccessProfileTest (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -502,7 +491,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709841500268</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Playlist testing underway">
+      <option name="closed" value="true" />
+      <created>1709841916526</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1709841916526</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -522,7 +519,8 @@
     <MESSAGE value="Some wierd issue fixed?" />
     <MESSAGE value="AccessProfile test finished and successful" />
     <MESSAGE value="Access Songs tested" />
-    <option name="LAST_COMMIT_MESSAGE" value="Access Songs tested" />
+    <MESSAGE value="Playlist testing underway" />
+    <option name="LAST_COMMIT_MESSAGE" value="Playlist testing underway" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -535,7 +533,7 @@
     <SUITE FILE_PATH="coverage/Sonicmatic$MusicArtistTest.ic" NAME="MusicArtistTest Coverage Results" MODIFIED="1707884168742" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Sonicmatic$SongDurationTest.ic" NAME="SongDurationTest Coverage Results" MODIFIED="1707884193585" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Sonicmatic$PlaylistTest.ic" NAME="PlaylistTest Coverage Results" MODIFIED="1707884186181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/Sonicmatic$AllTests.ic" NAME="AllTests Coverage Results" MODIFIED="1707884254050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Sonicmatic$AllTests.ic" NAME="AllTests Coverage Results" MODIFIED="1709842283418" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Sonicmatic$MusicTrackTest.ic" NAME="MusicTrackTest Coverage Results" MODIFIED="1707884178554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Sonicmatic$AlbumTest.ic" NAME="AlbumTest Coverage Results" MODIFIED="1707884151495" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
