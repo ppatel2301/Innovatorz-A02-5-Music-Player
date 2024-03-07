@@ -129,13 +129,16 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e88d3ca6-68d2-4cac-91db-d6f4c47530c1" name="Changes" comment="Playlist and PlaylistSong persistence built, untested">
+    <list default="true" id="e88d3ca6-68d2-4cac-91db-d6f4c47530c1" name="Changes" comment="AccessPlaylist written, untested.">
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/music/Amidst the Ruins.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/music/Asylum.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/music/Bleed The Future.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/music/Combustion.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/music/Concatenation.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/music/Drone Corpse Aviator.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/music/Golden Mouth Of Ruin.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/business/AccessPlaylist.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/business/AccessPlaylist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlist/Playlist.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlist/Playlist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlist/PlaylistPersistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlist/PlaylistPersistence.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlistsong/PlaylistSongPersistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlistsong/PlaylistSongPersistence.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,6 +209,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "android-custom-viewC:/Users/dharm/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED": "RecyclerView",
@@ -388,7 +392,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709792828187</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="AccessPlaylist written, untested.">
+      <option name="closed" value="true" />
+      <created>1709795425674</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1709795425674</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -403,12 +415,14 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="updated MainActivity.java" />
     <MESSAGE value="music crashed fixed." />
     <MESSAGE value="merge issues resolved" />
     <MESSAGE value="Some work done on playlists plus access all songs in DB as MusicTracks in AccesSong.java" />
     <MESSAGE value="Playlist and PlaylistSong persistence built, untested" />
-    <option name="LAST_COMMIT_MESSAGE" value="Playlist and PlaylistSong persistence built, untested" />
+    <MESSAGE value="AccessPlaylist written, untested." />
+    <option name="LAST_COMMIT_MESSAGE" value="AccessPlaylist written, untested." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
