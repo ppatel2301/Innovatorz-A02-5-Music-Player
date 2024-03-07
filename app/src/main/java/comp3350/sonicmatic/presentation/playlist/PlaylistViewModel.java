@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
-import comp3350.sonicmatic.objects.MusicTrackPlaylist;
+import comp3350.sonicmatic.objects.abstracts.MusicTrackPlaylist;
 public class PlaylistViewModel extends  ViewModel{
 
     private final MutableLiveData<ArrayList<MusicTrackPlaylist>> playlists;

@@ -13,9 +13,10 @@ import java.io.IOException;
 import comp3350.sonicmatic.exceptions.NoMusicException;
 import comp3350.sonicmatic.interfaces.IPlayer;
 import comp3350.sonicmatic.interfaces.ISong;
-import comp3350.sonicmatic.objects.MusicArtist;
-import comp3350.sonicmatic.objects.MusicTrack;
-import comp3350.sonicmatic.objects.SongDuration;
+import comp3350.sonicmatic.objects.musicartist.MusicArtist;
+import comp3350.sonicmatic.objects.musictrack.MusicTrack;
+import comp3350.sonicmatic.objects.musictrack.NullMusicTrack;
+import comp3350.sonicmatic.objects.songduration.SongDuration;
 
 public class MusicPlayer implements IPlayer
 {

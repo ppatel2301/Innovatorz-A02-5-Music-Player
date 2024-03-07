@@ -2,7 +2,7 @@ package comp3350.sonicmatic.data;
 
 import java.util.ArrayList;
 import comp3350.sonicmatic.interfaces.Database;
-import comp3350.sonicmatic.objects.MusicTrack;
+import comp3350.sonicmatic.objects.musictrack.MusicTrack;
 
 public class StubDatabase implements Database {
     private final ArrayList<MusicTrack> dbList;

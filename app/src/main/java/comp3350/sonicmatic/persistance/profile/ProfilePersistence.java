@@ -13,8 +13,6 @@ public class ProfilePersistence extends Persistence
 
     // ** class constants **
     private static final int IS_ARTIST = 1;
-    public static final NullProfile NULL_PROFILE = new NullProfile();
-    public static final GuestProfile GUEST_PROFILE = new GuestProfile();
     private static final String IS_ARTIST_FLAG = "1";
     private static final String IS_NOT_ARTIST_FLAG = "0";
 
@@ -55,7 +53,7 @@ public class ProfilePersistence extends Persistence
 
         } catch(final SQLException sqle)
         {
-            retrieved = NULL_PROFILE;
+            retrieved = NullProfile.getNullProfile();
         }
 
         return retrieved;
@@ -67,7 +65,7 @@ public class ProfilePersistence extends Persistence
 
         Profile updated;
 
-        if (item instanceof Profile)
+        if (item != null && item instanceof Profile)
         {
             Profile profile = ((Profile)(item)); // cast it to get methods
 
@@ -87,12 +85,12 @@ public class ProfilePersistence extends Persistence
 
             } catch(final SQLException sqle)
             {
-                updated = NULL_PROFILE;
+                updated = NullProfile.getNullProfile();
             }
         }
         else
         {
-            updated = NULL_PROFILE;
+            updated = NullProfile.getNullProfile();
         }
 
         return updated;
@@ -104,7 +102,7 @@ public class ProfilePersistence extends Persistence
         boolean success = true;
         Profile profile;
 
-        if (item instanceof Profile)
+        if (item != null && item instanceof Profile)
         {
             profile = ((Profile)(item));
 
@@ -133,6 +131,10 @@ public class ProfilePersistence extends Persistence
                 success = false;
             }
         }
+        else
+        {
+            success = false;
+        }
 
         return success;
     }
@@ -142,7 +144,7 @@ public class ProfilePersistence extends Persistence
     {
         boolean success = true;
 
-        if (item instanceof Profile)
+        if (item != null && item instanceof Profile)
         {
 
             try(final Connection c = getConnection())

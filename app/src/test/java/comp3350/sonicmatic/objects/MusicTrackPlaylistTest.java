@@ -13,6 +13,10 @@ import static org.junit.Assert.*;
 import comp3350.sonicmatic.interfaces.IArtist;
 import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.interfaces.ISongLength;
+import comp3350.sonicmatic.objects.abstracts.MusicTrackPlaylist;
+import comp3350.sonicmatic.objects.musicartist.MusicArtist;
+import comp3350.sonicmatic.objects.musictrack.MusicTrack;
+import comp3350.sonicmatic.objects.songduration.SongDuration;
 
 @RunWith(JUnit4.class)
 public class MusicTrackPlaylistTest {

@@ -1,7 +1,7 @@
 package comp3350.sonicmatic.persistance.profile;
 
 import comp3350.sonicmatic.interfaces.IPersistentItem;
-import comp3350.sonicmatic.objects.Credentials;
+import comp3350.sonicmatic.objects.abstracts.Credentials;
 
 public class Profile extends Credentials implements IPersistentItem
 {
@@ -31,6 +31,10 @@ public class Profile extends Credentials implements IPersistentItem
     public boolean isArtist()
     {
         return isArtist;
+    }
+    public void setArtist(boolean isArtist)
+    {
+        this.isArtist = isArtist;
     }
 
 }

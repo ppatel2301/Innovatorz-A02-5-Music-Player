@@ -1,10 +1,12 @@
-package comp3350.sonicmatic.objects;
+package comp3350.sonicmatic.objects.musictrack;
 
 import java.io.Serializable;
 
 import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.interfaces.IArtist;
 import comp3350.sonicmatic.interfaces.ISongLength;
+import comp3350.sonicmatic.objects.musicartist.MusicArtist;
+import comp3350.sonicmatic.objects.songduration.SongDuration;
 
 public class MusicTrack implements ISong, Serializable
 {

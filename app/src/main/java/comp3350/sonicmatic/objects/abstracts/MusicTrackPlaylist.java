@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.objects;
+package comp3350.sonicmatic.objects.abstracts;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,6 +6,7 @@ import java.util.Comparator;
 
 import comp3350.sonicmatic.comparator.MusicComparatorByArtist;
 import comp3350.sonicmatic.comparator.MusicComparatorByTitle;
+import comp3350.sonicmatic.objects.musictrack.MusicTrack;
 
 import comp3350.sonicmatic.interfaces.IPlaylist;
 import comp3350.sonicmatic.interfaces.ISong;
