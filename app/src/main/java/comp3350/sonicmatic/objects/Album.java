@@ -3,6 +3,7 @@ package comp3350.sonicmatic.objects;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.interfaces.IArtist;
+import comp3350.sonicmatic.objects.musicTrack.MusicTrack;
 
 public class Album {
 

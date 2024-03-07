@@ -7,13 +7,18 @@
         android:title="@string/title_home" />
 
     <item
+        android:id="@+id/navigation_browse"
+        android:icon="@drawable/baseline_browse_24"
+        android:title="Browse"
+        />
+
+    <item
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/baseline_library_music_24"
         android:title="Library" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_profile"
         android:icon="@drawable/baseline_settings_24"
-        android:title="Settings" />
-
+        android:title="Profile" />
 </menu>

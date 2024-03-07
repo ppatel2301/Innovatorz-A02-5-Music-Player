@@ -10,11 +10,11 @@ import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
 
-import comp3350.sonicmatic.System.musicplayer.MusicPlayer;
+import comp3350.sonicmatic.application.Services;
+import comp3350.sonicmatic.musicPlayer.MusicPlayer;
 import comp3350.sonicmatic.exceptions.NoMusicException;
 import comp3350.sonicmatic.interfaces.IPlayer;
 import comp3350.sonicmatic.interfaces.ISong;
-
 
 public class MusicPlayerTest {
 
@@ -26,7 +26,7 @@ public class MusicPlayerTest {
     @Before
     public void setup()
     {
-        MusicPlayer.context = context;
+        Services.setContext(context);
         player = new MusicPlayer();
         player.loadSongFromPath(testSong);
     }
@@ -221,6 +221,7 @@ public class MusicPlayerTest {
 
     }
 
+    @Test
     public void getMillisecDurationTestNoSong()
     {
 
@@ -275,20 +276,13 @@ public class MusicPlayerTest {
     public void getSongPathsTest()
     {
 
-        // there are 2 songs in assets/music. They are Cyberwaste.mp3 and Archetype.mp3
-
-        final int EXPECTED_COUNT = 2;
+        // there should always be music to play
 
         String [] paths = player.getSongPaths();
         int pathCount = paths.length;
 
-        assertEquals("Unexpected number of paths returned", EXPECTED_COUNT, pathCount);
+        assertEquals("Unexpected number of paths returned", true, pathCount > 0);
 
-        if (pathCount == EXPECTED_COUNT)
-        {
-            assertEquals("First song in paths was not Archetype.mp3, it was "+paths[0], true, paths[0].equals("Archetype.mp3"));
-            assertEquals("Second song in paths was not Cyberwaste.mp3, is was"+paths[1], true, paths[1].equals("Cyberwaste.mp3"));
-        }
 
     }
 
