@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.objects.abstracts;
+package comp3350.sonicmatic.objects;
 
 public abstract class Credentials
 {
