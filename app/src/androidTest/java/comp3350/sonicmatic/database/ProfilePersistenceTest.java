@@ -64,9 +64,9 @@ public class ProfilePersistenceTest {
         String displayName = profile.getDisplayName();
         String password = profile.getPassword();
 
-        assertEquals("Profile Get Test: username \""+username+"\" should have been \""+ NullProfile.getNullProfile().getUsername() +"\"", username.equals(NullProfile.getNullProfile().getUsername()),true);
-        assertEquals("Profile Get Test: display name \""+displayName+"\"should have been \""+ NullProfile.getNullProfile().getDisplayName() +"\"", displayName.equals(NullProfile.getNullProfile().getDisplayName()), true);
-        assertEquals("Profile Get Test: password \""+password+"\" should have been \""+ NullProfile.getNullProfile().getPassword() +"\"", password.equals(NullProfile.getNullProfile().getPassword()), true);
+        assertEquals("Profile Get Test: username \""+username+"\" should have been \""+ NullProfile.getNullProfile().getUsername() +"\"", true, username.equals(NullProfile.getNullProfile().getUsername()));
+        assertEquals("Profile Get Test: display name \""+displayName+"\"should have been \""+ NullProfile.getNullProfile().getDisplayName() +"\"", true, displayName.equals(NullProfile.getNullProfile().getDisplayName()));
+        assertEquals("Profile Get Test: password \""+password+"\" should have been \""+ NullProfile.getNullProfile().getPassword() +"\"", true, password.equals(NullProfile.getNullProfile().getPassword()));
     }
 
     @Test
@@ -111,7 +111,7 @@ public class ProfilePersistenceTest {
         Profile insert_me = new Profile("31an", "Elan", "ElansPassword", false);
         boolean success = profilePersistence.insert(insert_me);
 
-        assertEquals("Profile Insert Test: Inserting a profile was unsuccesful", success, true);
+        assertEquals("Profile Insert Test: Inserting a profile was unsuccesful", true, success);
 
         // now reset, get rid of it
         profilePersistence.delete(insert_me);
@@ -147,7 +147,7 @@ public class ProfilePersistenceTest {
         {
             success = profilePersistence.delete(delete_me); // now delete it
 
-            assertEquals("Profile Delete Test: Unsuccesful delete", success, true);
+            assertEquals("Profile Delete Test: Unsuccesful delete", true, success);
         }
     }
 
