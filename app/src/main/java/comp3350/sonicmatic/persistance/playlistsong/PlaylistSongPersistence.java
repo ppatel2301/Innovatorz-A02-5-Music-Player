@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import comp3350.sonicmatic.interfaces.IPersistentItem;
 import comp3350.sonicmatic.persistance.Persistence;
+import comp3350.sonicmatic.persistance.playlist.Playlist;
 
 public class PlaylistSongPersistence extends Persistence
 {
@@ -202,4 +204,35 @@ public class PlaylistSongPersistence extends Persistence
 
         return success;
     }
+
+    // ** instance methods **
+    public ArrayList<PlaylistSong> getPlaylistSongs(String playlistId)
+    {
+        ArrayList<PlaylistSong> playlistSongs = new ArrayList<PlaylistSong>();
+
+        try(final Connection c = getConnection())
+        {
+
+            final PreparedStatement statement = c.prepareStatement("SELECT * FROM playlist_songs WHERE playlist_id = ?");
+            final ResultSet query_result;
+
+            statement.setString(1, playlistId);
+            query_result = statement.executeQuery();
+
+            while(query_result.next())
+            {
+                playlistSongs.add(fromResultSet(query_result));
+            }
+
+            query_result.close();
+            statement.close();
+
+        } catch(final SQLException sqle)
+        {
+            playlistSongs.clear();
+        }
+
+        return playlistSongs;
+    }
+
 }

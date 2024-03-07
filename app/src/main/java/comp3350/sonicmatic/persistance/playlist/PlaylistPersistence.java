@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import comp3350.sonicmatic.interfaces.IPersistentItem;
 import comp3350.sonicmatic.persistance.Persistence;
 import comp3350.sonicmatic.persistance.playlistsong.PlaylistSong;
+import comp3350.sonicmatic.persistance.playlistsong.PlaylistSongPersistence;
 
 public class PlaylistPersistence extends Persistence
 {
@@ -123,12 +125,11 @@ public class PlaylistPersistence extends Persistence
             {
                 try(final Connection c = getConnection())
                 {
-                    final String insert = "INSERT INTO playlists VALUES(?, ?, ?)";
+                    final String insert = "INSERT INTO playlists VALUES(?, ?)";
                     final PreparedStatement statement = c.prepareStatement(insert);
 
-                    statement.setString(1, playlist.getPrimaryKey());
-                    statement.setString(2, playlist.getName());
-                    statement.setString(3, playlist.getCreatorUsername());
+                    statement.setString(1, playlist.getName());
+                    statement.setString(2, playlist.getCreatorUsername());
 
                     statement.executeUpdate();
 
@@ -153,7 +154,6 @@ public class PlaylistPersistence extends Persistence
     @Override
     public boolean delete(IPersistentItem item)
     {
-
         boolean success = true;
 
         if (item instanceof Playlist)
@@ -179,5 +179,63 @@ public class PlaylistPersistence extends Persistence
 
         return success;
 
+    }
+
+    // ** instance methods **
+    public ArrayList<Playlist> getPlaylistsOfUser(String username)
+    {
+        ArrayList<Playlist> playlists = new ArrayList<Playlist>();
+
+        try(final Connection c = getConnection())
+        {
+
+            final PreparedStatement statement = c.prepareStatement("SELECT * FROM playlist WHERE creator_username = ?");
+            final ResultSet query_result;
+
+            statement.setString(1, username);
+            query_result = statement.executeQuery();
+
+            while(query_result.next())
+            {
+                playlists.add(fromResultSet(query_result));
+            }
+
+            query_result.close();
+            statement.close();
+
+        } catch(final SQLException sqle)
+        {
+            playlists.clear();
+        }
+
+        return  playlists;
+    }
+
+    public Playlist get(String name, String creatorUsername)
+    {
+        Playlist retrieved;
+
+        try(final Connection c = getConnection())
+        {
+
+            final PreparedStatement statement = c.prepareStatement("SELECT * FROM playlists WHERE name = ?, creator_username = ?");
+            final ResultSet query_result;
+
+            statement.setString(1, name);
+            statement.setString(2, creatorUsername);
+            query_result = statement.executeQuery();
+
+            query_result.next();
+            retrieved = fromResultSet(query_result);
+
+            query_result.close();
+            statement.close();
+
+        } catch(final SQLException sqle)
+        {
+            retrieved = NullPlaylist.getNullPlaylist();
+        }
+
+        return retrieved;
     }
 }

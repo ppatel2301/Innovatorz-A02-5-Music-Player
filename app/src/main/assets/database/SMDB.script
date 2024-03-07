@@ -14,7 +14,6 @@ SET SCHEMA PUBLIC
 INSERT INTO PROFILES VALUES('BenD1337', 'Benjamin Dover', 'Password1', 1)
 INSERT INTO PROFILES VALUES('Gary', 'G-Guy', 'GGuyRulez1234', 0)
 INSERT INTO PROFILES VALUES('MDM1234', 'Mac De Miller', 'abcdefghijklmnop', 1)
-INSERT INTO PROFILES VALUES('Brofile11', 'Ronald Gooderian', 'comp3350', 0)
+INSERT INTO PROFILES VALUES('Profile11', 'Ronald Gooderian', 'comp3350', 0)
 INSERT INTO PROFILES VALUES('PeterPumpkinEater', 'Peter Griffin', 'megsux0000', 0)
-INSERT INTO PROFILES VALUES('JuniorStaresAtMeFunny', 'J.S.A.M.F', 'lolololol', 0)
 INSERT INTO SONGS VALUES('Archetype.mp3')
