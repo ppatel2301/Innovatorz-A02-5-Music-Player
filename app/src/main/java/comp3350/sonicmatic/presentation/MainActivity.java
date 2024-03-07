@@ -21,6 +21,7 @@ import java.util.Objects;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.application.Services;
+import comp3350.sonicmatic.business.AccessProfile;
 import comp3350.sonicmatic.databinding.ActivityMainBinding;
 import comp3350.sonicmatic.exceptions.NoMusicException;
 import comp3350.sonicmatic.interfaces.IPlayer;
@@ -43,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
 
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // required that all instances of the music player have access to the context
+        // services need application context to access assets folder
+        Services.setContext(getApplicationContext());
 
         musicViewModel = new ViewModelProvider(this).get(MusicViewModel.class);
 
@@ -70,20 +75,17 @@ public class MainActivity extends AppCompatActivity {
 
         layout = requireViewById(R.id.collasped_music_layout1);
 
-        // required that all instances of the music player have access to the context
-        // services need application context to access assets folder
-        Services.setContext(getApplicationContext());
-
         binding.navView.setOnItemSelectedListener(item -> {
             if(item.getItemId() == R.id.navigation_profile)
             {
                 if(!drawer.isDrawerOpen(GravityCompat.END))
                 {
                     drawer.openDrawer(GravityCompat.END);
+                    layout.setVisibility(View.GONE);
                 }else{
                     drawer.closeDrawer(GravityCompat.END);
                 }
-               return true;
+                return true;
             }else{
                 if(drawer.isDrawerOpen(GravityCompat.END))
                 {
@@ -97,8 +99,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-
-                usernameText.setText("Robert Guderian");
+                updateGetUsername();
                 trackHistoryView.setVisibility(View.VISIBLE);
                 layout.setVisibility(View.VISIBLE);
             }
@@ -148,8 +149,9 @@ public class MainActivity extends AppCompatActivity {
     private void updateGetUsername()
     {
         // get username from login and update below
+        AccessProfile accessProfile = new AccessProfile();
+        String displayName = accessProfile.getDisplayName();
 
-        String username = "Robert Guderian";
-        usernameText.setText(username);
+        usernameText.setText(displayName);
     }
 }
