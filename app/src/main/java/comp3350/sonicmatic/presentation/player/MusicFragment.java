@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ public class MusicFragment extends Fragment {
     private ImageView trackImage;
     private ImageView collaspePlayer;
     private Boolean playingMusic = false;
+    private SeekBar seekBar;
 
     private MusicViewModel musicViewModel;
     private ListeningHistoryMusicAdapter adapter;
@@ -77,13 +79,38 @@ public class MusicFragment extends Fragment {
         play_pause = root.findViewById(R.id.play_pause_button);
         trackImage = root.findViewById(R.id.player_music_image);
         collaspePlayer = root.findViewById(R.id.player_back_button);
+        seekBar = root.findViewById(R.id.seekBar);
+
+        seekBar.setMax(player.getMillisecDuration());
 
         trackName.setText(loaded.getTitle());
         trackArtist.setText(loaded.getArtist().getName());
 
         trackImage.setBackgroundResource(R.drawable.default_playlist_img);
 
-        ImageView collaspsed_play_button = root.findViewById(R.id.collasped_play_button);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+                if(player != null)
+                {
+                    if(fromUser)
+                    {
+                        // by the user
+                        try {
+                            player.seek(progress);
+                        } catch (NoMusicException e) {
+
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
 
         play_pause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +120,6 @@ public class MusicFragment extends Fragment {
                    if (player.isStopped() || player.isPaused())
                    {
                        player.start();
-                       playingMusic = true;
 
                        musicViewModel.updatedListeningHistory(loaded);
 
@@ -104,7 +130,6 @@ public class MusicFragment extends Fragment {
                    else if (player.isPlaying())
                    {
                        player.pause();
-                       playingMusic = false;
                        play_pause.setImageResource(R.drawable.baseline_play_circle_outline_24);
                    }
 
