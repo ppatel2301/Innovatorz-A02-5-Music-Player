@@ -45,7 +45,7 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
     public void onBindViewHolder(@NonNull PlaylistMusicViewHolder holder, int position) {
         ISong musicTrack = tracks.get(position);
 
-        holder.trackImg.setBackgroundResource(R.drawable.baseline_library_music_24);
+        holder.trackImg.setBackgroundResource(R.drawable.music_img);
         holder.trackName.setText(musicTrack.getTitle());
         holder.trackArtist.setText(musicTrack.getArtist().getName());
 

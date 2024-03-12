@@ -22,26 +22,33 @@
 
     <FrameLayout
         android:id="@+id/collasped_music_layout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view">
+        android:layout_width="1263dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="27dp"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/drawer_profile_layout">
 
         <include
             layout="@layout/fragment_collapsed_music_player"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </FrameLayout>
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_profile_layout"
-        android:layout_width="1282dp"
-        android:layout_height="655dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="637dp"
         app:layout_constraintBottom_toTopOf="@+id/collasped_music_layout1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:openDrawer="end">
 
         <fragment

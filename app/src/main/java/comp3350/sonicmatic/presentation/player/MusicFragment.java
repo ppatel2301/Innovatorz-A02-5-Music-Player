@@ -167,9 +167,9 @@ public class MusicFragment extends Fragment {
 
                 if(player.isPaused())
                 {
-                    play_pause.setImageResource(R.drawable.baseline_play_circle_outline_24);
+                    play_pause.setImageResource(R.drawable.baseline_play_circle_outline_white_24);
                 }else{
-                    play_pause.setImageResource(R.drawable.baseline_pause_circle_outline_24);
+                    play_pause.setImageResource(R.drawable.baseline_pause_circle_outline_white_24);
                 }
 
                 musicViewModel.setPlayer(player);

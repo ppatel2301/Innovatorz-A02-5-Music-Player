@@ -48,6 +48,11 @@ public class MusicTrackPlaylist implements IPlaylist {
     {
         playlist.remove(musicTrack);
     }
+    
+    public void updatePlaylist(ArrayList<ISong> updated)
+    {
+        this.playlist = updated;
+    }
 
     public ArrayList<ISong> filterByArtist ()
     {

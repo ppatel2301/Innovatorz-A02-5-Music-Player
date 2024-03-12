@@ -2,30 +2,21 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="ProfilePersistenceTest">
-        <State />
-      </entry>
       <entry key="app">
         <State>
-          <runningDeviceTargetSelectedWithDropDown>
+          <targetSelectedWithDropDown>
             <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
+              <type value="QUICK_BOOT_TARGET" />
               <deviceKey>
                 <Key>
-                  <type value="SERIAL_NUMBER" />
-                  <value value="3515105H80426B" />
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\dharm\.android\avd\Pixel_Tablet_API_34_1.avd" />
                 </Key>
               </deviceKey>
             </Target>
-          </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-03-07T19:22:34.273985100Z" />
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-03-12T15:17:48.487570800Z" />
         </State>
-      </entry>
-      <entry key="testGet()">
-        <State />
-      </entry>
-      <entry key="testGet() (1)">
-        <State />
       </entry>
     </value>
   </component>

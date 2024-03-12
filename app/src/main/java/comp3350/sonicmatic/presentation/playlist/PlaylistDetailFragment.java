@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import comp3350.sonicmatic.BottomLayoutFragment;
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.databinding.FragmentPlaylistDetailBinding;
 import comp3350.sonicmatic.interfaces.IPlaylist;
@@ -27,7 +29,7 @@ public class PlaylistDetailFragment extends Fragment {
     private ImageView playlistImage;
     private ImageView backbutton;
     private TextView playlistName;
-
+    private RecyclerView trackList;
     private ArrayList<IPlaylist> playlists;
     private PlaylistViewModel playlistViewModel;
 
@@ -46,7 +48,7 @@ public class PlaylistDetailFragment extends Fragment {
 
         playlistImage = root.findViewById(R.id.list_detail_img);
         backbutton = root.findViewById(R.id.detail_back_button);
-        RecyclerView trackList = root.findViewById(R.id.list_detail_view);
+        trackList = root.findViewById(R.id.list_detail_view);
         playlistName = root.findViewById(R.id.list_detail_name);
 
         backbutton.setImageResource(R.drawable.baseline_arrow_back_24);
@@ -68,6 +70,16 @@ public class PlaylistDetailFragment extends Fragment {
         // Using an adapter to upload a list of music tracks which are in the current list chosen
         // by the user
         observePlaylist(playlistViewModel);
+
+        Button button = root.findViewById(R.id.more_playlist_info);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BottomLayoutFragment bottomLayoutFragment = new BottomLayoutFragment();
+                bottomLayoutFragment.setPeekHeight(1000);
+                bottomLayoutFragment.show(getParentFragmentManager(), bottomLayoutFragment.getTag());
+            }
+        });
 
         addMusicToList(listName, trackList);
 
@@ -100,6 +112,8 @@ public class PlaylistDetailFragment extends Fragment {
             @Override
             public void onChanged(ArrayList<IPlaylist> updatedPlaylist) {
                 playlists = updatedPlaylist;
+
+                addMusicToList(playlistName.getText().toString(), trackList);
             }
         });
     }

@@ -27,6 +27,12 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
         this.tracks = tracks;
     }
 
+    public void setFilteredList(ArrayList<ISong> tracks)
+    {
+        this.tracks = tracks;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public MusicViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -37,11 +43,11 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 
     @Override
     public void onBindViewHolder(@NonNull MusicAdapter.MusicViewHolder holder, int position) {
-//        if(tracks != null)
-//        {
+        if(tracks != null)
+        {
             ISong track = tracks.get(position);
 
-            holder.musicImage.setImageResource(R.drawable.baseline_library_music_24);
+            holder.musicImage.setImageResource(R.drawable.music_img);
             holder.title.setText(track.getTitle());
             holder.artist.setText(track.getArtist().getName());
 
@@ -64,7 +70,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
                     Navigation.findNavController(view).navigate(R.id.musicFragment, null);
                 }
             });
-//        }
+        }
     }
 
     @Override

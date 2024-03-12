@@ -51,4 +51,10 @@
         android:name="comp3350.sonicmatic.presentation.player.CollaspedMusicFragment"
         tools:layout="@layout/fragment_collapsed_music_player"/>
 
+    <dialog
+        android:id="@+id/bottomLayoutFragment"
+        android:name="comp3350.sonicmatic.BottomLayoutFragment"
+        tools:layout="@layout/test_bottom_sheet_layout"
+        android:label="BottomLayoutFragment" />
+
 </navigation>

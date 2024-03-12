@@ -117,14 +117,14 @@ public class MainActivity extends AppCompatActivity {
                     {
                         try {
                             player.resume();
-                            play_pause_collasped.setImageResource(R.drawable.baseline_pause_circle_outline_24);
+                            play_pause_collasped.setImageResource(R.drawable.baseline_pause_circle_outline_white_24);
                         } catch (NoMusicException e) {
                             throw new RuntimeException(e);
                         }
                     }else{
                         try {
                             player.pause();
-                            play_pause_collasped.setImageResource(R.drawable.baseline_play_circle_outline_24);
+                            play_pause_collasped.setImageResource(R.drawable.baseline_play_circle_outline_white_24);
                         } catch (NoMusicException e) {
                             throw new RuntimeException(e);
                         }
