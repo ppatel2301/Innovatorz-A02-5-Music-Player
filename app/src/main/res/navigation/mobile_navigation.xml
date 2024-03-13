@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/loginFragment">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -51,10 +51,10 @@
         android:name="comp3350.sonicmatic.presentation.player.CollaspedMusicFragment"
         tools:layout="@layout/fragment_collapsed_music_player"/>
 
-    <dialog
-        android:id="@+id/bottomLayoutFragment"
-        android:name="comp3350.sonicmatic.BottomLayoutFragment"
-        tools:layout="@layout/test_bottom_sheet_layout"
-        android:label="BottomLayoutFragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="comp3350.sonicmatic.presentation.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login"/>
 
 </navigation>

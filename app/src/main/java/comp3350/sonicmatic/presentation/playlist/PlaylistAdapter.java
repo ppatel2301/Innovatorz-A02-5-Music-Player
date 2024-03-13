@@ -69,10 +69,8 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
 
                 if(playlistViewModel.getDefaultSelectedPlaylist() == null)
                 {
-                    System.out.println("YES");
                     playlistViewModel.setDefaultSelectedPlaylist(playlist);
                 }
-
 
                 View layout = view.getRootView().findViewById(R.id.collasped_music_layout1);
                 layout.setVisibility(View.GONE);

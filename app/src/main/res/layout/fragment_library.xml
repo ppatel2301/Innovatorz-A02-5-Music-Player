@@ -13,8 +13,9 @@
         android:layout_marginStart="88dp"
         android:layout_marginTop="32dp"
         android:text="Your Library"
-        android:textSize="34sp"
+        android:textSize="30sp"
         android:textStyle="bold"
+        android:textColor="?android:textColorPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

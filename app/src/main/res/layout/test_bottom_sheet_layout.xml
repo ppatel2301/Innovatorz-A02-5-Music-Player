@@ -8,6 +8,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="Sort by"
+        android:textColor="?android:textColorPrimary"
         android:textAlignment="viewStart"
         android:textSize="20sp"
         android:textStyle="bold" />
