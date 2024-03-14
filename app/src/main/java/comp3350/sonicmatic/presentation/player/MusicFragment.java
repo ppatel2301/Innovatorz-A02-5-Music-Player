@@ -1,6 +1,8 @@
 package comp3350.sonicmatic.presentation.player;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,13 +46,15 @@ public class MusicFragment extends Fragment {
     private ImageView next;
 
     private View collaspedMusicPlayer;
+    private Handler handler;
+    private Runnable runnable;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         musicViewModel = new ViewModelProvider(requireActivity()).get(MusicViewModel.class);
-
+        handler = new Handler(Looper.getMainLooper());
         // Calling load song to load the correct song
         try {
             loadSong();
@@ -116,16 +120,28 @@ public class MusicFragment extends Fragment {
                         try {
                             player.seek(progress);
                         } catch (NoMusicException e) {
-
+                            Toast.makeText(getContext(), "Playing music error", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
             }
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                try {
+                    player.pause();
+                } catch (NoMusicException e) {
+                    Toast.makeText(getContext(), "Error pausing music", Toast.LENGTH_SHORT).show();
+                }
+            }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                try {
+                    player.resume();
+                } catch (NoMusicException e) {
+                    Toast.makeText(getContext(), "Error playing music", Toast.LENGTH_SHORT).show();
+                }
+            }
         });
 
 
@@ -137,6 +153,7 @@ public class MusicFragment extends Fragment {
                    if (player.isStopped() || player.isPaused())
                    {
                        player.start();
+                       updateBar();
                        musicViewModel.updatedListeningHistory(loaded);
 
                        observeListeningHistory();
@@ -188,6 +205,25 @@ public class MusicFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void updateSeekBar()
+    {
+        seekBar.setProgress(player.getMillisecPosition());
+        handler.postDelayed(runnable, 1000);
+    }
+
+    private void updateBar() {
+        if (player != null && player.isPlaying())
+        {
+            runnable = new Runnable() {
+                @Override
+                public void run() {
+                    updateSeekBar();
+                }
+            };
+            handler.postDelayed(runnable, 0);
+        }
     }
 
     private void observeListeningHistory()
