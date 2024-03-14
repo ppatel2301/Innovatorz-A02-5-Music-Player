@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import comp3350.sonicmatic.BottomLayoutFragment;
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.databinding.FragmentPlaylistDetailBinding;
 import comp3350.sonicmatic.interfaces.IPlaylist;

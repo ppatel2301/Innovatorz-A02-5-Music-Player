@@ -13,15 +13,19 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.interfaces.ISong;
+import comp3350.sonicmatic.presentation.login.UserViewModel;
 
 public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHolder>{
 
     private ArrayList<ISong> tracks;
     private MusicViewModel musicViewModel;
+    private UserViewModel userViewModel;
 
     public MusicAdapter(ArrayList<ISong> tracks) {
         this.tracks = tracks;
@@ -38,6 +42,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
     public MusicViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_song, parent,false);
         musicViewModel = new ViewModelProvider((FragmentActivity) view.getContext()).get(MusicViewModel.class);
+        userViewModel = new ViewModelProvider((FragmentActivity) view.getContext()).get(UserViewModel.class);
         return new MusicViewHolder(view);
     }
 
@@ -54,12 +59,18 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
             holder.addToPlayist.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // Adding the selected music to the musicViewModel
-                    musicViewModel.setSelectedTrack(track);
 
-                    Navigation.findNavController(view).navigate(R.id.addToPlaylistFragment, null);
+                    if(!userViewModel.getProfile().getDisplayName().equals("Guest"))
+                    {
+                        // Adding the selected music to the musicViewModel
+                        musicViewModel.setSelectedTrack(track);
 
-                    Toast.makeText(view.getContext(), "Add To Playlist",Toast.LENGTH_SHORT).show();
+                        Navigation.findNavController(view).navigate(R.id.addToPlaylistFragment, null);
+
+                        Toast.makeText(view.getContext(), "Add To Playlist",Toast.LENGTH_SHORT).show();
+                    }else{
+                        Snackbar.make(view, "Guests cannot create playlists. Login to access the playlists", Snackbar.LENGTH_LONG).show();
+                    }
                 }
             });
 

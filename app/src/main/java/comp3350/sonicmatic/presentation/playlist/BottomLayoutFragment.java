@@ -1,4 +1,4 @@
-package comp3350.sonicmatic;
+package comp3350.sonicmatic.presentation.playlist;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,15 +18,15 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.ArrayList;
 
-import comp3350.sonicmatic.databinding.TestBottomSheetLayoutBinding;
+import comp3350.sonicmatic.R;
+import comp3350.sonicmatic.databinding.MoreInfoBottomSheetLayoutBinding;
 import comp3350.sonicmatic.interfaces.IPlaylist;
 import comp3350.sonicmatic.interfaces.ISong;
-import comp3350.sonicmatic.presentation.playlist.PlaylistViewModel;
 
 public class BottomLayoutFragment extends BottomSheetDialogFragment {
 
     private int peekHeight = -1; // Default peekHeight
-    private TestBottomSheetLayoutBinding binding;
+    private MoreInfoBottomSheetLayoutBinding binding;
     private PlaylistViewModel playlistViewModel;
     private IPlaylist list;
     private ArrayList<IPlaylist> playlists;
@@ -42,7 +42,7 @@ public class BottomLayoutFragment extends BottomSheetDialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = TestBottomSheetLayoutBinding.inflate(inflater, container,false);
+        binding = MoreInfoBottomSheetLayoutBinding.inflate(inflater, container,false);
         View root = binding.getRoot();
 
         Button by_title = root.findViewById(R.id.sort_by_title);

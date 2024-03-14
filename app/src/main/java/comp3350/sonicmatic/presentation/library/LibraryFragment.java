@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.databinding.FragmentLibraryBinding;
 import comp3350.sonicmatic.interfaces.IPlaylist;
+import comp3350.sonicmatic.presentation.playlist.DetailPlaylistAdapter;
 import comp3350.sonicmatic.presentation.playlist.PlaylistAdapter;
 import comp3350.sonicmatic.presentation.playlist.PlaylistViewModel;
 
@@ -27,7 +28,7 @@ public class LibraryFragment extends Fragment{
     // Declaring the views
     private RecyclerView recyclerView;
     private Button buttonView; // Add button in the library fragments
-    private PlaylistAdapter adapter; // Adapter for the recycler view
+    private DetailPlaylistAdapter adapter; // Adapter for the recycler view
     private FragmentLibraryBinding binding;
     private PlaylistViewModel playlistViewModel;
 
@@ -42,7 +43,7 @@ public class LibraryFragment extends Fragment{
         playlistViewModel = new ViewModelProvider(requireActivity()).get(PlaylistViewModel.class);
 
         if(adapter == null) {
-            adapter = new PlaylistAdapter(new ArrayList<>());
+            adapter = new DetailPlaylistAdapter(new ArrayList<>());
         }
 
         // Getting the ui components by Id
