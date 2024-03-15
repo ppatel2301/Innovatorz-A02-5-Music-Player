@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.objects;
+package comp3350.sonicmatic.objects.musicArtist;
 
 public class LeaderboardArtist extends MusicArtist{
 

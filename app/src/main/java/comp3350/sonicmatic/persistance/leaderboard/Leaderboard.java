@@ -2,7 +2,7 @@ package comp3350.sonicmatic.persistance.leaderboard;
 
 import java.util.ArrayList;
 
-import comp3350.sonicmatic.objects.LeaderboardArtist;
+import comp3350.sonicmatic.objects.musicArtist.LeaderboardArtist;
 import comp3350.sonicmatic.interfaces.IPersistentItem;
 
 public class Leaderboard implements IPersistentItem {

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.interfaces.IPersistentItem;
 import comp3350.sonicmatic.objects.Credentials;
-import comp3350.sonicmatic.objects.MusicArtist;
+import comp3350.sonicmatic.objects.musicArtist.MusicArtist;
 
 public class Profile extends Credentials implements IPersistentItem
 {
