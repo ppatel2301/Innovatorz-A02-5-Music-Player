@@ -4,6 +4,7 @@ import android.content.Context;
 
 import comp3350.sonicmatic.musicplayer.MusicPlayer;
 import comp3350.sonicmatic.persistance.Persistence;
+import comp3350.sonicmatic.persistance.leaderboard.LeaderboardPersistence;
 import comp3350.sonicmatic.persistance.profile.ProfilePersistence;
 import comp3350.sonicmatic.persistance.song.SongPersistence;
 
@@ -19,6 +20,8 @@ public class Services
     // ** class variables **
     private static ProfilePersistence profilePersistence = null;
     private static SongPersistence songPersistence = null;
+
+    private static LeaderboardPersistence leaderboardPersistence = null;
 
 
     // ** class methods **
@@ -52,6 +55,15 @@ public class Services
         }
 
         return songPersistence;
+    }
+
+    public static synchronized LeaderboardPersistence getLeaderboardPersistence()
+    {
+        if (leaderboardPersistence == null){
+            leaderboardPersistence = new LeaderboardPersistence(DB_NAME, DB_PATH);
+        }
+
+        return leaderboardPersistence;
     }
 
 

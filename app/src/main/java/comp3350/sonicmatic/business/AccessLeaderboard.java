@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import comp3350.sonicmatic.interfaces.IArtist;
 import comp3350.sonicmatic.interfaces.Database;
 
-public class LeaderboardAccessor {
+public class AccessLeaderboard {
     static ArrayList<IArtist> getTopArtists(Database db, int number){
         return db.getTopArtists(number);
     }

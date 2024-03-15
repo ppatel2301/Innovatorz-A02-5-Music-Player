@@ -169,22 +169,5 @@ public class ProfilePersistence extends Persistence
         return success;
     }
 
-    public ArrayList<MusicArtist> getArtistLeaderboard(int limit){
-        ArrayList<MusicArtist> leaderboard = new ArrayList<>();
-        try (final Connection conn = getConnection()){
-            final String leaderboardQuery = "WITH artists_per_playlist as (SELECT PLAYLISTS.name as playlist_name FROM PLAYLISTS LEFT JOIN PLAYLIST_SONGS on PLAYLISTS.playlist_id = PLAYLIST_SONGS.playlist_id LEFT JOIN SONGS on PLAYLIST_SONGS.file_name_ext = SONGS.file_name_ext LEFT JOIN ALBUMS on SONGS.album_id = ALBUMS.album_id LEFT JOIN PROFILES on ALBUMS.artist_id = PROFILES username) SELECT PROFILES.display_name, count(playlist_name) GROUP BY ALBUMS.artist_id LIMIT ?;";
-            final PreparedStatement query = conn.prepareStatement(leaderboardQuery);
-            query.setInt(1, limit);
-            ResultSet rSet = query.executeQuery();
-            while (rSet.next()) {
-                leaderboard.add(new MusicArtist(rSet.getString("display_name")));
-            }
-        } catch (final SQLException sqle){
-            sqle.printStackTrace();
-        }
-
-        return leaderboard;
-    }
-
 
 }

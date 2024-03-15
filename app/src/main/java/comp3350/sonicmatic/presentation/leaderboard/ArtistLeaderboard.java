@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.databinding.FragmentArtistLeaderboardBinding;
+import comp3350.sonicmatic.interfaces.IArtist;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +30,7 @@ public class ArtistLeaderboard extends Fragment {
 
     private FragmentArtistLeaderboardBinding binding;
 
-    public ArtistLeaderboard() {
+    public ArtistLeaderboard(ArrayList<IArtist> leaderboard) {
         // Required empty public constructor
     }
 
