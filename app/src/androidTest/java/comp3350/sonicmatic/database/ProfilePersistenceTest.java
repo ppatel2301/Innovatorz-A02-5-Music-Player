@@ -7,7 +7,6 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import org.junit.Before;
 import org.junit.Test;
 
-import comp3350.sonicmatic.persistance.Persistence;
 import comp3350.sonicmatic.persistance.profile.NullProfile;
 import comp3350.sonicmatic.persistance.profile.Profile;
 import comp3350.sonicmatic.persistance.profile.ProfilePersistence;
@@ -40,6 +39,18 @@ public class ProfilePersistenceTest {
         assertEquals("Get Test: password \""+password+"\" not expected", password.equals("Password1"), true);
         assertEquals("Get Test: Artist bool not true", profile.isArtist(), true);
 
+        // get another
+        profile = profilePersistence.get("Profile11");
+
+        username = profile.getUsername();
+        display_name = profile.getDisplayName();
+        password = profile.getPassword();
+
+        assertEquals("Get Test: username \""+username+"\" not expected", username.equals("Profile11"),true);
+        assertEquals("Get Test: display name \""+display_name+"\" not expected", display_name.equals("Ronald Gooderian"), true);
+        assertEquals("Get Test: password \""+password+"\" not expected", password.equals("comp3350"), true);
+        assertEquals("Get Test: Artist bool not true", profile.isArtist(), false);
+
     }
 
     @Test
@@ -53,9 +64,9 @@ public class ProfilePersistenceTest {
         String displayName = profile.getDisplayName();
         String password = profile.getPassword();
 
-        assertEquals("Profile Get Test: username \""+username+"\" should have been \""+ ProfilePersistence.NULL_PROFILE.getUsername() +"\"", username.equals(ProfilePersistence.NULL_PROFILE.getUsername()),true);
-        assertEquals("Profile Get Test: display name \""+displayName+"\"should have been \""+ ProfilePersistence.NULL_PROFILE.getDisplayName() +"\"", displayName.equals(ProfilePersistence.NULL_PROFILE.getDisplayName()), true);
-        assertEquals("Profile Get Test: password \""+password+"\" should have been \""+ ProfilePersistence.NULL_PROFILE.getPassword() +"\"", password.equals(ProfilePersistence.NULL_PROFILE.getPassword()), true);
+        assertEquals("Profile Get Test: username \""+username+"\" should have been \""+ NullProfile.getNullProfile().getUsername() +"\"", true, username.equals(NullProfile.getNullProfile().getUsername()));
+        assertEquals("Profile Get Test: display name \""+displayName+"\"should have been \""+ NullProfile.getNullProfile().getDisplayName() +"\"", true, displayName.equals(NullProfile.getNullProfile().getDisplayName()));
+        assertEquals("Profile Get Test: password \""+password+"\" should have been \""+ NullProfile.getNullProfile().getPassword() +"\"", true, password.equals(NullProfile.getNullProfile().getPassword()));
     }
 
     @Test
@@ -87,12 +98,20 @@ public class ProfilePersistenceTest {
     }
 
     @Test
+    public void testBadUpdate()
+    {
+        Profile should_be_null = profilePersistence.update(null);
+
+        assertEquals("Profile Update Test: Profile wasn't null when it should have been", true, should_be_null.equals(NullProfile.getNullProfile()));
+    }
+
+    @Test
     public void testInsert()
     {
         Profile insert_me = new Profile("31an", "Elan", "ElansPassword", false);
         boolean success = profilePersistence.insert(insert_me);
 
-        assertEquals("Profile Insert Test: Inserting a profile was unsuccesful", success, true);
+        assertEquals("Profile Insert Test: Inserting a profile was unsuccesful", true, success);
 
         // now reset, get rid of it
         profilePersistence.delete(insert_me);
@@ -106,6 +125,10 @@ public class ProfilePersistenceTest {
         boolean no_success = !profilePersistence.insert(username_taken);
 
         assertEquals("Profile Insert Test: Inserting a profile was succesful...but we didn't want it to be", no_success, true);
+
+        boolean null_not_inserted = !profilePersistence.insert(null);
+
+        assertEquals("Profile Insert Test: I inserted null", true, null_not_inserted);
 
     }
 
@@ -124,8 +147,16 @@ public class ProfilePersistenceTest {
         {
             success = profilePersistence.delete(delete_me); // now delete it
 
-            assertEquals("Profile Delete Test: Unsuccesful delete", success, true);
+            assertEquals("Profile Delete Test: Unsuccesful delete", true, success);
         }
+    }
+
+    @Test
+    public void testBadDelete()
+    {
+        boolean null_not_deleted = !profilePersistence.delete(null);
+
+        assertEquals("Profile Delte Test: deleted null?", true, null_not_deleted);
     }
 
 }

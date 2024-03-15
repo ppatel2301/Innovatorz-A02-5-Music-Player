@@ -1,18 +1,23 @@
 package comp3350.sonicmatic.persistance.song;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 import comp3350.sonicmatic.interfaces.IPersistentItem;
 import comp3350.sonicmatic.persistance.Persistence;
 
 public class SongPersistence extends Persistence
 {
-
-    // ** class constants **
-    public static final NullSong NULL_SONG = new NullSong();
 
     // ** constructors **
     public SongPersistence(String dbName, String dbPath)
@@ -25,6 +30,36 @@ public class SongPersistence extends Persistence
     protected Song fromResultSet(ResultSet queryResult) throws SQLException
     {
         return new Song(queryResult.getString("file_name_ext"));
+    }
+
+    public ArrayList<Song> getAll()
+    {
+        ArrayList<Song> retrieved = new ArrayList<Song>();
+
+        try(final Connection c = getConnection())
+        {
+
+            final PreparedStatement statement = c.prepareStatement("SELECT * FROM Songs");
+            final ResultSet query_result;
+
+            query_result = statement.executeQuery();
+
+            while(query_result.next())
+            {
+                retrieved.add(fromResultSet(query_result));
+            }
+
+
+            query_result.close();
+            statement.close();
+
+        } catch(final SQLException sqle)
+        {
+            retrieved.clear();
+            retrieved.add(NullSong.getNullSong());
+        }
+
+        return retrieved;
     }
 
     @Override
@@ -49,7 +84,7 @@ public class SongPersistence extends Persistence
 
         } catch(final SQLException sqle)
         {
-            retrieved = NULL_SONG;
+            retrieved = NullSong.getNullSong();
         }
 
         return retrieved;
@@ -58,7 +93,7 @@ public class SongPersistence extends Persistence
     @Override
     public Song update(IPersistentItem item)
     {
-       return NULL_SONG; // song file paths shouldn't be updated, they should just be removed and then a new one inserted
+       return NullSong.getNullSong(); // song file paths shouldn't be updated, they should just be removed and then a new one inserted
     }
 
     @Override
@@ -72,7 +107,7 @@ public class SongPersistence extends Persistence
             to_insert = ((Song)(item));
 
             // if we can't get an equivalent song from the database, this song is not inside and we can insert
-            if (!get(to_insert.getPrimaryKey()).equals(to_insert.getPrimaryKey()))
+            if (!get(to_insert.getPrimaryKey()).getPrimaryKey().equals(to_insert.getPrimaryKey()))
             {
                 try(final Connection c = getConnection())
                 {

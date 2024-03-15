@@ -20,11 +20,26 @@
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
+    <FrameLayout
+        android:id="@+id/collasped_music_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view">
+
+        <include
+            layout="@layout/fragment_collapsed_music_player"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </FrameLayout>
+
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_profile_layout"
-        android:layout_width="1277dp"
-        android:layout_height="749dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="1282dp"
+        android:layout_height="655dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/collasped_music_layout1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:openDrawer="end">
@@ -33,9 +48,10 @@
             android:id="@+id/nav_host_fragment_activity_main"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/mobile_navigation"/>
+            app:navGraph="@navigation/mobile_navigation" />
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/drawer_nav_view"
@@ -52,7 +68,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <include layout="@layout/item_user_profile_header"/>
+                <include layout="@layout/item_user_profile_header" />
 
                 <TextView
                     android:layout_width="match_parent"

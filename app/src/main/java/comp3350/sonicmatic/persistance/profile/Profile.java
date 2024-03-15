@@ -36,5 +36,9 @@ public class Profile extends Credentials implements IPersistentItem
     {
         return isArtist;
     }
+    public void setArtist(boolean isArtist)
+    {
+        this.isArtist = isArtist;
+    }
 
 }

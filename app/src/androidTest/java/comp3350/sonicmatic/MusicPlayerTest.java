@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.After;
 
 import comp3350.sonicmatic.application.Services;
-import comp3350.sonicmatic.musicplayer.MusicPlayer;
+import comp3350.sonicmatic.musicPlayer.MusicPlayer;
 import comp3350.sonicmatic.exceptions.NoMusicException;
 import comp3350.sonicmatic.interfaces.IPlayer;
 import comp3350.sonicmatic.interfaces.ISong;

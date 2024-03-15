@@ -5,13 +5,15 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import comp3350.sonicmatic.interfaces.IArtist;
 import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.interfaces.ISongLength;
-import comp3350.sonicmatic.objects.MusicArtist;
-import comp3350.sonicmatic.objects.MusicTrack;
-import comp3350.sonicmatic.objects.SongDuration;
+import comp3350.sonicmatic.objects.musicArtist.MusicArtist;
+import comp3350.sonicmatic.objects.musicTrack.MusicTrack;
+import comp3350.sonicmatic.objects.songDuration.SongDuration;
 
 public class MusicTrackTest
 {

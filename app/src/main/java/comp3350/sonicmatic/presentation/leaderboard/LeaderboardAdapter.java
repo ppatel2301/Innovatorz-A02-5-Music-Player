@@ -21,15 +21,6 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
         this.artistsList = artistLst;
     }
 
-    public class LeaderboardViewHolder extends RecyclerView.ViewHolder{
-        private TextView nameText;
-
-        public LeaderboardViewHolder(final View view){
-            super(view);
-            nameText = view.findViewById(R.id.ArtistName);
-        }
-    }
-
     @NonNull
     @Override
     public LeaderboardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -48,4 +39,12 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
         return this.artistsList.size();
     }
 
+    public class LeaderboardViewHolder extends RecyclerView.ViewHolder{
+        private TextView nameText;
+
+        public LeaderboardViewHolder(final View view){
+            super(view);
+            nameText = view.findViewById(R.id.ArtistName);
+        }
+    }
 }

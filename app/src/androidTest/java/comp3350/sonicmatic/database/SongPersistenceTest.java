@@ -7,7 +7,10 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import comp3350.sonicmatic.application.Services;
+import comp3350.sonicmatic.persistance.song.NullSong;
 import comp3350.sonicmatic.persistance.song.Song;
 import comp3350.sonicmatic.persistance.song.SongPersistence;
 
@@ -43,7 +46,7 @@ public class SongPersistenceTest extends TestCase {
         Song song = songPersistence.get(FNAME_EXT);
         String file_name_ext = song.getFileNameExt();
 
-        assertEquals("Song file should have been NULL SONG, but it was "+file_name_ext, true, SongPersistence.NULL_SONG.getFileNameExt().equals(file_name_ext));
+        assertEquals("Song file should have been NULL SONG, but it was "+file_name_ext, true, NullSong.getNullSong().getFileNameExt().equals(file_name_ext));
 
     }
 
@@ -53,7 +56,7 @@ public class SongPersistenceTest extends TestCase {
         // since we just keep track of file paths per row, this test makes sure we can't update a path (makes more sense to just insert)
         Song song = songPersistence.update(new Song(FNAME_EXT));
 
-        assertEquals("Wanted the null song from this update call", true, song.getFileNameExt().equals(SongPersistence.NULL_SONG.getFileNameExt()));
+        assertEquals("Wanted the null song from this update call", true, song.getFileNameExt().equals(NullSong.getNullSong().getFileNameExt()));
     }
 
     @Test
@@ -94,6 +97,21 @@ public class SongPersistenceTest extends TestCase {
         success = songPersistence.delete(delete_me);
 
         assertEquals("Unsuccessful song delete", true, success);
+    }
+
+    @Test
+    public void testGetAll()
+    {
+        ArrayList<Song> songs = songPersistence.getAll();
+
+        boolean success = true;
+
+        if (songs.size() == 1) // if there's only one, make sure its not the null song (indicative of failure)
+        {
+            success = !(songs.get(0).getFileNameExt().equals(NullSong.getNullSong().getFileNameExt()));
+        }
+
+        assertEquals("Song test failed, only got the null song", true, success);
     }
 
 }

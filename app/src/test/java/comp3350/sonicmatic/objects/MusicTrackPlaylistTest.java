@@ -1,6 +1,5 @@
 package comp3350.sonicmatic.objects;
 
-import org.hamcrest.core.Is;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +12,9 @@ import static org.junit.Assert.*;
 import comp3350.sonicmatic.interfaces.IArtist;
 import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.interfaces.ISongLength;
+import comp3350.sonicmatic.objects.musicArtist.MusicArtist;
+import comp3350.sonicmatic.objects.musicTrack.MusicTrack;
+import comp3350.sonicmatic.objects.songDuration.SongDuration;
 
 @RunWith(JUnit4.class)
 public class MusicTrackPlaylistTest {

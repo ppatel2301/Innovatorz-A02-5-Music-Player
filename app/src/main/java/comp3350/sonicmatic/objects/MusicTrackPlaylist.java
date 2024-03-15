@@ -1,8 +1,6 @@
 package comp3350.sonicmatic.objects;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 import comp3350.sonicmatic.comparator.MusicComparatorByArtist;
 import comp3350.sonicmatic.comparator.MusicComparatorByTitle;

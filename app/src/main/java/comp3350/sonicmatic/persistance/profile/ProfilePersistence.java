@@ -15,8 +15,6 @@ public class ProfilePersistence extends Persistence
 
     // ** class constants **
     private static final int IS_ARTIST = 1;
-    public static final NullProfile NULL_PROFILE = new NullProfile();
-    public static final GuestProfile GUEST_PROFILE = new GuestProfile();
     private static final String IS_ARTIST_FLAG = "1";
     private static final String IS_NOT_ARTIST_FLAG = "0";
 
@@ -43,7 +41,7 @@ public class ProfilePersistence extends Persistence
         try(final Connection c = getConnection())
         {
 
-            final PreparedStatement statement = c.prepareStatement("SELECT * FROM Profiles WHERE username = ?");
+            final PreparedStatement statement = c.prepareStatement("SELECT * FROM profiles WHERE username = ?");
             final ResultSet query_result;
 
             statement.setString(1, username);
@@ -57,7 +55,7 @@ public class ProfilePersistence extends Persistence
 
         } catch(final SQLException sqle)
         {
-            retrieved = NULL_PROFILE;
+            retrieved = NullProfile.getNullProfile();
         }
 
         return retrieved;
@@ -89,12 +87,12 @@ public class ProfilePersistence extends Persistence
 
             } catch(final SQLException sqle)
             {
-                updated = NULL_PROFILE;
+                updated = NullProfile.getNullProfile();
             }
         }
         else
         {
-            updated = NULL_PROFILE;
+            updated = NullProfile.getNullProfile();
         }
 
         return updated;
@@ -134,6 +132,10 @@ public class ProfilePersistence extends Persistence
             {
                 success = false;
             }
+        }
+        else
+        {
+            success = false;
         }
 
         return success;
