@@ -58,7 +58,6 @@ public class AccessPlaylist {
                 {
                     playlists.get(playlists.size()-1).addMusicTracks(Services.createSongFromPath(s.getFileNameExt()));
                 }
-
             }
 
         }
@@ -106,7 +105,8 @@ public class AccessPlaylist {
         {
             from_db = playlistPersistence.get(name, username);
 
-            new_song = new PlaylistSong(song.getPath(), from_db.getId());
+            String path = song.getTitle() + ".mp3";
+            new_song = new PlaylistSong(path, from_db.getId());
 
             success = playlistSongPersistence.insert(new_song);
         }
@@ -125,7 +125,8 @@ public class AccessPlaylist {
         {
             from_db = playlistPersistence.get(name, username);
 
-            delete_song = new PlaylistSong(song.getPath(), from_db.getId());
+            String path = song.getTitle() + ".mp3";
+            delete_song = new PlaylistSong(path, from_db.getId());
 
             success = playlistSongPersistence.delete(delete_song);
         }

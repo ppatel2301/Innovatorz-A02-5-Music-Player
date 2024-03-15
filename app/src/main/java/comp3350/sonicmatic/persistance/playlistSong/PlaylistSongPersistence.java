@@ -52,7 +52,7 @@ public class PlaylistSongPersistence extends Persistence
     @Override
     public PlaylistSong get(String [] primaryKey)
     {
-        PlaylistSong retrieved;
+        PlaylistSong retrieved = NullPlaylistSong.getNullPlaylistSong();
 
         // expecting two foreign keys to make the primary key
         if (primaryKey != null && primaryKey.length == 2)
@@ -68,8 +68,11 @@ public class PlaylistSongPersistence extends Persistence
 
                 query_result = statement.executeQuery();
 
-                query_result.next();
-                retrieved = fromResultSet(query_result);
+                if(query_result.next())
+                {
+                    query_result.next();
+                    retrieved = fromResultSet(query_result);
+                }
 
                 query_result.close();
                 statement.close();

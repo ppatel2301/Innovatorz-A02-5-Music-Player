@@ -1,7 +1,6 @@
 package comp3350.sonicmatic.presentation.login;
 
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -22,9 +20,15 @@ import androidx.navigation.Navigation;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
+
 import comp3350.sonicmatic.R;
+import comp3350.sonicmatic.business.AccessPlaylist;
 import comp3350.sonicmatic.business.AccessProfile;
 import comp3350.sonicmatic.databinding.FragmentLoginBinding;
+import comp3350.sonicmatic.interfaces.IPlaylist;
+import comp3350.sonicmatic.presentation.playlist.PlaylistViewModel;
+
 public class LoginFragment extends Fragment {
 
     private final int USERNAME_PASSWORD_LENGTH = 8;
@@ -40,10 +44,13 @@ public class LoginFragment extends Fragment {
     private TextView signup_displayName;
 
     private UserViewModel userViewModel;
+    private PlaylistViewModel playlistViewModel;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         userViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
+        playlistViewModel = new ViewModelProvider(requireActivity()).get(PlaylistViewModel.class);
     }
 
     @Nullable
@@ -151,6 +158,16 @@ public class LoginFragment extends Fragment {
             {
                 valid_login_info = true;
                 userViewModel.setProfile(accessProfile);
+
+                AccessPlaylist accessPlaylist = new AccessPlaylist();
+
+                ArrayList<IPlaylist> userPlaylists = accessPlaylist.getPlaylists(accessProfile);
+                if(userPlaylists.isEmpty())
+                {
+                    playlistViewModel.updateList(new ArrayList<>());
+                }else{
+                    playlistViewModel.updateList(userPlaylists);
+                }
             }
         }
         return valid_login_info;
