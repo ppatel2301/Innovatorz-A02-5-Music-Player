@@ -4,7 +4,6 @@
     <shared>
       <config>
         <device id="pixel_tablet" />
-        <device id="pixel_c" />
       </config>
     </shared>
     <layouts>
@@ -18,17 +17,17 @@
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_artist_leaderboard.xml">
+        <config>
+          <theme>@style/Theme.Sonicmatic</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_browse.xml">
         <config>
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_collapsed_music_player.xml">
-        <config>
-          <theme>@style/Theme.Sonicmatic</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_create_playlist.xml">
         <config>
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
@@ -49,16 +48,6 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_playlist_detail.xml">
-        <config>
-          <theme>@style/Theme.Sonicmatic</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_settings.xml">
-        <config>
-          <theme>@style/Theme.Sonicmatic</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_user_profile.xml">
         <config>
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
@@ -98,7 +87,7 @@
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_user_profile_header.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/leaderboard_items.xml">
         <config>
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
@@ -108,12 +97,7 @@
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml">
-        <config>
-          <theme>@style/Theme.Sonicmatic</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/test_bottom_sheet_layout.xml">
         <config>
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
@@ -129,24 +113,20 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e88d3ca6-68d2-4cac-91db-d6f4c47530c1" name="Changes" comment="These will be the persistence classes to use for i2 handin. Playlist ommitted to time constraitns">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+    <list default="true" id="4b402791-7042-4f6c-9785-470c2bc30ec9" name="Changes" comment="branch created - package structure update">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlistSong/NullPlaylistSong.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/application/Services.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/application/Services.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/business/AccessPlaylist.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/business/AccessPlaylist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlist/PlaylistSong.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlistSong/PlaylistSong.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlist/PlaylistSongPersistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlistSong/PlaylistSongPersistence.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="ChangesViewManager">
-    <option name="groupingKeys">
-      <option value="module" />
-    </option>
   </component>
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
@@ -157,48 +137,34 @@
       <ProjectState />
     </projectState>
   </component>
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-        <task path="$PROJECT_DIR$">
-          <activation />
-        </task>
-        <projects_view />
-      </state>
-    </system>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="resourceFile" />
-        <option value="Interface" />
         <option value="layoutResourceFile" />
-        <option value="JUnit4 Test Class" />
         <option value="Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev-iteration2-finalized-persistence" />
+        <entry key="$PROJECT_DIR$" value="dev-iteration3-chat" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
 }</component>
-  <component name="ProjectId" id="2cTpB52pxrr0IZaeOIKCSH4tpM7" />
+  <component name="ProjectId" id="2dQfHQq6L6gFKS3KBlOZXTGDSOr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -208,26 +174,18 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
-    "android-custom-viewC:/Users/dharm/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED": "RecyclerView",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "com.google.services.firebase.aqiPopupShown": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
     "git-widget-placeholder": "dev-iteration3-playlist-persistence",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/dharm/Desktop/Test F/innovators-a02-5"
+    "ignore.virus.scanning.warn.message": "true"
   }
 }]]></component>
   <component name="RecentsManager">
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="comp3350.sonicmatic.persistance.playlistSong" />
-      <recent name="comp3350.sonicmatic.business" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\elang\StudioProjects\innovators-a02-5\app\src\main\java\comp3350\sonicmatic\persistance\playlist" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -621,91 +579,13 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e88d3ca6-68d2-4cac-91db-d6f4c47530c1" name="Changes" comment="" />
-      <created>1708145284133</created>
+      <changelist id="4b402791-7042-4f6c-9785-470c2bc30ec9" name="Changes" comment="" />
+      <created>1709945135498</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1708145284133</updated>
+      <updated>1709945135498</updated>
     </task>
-    <task id="LOCAL-00001" summary="updated MainActivity.java">
-      <option name="closed" value="true" />
-      <created>1709772608368</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1709772608368</updated>
-    </task>
-    <task id="LOCAL-00002" summary="music crashed fixed.">
-      <option name="closed" value="true" />
-      <created>1709778397313</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1709778397313</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Some wierd issue fixed?">
-      <option name="closed" value="true" />
-      <created>1709835418238</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1709835418238</updated>
-    </task>
-    <task id="LOCAL-00004" summary="AccessProfile test finished and successful">
-      <option name="closed" value="true" />
-      <created>1709838603400</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1709838603400</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Access Songs tested">
-      <option name="closed" value="true" />
-      <created>1709841500268</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1709841500268</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Playlist testing underway">
-      <option name="closed" value="true" />
-      <created>1709841916526</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1709841916526</updated>
-    </task>
-    <task id="LOCAL-00007" summary="These will be the persistence classes to use for i2 handin. Playlist ommitted to time constraitns">
-      <option name="closed" value="true" />
-      <created>1709842760780</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1709842760780</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="updated MainActivity.java" />
-    <MESSAGE value="music crashed fixed." />
-    <MESSAGE value="Some wierd issue fixed?" />
-    <MESSAGE value="AccessProfile test finished and successful" />
-    <MESSAGE value="Access Songs tested" />
-    <MESSAGE value="Playlist testing underway" />
-    <MESSAGE value="These will be the persistence classes to use for i2 handin. Playlist ommitted to time constraitns" />
-    <option name="LAST_COMMIT_MESSAGE" value="These will be the persistence classes to use for i2 handin. Playlist ommitted to time constraitns" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

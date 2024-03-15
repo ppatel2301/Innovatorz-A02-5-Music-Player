@@ -75,7 +75,7 @@ public class AccessPlaylist {
         {
             if (Persistence.isStringOkay(name))
             {
-                success = playlistPersistence.insert(new Playlist(name, username));
+                success = playlistPersistence.insert(new Playlist(username, name));
             }
         }
 

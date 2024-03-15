@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.persistance.playlist;
+package comp3350.sonicmatic.persistance.playlistSong;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
