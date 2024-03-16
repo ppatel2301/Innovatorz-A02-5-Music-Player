@@ -30,4 +30,12 @@ public class Leaderboard implements IPersistentItem {
     public boolean equals(Leaderboard other){
         return this.getLeaderboard().equals(other.getLeaderboard());
     }
+
+    public LeaderboardArtist artistAt(int index){
+        return this.board.get(index);
+    }
+
+    public int size(){
+        return this.board.size();
+    }
 }

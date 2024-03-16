@@ -1,5 +1,7 @@
 package comp3350.sonicmatic.persistance.leaderboard;
 
+import android.annotation.SuppressLint;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -50,6 +52,7 @@ public class LeaderboardPersistence extends Persistence {
 
             final int sizeLimit = 5;
 
+            @SuppressLint("DefaultLocale") // IDE-inserted line
             final String query = String.format("WITH artists_per_playlist as " +
                     "(SELECT PLAYLISTS.name as playlist_name FROM PLAYLISTS " +
                     "LEFT JOIN PLAYLIST_SONGS on PLAYLISTS.playlist_id = PLAYLIST_SONGS.playlist_id " +

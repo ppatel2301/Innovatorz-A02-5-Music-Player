@@ -7,4 +7,6 @@ public class LeaderboardArtist extends MusicArtist{
         super(name);
         this.metric = metric;
     }
+
+    public int getMetric(){ return this.metric;}
 }
