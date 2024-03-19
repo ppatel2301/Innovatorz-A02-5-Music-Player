@@ -38,7 +38,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistAdap
     public void onBindViewHolder(@NonNull ArtistAdapter.ArtistAdapterHolder holder, int position) {
         IArtist artist = artists.get(position);
 
-        holder.artistImage.setImageResource(R.drawable.artist);
+        holder.artistImage.setImageResource(R.drawable.artist_profile_img);
         holder.artistName.setText(artist.getName());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

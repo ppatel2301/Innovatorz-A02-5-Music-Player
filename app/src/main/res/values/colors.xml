@@ -10,4 +10,7 @@
     <color name="blue_500">#2196F3</color>
     <color name="blue_700">#1976D2</color>
     <color name="teal_500">#FF009688</color>
+    <color name="blue_100">#274561</color>
+    <color name="text_default">#757575</color>
+    <color name="dark_bg">#202124</color>
 </resources>

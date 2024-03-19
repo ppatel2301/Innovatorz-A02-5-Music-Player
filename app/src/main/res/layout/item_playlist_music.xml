@@ -22,8 +22,7 @@
         android:layout_width="100dp"
         android:layout_height="92dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_library_music_24" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/playlist_music_artist"
@@ -32,6 +31,7 @@
         android:layout_marginStart="148dp"
         android:layout_marginBottom="44dp"
         android:text="Alan Walker"
+        android:textColor="?android:textColorPrimary"
         android:textAlignment="viewStart"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -44,6 +44,7 @@
         android:layout_marginStart="150dp"
         android:layout_marginTop="24dp"
         android:text="Alone"
+        android:textColor="?android:textColorPrimary"
         android:textAlignment="viewStart"
         android:textSize="16sp"
         android:textStyle="bold"

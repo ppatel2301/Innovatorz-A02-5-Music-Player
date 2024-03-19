@@ -9,6 +9,7 @@ public interface IPlaylist {
     ArrayList<ISong> getPlaylist();
     void addMusicTracks(ISong musicTrack);
     void removeMusicTracks(ISong remove);
+    void updatePlaylist(ArrayList<ISong> updated);
     ArrayList<ISong> filterByArtist();
     ArrayList<ISong> filterByTitle();
 }

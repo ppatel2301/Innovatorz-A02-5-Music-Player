@@ -7,12 +7,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
-import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.databinding.FragmentCollapsedMusicPlayerBinding;
 
 public class CollaspedMusicFragment extends Fragment {
@@ -25,15 +21,6 @@ public class CollaspedMusicFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentCollapsedMusicPlayerBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        View layout = root.findViewById(R.id.collasped_music_layout1);
-        layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("Yes expand");
-//                Navigation.findNavController(view).navigate(R.id.musicFragment, null);
-            }
-        });
 
         return root;
     }

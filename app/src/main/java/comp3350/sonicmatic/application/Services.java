@@ -14,6 +14,9 @@ import comp3350.sonicmatic.objects.musicTrack.MusicTrack;
 import comp3350.sonicmatic.objects.musicTrack.NullMusicTrack;
 import comp3350.sonicmatic.objects.songDuration.SongDuration;
 import comp3350.sonicmatic.persistance.Persistence;
+import comp3350.sonicmatic.persistance.playlist.PlaylistPersistence;
+import comp3350.sonicmatic.persistance.playlistSong.PlaylistSongPersistence;
+import comp3350.sonicmatic.persistance.leaderboard.LeaderboardPersistence;
 import comp3350.sonicmatic.persistance.profile.ProfilePersistence;
 import comp3350.sonicmatic.persistance.song.SongPersistence;
 
@@ -29,6 +32,12 @@ public class Services
     // ** class variables **
     private static ProfilePersistence profilePersistence = null;
     private static SongPersistence songPersistence = null;
+    private static PlaylistPersistence playlistPersistence = null;
+    private static PlaylistSongPersistence playlistSongPersistence = null;
+
+
+    private static LeaderboardPersistence leaderboardPersistence = null;
+
 
     // ** class methods **
     public static void setContext(Context env)
@@ -112,4 +121,31 @@ public class Services
         return songPersistence;
     }
 
+    public static synchronized PlaylistPersistence getPlaylistPersistence()
+    {
+        if(playlistPersistence == null)
+        {
+            playlistPersistence = new PlaylistPersistence(DB_NAME, DB_PATH);
+        }
+        return playlistPersistence;
+    }
+
+    public static synchronized PlaylistSongPersistence getPlaylistSongPersistence()
+    {
+        if(playlistSongPersistence == null)
+        {
+            playlistSongPersistence = new PlaylistSongPersistence(DB_NAME, DB_PATH);
+        }
+        return playlistSongPersistence;
+    }
+
+
+    public static synchronized LeaderboardPersistence getLeaderboardPersistence()
+    {
+        if (leaderboardPersistence == null){
+            leaderboardPersistence = new LeaderboardPersistence(DB_NAME, DB_PATH);
+        }
+
+        return leaderboardPersistence;
+    }
 }

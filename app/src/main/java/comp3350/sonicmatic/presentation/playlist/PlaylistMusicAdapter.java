@@ -13,16 +13,20 @@ import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.nio.file.attribute.AclEntry;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
+import comp3350.sonicmatic.business.AccessPlaylist;
 import comp3350.sonicmatic.interfaces.IPlaylist;
 import comp3350.sonicmatic.interfaces.ISong;
+import comp3350.sonicmatic.presentation.login.UserViewModel;
 
 public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdapter.PlaylistMusicViewHolder> {
 
     private ArrayList<ISong> tracks;
     private PlaylistViewModel playlistViewModel;
+    private UserViewModel userViewModel;
 
     public PlaylistMusicAdapter(ArrayList<ISong> tracks)
     {
@@ -37,6 +41,7 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
 
         ViewModelProvider viewModelProvider = new ViewModelProvider((ViewModelStoreOwner) parent.getContext());
         playlistViewModel = viewModelProvider.get(PlaylistViewModel.class);
+        userViewModel = viewModelProvider.get(UserViewModel.class);
 
         return new PlaylistMusicViewHolder(itemView);
     }
@@ -45,7 +50,7 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
     public void onBindViewHolder(@NonNull PlaylistMusicViewHolder holder, int position) {
         ISong musicTrack = tracks.get(position);
 
-        holder.trackImg.setBackgroundResource(R.drawable.baseline_library_music_24);
+        holder.trackImg.setBackgroundResource(R.drawable.music_img);
         holder.trackName.setText(musicTrack.getTitle());
         holder.trackArtist.setText(musicTrack.getArtist().getName());
 
@@ -68,6 +73,11 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
                         }
                     }
                 }
+
+                // Remove it from the users playlist from the database
+                AccessPlaylist accessPlaylist = new AccessPlaylist();
+                accessPlaylist.deleteFromPlaylist(currentList.getPlaylistName(), musicTrack, userViewModel.getProfile());
+
                 notifyItemRemoved(holder.getAdapterPosition());
                 Toast.makeText(view.getContext(), "Remove Song",Toast.LENGTH_SHORT).show();
 

@@ -20,13 +20,16 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
 
+import comp3350.sonicmatic.business.AccessPlaylist;
 import comp3350.sonicmatic.databinding.FragmentCreatePlaylistBinding;
 import comp3350.sonicmatic.objects.MusicTrackPlaylist;
+import comp3350.sonicmatic.presentation.login.UserViewModel;
 
 public class CreatePlaylistFragment extends BottomSheetDialogFragment {
 
     private FragmentCreatePlaylistBinding binding;
     private PlaylistViewModel playlistViewModel;
+    private UserViewModel userViewModel;
 
     public CreatePlaylistFragment() {}
 
@@ -34,6 +37,7 @@ public class CreatePlaylistFragment extends BottomSheetDialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         playlistViewModel = new ViewModelProvider(requireActivity()).get(PlaylistViewModel.class);
+        userViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
     }
 
     @Nullable
@@ -60,8 +64,8 @@ public class CreatePlaylistFragment extends BottomSheetDialogFragment {
                     // Creating a playlist in the ui with the given name
                     playlistViewModel.addPlaylist(new MusicTrackPlaylist(listName, new ArrayList<>()));
 
-                    String user = "";
-                    addPlaylistToUser(user);
+                    // Update the playlist for the current user in the database
+                    addPlaylistToUser(listName);
 
                     dismiss();
 
@@ -110,8 +114,9 @@ public class CreatePlaylistFragment extends BottomSheetDialogFragment {
         return (!username.isEmpty() && !username.equals(" ") && username.length() < 20);
     }
 
-    private void addPlaylistToUser(String user)
+    private void addPlaylistToUser(String listName)
     {
-
+        AccessPlaylist accessPlaylist = new AccessPlaylist();
+        accessPlaylist.newPlaylist(listName, userViewModel.getProfile());
     }
 }

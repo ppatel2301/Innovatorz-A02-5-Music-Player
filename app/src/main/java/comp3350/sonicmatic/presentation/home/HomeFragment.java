@@ -22,6 +22,7 @@ import comp3350.sonicmatic.business.AccessSong;
 import comp3350.sonicmatic.databinding.FragmentHomeBinding;
 import comp3350.sonicmatic.interfaces.IPlaylist;
 import comp3350.sonicmatic.interfaces.ISong;
+import comp3350.sonicmatic.presentation.MainActivity;
 import comp3350.sonicmatic.presentation.player.MusicAdapter;
 import comp3350.sonicmatic.presentation.playlist.PlaylistAdapter;
 import comp3350.sonicmatic.presentation.playlist.PlaylistViewModel;
@@ -62,7 +63,7 @@ public class HomeFragment extends Fragment {
         // Setting the adapter for the playlist recycler view
         playlistView = root.findViewById(R.id.list_recyler_view);
         playlistView.setAdapter(playlistAdapter);
-        playlistView.setLayoutManager(new LinearLayoutManager((getContext())));
+        playlistView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         observePlaylist();
 
