@@ -1,12 +1,21 @@
 package comp3350.sonicmatic.presentation;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -19,12 +28,15 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.application.Services;
 import comp3350.sonicmatic.business.AccessProfile;
+import comp3350.sonicmatic.business.AccessSong;
 import comp3350.sonicmatic.databinding.ActivityMainBinding;
 import comp3350.sonicmatic.exceptions.NoMusicException;
 import comp3350.sonicmatic.interfaces.IPlayer;
@@ -42,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private MusicViewModel musicViewModel;
     private UserViewModel userViewModel;
     private View trackHistoryView;
+    private ActivityResultLauncher<String> picker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         addListeningAdapter();
+        initTrackPicker();
 
         drawer = binding.drawerProfileLayout;
         usernameText = drawer.findViewById(R.id.profile_username);
@@ -69,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_profile, R.id.navigation_browse)
+                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_profile, R.id.navigation_browse, R.id.navigation_leader_board)
                 .setOpenableLayout(drawer)
                 .build();
 
@@ -151,18 +165,20 @@ public class MainActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                // Clear the back trace stack
-                clearBackStack();
-
-                navController.navigate(R.id.loginFragment);
-
-                // Set main content to visible gone and close
-                drawer.closeDrawer(GravityCompat.END);
-                binding.navView.setVisibility(View.GONE);
-                binding.collaspedMusicLayout1.setVisibility(View.GONE);
-
                 userViewModel.setLoggedOut(true);
+                clearBackStack();
+            }
+        });
+
+        Button upload_tracks = binding.uploadTracks;
+        upload_tracks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                picker.launch("audio/*");
+
+                // Close the drawer and enable the bottom nav view
+                drawer.closeDrawer(GravityCompat.END);
+                layout.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -190,9 +206,57 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void initTrackPicker()
+    {
+        picker = registerForActivityResult(new ActivityResultContracts.GetContent(),
+                track -> {
+                    if(track != null)
+                    {
+                        // This will be used to get the path of the music and play in the later phase
+
+//                        File dir = getExternalFilesDir(Environment.DIRECTORY_MUSIC);
+//                        String path = new File(dir, "Tere_Sang_Yaara_-_Rustom_Song_Story_Akshay_Kumar_Ileana_Dcruz_Atif_Aslam_COKE_STUDIO_MIX_[freevideoconverter.online].mp3").getPath();
+//                        Toast.makeText(this, "Path:" + path, Toast.LENGTH_SHORT).show();
+//                        System.out.println(path);
+
+                        AccessSong accessSong = new AccessSong();
+
+                        String trackName = getTrackNameFromFile(track);
+
+                        boolean inserted = accessSong.insertSong(trackName);
+                        if(inserted)
+                        {
+                            Toast.makeText(this, "Track uploaded. Can be viewed in the Home/Browse Page", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(this, "Track didn't upload properly.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    private String getTrackNameFromFile(Uri uri)
+    {
+        String fileName = "";
+
+        // Gets the path of the selected music
+        String path = Arrays.toString(uri.getPathSegments().toArray());
+
+        // Retries the trackname from that path
+        String trackName = path.split(",")[1].substring(0,path.split(",")[1].length() - 1).trim();
+        fileName = trackName.substring(trackName.lastIndexOf("/")+1);
+
+        return fileName;
+    }
+
+
     private void clearBackStack()
     {
-        FragmentManager manager = getSupportFragmentManager();
-        manager.popBackStackImmediate(0, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        // Creating new main activity intent
+        Intent activity = new Intent(MainActivity.this, MainActivity.class);
+
+        //flag for our activity to clear the history stack.
+        activity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(activity);
+        finish();
     }
 }

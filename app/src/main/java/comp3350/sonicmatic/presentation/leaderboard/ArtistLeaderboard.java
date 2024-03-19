@@ -3,6 +3,7 @@ package comp3350.sonicmatic.presentation.leaderboard;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,14 +15,12 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
+import comp3350.sonicmatic.application.Services;
+import comp3350.sonicmatic.business.AccessLeaderboard;
 import comp3350.sonicmatic.databinding.FragmentArtistLeaderboardBinding;
-import comp3350.sonicmatic.interfaces.IArtist;
+import comp3350.sonicmatic.objects.musicArtist.LeaderboardArtist;
+import comp3350.sonicmatic.persistance.leaderboard.Leaderboard;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ArtistLeaderboard#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ArtistLeaderboard extends Fragment {
 
     private RecyclerView recyclerView;
@@ -30,19 +29,16 @@ public class ArtistLeaderboard extends Fragment {
 
     private FragmentArtistLeaderboardBinding binding;
 
-    public ArtistLeaderboard(ArrayList<IArtist> leaderboard) {
-        // Required empty public constructor
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Services.setContext(getContext());
     }
 
-    /*
-
-     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         binding = FragmentArtistLeaderboardBinding.inflate(inflater, container, false);
-
         View root = binding.getRoot();
 
         if (adapter == null){
@@ -55,7 +51,19 @@ public class ArtistLeaderboard extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager((getContext())));
 
+        AccessLeaderboard accessLeaderboard = new AccessLeaderboard();
+        Leaderboard leaderboard = accessLeaderboard.getLeaderboard();
+
+        ArrayList<LeaderboardArtist> artists = leaderboard.getLeaderboard();
+        System.out.println(artists);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_artist_leaderboard, container, false);
+        return root;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

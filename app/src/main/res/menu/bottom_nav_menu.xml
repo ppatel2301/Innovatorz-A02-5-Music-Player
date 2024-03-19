@@ -18,6 +18,11 @@
         android:title="Library" />
 
     <item
+        android:id="@+id/navigation_leader_board"
+        android:title="Leaderboard"
+        android:icon="@drawable/outline_leaderboard_24" />
+
+    <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/baseline_settings_24"
         android:title="Profile" />

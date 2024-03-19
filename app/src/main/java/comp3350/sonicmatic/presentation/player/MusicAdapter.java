@@ -1,5 +1,11 @@
 package comp3350.sonicmatic.presentation.player;
 
+import static comp3350.sonicmatic.musicPlayer.MusicPlayer.context;
+
+import android.content.res.AssetFileDescriptor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.MediaMetadataRetriever;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.FileDescriptor;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
@@ -51,6 +59,26 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
         if(tracks != null)
         {
             ISong track = tracks.get(position);
+
+//            AssetFileDescriptor afd = null;
+//            try {
+//                MediaMetadataRetriever metadata = new MediaMetadataRetriever();
+//                afd = context.getAssets().openFd(track.getPath());
+//                FileDescriptor fd = afd.getFileDescriptor();
+//                metadata.setDataSource(fd, afd.getStartOffset(), afd.getLength());
+//
+//                byte[] bitmap = metadata.getEmbeddedPicture();
+//
+//                if(bitmap != null)
+//                {
+//                    Bitmap bitmap1 = BitmapFactory.decodeByteArray(bitmap, 0, bitmap.length);
+//                    holder.musicImage.setImageBitmap(bitmap1);
+//                }else{
+//                    holder.musicImage.setImageResource(R.drawable.music_img);
+//                }
+//
+//            } catch (IOException e) {
+//            }
 
             holder.musicImage.setImageResource(R.drawable.music_img);
             holder.title.setText(track.getTitle());
