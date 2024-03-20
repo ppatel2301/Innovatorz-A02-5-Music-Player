@@ -1,25 +1,25 @@
 package comp3350.sonicmatic.presentation;
 
 import android.content.Intent;
-import android.database.Cursor;
+import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
+import android.Manifest;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
@@ -46,6 +47,7 @@ import comp3350.sonicmatic.presentation.player.MusicViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int REQUEST_EXTERNAL_STORAGE_PERMISSION = 123;
     private DrawerLayout drawer;
     private ListeningHistoryMusicAdapter adapter;
     private View layout;
@@ -74,6 +76,18 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         addListeningAdapter();
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted, request it from the user
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    REQUEST_EXTERNAL_STORAGE_PERMISSION);
+        } else {
+            // Permission is already granted, proceed with your logic
+            initTrackPicker();
+        }
+
         initTrackPicker();
 
         drawer = binding.drawerProfileLayout;
@@ -183,6 +197,22 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//
+//        // Check if the requested permission is granted
+//        if (requestCode == REQUEST_EXTERNAL_STORAGE_PERMISSION) {
+//            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                // Permission granted
+//                initTrackPicker();
+//            }
+//        } else {
+//            // Permission denied
+//            Toast.makeText(this, "Permission denied. You won't be able to access audio files.", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+
     private void addListeningAdapter()
     {
         if(adapter == null)
@@ -212,16 +242,23 @@ public class MainActivity extends AppCompatActivity {
                 track -> {
                     if(track != null)
                     {
-                        // This will be used to get the path of the music and play in the later phase
-
-//                        File dir = getExternalFilesDir(Environment.DIRECTORY_MUSIC);
-//                        String path = new File(dir, "Tere_Sang_Yaara_-_Rustom_Song_Story_Akshay_Kumar_Ileana_Dcruz_Atif_Aslam_COKE_STUDIO_MIX_[freevideoconverter.online].mp3").getPath();
-//                        Toast.makeText(this, "Path:" + path, Toast.LENGTH_SHORT).show();
-//                        System.out.println(path);
-
                         AccessSong accessSong = new AccessSong();
 
                         String trackName = getTrackNameFromFile(track);
+
+                        File dir = new File(String.valueOf(Environment.getExternalStoragePublicDirectory("Download")));
+                        String path = new File(dir, trackName).getPath();
+
+                        try{
+                            MediaPlayer mediaPlayer = new MediaPlayer();
+                            mediaPlayer.setDataSource(path.substring(path.indexOf("/")+1));
+                            mediaPlayer.prepare();
+
+                            mediaPlayer.start();
+                        }catch (IOException e)
+                        {
+                            e.printStackTrace();
+                        }
 
                         boolean inserted = accessSong.insertSong(trackName);
                         if(inserted)
@@ -247,7 +284,6 @@ public class MainActivity extends AppCompatActivity {
 
         return fileName;
     }
-
 
     private void clearBackStack()
     {
