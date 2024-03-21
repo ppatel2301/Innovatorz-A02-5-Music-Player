@@ -193,18 +193,15 @@ public class MusicPlayer implements IPlayer
         String title;
         String artist;
         String duration;
+        int offset = 4;
 
         MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
 
         if (state == States.IDLE && music == null && context != null) {
             try {
 
-                File local_storage = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
-                if(local_storage == null)
-                {
-                    Toast.makeText(context, "Local Storage cannot be found", Toast.LENGTH_SHORT).show();
-                }
-                
+                File local_storage = new File(String.valueOf(Environment.getExternalStoragePublicDirectory("Download")));;
+
                 File file = new File(local_storage, fileName);
                 if(!file.exists())
                 {
@@ -220,6 +217,12 @@ public class MusicPlayer implements IPlayer
 
                 mediaMetadataRetriever.setDataSource(context, uri);
                 title = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+
+                if(title == null)
+                {
+                    title = fileName.substring(0, fileName.length() - offset);
+                }
+
                 artist = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
 
                 if(artist == null)

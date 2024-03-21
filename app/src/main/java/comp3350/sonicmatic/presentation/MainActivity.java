@@ -6,8 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.Manifest;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.FileUtils;
+import android.provider.DocumentsContract;
+import android.provider.OpenableColumns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -30,6 +34,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
@@ -306,9 +311,9 @@ public class MainActivity extends AppCompatActivity {
                 track -> {
                     if(track != null)
                     {
-                        AccessSong accessSong = new AccessSong();
+                        String trackName = getFileName(getApplicationContext(), track);
 
-                        String trackName = getTrackNameFromFile(track);
+                        AccessSong accessSong = new AccessSong();
 
                         boolean inserted = accessSong.insertSong(trackName, 1);
                         if(inserted)
@@ -321,6 +326,14 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    private String getFileName(Context context, Uri uri)
+    {
+        Cursor cursor = context.getContentResolver().query(uri, null,null, null);
+        int index = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+        cursor.moveToFirst();
+
+        return cursor.getString(index);
+    }
     private String getTrackNameFromFile(Uri uri)
     {
         String fileName = "";

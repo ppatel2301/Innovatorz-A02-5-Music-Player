@@ -107,6 +107,7 @@ public class Services
     {
         File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), trackName);
         Uri uri = Uri.fromFile(dir);
+        int offset = 4;
 
         ISong create_me = NullMusicTrack.getNullMusicTrack();
 
@@ -115,6 +116,12 @@ public class Services
             mediaMetadataRetriever.setDataSource(context, uri);
 
             String title = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+
+            if(title == null)
+            {
+                title = trackName.substring(0, trackName.length() - offset);
+            }
+
             String artist = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
 
             if(artist == null)
@@ -123,7 +130,7 @@ public class Services
             }
 
             String duration = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
-            create_me = new MusicTrack(title, new MusicArtist(artist), new SongDuration(duration), dir.getAbsolutePath());
+            create_me = new MusicTrack(title, new MusicArtist(artist), new SongDuration(duration), trackName);
 
         }catch (Exception e) {
             // Handle any exceptions

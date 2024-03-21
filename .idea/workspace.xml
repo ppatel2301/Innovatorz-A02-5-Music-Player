@@ -17,9 +17,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="38c60e9b-940f-4e35-8707-8258e86c2537" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/config.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/application/Services.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/application/Services.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/musicPlayer/MusicPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/musicPlayer/MusicPlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/playlist/PlaylistMusicAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/playlist/PlaylistMusicAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +36,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\dharm\.android\avd\Pixel_Tablet_API_34_3.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\dharm\.android\avd\Pixel_Tablet_API_34.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -59,10 +66,12 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev-iteration3-ui&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/dharm/OneDrive/Desktop/3350/innovators-a02-5&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
@@ -161,5 +170,21 @@
       <updated>1710866283767</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/MainActivity.java</url>
+          <line>313</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Sonicmatic$Tests_in__comp3350_sonicmatic_business_accessLeaderboardTest_.ic" NAME="Tests in 'comp3350.sonicmatic.business.accessLeaderboardTest' Coverage Results" MODIFIED="1710800756913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Sonicmatic$AccessLeaderboardTest_testGetLeaderboard.ic" NAME="AccessLeaderboardTest.testGetLeaderboard Coverage Results" MODIFIED="1710800797391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Sonicmatic$AllTests.ic" NAME="AllTests Coverage Results" MODIFIED="1710802242210" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
