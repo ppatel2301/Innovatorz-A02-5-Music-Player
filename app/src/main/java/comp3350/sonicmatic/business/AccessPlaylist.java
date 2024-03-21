@@ -52,7 +52,7 @@ public class AccessPlaylist {
                 curr_playlist = p.getPrimaryKey(); // for accessing correct playlist
                 playlists.add(new MusicTrackPlaylist(p.getName())); // add a new playlist in
 
-                playlist_songs_from_db = playlistSongPersistence.getPlaylistSongs(curr_playlist); // get all the songs for this playlist;
+                playlist_songs_from_db = playlistSongPersistence.getPlaylistSongs(curr_playlist); // get all the songs for this playlist
 
                 for (PlaylistSong s : playlist_songs_from_db) // iterate through them and make usable data with them
                 {

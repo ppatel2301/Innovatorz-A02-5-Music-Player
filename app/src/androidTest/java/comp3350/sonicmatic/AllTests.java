@@ -10,7 +10,9 @@ import comp3350.sonicmatic.database.*;
 @Suite.SuiteClasses({
         MusicPlayerTest.class,
         ProfilePersistenceTest.class,
-        SongPersistenceTest.class
+        SongPersistenceTest.class,
+        PlaylistSongPersistenceTest.class,
+        PlaylistPersistenceTest.class
 })
 
 public class AllTests
