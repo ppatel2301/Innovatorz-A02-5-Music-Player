@@ -1,6 +1,6 @@
 package comp3350.sonicmatic.objects.musicArtist;
 
-public class LeaderboardArtist extends MusicArtist{
+public class LeaderboardArtist extends MusicArtist implements Comparable<LeaderboardArtist>{
 
     int metric;
     public LeaderboardArtist(String name, int metric) {
@@ -9,4 +9,9 @@ public class LeaderboardArtist extends MusicArtist{
     }
 
     public int getMetric(){ return this.metric;}
+
+    @Override
+    public int compareTo(LeaderboardArtist o) {
+        return Integer.compare(this.metric, o.metric);
+    }
 }
