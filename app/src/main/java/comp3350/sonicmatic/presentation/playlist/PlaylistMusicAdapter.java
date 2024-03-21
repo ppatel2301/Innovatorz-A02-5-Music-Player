@@ -21,12 +21,14 @@ import comp3350.sonicmatic.business.AccessPlaylist;
 import comp3350.sonicmatic.interfaces.IPlaylist;
 import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.presentation.login.UserViewModel;
+import comp3350.sonicmatic.presentation.player.MusicViewModel;
 
 public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdapter.PlaylistMusicViewHolder> {
 
     private ArrayList<ISong> tracks;
     private PlaylistViewModel playlistViewModel;
     private UserViewModel userViewModel;
+    private MusicViewModel musicViewModel;
 
     public PlaylistMusicAdapter(ArrayList<ISong> tracks)
     {
@@ -42,6 +44,7 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
         ViewModelProvider viewModelProvider = new ViewModelProvider((ViewModelStoreOwner) parent.getContext());
         playlistViewModel = viewModelProvider.get(PlaylistViewModel.class);
         userViewModel = viewModelProvider.get(UserViewModel.class);
+        musicViewModel = viewModelProvider.get(MusicViewModel.class);
 
         return new PlaylistMusicViewHolder(itemView);
     }
@@ -89,6 +92,7 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
             @Override
             public void onClick(View view) {
                 // Open music player for the clicked music by user
+                musicViewModel.setSelectedTrack(musicTrack);
                 Navigation.findNavController(view).navigate(R.id.musicFragment, null);
             }
         });
