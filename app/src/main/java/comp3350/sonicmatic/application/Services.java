@@ -3,13 +3,17 @@ package comp3350.sonicmatic.application;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaMetadataRetriever;
+import android.net.Uri;
+import android.os.Environment;
 
+import java.io.File;
 import java.io.FileDescriptor;
 import java.io.IOException;
 
 import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.musicPlayer.MusicPlayer;
 import comp3350.sonicmatic.objects.musicArtist.MusicArtist;
+import comp3350.sonicmatic.objects.musicArtist.NullMusicArtist;
 import comp3350.sonicmatic.objects.musicTrack.MusicTrack;
 import comp3350.sonicmatic.objects.musicTrack.NullMusicTrack;
 import comp3350.sonicmatic.objects.songDuration.SongDuration;
@@ -95,6 +99,36 @@ public class Services
         else
         {
             create_me = NullMusicTrack.getNullMusicTrack();
+        }
+        return create_me;
+    }
+
+    public static ISong createSongPathFromUserUpload(String trackName)
+    {
+        File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), trackName);
+        Uri uri = Uri.fromFile(dir);
+
+        ISong create_me = NullMusicTrack.getNullMusicTrack();
+
+        try(MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever())
+        {
+            mediaMetadataRetriever.setDataSource(context, uri);
+
+            String title = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+            String artist = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
+
+            if(artist == null)
+            {
+                artist = NullMusicArtist.getNullMusicArtist().getName();
+            }
+
+            String duration = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+            create_me = new MusicTrack(title, new MusicArtist(artist), new SongDuration(duration), dir.getAbsolutePath());
+
+        }catch (Exception e) {
+            // Handle any exceptions
+            // Log or display an error message
+            System.out.println(e.getMessage());
         }
 
         return create_me;

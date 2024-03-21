@@ -24,4 +24,6 @@ public interface IPlayer
 
     String [] getSongPaths();
 
+    void loadSongFromLocal(String fileName);
+    void loadSongFromAssets(String path);
 }

@@ -18,6 +18,8 @@ import comp3350.sonicmatic.persistance.Persistence;
 
 public class SongPersistence extends Persistence
 {
+    public static final int ACCESS_ASSETS = 0;
+    public static final int ACCESS_LOCAL = 1;
 
     // ** constructors **
     public SongPersistence(String dbName, String dbPath)
@@ -29,7 +31,7 @@ public class SongPersistence extends Persistence
     @Override
     protected Song fromResultSet(ResultSet queryResult) throws SQLException
     {
-        return new Song(queryResult.getString("file_name_ext"));
+        return new Song(queryResult.getString("file_name_ext"), queryResult.getInt("origin"));
     }
 
     public ArrayList<Song> getAll()
@@ -111,10 +113,11 @@ public class SongPersistence extends Persistence
             {
                 try(final Connection c = getConnection())
                 {
-                    final String insert = "INSERT INTO songs VALUES(?)";
+                    final String insert = "INSERT INTO songs VALUES(?,?)";
                     final PreparedStatement statement = c.prepareStatement(insert);
 
                     statement.setString(1, to_insert.getPrimaryKey());
+                    statement.setInt(2, to_insert.getOrigin());
 
                     statement.executeUpdate();
 

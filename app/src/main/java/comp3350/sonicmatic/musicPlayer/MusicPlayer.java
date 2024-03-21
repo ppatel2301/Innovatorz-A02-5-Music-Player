@@ -7,15 +7,21 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Environment;
+import android.widget.Toast;
 
 
+import java.io.File;
 import java.io.FileDescriptor;
 import java.io.IOException;
+import java.util.EventListener;
 
 import comp3350.sonicmatic.exceptions.NoMusicException;
 import comp3350.sonicmatic.interfaces.IPlayer;
 import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.objects.musicArtist.MusicArtist;
+import comp3350.sonicmatic.objects.musicArtist.NullMusicArtist;
 import comp3350.sonicmatic.objects.musicTrack.MusicTrack;
 import comp3350.sonicmatic.objects.songDuration.SongDuration;
 
@@ -182,8 +188,55 @@ public class MusicPlayer implements IPlayer
         return paths;
     }
 
-    @Override
-    public void loadSongFromPath(String path)
+    public void loadSongFromLocal(String fileName)
+    {
+        String title;
+        String artist;
+        String duration;
+
+        MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
+
+        if (state == States.IDLE && music == null && context != null) {
+            try {
+
+                File local_storage = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
+                if(local_storage == null)
+                {
+                    Toast.makeText(context, "Local Storage cannot be found", Toast.LENGTH_SHORT).show();
+                }
+                
+                File file = new File(local_storage, fileName);
+                if(!file.exists())
+                {
+                    Toast.makeText(context, "File doesn't exist in the local storage", Toast.LENGTH_SHORT).show();
+                }
+
+                Uri uri = Uri.fromFile(file);
+
+                music = new MediaPlayer();
+                music.setDataSource(context, uri);
+
+                music.prepare();
+
+                mediaMetadataRetriever.setDataSource(context, uri);
+                title = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+                artist = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
+
+                if(artist == null)
+                {
+                    artist = NullMusicArtist.getNullMusicArtist().getName();
+                }
+
+                duration = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+
+                loadSong(new MusicTrack(title, new MusicArtist(artist), new SongDuration(duration), fileName));
+            } catch (IOException e) {
+                playMe = null;
+            }
+        }
+    }
+
+    public void loadSongFromAssets(String path)
     {
         AssetFileDescriptor afd = null;
         MediaMetadataRetriever metadata = new MediaMetadataRetriever();
@@ -191,8 +244,6 @@ public class MusicPlayer implements IPlayer
         FileDescriptor fd;
         long start;
         long length;
-
-        ISong loadMe = null;
 
         String title;
         String artist;
@@ -222,8 +273,25 @@ public class MusicPlayer implements IPlayer
                 loadSong(new MusicTrack(title, new MusicArtist(artist), new SongDuration(duration), path));
             } catch (IOException ioe)
             {
-               playMe = null;
+                playMe = null;
             }
+        }
+    }
+
+    @Override
+    public void loadSongFromPath(String path)
+    {
+        try
+        {
+            AssetFileDescriptor assetFileDescriptor = context.getAssets().openFd(path);
+            assetFileDescriptor.close();
+
+            // if in assets load from assets
+            loadSongFromAssets(path);
+        }catch (IOException e)
+        {
+            // If not in assets
+            loadSongFromLocal(path);
         }
     }
 

@@ -31,7 +31,7 @@ public class FakeSongDB extends SongPersistence
         {
             if (s.getFileNameExt().equals(path))
             {
-                found = new Song(s.getFileNameExt()); // hard copy
+                found = new Song(s.getFileNameExt(), 0); // hard copy
                 break; // learned on a co-op work term that this is okay!
             }
         }
@@ -91,7 +91,7 @@ public class FakeSongDB extends SongPersistence
             // if not in db already, can insert
             if (!get(to_insert.getPrimaryKey()).getFileNameExt().equals(to_insert.getFileNameExt()))
             {
-                fakeSongs.add(new Song(to_insert.getFileNameExt()));
+                fakeSongs.add(new Song(to_insert.getFileNameExt(), 0));
 
                 inserted = get(to_insert.getPrimaryKey()).getFileNameExt().equals(to_insert.getFileNameExt());
             }

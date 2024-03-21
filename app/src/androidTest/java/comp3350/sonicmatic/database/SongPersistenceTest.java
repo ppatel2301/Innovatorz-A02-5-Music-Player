@@ -54,7 +54,7 @@ public class SongPersistenceTest extends TestCase {
     public void testUpdate()
     {
         // since we just keep track of file paths per row, this test makes sure we can't update a path (makes more sense to just insert)
-        Song song = songPersistence.update(new Song(FNAME_EXT));
+        Song song = songPersistence.update(new Song(FNAME_EXT, 0));
 
         assertEquals("Wanted the null song from this update call", true, song.getFileNameExt().equals(NullSong.getNullSong().getFileNameExt()));
     }
@@ -62,7 +62,7 @@ public class SongPersistenceTest extends TestCase {
     @Test
     public void testInsert()
     {
-        Song insert_me = new Song("Cyberwaste.mp3");
+        Song insert_me = new Song("Cyberwaste.mp3", 0);
 
         boolean success = songPersistence.insert(insert_me);
 
@@ -79,7 +79,7 @@ public class SongPersistenceTest extends TestCase {
     @Test
     public void  testBadInsert()
     {
-        Song dont_insert_me = new Song(FNAME_EXT); // this song is already in the DB
+        Song dont_insert_me = new Song(FNAME_EXT, 0); // this song is already in the DB
 
         boolean success = songPersistence.insert(dont_insert_me);
 
@@ -91,7 +91,7 @@ public class SongPersistenceTest extends TestCase {
     public void testDelete()
     {
         boolean success;
-        Song delete_me = new Song("Cyberwaste.mp3");
+        Song delete_me = new Song("Cyberwaste.mp3", 0);
 
         songPersistence.insert(delete_me); // have to put something in here to delete
         success = songPersistence.delete(delete_me);

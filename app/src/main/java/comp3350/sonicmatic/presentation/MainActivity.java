@@ -1,12 +1,13 @@
 package comp3350.sonicmatic.presentation;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.MediaPlayer;
 import android.Manifest;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -28,8 +29,6 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
@@ -47,7 +46,7 @@ import comp3350.sonicmatic.presentation.player.MusicViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int REQUEST_EXTERNAL_STORAGE_PERMISSION = 123;
+    private static final int REQUEST_BLUETOOTH_AUDIO = 124;
     private DrawerLayout drawer;
     private ListeningHistoryMusicAdapter adapter;
     private View layout;
@@ -57,7 +56,23 @@ public class MainActivity extends AppCompatActivity {
     private UserViewModel userViewModel;
     private View trackHistoryView;
     private ActivityResultLauncher<String> picker;
+    private ActivityResultLauncher<Intent> bluetoothEnableLauncher;
+    private ActivityResultLauncher<Intent> audioEnableLauncher;
+    private static final String[] AUDIO_BLUETOOTH_ = {
+            Manifest.permission.READ_MEDIA_AUDIO,
+            Manifest.permission.MANAGE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
+            Manifest.permission.BLUETOOTH_SCAN,
+            Manifest.permission.BLUETOOTH_CONNECT,
+            Manifest.permission.BLUETOOTH_PRIVILEGED
+    };
 
+    private static final String[] AUDIO = {
+            Manifest.permission.READ_MEDIA_AUDIO,
+            Manifest.permission.MANAGE_EXTERNAL_STORAGE
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,19 +90,30 @@ public class MainActivity extends AppCompatActivity {
         //Hide the status bar
         Objects.requireNonNull(getSupportActionBar()).hide();
 
+        // Initialize launcher for enabling Bluetooth
+        bluetoothEnableLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == RESULT_OK) {
+                // Bluetooth was enabled
+                Toast.makeText(this, "Bluetooth enabled", Toast.LENGTH_SHORT).show();
+            } else {
+                // User didn't enable Bluetooth
+                Toast.makeText(this, "Bluetooth not enabled", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        audioEnableLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == RESULT_OK) {
+                // Bluetooth was enabled
+                Toast.makeText(this, "Audio enabled", Toast.LENGTH_SHORT).show();
+            } else {
+                // User didn't enable Bluetooth
+                Toast.makeText(this, "Audio not enabled", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         addListeningAdapter();
-
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            // Permission is not granted, request it from the user
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                    REQUEST_EXTERNAL_STORAGE_PERMISSION);
-        } else {
-            // Permission is already granted, proceed with your logic
-            initTrackPicker();
-        }
-
+        requestPermissions();
         initTrackPicker();
 
         drawer = binding.drawerProfileLayout;
@@ -197,21 +223,44 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//
-//        // Check if the requested permission is granted
-//        if (requestCode == REQUEST_EXTERNAL_STORAGE_PERMISSION) {
-//            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                // Permission granted
-//                initTrackPicker();
-//            }
-//        } else {
-//            // Permission denied
-//            Toast.makeText(this, "Permission denied. You won't be able to access audio files.", Toast.LENGTH_SHORT).show();
-//        }
-//    }
+    private void enableBluetooth() {
+
+        BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+        BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
+        if (bluetoothAdapter == null) {
+            // Device does not support Bluetooth
+            Toast.makeText(this, "Bluetooth is not supported on this device", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!bluetoothAdapter.isEnabled()) {
+            // Bluetooth is not enabled, request to enable it
+            Intent enableBluetoothIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            if (enableBluetoothIntent.resolveActivity(getPackageManager()) != null) {
+                bluetoothEnableLauncher.launch(enableBluetoothIntent);
+            } else {
+                Toast.makeText(this, "No activity found to handle Bluetooth enable request", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            // Bluetooth is already enabled
+            Toast.makeText(this, "Bluetooth is already enabled", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void requestPermissions()
+    {
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this, AUDIO_BLUETOOTH_, REQUEST_BLUETOOTH_AUDIO);
+        }else if(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this, AUDIO, REQUEST_BLUETOOTH_AUDIO);
+        } else{
+            enableBluetooth();
+        }
+    }
 
     private void addListeningAdapter()
     {
@@ -246,26 +295,12 @@ public class MainActivity extends AppCompatActivity {
 
                         String trackName = getTrackNameFromFile(track);
 
-                        File dir = new File(String.valueOf(Environment.getExternalStoragePublicDirectory("Download")));
-                        String path = new File(dir, trackName).getPath();
-
-                        try{
-                            MediaPlayer mediaPlayer = new MediaPlayer();
-                            mediaPlayer.setDataSource(path.substring(path.indexOf("/")+1));
-                            mediaPlayer.prepare();
-
-                            mediaPlayer.start();
-                        }catch (IOException e)
-                        {
-                            e.printStackTrace();
-                        }
-
-                        boolean inserted = accessSong.insertSong(trackName);
+                        boolean inserted = accessSong.insertSong(trackName, 1);
                         if(inserted)
                         {
                             Toast.makeText(this, "Track uploaded. Can be viewed in the Home/Browse Page", Toast.LENGTH_SHORT).show();
                         }else{
-                            Toast.makeText(this, "Track didn't upload properly.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Track already uploaded. View in Home/Browse", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
