@@ -11,13 +11,11 @@ public class PlaylistViewModel extends  ViewModel{
 
     private final MutableLiveData<ArrayList<IPlaylist>> playlists;
     private final MutableLiveData<IPlaylist> selectedPlaylist;
-    private IPlaylist defaultSelectedPlaylist;
 
     public PlaylistViewModel ()
     {
         playlists = new MutableLiveData<>(new ArrayList<>());
         selectedPlaylist = new MutableLiveData<>();
-        defaultSelectedPlaylist = null;
     }
 
     public void updateList(ArrayList<IPlaylist> updatedList)
@@ -45,15 +43,5 @@ public class PlaylistViewModel extends  ViewModel{
 
     public IPlaylist getSelectedPlaylist() {
         return selectedPlaylist.getValue();
-    }
-
-    public void setDefaultSelectedPlaylist(IPlaylist playlist)
-    {
-        defaultSelectedPlaylist = playlist;
-    }
-
-    public IPlaylist getDefaultSelectedPlaylist()
-    {
-        return defaultSelectedPlaylist;
     }
 }
