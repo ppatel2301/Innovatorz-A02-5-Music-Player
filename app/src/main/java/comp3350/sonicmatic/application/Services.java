@@ -55,7 +55,7 @@ public class Services
         }
     }
 
-    public static ISong createSongFromPath(String path)
+    public static ISong createSongPathFromAssets(String path)
     {
         ISong create_me = null;
 
@@ -101,6 +101,25 @@ public class Services
             create_me = NullMusicTrack.getNullMusicTrack();
         }
         return create_me;
+    }
+
+    public static ISong createSongFromPath(String path)
+    {
+        ISong created = NullMusicTrack.getNullMusicTrack();
+        try
+        {
+            String pathToTest = "music/" + path;
+            AssetFileDescriptor assetFileDescriptor = context.getAssets().openFd(pathToTest);
+            assetFileDescriptor.close();
+
+            // if in assets load from assets
+            created = createSongPathFromAssets(path);
+        }catch (IOException e)
+        {
+            // If not in assets
+            created = createSongPathFromUserUpload(path);
+        }
+        return created;
     }
 
     public static ISong createSongPathFromUserUpload(String trackName)
