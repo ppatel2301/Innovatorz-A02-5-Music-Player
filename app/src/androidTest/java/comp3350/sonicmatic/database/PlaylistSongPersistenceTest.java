@@ -15,7 +15,8 @@ import comp3350.sonicmatic.persistance.playlistSong.NullPlaylistSong;
 import comp3350.sonicmatic.persistance.playlistSong.PlaylistSong;
 import comp3350.sonicmatic.persistance.playlistSong.PlaylistSongPersistence;
 
-public class PlaylistSongPersistenceTest {
+public class PlaylistSongPersistenceTest
+{
 
     private PlaylistSongPersistence psp = null; // play station portable!
 
@@ -98,7 +99,8 @@ public class PlaylistSongPersistenceTest {
     @Test
     public void testInsert()
     {
-        PlaylistSong newPS = new PlaylistSong("insert me into the DB", 1021);
+        // has to reference actual data in db
+        PlaylistSong newPS = new PlaylistSong("Golden Mouth Of Ruin.mp3", 0);
 
         boolean success = psp.insert(newPS);
         PlaylistSong retrieved = psp.get(newPS.makePrimaryKey());
@@ -106,6 +108,9 @@ public class PlaylistSongPersistenceTest {
         assertEquals("PSP Test: unsuccessful insert.", true, success);
         assertEquals("PSP Test: song inserted and retrieved the list was unexpected.", true,
                 retrieved.equals(newPS));
+
+        // delete now that we're done
+        psp.delete(newPS);
     }
 
     @Test
@@ -129,18 +134,6 @@ public class PlaylistSongPersistenceTest {
 
         assertEquals("PSP Test: delete failed.", true, success);
     }
-
-    // do we want to return false if the item isn't in the DB?
-    /*
-    @Test
-    public void testBadDelete()
-    {
-        PlaylistSong not_in_db = new PlaylistSong("not here", 10101);
-        boolean success = !psp.delete(not_in_db);
-
-        assertEquals("PSP Test: delete succeeded when it should have failed.", true, success);
-    }
-    */
 
     @Test
     public void testNullDelete()

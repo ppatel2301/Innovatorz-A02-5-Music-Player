@@ -1,9 +1,6 @@
 package comp3350.sonicmatic.persistance.playlist;
 
-import java.util.ArrayList;
-
 import comp3350.sonicmatic.interfaces.IPersistentItem;
-import comp3350.sonicmatic.interfaces.ISong;
 
 public class Playlist implements IPersistentItem
 {
@@ -27,6 +24,13 @@ public class Playlist implements IPersistentItem
         this.name = name;
     }
 
+    public Playlist(Playlist copy)
+    {
+        this.id = copy.id;
+        this.creatorUsername = copy.creatorUsername;
+        this.name = copy.name;
+    }
+
     // ** accessors **
     @Override
     public String getPrimaryKey()
@@ -43,6 +47,12 @@ public class Playlist implements IPersistentItem
     public int getId()
     {
         return id;
+    }
+
+    // ** mutators **
+    public void changeName(String newName)
+    {
+        name = newName;
     }
 
 }

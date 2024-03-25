@@ -27,7 +27,7 @@ public class AccessPlaylist {
         this.playlistSongPersistence = Services.getPlaylistSongPersistence();
     }
 
-    public AccessPlaylist(final PlaylistPersistence playlistPersistence, final PlaylistSongPersistence playlistSongPersistence, final ProfilePersistence profilePersistence)
+    public AccessPlaylist(final PlaylistPersistence playlistPersistence, final PlaylistSongPersistence playlistSongPersistence)
     {
         this.playlistPersistence = playlistPersistence;
         this.playlistSongPersistence = playlistSongPersistence;
@@ -69,14 +69,20 @@ public class AccessPlaylist {
     public boolean newPlaylist(String name, AccessProfile profileAccess)
     {
         boolean success = false;
-        String username = profileAccess.getUsername();
+        String username;
 
-        if (!(username.equals(GuestProfile.getGuestProfile().getUsername()) || username.equals(NullProfile.getNullProfile().getUsername())))
+        if (profileAccess != null)
         {
-            if (Persistence.isStringOkay(name))
+            username = profileAccess.getUsername();
+
+            if (!(username.equals(GuestProfile.getGuestProfile().getUsername()) || username.equals(NullProfile.getNullProfile().getUsername())))
             {
-                success = playlistPersistence.insert(new Playlist(username, name));
+                if (Persistence.isStringOkay(name))
+                {
+                    success = playlistPersistence.insert(new Playlist(username, name));
+                }
             }
+
         }
 
         return success;
@@ -85,11 +91,10 @@ public class AccessPlaylist {
     public boolean deletePlaylist(String name, AccessProfile profileAccess)
     {
         boolean success = false;
-        String username = profileAccess.getUsername();
 
-        if (!(username.equals(GuestProfile.getGuestProfile().getUsername()) || username.equals(NullProfile.getNullProfile().getUsername())))
+        if (profileAccess != null && !(profileAccess.getUsername().equals(GuestProfile.getGuestProfile().getUsername()) || profileAccess.getUsername().equals(NullProfile.getNullProfile().getUsername())))
         {
-            success = playlistPersistence.delete(playlistPersistence.get(name, username));
+            success = playlistPersistence.delete(playlistPersistence.get(name, profileAccess.getUsername()));
         }
 
         return success;
@@ -98,18 +103,24 @@ public class AccessPlaylist {
     public boolean insertIntoPlaylist(String name, ISong song, AccessProfile profileAccess)
     {
         boolean success = false;
-        String username = profileAccess.getUsername();
+        String username;
         Playlist from_db;
         PlaylistSong new_song;
 
-        if (!(username.equals(GuestProfile.getGuestProfile().getUsername()) || username.equals(NullProfile.getNullProfile().getUsername())))
+        if (profileAccess != null && song != null)
         {
-            from_db = playlistPersistence.get(name, username);
+            username = profileAccess.getUsername();
 
-            new_song = new PlaylistSong(song.getPath(), from_db.getId());
+            if (!(username.equals(GuestProfile.getGuestProfile().getUsername()) || username.equals(NullProfile.getNullProfile().getUsername())))
+            {
+                from_db = playlistPersistence.get(name, username);
 
-            success = playlistSongPersistence.insert(new_song);
+                new_song = new PlaylistSong(song.getPath(), from_db.getId());
+
+                success = playlistSongPersistence.insert(new_song);
+            }
         }
+
 
         return success;
     }
@@ -117,17 +128,24 @@ public class AccessPlaylist {
     public boolean deleteFromPlaylist(String name, ISong song, AccessProfile profileAccess)
     {
         boolean success = false;
-        String username = profileAccess.getUsername();
+        String username;
         Playlist from_db;
         PlaylistSong delete_song;
 
-        if (!(username.equals(GuestProfile.getGuestProfile().getUsername()) || username.equals(NullProfile.getNullProfile().getUsername())))
+        if (profileAccess != null && song != null)
         {
-            from_db = playlistPersistence.get(name, username);
+            username = profileAccess.getUsername();
 
-            delete_song = new PlaylistSong(song.getPath(), from_db.getId());
+            if (!(username.equals(GuestProfile.getGuestProfile().getUsername()) || username.equals(NullProfile.getNullProfile().getUsername())))
+            {
+                from_db = playlistPersistence.get(name, username);
 
-            success = playlistSongPersistence.delete(delete_song);
+                delete_song = new PlaylistSong(song.getPath(), from_db.getId());
+
+                success = playlistSongPersistence.delete(delete_song);
+            }
+
+
         }
 
         return success;

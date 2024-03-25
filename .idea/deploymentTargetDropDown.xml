@@ -2,21 +2,11 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="PlaylistPersistenceTest">
+        <State />
+      </entry>
       <entry key="PlaylistSongPersistenceTest">
-        <State>
-          <runningDeviceTargetSelectedWithDropDown>
-            <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="SERIAL_NUMBER" />
-                  <value value="3515105H80426B" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-03-21T16:57:15.614795200Z" />
-        </State>
+        <State />
       </entry>
       <entry key="app">
         <State>
@@ -34,13 +24,10 @@
           <timeTargetWasSelectedWithDropDown value="2024-03-12T15:17:48.487570800Z" />
         </State>
       </entry>
-      <entry key="testBadDelete()">
-        <State />
-      </entry>
       <entry key="testBadDelete() (1)">
         <State />
       </entry>
-      <entry key="testGet()">
+      <entry key="testGetUserPlaylists()">
         <State />
       </entry>
       <entry key="testInsert()">
