@@ -19,6 +19,6 @@ public class LeaderboardArtist extends MusicArtist implements Comparable<Leaderb
 
     @Override
     public int compareTo(LeaderboardArtist o) {
-        return Integer.compare(this.metric, o.metric);
+        return Integer.compare(o.metric, this.metric);
     }
 }

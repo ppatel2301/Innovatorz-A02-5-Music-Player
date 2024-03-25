@@ -2,22 +2,18 @@ package comp3350.sonicmatic.persistance.leaderboard;
 
 import android.annotation.SuppressLint;
 
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.ServiceConfigurationError;
 
 import comp3350.sonicmatic.application.Services;
-import comp3350.sonicmatic.interfaces.IArtist;
 import comp3350.sonicmatic.interfaces.IPersistentItem;
 import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.objects.musicArtist.LeaderboardArtist;
 import comp3350.sonicmatic.persistance.Persistence;
-import comp3350.sonicmatic.persistance.leaderboard.Leaderboard;
 
 public class LeaderboardPersistence extends Persistence {
 
