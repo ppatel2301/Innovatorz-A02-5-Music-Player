@@ -17,6 +17,16 @@
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_artist_leaderboard.xml">
+        <config>
+          <theme>@style/Theme.Sonicmatic</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_browse.xml">
+        <config>
+          <theme>@style/Theme.Sonicmatic</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_create_playlist.xml">
         <config>
           <theme>@style/Theme.Sonicmatic</theme>
@@ -67,12 +77,22 @@
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/leaderboard_items.xml">
+        <config>
+          <theme>@style/Theme.Sonicmatic</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/list_song.xml">
         <config>
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/more_info_bottom_sheet_layout.xml">
+        <config>
+          <theme>@style/Theme.Sonicmatic</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml">
         <config>
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
@@ -89,16 +109,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="38c60e9b-940f-4e35-8707-8258e86c2537" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/AllAcceptanceTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/ArtistProfileTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/BrowseCatalogTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/LeaderBoardTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/OrganizePlaylistTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/androidTestResultsUserPreferences.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/androidTestResultsUserPreferences.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/application/Services.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/application/Services.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/AllTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/AllTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/CreatePlaylistTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/CreatePlaylistTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/MusicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/MusicTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/UserProfileTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/UserProfileTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/business/AccessLeaderboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/business/AccessLeaderboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/leaderboard/NullLeaderboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/leaderboard/NullLeaderboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/leaderboard/ArtistLeaderboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/leaderboard/ArtistLeaderboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/leaderboard/LeaderboardAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/leaderboard/LeaderboardAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/baseline_settings_24.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/baseline_settings_24.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_music_player.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_music_player.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_artist_leaderboard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_artist_leaderboard.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/leaderboard_items.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/leaderboard_items.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-night/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-night/themes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,21 +182,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "dev-iteration3-ui",
-    "last_opened_file_path": "C:/Users/dharm/Desktop/New folder (2)/innovators-a02-5",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev-iteration3-ui&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/dharm/Desktop/New folder (2)/innovators-a02-5&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Android App.app">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="Sonicmatic.app.main" />
@@ -226,11 +265,11 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AllTests" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
+    <configuration name="AllAcceptanceTests" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
       <module name="Sonicmatic.app.androidTest" />
       <option name="TESTING_TYPE" value="2" />
       <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="comp3350.sonicmatic.AllTests" />
+      <option name="CLASS_NAME" value="comp3350.sonicmatic.AllAcceptanceTests" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_NAME_REGEX" value="" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
@@ -288,11 +327,11 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CreatePlaylistTest" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
+    <configuration name="ArtistProfileTest" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
       <module name="Sonicmatic.app.androidTest" />
       <option name="TESTING_TYPE" value="2" />
       <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="comp3350.sonicmatic.CreatePlaylistTest" />
+      <option name="CLASS_NAME" value="comp3350.sonicmatic.ArtistProfileTest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_NAME_REGEX" value="" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
@@ -350,11 +389,11 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MusicTest" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
+    <configuration name="BrowseCatalogTest" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
       <module name="Sonicmatic.app.androidTest" />
       <option name="TESTING_TYPE" value="2" />
       <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="comp3350.sonicmatic.MusicTest" />
+      <option name="CLASS_NAME" value="comp3350.sonicmatic.BrowseCatalogTest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_NAME_REGEX" value="" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
@@ -412,11 +451,11 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserProfileTest" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
+    <configuration name="LeaderBoardTest" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
       <module name="Sonicmatic.app.androidTest" />
       <option name="TESTING_TYPE" value="2" />
       <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="comp3350.sonicmatic.UserProfileTest" />
+      <option name="CLASS_NAME" value="comp3350.sonicmatic.LeaderBoardTest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_NAME_REGEX" value="" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
@@ -474,11 +513,11 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="playMusic()" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
+    <configuration name="browseTest()" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
       <module name="Sonicmatic.app.androidTest" />
       <option name="TESTING_TYPE" value="3" />
-      <option name="METHOD_NAME" value="playMusic" />
-      <option name="CLASS_NAME" value="comp3350.sonicmatic.MusicTest" />
+      <option name="METHOD_NAME" value="browseTest" />
+      <option name="CLASS_NAME" value="comp3350.sonicmatic.BrowseCatalogTest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_NAME_REGEX" value="" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
@@ -551,11 +590,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Android Instrumented Tests.playMusic()" />
-        <item itemvalue="Android Instrumented Tests.AllTests" />
-        <item itemvalue="Android Instrumented Tests.MusicTest" />
-        <item itemvalue="Android Instrumented Tests.UserProfileTest" />
-        <item itemvalue="Android Instrumented Tests.CreatePlaylistTest" />
+        <item itemvalue="Android Instrumented Tests.LeaderBoardTest" />
+        <item itemvalue="Android Instrumented Tests.AllAcceptanceTests" />
+        <item itemvalue="Android Instrumented Tests.browseTest()" />
+        <item itemvalue="Android Instrumented Tests.BrowseCatalogTest" />
+        <item itemvalue="Android Instrumented Tests.ArtistProfileTest" />
       </list>
     </recent_temporary>
   </component>
@@ -569,6 +608,13 @@
       <updated>1710866283767</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="androidx.test.uiautomator.UiObject" memberName="mDevice" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Sonicmatic$Tests_in__comp3350_sonicmatic_business_accessLeaderboardTest_.ic" NAME="Tests in 'comp3350.sonicmatic.business.accessLeaderboardTest' Coverage Results" MODIFIED="1710800756913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

@@ -15,6 +15,8 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
+import android.os.SystemClock;
+
 import androidx.test.espresso.contrib.RecyclerViewActions;
 
 import comp3350.sonicmatic.presentation.MainActivity;
@@ -27,8 +29,8 @@ public class MusicTest {
     public ActivityScenarioRule<MainActivity> activityTestRule = new ActivityScenarioRule<>(MainActivity.class);
 
     @Before
-    public void setUp() throws InterruptedException {
-        Thread.sleep(1000);
+    public void setUp() {
+        SystemClock.sleep(1000);
 
         // login
         onView(withId(R.id.login_username)).perform(typeText("Profile11"));
@@ -38,14 +40,13 @@ public class MusicTest {
     }
 
     @Test
-    public void playMusic() throws InterruptedException {
-        // Wait for page to load
-        Thread.sleep(1000);
-
+    public void playMusic(){
         // on home page
         onView(withId(R.id.song_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
+        // Wait for page to load
+        SystemClock.sleep(1000);
         onView(withId(R.id.play_pause_button)).perform(click());
         // listen to music for 1 sec
-        Thread.sleep(1000);
+        SystemClock.sleep(1000);
     }
 }

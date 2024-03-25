@@ -18,6 +18,6 @@
 
         <!-- Text color -->
         <item name="android:textColorPrimary">@color/text_default</item>
-
     </style>
+
 </resources>

@@ -12,8 +12,9 @@ public class NullLeaderboard extends Leaderboard{
     private static NullLeaderboard nullLeaderboard = null;
 
     public static NullLeaderboard getNullLeaderboard(){
-        if (nullLeaderboard == null)
+        if (nullLeaderboard == null) {
             nullLeaderboard = new NullLeaderboard();
+        }
         return nullLeaderboard;
     }
 

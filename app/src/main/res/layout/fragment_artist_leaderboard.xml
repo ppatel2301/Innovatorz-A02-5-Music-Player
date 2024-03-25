@@ -14,22 +14,24 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="44dp"
+        android:layout_marginEnd="973dp"
         android:text="@string/title_leaderboard"
         android:textColor="?android:textColorPrimary"
         android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/leaderboardRecyclerView"
         android:layout_width="1198dp"
-        android:layout_height="680dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="42dp"
-        android:layout_marginBottom="120dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 

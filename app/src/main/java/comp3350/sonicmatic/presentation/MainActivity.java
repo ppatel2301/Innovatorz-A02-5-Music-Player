@@ -4,17 +4,18 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.Manifest;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.FileUtils;
-import android.provider.DocumentsContract;
 import android.provider.OpenableColumns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
@@ -53,17 +55,7 @@ import comp3350.sonicmatic.presentation.player.MusicViewModel;
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_BLUETOOTH_AUDIO = 124;
-    private DrawerLayout drawer;
-    private ListeningHistoryMusicAdapter adapter;
-    private View layout;
-    private TextView usernameText;
-    private IPlayer player;
-    private MusicViewModel musicViewModel;
-    private UserViewModel userViewModel;
-    private View trackHistoryView;
-    private ActivityResultLauncher<String> picker;
-    private ActivityResultLauncher<Intent> bluetoothEnableLauncher;
-    private ActivityResultLauncher<Intent> audioEnableLauncher;
+
     private static final String[] AUDIO_BLUETOOTH_ = {
             Manifest.permission.READ_MEDIA_AUDIO,
             Manifest.permission.MANAGE_EXTERNAL_STORAGE,
@@ -79,11 +71,39 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.READ_MEDIA_AUDIO,
             Manifest.permission.MANAGE_EXTERNAL_STORAGE
     };
+
+    private static final String DARK_MODE = "night_mode";
+
+    private DrawerLayout drawer;
+    private ListeningHistoryMusicAdapter adapter;
+    private View layout;
+    private TextView usernameText;
+    private IPlayer player;
+    private MusicViewModel musicViewModel;
+    private UserViewModel userViewModel;
+    private View trackHistoryView;
+    private ActivityResultLauncher<String> picker;
+    private ActivityResultLauncher<Intent> bluetoothEnableLauncher;
+    private ActivityResultLauncher<Intent> audioEnableLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+
+        SharedPreferences sharedPreferences = getSharedPreferences("app_preferences", MODE_PRIVATE);
+
+        boolean isNightMode = sharedPreferences.getBoolean(DARK_MODE, false);
+        if(isNightMode)
+        {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            binding.darkLightModeToggle.setChecked(true);
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            binding.darkLightModeToggle.setChecked(false);
+        }
+
         setContentView(binding.getRoot());
 
         // required that all instances of the music player have access to the context
@@ -116,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Audio not enabled", Toast.LENGTH_SHORT).show();
             }
         });
-
 
         addListeningAdapter();
         requestPermissions();
@@ -173,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
                 if(!userViewModel.isLoggedOut())
                 {
                     layout.setVisibility(View.VISIBLE);
+                    binding.navView.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -226,6 +246,17 @@ public class MainActivity extends AppCompatActivity {
                 drawer.closeDrawer(GravityCompat.END);
                 layout.setVisibility(View.VISIBLE);
             }
+        });
+
+        Switch toggle_dark_light_mode = binding.darkLightModeToggle;
+        toggle_dark_light_mode.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+            if(isChecked)
+            {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            }else{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+            sharedPreferences.edit().putBoolean(DARK_MODE, isChecked).apply();
         });
     }
 
