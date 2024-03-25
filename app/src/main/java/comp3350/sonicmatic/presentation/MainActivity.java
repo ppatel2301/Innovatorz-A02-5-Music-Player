@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -35,6 +36,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -332,6 +335,8 @@ public class MainActivity extends AppCompatActivity {
         {
             String displayName = accessProfile.getDisplayName();
 
+            disableEnablePlaylistFeature(displayName.equals("GUEST"));
+
             usernameText.setText(displayName);
         }
     }
@@ -357,6 +362,13 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    private void disableEnablePlaylistFeature(boolean bool)
+    {
+        BottomNavigationView layout = findViewById(R.id.nav_view);
+        Menu menu = layout.getMenu();
+        menu.findItem(R.id.navigation_dashboard).setVisible(bool);
+    }
+
     private String getFileName(Context context, Uri uri)
     {
         Cursor cursor = context.getContentResolver().query(uri, null,null, null);
@@ -364,19 +376,6 @@ public class MainActivity extends AppCompatActivity {
         cursor.moveToFirst();
 
         return cursor.getString(index);
-    }
-    private String getTrackNameFromFile(Uri uri)
-    {
-        String fileName = "";
-
-        // Gets the path of the selected music
-        String path = Arrays.toString(uri.getPathSegments().toArray());
-
-        // Retries the trackname from that path
-        String trackName = path.split(",")[1].substring(0,path.split(",")[1].length() - 1).trim();
-        fileName = trackName.substring(trackName.lastIndexOf("/")+1);
-
-        return fileName;
     }
 
     private void clearBackStack()

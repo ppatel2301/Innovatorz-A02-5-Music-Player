@@ -58,29 +58,31 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
     public void onBindViewHolder(@NonNull MusicAdapter.MusicViewHolder holder, int position) {
         if(tracks != null)
         {
+
+            // Updating track image if found in the music track
             ISong track = tracks.get(position);
 
-//            AssetFileDescriptor afd = null;
-//            try {
-//                MediaMetadataRetriever metadata = new MediaMetadataRetriever();
-//                afd = context.getAssets().openFd(track.getPath());
-//                FileDescriptor fd = afd.getFileDescriptor();
-//                metadata.setDataSource(fd, afd.getStartOffset(), afd.getLength());
-//
-//                byte[] bitmap = metadata.getEmbeddedPicture();
-//
-//                if(bitmap != null)
-//                {
-//                    Bitmap bitmap1 = BitmapFactory.decodeByteArray(bitmap, 0, bitmap.length);
-//                    holder.musicImage.setImageBitmap(bitmap1);
-//                }else{
-//                    holder.musicImage.setImageResource(R.drawable.music_img);
-//                }
-//
-//            } catch (IOException e) {
-//            }
+            AssetFileDescriptor afd = null;
+            try {
+                MediaMetadataRetriever metadata = new MediaMetadataRetriever();
+                afd = context.getAssets().openFd(track.getPath());
+                FileDescriptor fd = afd.getFileDescriptor();
+                metadata.setDataSource(fd, afd.getStartOffset(), afd.getLength());
 
-            holder.musicImage.setImageResource(R.drawable.music_img);
+                byte[] bitmap = metadata.getEmbeddedPicture();
+
+                if(bitmap != null)
+                {
+                    Bitmap bitmap1 = BitmapFactory.decodeByteArray(bitmap, 0, bitmap.length);
+                    holder.musicImage.setImageBitmap(bitmap1);
+                }else{
+                    holder.musicImage.setImageResource(R.drawable.music_img);
+                }
+
+            } catch (IOException e) {
+                holder.musicImage.setImageResource(R.drawable.music_img);
+            }
+
             holder.title.setText(track.getTitle());
             holder.artist.setText(track.getArtist().getName());
 
