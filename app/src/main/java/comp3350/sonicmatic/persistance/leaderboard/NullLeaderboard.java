@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import comp3350.sonicmatic.business.AccessSong;
-import comp3350.sonicmatic.interfaces.IArtist;
 import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.objects.musicArtist.LeaderboardArtist;
 
@@ -23,13 +22,12 @@ public class NullLeaderboard extends Leaderboard{
     }
 
     private NullLeaderboard(){
-
         AccessSong accessSong = new AccessSong();
         ArrayList<ISong> allSongs = accessSong.getAllSongs();
         for (ISong song: allSongs){
             emptyLeaderboard.add(new LeaderboardArtist(song.getArtist(), 0));
         }
 
-        new NullLeaderboard(new ArrayList<>(emptyLeaderboard));
+        this.board = new ArrayList<>(emptyLeaderboard);
     }
 }
