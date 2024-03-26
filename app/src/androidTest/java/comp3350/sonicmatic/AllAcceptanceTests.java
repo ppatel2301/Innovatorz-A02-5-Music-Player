@@ -12,7 +12,9 @@ import org.junit.runners.Suite;
         UserProfileTest.class,
         CreatePlaylistTest.class,
         OrganizePlaylistTest.class,
-        LeaderBoardTest.class
+        LeaderBoardTest.class,
+        DarkLightModeToggleTest.class,
+        UserPlaybackHistoryTest.class
 })
 
 public class AllAcceptanceTests {

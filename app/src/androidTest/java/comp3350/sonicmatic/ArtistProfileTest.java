@@ -46,27 +46,36 @@ public class ArtistProfileTest {
         SystemClock.sleep(1000);
     }
 
-//    @Test
-//    public void uploadMusicForUserToListen() throws UiObjectNotFoundException {
-//
-//        // Wait for page to load
-//        SystemClock.sleep(1000);
-//
-//        onView(withId(R.id.navigation_profile)).perform(click());
-//
-//        onView(withId(R.id.upload_Tracks)).perform(click());
-//
-//        UiDevice uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-//
-//        UiObject frame = uiDevice.findObject(new UiSelector());
+    @Test
+    public void uploadMusicForUserToListen() throws UiObjectNotFoundException {
+
+        // Wait for page to load
+        SystemClock.sleep(1000);
+
+        onView(withId(R.id.navigation_profile)).perform(click());
+
+        // opens the upload page (download page)
+        onView(withId(R.id.upload_Tracks)).perform(click());
+
+        UiDevice uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+
+        UiObject frame = uiDevice.findObject(new UiSelector());
+
+        UiObject firstItem = uiDevice.findObject(new UiSelector().clickable(true));
+        firstItem.click();
+
+        firstItem.getChild(firstItem.getSelector());
+
+        SystemClock.sleep(1000);
 //
 //        System.out.println(frame.getText());
+//        System.out.println(frame.getChild(frame.getSelector()).getChildCount());
 //        UiObject child = frame.getChild(frame.getSelector());
-//        System.out.println(child.getChild(child.getSelector()));
-//
-////        clickFirstItem.click();
-////
-////
-////        clickFirstItem.getChild(new UiSelector()).click();
-//    }
+//        System.out.println(child.getText());
+//        System.out.println(child.getChild(child.getSelector()).getChildCount());
+//        System.out.println(child.getChild(child.getSelector()).getChild((child.getChild(child.getSelector()).getSelector())).getText());
+
+//        clickFirstItem.click();
+//        clickFirstItem.getChild(new UiSelector()).click();
+    }
 }
