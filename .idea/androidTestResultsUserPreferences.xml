@@ -49,6 +49,7 @@
                 <map>
                   <entry key="Duration" value="90" />
                   <entry key="Google Pixel Tablet" value="120" />
+                  <entry key="Pixel_Tablet_API_34" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
               </option>
@@ -62,6 +63,7 @@
                 <map>
                   <entry key="Duration" value="90" />
                   <entry key="Google Pixel Tablet" value="120" />
+                  <entry key="Pixel_Tablet_API_34" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
               </option>
@@ -107,6 +109,19 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="-381588302">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Pixel_Tablet_API_34" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="-280917861">
           <value>
             <AndroidTestResultsTableState>
@@ -114,6 +129,7 @@
                 <map>
                   <entry key="Duration" value="90" />
                   <entry key="Google Pixel Tablet" value="120" />
+                  <entry key="Pixel_Tablet_API_34" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
               </option>
@@ -173,6 +189,19 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="351348766">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Pixel_Tablet_API_34" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="385900646">
           <value>
             <AndroidTestResultsTableState>
@@ -180,6 +209,7 @@
                 <map>
                   <entry key="Duration" value="90" />
                   <entry key="Google Pixel Tablet" value="120" />
+                  <entry key="Pixel_Tablet_API_34" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
               </option>

@@ -41,12 +41,18 @@ public class MusicTest {
 
     @Test
     public void playMusic(){
+        // Wait for the page to load
+        SystemClock.sleep(2000);
+
         // on home page
         onView(withId(R.id.song_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
+
         // Wait for page to load
         SystemClock.sleep(1000);
+
         onView(withId(R.id.play_pause_button)).perform(click());
-        // listen to music for 1 sec
-        SystemClock.sleep(1000);
+
+        // listen to music for 2 sec
+        SystemClock.sleep(2000);
     }
 }

@@ -36,6 +36,9 @@ public class UserPlaybackHistoryTest {
     @Test
     public void testUserHistory()
     {
+        // Wait for the page to load
+        SystemClock.sleep(2000);
+
         // Play music and pause from home page
         onView(withId(R.id.song_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
 

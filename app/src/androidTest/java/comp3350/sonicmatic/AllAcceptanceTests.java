@@ -10,13 +10,14 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         MusicPlayerTest.class,
         UserProfileTest.class,
+        ArtistProfileTest.class,
         CreatePlaylistTest.class,
         OrganizePlaylistTest.class,
         LeaderBoardTest.class,
-        DarkLightModeToggleTest.class,
-        UserPlaybackHistoryTest.class
+        UserPlaybackHistoryTest.class,
+        BrowseCatalogTest.class,
+        DarkLightModeToggleTest.class
 })
 
 public class AllAcceptanceTests {
 }
-

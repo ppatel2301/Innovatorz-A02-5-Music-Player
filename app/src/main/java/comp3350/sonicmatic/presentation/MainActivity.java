@@ -10,6 +10,8 @@ import android.Manifest;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.FileUtils;
 import android.provider.OpenableColumns;
 import android.view.Menu;
 import android.view.View;
@@ -40,6 +42,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
@@ -143,6 +148,8 @@ public class MainActivity extends AppCompatActivity {
         addListeningAdapter();
         requestPermissions();
         initTrackPicker();
+        moveFilesToDownloadsFolder(getApplicationContext(), "music/Asylum.mp3");
+        moveFilesToDownloadsFolder(getApplicationContext(), "music/Archetype.mp3");
 
         drawer = binding.drawerProfileLayout;
         usernameText = drawer.findViewById(R.id.profile_username);
@@ -335,9 +342,28 @@ public class MainActivity extends AppCompatActivity {
         {
             String displayName = accessProfile.getDisplayName();
 
-            disableEnablePlaylistFeature(displayName.equals("GUEST"));
+            disableEnablePlaylistFeature(!displayName.equals("GUEST"));
 
             usernameText.setText(displayName);
+        }
+    }
+
+    private void moveFilesToDownloadsFolder(Context context, String pathToMove)
+    {
+        File dowloadFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+
+        try{
+            // File to move name (music.mp3)
+            String fileName = new File(pathToMove).getName();
+
+            File output = new File(dowloadFolder, fileName);
+
+            InputStream input = context.getAssets().open(pathToMove);
+            FileOutputStream outputStream = new FileOutputStream(output);
+            FileUtils.copy(input, outputStream);
+        }catch (IOException e)
+        {
+            Toast.makeText(context, "File moved Already", Toast.LENGTH_SHORT).show();
         }
     }
 

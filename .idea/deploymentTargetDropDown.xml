@@ -2,10 +2,7 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="DarkLightModeToggleTest">
-        <State />
-      </entry>
-      <entry key="LeaderBoardTest">
+      <entry key="AllAcceptanceTests">
         <State />
       </entry>
       <entry key="app">
@@ -24,13 +21,16 @@
           <timeTargetWasSelectedWithDropDown value="2024-03-24T03:57:30.045806Z" />
         </State>
       </entry>
-      <entry key="testDarkLightMode()">
+      <entry key="browseTest()">
+        <State />
+      </entry>
+      <entry key="organizePlaylistTest()">
+        <State />
+      </entry>
+      <entry key="playMusic()">
         <State />
       </entry>
       <entry key="testUserHistory()">
-        <State />
-      </entry>
-      <entry key="uploadMusicForUserToListen()">
         <State />
       </entry>
     </value>

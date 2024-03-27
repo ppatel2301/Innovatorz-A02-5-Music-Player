@@ -42,9 +42,6 @@ public class OrganizePlaylistTest {
         onView(withId(R.id.login_pass)).perform(typeText("comp3350"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.loginButton)).perform(click());
-
-        // Remove any playlists created by the user
-        removePlaylists();
     }
 
     @Test
@@ -81,7 +78,7 @@ public class OrganizePlaylistTest {
         SystemClock.sleep(1000);
 
         // open the playlist
-        onView(withId(R.id.libRecyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.libRecyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
         SystemClock.sleep(1000);
 
         onView(withId(R.id.more_playlist_info)).perform(click());
@@ -92,20 +89,6 @@ public class OrganizePlaylistTest {
 
         Espresso.pressBack();
         SystemClock.sleep(1000);
-    }
-
-    private void removePlaylists()
-    {
-        AccessProfile accessProfile = new AccessProfile();
-        accessProfile.login("Profile11", "comp3350");
-
-        AccessPlaylist accessPlaylist = new AccessPlaylist();
-        ArrayList<IPlaylist> playlist =  accessPlaylist.getPlaylists(accessProfile);
-
-        for(IPlaylist p: playlist)
-        {
-            accessPlaylist.deletePlaylist(p.getPlaylistName(), accessProfile);
-        }
     }
 
     private void addMusicToPlaylist(int songs)
