@@ -83,7 +83,10 @@ public class PlaylistPersistence extends Persistence
 
             try(final Connection c = getConnection())
             {
-                final String update = "UPDATE playlists SET name = ?, creator_username = ? WHERE playlist_id = ?";
+
+                // don't allow the changing of the creator or playlist ID, just the name
+
+                final String update = "UPDATE playlists SET name = ? WHERE playlist_id = ?";
                 final PreparedStatement statement = c.prepareStatement(update);
 
                 statement.setString(1, playlist.getName());
@@ -113,13 +116,18 @@ public class PlaylistPersistence extends Persistence
     {
         boolean success = true;
 
+        boolean inside_already; // make sure the id and/or creator-name combo are not already inside
+
         Playlist playlist;
 
         if (item instanceof Playlist)
         {
             playlist = ((Playlist)(item));
 
-            if (!get(playlist.getPrimaryKey()).getPrimaryKey().equals(playlist.getPrimaryKey()))
+            inside_already = get(playlist.getPrimaryKey()).getPrimaryKey().equals(playlist.getPrimaryKey())
+                    && get(playlist.getName(), playlist.getCreatorUsername()).getId() == NullPlaylist.getNullPlaylist().getId();
+
+            if (!inside_already)
             {
                 try(final Connection c = getConnection())
                 {

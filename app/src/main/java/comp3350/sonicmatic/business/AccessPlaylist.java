@@ -13,7 +13,6 @@ import comp3350.sonicmatic.persistance.playlistSong.PlaylistSong;
 import comp3350.sonicmatic.persistance.playlistSong.PlaylistSongPersistence;
 import comp3350.sonicmatic.persistance.profile.GuestProfile;
 import comp3350.sonicmatic.persistance.profile.NullProfile;
-import comp3350.sonicmatic.persistance.profile.ProfilePersistence;
 
 public class AccessPlaylist {
 
@@ -27,7 +26,7 @@ public class AccessPlaylist {
         this.playlistSongPersistence = Services.getPlaylistSongPersistence();
     }
 
-    public AccessPlaylist(final PlaylistPersistence playlistPersistence, final PlaylistSongPersistence playlistSongPersistence, final ProfilePersistence profilePersistence)
+    public AccessPlaylist(final PlaylistPersistence playlistPersistence, final PlaylistSongPersistence playlistSongPersistence)
     {
         this.playlistPersistence = playlistPersistence;
         this.playlistSongPersistence = playlistSongPersistence;
@@ -52,14 +51,13 @@ public class AccessPlaylist {
                 curr_playlist = p.getPrimaryKey(); // for accessing correct playlist
                 playlists.add(new MusicTrackPlaylist(p.getName())); // add a new playlist in
 
-                playlist_songs_from_db = playlistSongPersistence.getPlaylistSongs(curr_playlist); // get all the songs for this playlist;
+                playlist_songs_from_db = playlistSongPersistence.getPlaylistSongs(curr_playlist); // get all the songs for this playlist
 
                 for (PlaylistSong s : playlist_songs_from_db) // iterate through them and make usable data with them
                 {
                     playlists.get(playlists.size()-1).addMusicTracks(Services.createSongFromPath(s.getFileNameExt()));
                 }
             }
-
         }
 
         return playlists;
@@ -68,70 +66,79 @@ public class AccessPlaylist {
     public boolean newPlaylist(String name, AccessProfile profileAccess)
     {
         boolean success = false;
-        String username = profileAccess.getUsername();
+        String username;
 
-        if (!(username.equals(GuestProfile.getGuestProfile().getUsername()) || username.equals(NullProfile.getNullProfile().getUsername())))
+        if (profileAccess != null)
         {
-            if (Persistence.isStringOkay(name))
+            username = profileAccess.getUsername();
+
+            if (!(username.equals(GuestProfile.getGuestProfile().getUsername()) || username.equals(NullProfile.getNullProfile().getUsername())))
             {
-                success = playlistPersistence.insert(new Playlist(username, name));
+                if (Persistence.isStringOkay(name))
+                {
+                    success = playlistPersistence.insert(new Playlist(username, name));
+                }
             }
         }
-
         return success;
     }
 
     public boolean deletePlaylist(String name, AccessProfile profileAccess)
     {
         boolean success = false;
-        String username = profileAccess.getUsername();
 
-        if (!(username.equals(GuestProfile.getGuestProfile().getUsername()) || username.equals(NullProfile.getNullProfile().getUsername())))
+        if (profileAccess != null && !(profileAccess.getUsername().equals(GuestProfile.getGuestProfile().getUsername()) || profileAccess.getUsername().equals(NullProfile.getNullProfile().getUsername())))
         {
-            success = playlistPersistence.delete(playlistPersistence.get(name, username));
+            success = playlistPersistence.delete(playlistPersistence.get(name, profileAccess.getUsername()));
         }
-
         return success;
     }
 
     public boolean insertIntoPlaylist(String name, ISong song, AccessProfile profileAccess)
     {
         boolean success = false;
-        String username = profileAccess.getUsername();
+        String username;
         Playlist from_db;
         PlaylistSong new_song;
 
-        if (!(username.equals(GuestProfile.getGuestProfile().getUsername()) || username.equals(NullProfile.getNullProfile().getUsername())))
+        if (profileAccess != null && song != null)
         {
-            from_db = playlistPersistence.get(name, username);
+            username = profileAccess.getUsername();
 
-            String path = song.getTitle() + ".mp3";
-            new_song = new PlaylistSong(path, from_db.getId());
+            if (!(username.equals(GuestProfile.getGuestProfile().getUsername()) || username.equals(NullProfile.getNullProfile().getUsername())))
+            {
+                from_db = playlistPersistence.get(name, username);
 
-            success = playlistSongPersistence.insert(new_song);
+                String path = song.getTitle() + ".mp3";
+                new_song = new PlaylistSong(path, from_db.getId());
+                
+                success = playlistSongPersistence.insert(new_song);
+            }
         }
-
         return success;
     }
 
     public boolean deleteFromPlaylist(String name, ISong song, AccessProfile profileAccess)
     {
         boolean success = false;
-        String username = profileAccess.getUsername();
+        String username;
         Playlist from_db;
         PlaylistSong delete_song;
 
-        if (!(username.equals(GuestProfile.getGuestProfile().getUsername()) || username.equals(NullProfile.getNullProfile().getUsername())))
+        if (song != null)
         {
-            from_db = playlistPersistence.get(name, username);
+            username = profileAccess.getUsername();
 
-            String path = song.getTitle() + ".mp3";
-            delete_song = new PlaylistSong(path, from_db.getId());
+            if (!(username.equals(GuestProfile.getGuestProfile().getUsername()) || username.equals(NullProfile.getNullProfile().getUsername())))
+            {
+                from_db = playlistPersistence.get(name, username);
 
-            success = playlistSongPersistence.delete(delete_song);
+                String path = song.getTitle() + ".mp3";
+                delete_song = new PlaylistSong(path, from_db.getId());
+                
+                success = playlistSongPersistence.delete(delete_song);
+            }
         }
-
         return success;
     }
-
 }
