@@ -5,6 +5,9 @@
       <entry key="AllAcceptanceTests">
         <State />
       </entry>
+      <entry key="UserPlaybackHistoryTest">
+        <State />
+      </entry>
       <entry key="app">
         <State>
           <targetSelectedWithDropDown>
@@ -21,16 +24,13 @@
           <timeTargetWasSelectedWithDropDown value="2024-03-24T03:57:30.045806Z" />
         </State>
       </entry>
-      <entry key="browseTest()">
-        <State />
-      </entry>
-      <entry key="organizePlaylistTest()">
-        <State />
-      </entry>
-      <entry key="playMusic()">
-        <State />
-      </entry>
       <entry key="testUserHistory()">
+        <State />
+      </entry>
+      <entry key="uploadMusic()">
+        <State />
+      </entry>
+      <entry key="uploadMusicForUserToListen()">
         <State />
       </entry>
     </value>

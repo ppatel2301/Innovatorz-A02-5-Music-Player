@@ -20,8 +20,8 @@ import comp3350.sonicmatic.presentation.MainActivity;
 
 public class ArtistProfileTest {
 
-    private final int MUSIC_X = 100;
-    private final int MUSIC_Y = 600;
+    private final int MUSIC_X = 450;
+    private final int MUSIC_Y = 800;
 
     @Rule
     public ActivityScenarioRule<MainActivity> activityTestRule = new ActivityScenarioRule<>(MainActivity.class);

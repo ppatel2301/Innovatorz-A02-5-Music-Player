@@ -14,12 +14,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_add_circle_outline_black_24" />
+        app:srcCompat="@drawable/baseline_add_circle_outline_24" />
 
     <ImageView
         android:id="@+id/song_image"
         android:layout_width="93dp"
         android:layout_height="88dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

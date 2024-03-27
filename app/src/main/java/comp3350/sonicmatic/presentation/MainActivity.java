@@ -16,7 +16,6 @@ import android.provider.OpenableColumns;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -46,7 +45,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 import comp3350.sonicmatic.R;
@@ -148,8 +146,8 @@ public class MainActivity extends AppCompatActivity {
         addListeningAdapter();
         requestPermissions();
         initTrackPicker();
-        moveFilesToDownloadsFolder(getApplicationContext(), "music/Asylum.mp3");
-        moveFilesToDownloadsFolder(getApplicationContext(), "music/Archetype.mp3");
+        moveFilesToDownloadsFolder(getApplicationContext(), "music/Catatonia.mp3");
+        moveFilesToDownloadsFolder(getApplicationContext(), "music/Dopethrone.mp3");
 
         drawer = binding.drawerProfileLayout;
         usernameText = drawer.findViewById(R.id.profile_username);
@@ -342,7 +340,7 @@ public class MainActivity extends AppCompatActivity {
         {
             String displayName = accessProfile.getDisplayName();
 
-            disableEnablePlaylistFeature(!displayName.equals("GUEST"));
+            disableEnablePlaylistFeature(!displayName.equals("Guest"));
 
             usernameText.setText(displayName);
         }

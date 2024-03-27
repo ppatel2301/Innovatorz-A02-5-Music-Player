@@ -8,15 +8,16 @@ import org.junit.runners.Suite;
 @LargeTest
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
+        UserPlaybackHistoryTest.class,
         MusicPlayerTest.class,
         UserProfileTest.class,
         ArtistProfileTest.class,
         CreatePlaylistTest.class,
         OrganizePlaylistTest.class,
         LeaderBoardTest.class,
-        UserPlaybackHistoryTest.class,
         BrowseCatalogTest.class,
-        DarkLightModeToggleTest.class
+        DarkLightModeToggleTest.class,
+        MusicTest.class
 })
 
 public class AllAcceptanceTests {

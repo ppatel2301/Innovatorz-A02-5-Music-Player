@@ -66,11 +66,24 @@ public class PlaylistDetailFragment extends Fragment {
         String listName = getArguments().getString("playlistName");
         playlistName.setText(listName);
 
-        addMusicToList(trackList);
-
         // Using an adapter to upload a list of music tracks which are in the current list chosen
         // by the user
-        observePlaylist(playlistViewModel);
+        playlistViewModel.getPlaylist().observe(getViewLifecycleOwner(), new Observer<ArrayList<IPlaylist>>() {
+            @Override
+            public void onChanged(ArrayList<IPlaylist> updatedPlaylist) {
+                playlists = updatedPlaylist;
+
+                if(playlists != null)
+                {
+                    int id = getArguments().getInt("playlistId");
+
+                    ArrayList<ISong> tracks = playlists.get(id).getPlaylist();
+                    PlaylistMusicAdapter musicAdapter = new PlaylistMusicAdapter(tracks);
+                    trackList.setAdapter(musicAdapter);
+                    trackList.setLayoutManager(new LinearLayoutManager(getContext()));
+                }
+            }
+        });
 
         Button button = root.findViewById(R.id.more_playlist_info);
         button.setOnClickListener(new View.OnClickListener() {

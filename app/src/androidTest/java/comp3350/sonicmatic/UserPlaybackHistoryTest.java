@@ -10,6 +10,8 @@ import android.os.SystemClock;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
+import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.uiautomator.UiDevice;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -26,6 +28,8 @@ public class UserPlaybackHistoryTest {
     public void setUp() {
         SystemClock.sleep(1000);
 
+        acceptPermissions();
+
         // login
         onView(withId(R.id.login_username)).perform(typeText("Profile11"));
         onView(withId(R.id.login_pass)).perform(typeText("comp3350"));
@@ -36,14 +40,11 @@ public class UserPlaybackHistoryTest {
     @Test
     public void testUserHistory()
     {
-        // Wait for the page to load
-        SystemClock.sleep(2000);
-
         // Play music and pause from home page
-        onView(withId(R.id.song_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
+        onView(withId(R.id.song_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 
         // Wait for page to load
-        SystemClock.sleep(1000);
+        SystemClock.sleep(2000);
 
         onView(withId(R.id.play_pause_button)).perform(click());
 
@@ -56,5 +57,18 @@ public class UserPlaybackHistoryTest {
         // View playback history
         onView(withId(R.id.navigation_profile)).perform(click());
         SystemClock.sleep(2000);
+    }
+
+    private void acceptPermissions()
+    {
+        UiDevice uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+
+        int height = uiDevice.getDisplayHeight()/2;
+        int width = uiDevice.getDisplayWidth()/2;
+        int offset = 100;
+
+        uiDevice.click(width, height + offset);
+        uiDevice.click(width, height + (offset/2));
+        uiDevice.click(width, height + (offset/2));
     }
 }

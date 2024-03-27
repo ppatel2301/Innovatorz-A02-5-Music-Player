@@ -73,9 +73,6 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
 
                 notifyItemRemoved(holder.getAdapterPosition());
 
-                // update to have removed music from playlist
-                playlistViewModel.updateList(accessPlaylist.getPlaylists(userViewModel.getProfile()));
-
                 Toast.makeText(view.getContext(), "Song Removed",Toast.LENGTH_SHORT).show();
             }
         });

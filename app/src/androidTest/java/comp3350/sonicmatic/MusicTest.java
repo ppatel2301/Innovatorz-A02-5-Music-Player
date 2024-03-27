@@ -54,5 +54,10 @@ public class MusicTest {
 
         // listen to music for 2 sec
         SystemClock.sleep(2000);
+
+        // Pause the music
+        onView(withId(R.id.play_pause_button)).perform(click());
+
+        SystemClock.sleep(2000);
     }
 }

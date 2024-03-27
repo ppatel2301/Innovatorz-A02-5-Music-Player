@@ -74,10 +74,7 @@ public class BottomLayoutFragment extends BottomSheetDialogFragment {
     {
         if(playlists != null)
         {
-            IPlaylist playlist = playlists.get(playlists.indexOf(list));
-
-            playlist.updatePlaylist(updatedPlaylist);
-
+            playlists.get(playlists.indexOf(list)).updatePlaylist(updatedPlaylist);
             playlistViewModel.updateList(playlists);
         }
     }
