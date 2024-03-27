@@ -82,6 +82,7 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
             public void onClick(View view) {
                 // Open music player for the clicked music by user
                 musicViewModel.setSelectedTrack(musicTrack);
+                musicViewModel.setSongs(tracks);
                 Navigation.findNavController(view).navigate(R.id.musicFragment, null);
             }
         });
