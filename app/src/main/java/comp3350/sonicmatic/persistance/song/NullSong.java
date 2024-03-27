@@ -18,6 +18,6 @@ public class NullSong extends Song
 
     private NullSong()
     {
-        super(NULL_SONG);
+        super(NULL_SONG,0);
     }
 }

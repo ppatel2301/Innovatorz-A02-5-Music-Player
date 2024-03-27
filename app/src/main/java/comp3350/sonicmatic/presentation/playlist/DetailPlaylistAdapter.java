@@ -69,6 +69,7 @@ public class DetailPlaylistAdapter extends  RecyclerView.Adapter<DetailPlaylistA
                 // Creating a bundle to pass data to the playlistDetail fragment
                 Bundle bundle = new Bundle();
                 bundle.putString("playlistName", playlist.getPlaylistName());
+                bundle.putInt("playlistId", holder.getAdapterPosition());
 
                 // Setting the selected playlist
                 playlistViewModel.setSelectedPlaylist(playlist);

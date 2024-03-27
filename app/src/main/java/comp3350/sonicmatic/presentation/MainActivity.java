@@ -1,25 +1,35 @@
 package comp3350.sonicmatic.presentation;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.Manifest;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
+import android.os.FileUtils;
+import android.provider.OpenableColumns;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -28,9 +38,13 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 import comp3350.sonicmatic.R;
@@ -46,6 +60,26 @@ import comp3350.sonicmatic.presentation.player.MusicViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int REQUEST_BLUETOOTH_AUDIO = 124;
+
+    private static final String[] AUDIO_BLUETOOTH_ = {
+            Manifest.permission.READ_MEDIA_AUDIO,
+            Manifest.permission.MANAGE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
+            Manifest.permission.BLUETOOTH_SCAN,
+            Manifest.permission.BLUETOOTH_CONNECT,
+            Manifest.permission.BLUETOOTH_PRIVILEGED
+    };
+
+    private static final String[] AUDIO = {
+            Manifest.permission.READ_MEDIA_AUDIO,
+            Manifest.permission.MANAGE_EXTERNAL_STORAGE
+    };
+
+    private static final String DARK_MODE = "night_mode";
+
     private DrawerLayout drawer;
     private ListeningHistoryMusicAdapter adapter;
     private View layout;
@@ -55,12 +89,27 @@ public class MainActivity extends AppCompatActivity {
     private UserViewModel userViewModel;
     private View trackHistoryView;
     private ActivityResultLauncher<String> picker;
+    private ActivityResultLauncher<Intent> bluetoothEnableLauncher;
+    private ActivityResultLauncher<Intent> audioEnableLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+
+        SharedPreferences sharedPreferences = getSharedPreferences("app_preferences", MODE_PRIVATE);
+
+        boolean isNightMode = sharedPreferences.getBoolean(DARK_MODE, false);
+        if(isNightMode)
+        {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            binding.darkLightModeToggle.setChecked(true);
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            binding.darkLightModeToggle.setChecked(false);
+        }
+
         setContentView(binding.getRoot());
 
         // required that all instances of the music player have access to the context
@@ -73,8 +122,32 @@ public class MainActivity extends AppCompatActivity {
         //Hide the status bar
         Objects.requireNonNull(getSupportActionBar()).hide();
 
+        // Initialize launcher for enabling Bluetooth
+        bluetoothEnableLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == RESULT_OK) {
+                // Bluetooth was enabled
+                Toast.makeText(this, "Bluetooth enabled", Toast.LENGTH_SHORT).show();
+            } else {
+                // User didn't enable Bluetooth
+                Toast.makeText(this, "Bluetooth not enabled", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        audioEnableLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == RESULT_OK) {
+                // Bluetooth was enabled
+                Toast.makeText(this, "Audio enabled", Toast.LENGTH_SHORT).show();
+            } else {
+                // User didn't enable Bluetooth
+                Toast.makeText(this, "Audio not enabled", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         addListeningAdapter();
+        requestPermissions();
         initTrackPicker();
+        moveFilesToDownloadsFolder(getApplicationContext(), "music/Catatonia.mp3");
+        moveFilesToDownloadsFolder(getApplicationContext(), "music/Dopethrone.mp3");
 
         drawer = binding.drawerProfileLayout;
         usernameText = drawer.findViewById(R.id.profile_username);
@@ -127,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
                 if(!userViewModel.isLoggedOut())
                 {
                     layout.setVisibility(View.VISIBLE);
+                    binding.navView.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -181,6 +255,70 @@ public class MainActivity extends AppCompatActivity {
                 layout.setVisibility(View.VISIBLE);
             }
         });
+
+        Switch toggle_dark_light_mode = binding.darkLightModeToggle;
+        toggle_dark_light_mode.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+            if(isChecked)
+            {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            }else{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+            sharedPreferences.edit().putBoolean(DARK_MODE, isChecked).apply();
+        });
+    }
+
+    private void enableBluetooth() {
+
+        BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+        BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
+        if (bluetoothAdapter == null) {
+            // Device does not support Bluetooth
+            Toast.makeText(this, "Bluetooth is not supported on this device", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!bluetoothAdapter.isEnabled()) {
+            // Bluetooth is not enabled, request to enable it
+            Intent enableBluetoothIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            if (enableBluetoothIntent.resolveActivity(getPackageManager()) != null) {
+                bluetoothEnableLauncher.launch(enableBluetoothIntent);
+            } else {
+                Toast.makeText(this, "No activity found to handle Bluetooth enable request", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            // Bluetooth is already enabled
+            Toast.makeText(this, "Bluetooth is already enabled", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void requestPermissions()
+    {
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this, AUDIO_BLUETOOTH_, REQUEST_BLUETOOTH_AUDIO);
+        }else if(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this, AUDIO, REQUEST_BLUETOOTH_AUDIO);
+        } else{
+            enableBluetooth();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == REQUEST_BLUETOOTH_AUDIO)
+        {
+            // Checking whether user granted the permission or not.
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                enableBluetooth();
+            }else{
+                Toast.makeText(this, "Permission Denied.", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void addListeningAdapter()
@@ -202,7 +340,28 @@ public class MainActivity extends AppCompatActivity {
         {
             String displayName = accessProfile.getDisplayName();
 
+            disableEnablePlaylistFeature(!displayName.equals("Guest"));
+
             usernameText.setText(displayName);
+        }
+    }
+
+    private void moveFilesToDownloadsFolder(Context context, String pathToMove)
+    {
+        File dowloadFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+
+        try{
+            // File to move name (music.mp3)
+            String fileName = new File(pathToMove).getName();
+
+            File output = new File(dowloadFolder, fileName);
+
+            InputStream input = context.getAssets().open(pathToMove);
+            FileOutputStream outputStream = new FileOutputStream(output);
+            FileUtils.copy(input, outputStream);
+        }catch (IOException e)
+        {
+            Toast.makeText(context, "File moved Already", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -212,42 +371,36 @@ public class MainActivity extends AppCompatActivity {
                 track -> {
                     if(track != null)
                     {
-                        // This will be used to get the path of the music and play in the later phase
-
-//                        File dir = getExternalFilesDir(Environment.DIRECTORY_MUSIC);
-//                        String path = new File(dir, "Tere_Sang_Yaara_-_Rustom_Song_Story_Akshay_Kumar_Ileana_Dcruz_Atif_Aslam_COKE_STUDIO_MIX_[freevideoconverter.online].mp3").getPath();
-//                        Toast.makeText(this, "Path:" + path, Toast.LENGTH_SHORT).show();
-//                        System.out.println(path);
+                        String trackName = getFileName(getApplicationContext(), track);
 
                         AccessSong accessSong = new AccessSong();
 
-                        String trackName = getTrackNameFromFile(track);
-
-                        boolean inserted = accessSong.insertSong(trackName);
+                        boolean inserted = accessSong.insertSong(trackName, 1);
                         if(inserted)
                         {
                             Toast.makeText(this, "Track uploaded. Can be viewed in the Home/Browse Page", Toast.LENGTH_SHORT).show();
                         }else{
-                            Toast.makeText(this, "Track didn't upload properly.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Track already uploaded. View in Home/Browse", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
 
-    private String getTrackNameFromFile(Uri uri)
+    private void disableEnablePlaylistFeature(boolean bool)
     {
-        String fileName = "";
-
-        // Gets the path of the selected music
-        String path = Arrays.toString(uri.getPathSegments().toArray());
-
-        // Retries the trackname from that path
-        String trackName = path.split(",")[1].substring(0,path.split(",")[1].length() - 1).trim();
-        fileName = trackName.substring(trackName.lastIndexOf("/")+1);
-
-        return fileName;
+        BottomNavigationView layout = findViewById(R.id.nav_view);
+        Menu menu = layout.getMenu();
+        menu.findItem(R.id.navigation_dashboard).setVisible(bool);
     }
 
+    private String getFileName(Context context, Uri uri)
+    {
+        Cursor cursor = context.getContentResolver().query(uri, null,null, null);
+        int index = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+        cursor.moveToFirst();
+
+        return cursor.getString(index);
+    }
 
     private void clearBackStack()
     {

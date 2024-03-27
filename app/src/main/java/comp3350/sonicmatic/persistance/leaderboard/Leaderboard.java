@@ -13,6 +13,9 @@ public class Leaderboard implements IPersistentItem {
         board = bd;
     }
 
+    protected Leaderboard() {
+    }
+
     @Override
     public String getPrimaryKey() {
         String keys = "";

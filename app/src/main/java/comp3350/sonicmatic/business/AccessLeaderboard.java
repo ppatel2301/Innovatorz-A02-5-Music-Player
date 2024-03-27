@@ -1,8 +1,5 @@
 package comp3350.sonicmatic.business;
 
-
-import java.util.ArrayList;
-
 import comp3350.sonicmatic.application.Services;
 import comp3350.sonicmatic.objects.musicArtist.LeaderboardArtist;
 import comp3350.sonicmatic.persistance.leaderboard.Leaderboard;
@@ -21,7 +18,12 @@ public class AccessLeaderboard {
     }
 
     public Leaderboard getLeaderboard(){
-        return leaderboardPersistence.get();
+        Leaderboard toReturn = leaderboardPersistence.get();
+        if(!toReturn.getLeaderboard().isEmpty())
+        {
+            leaderboard = toReturn;
+        }
+        return leaderboard;
     }
 
     public LeaderboardArtist getArtistAt(int index){

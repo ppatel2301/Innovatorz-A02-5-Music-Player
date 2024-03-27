@@ -3,13 +3,17 @@ package comp3350.sonicmatic.application;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaMetadataRetriever;
+import android.net.Uri;
+import android.os.Environment;
 
+import java.io.File;
 import java.io.FileDescriptor;
 import java.io.IOException;
 
 import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.musicPlayer.MusicPlayer;
 import comp3350.sonicmatic.objects.musicArtist.MusicArtist;
+import comp3350.sonicmatic.objects.musicArtist.NullMusicArtist;
 import comp3350.sonicmatic.objects.musicTrack.MusicTrack;
 import comp3350.sonicmatic.objects.musicTrack.NullMusicTrack;
 import comp3350.sonicmatic.objects.songDuration.SongDuration;
@@ -51,7 +55,7 @@ public class Services
         }
     }
 
-    public static ISong createSongFromPath(String path)
+    public static ISong createSongPathFromAssets(String path)
     {
         ISong create_me = null;
 
@@ -95,6 +99,62 @@ public class Services
         else
         {
             create_me = NullMusicTrack.getNullMusicTrack();
+        }
+        return create_me;
+    }
+
+    public static ISong createSongFromPath(String path)
+    {
+        ISong created = NullMusicTrack.getNullMusicTrack();
+        try
+        {
+            String pathToTest = "music/" + path;
+            AssetFileDescriptor assetFileDescriptor = context.getAssets().openFd(pathToTest);
+            assetFileDescriptor.close();
+
+            // if in assets load from assets
+            created = createSongPathFromAssets(path);
+        }catch (IOException e)
+        {
+            // If not in assets
+            created = createSongPathFromUserUpload(path);
+        }
+        return created;
+    }
+
+    public static ISong createSongPathFromUserUpload(String trackName)
+    {
+        File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), trackName);
+        Uri uri = Uri.fromFile(dir);
+        int offset = 4;
+
+        ISong create_me = NullMusicTrack.getNullMusicTrack();
+
+        try(MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever())
+        {
+            mediaMetadataRetriever.setDataSource(context, uri);
+
+            String title = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+
+            if(title == null)
+            {
+                title = trackName.substring(0, trackName.length() - offset);
+            }
+
+            String artist = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
+
+            if(artist == null)
+            {
+                artist = NullMusicArtist.getNullMusicArtist().getName();
+            }
+
+            String duration = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+            create_me = new MusicTrack(title, new MusicArtist(artist), new SongDuration(duration), trackName);
+
+        }catch (Exception e) {
+            // Handle any exceptions
+            // Log or display an error message
+            System.out.println(e.getMessage());
         }
 
         return create_me;

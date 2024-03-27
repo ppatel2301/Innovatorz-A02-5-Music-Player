@@ -36,7 +36,14 @@ public class AccessSong
 
         for (Song s : song_rows)
         {
-            music_tracks.add(Services.createSongFromPath(s.getFileNameExt()));
+            ISong toAdd;
+            if(s.getOrigin() == SongPersistence.ACCESS_ASSETS)
+            {
+                toAdd = Services.createSongFromPath(s.getFileNameExt());
+            }else{
+                toAdd = Services.createSongPathFromUserUpload(s.getFileNameExt());
+            }
+            music_tracks.add(toAdd);
         }
 
         return music_tracks;
@@ -60,13 +67,13 @@ public class AccessSong
         return get_me;
     }
 
-    public boolean insertSong(String path)
+    public boolean insertSong(String path, int origin)
     {
-        return songPersistence.insert(new Song(path));
+        return songPersistence.insert(new Song(path, origin));
     }
     public boolean deleteSong(String path)
     {
-        return songPersistence.delete(new Song(path));
+        return songPersistence.delete(new Song(path, 0));
     }
 
 }

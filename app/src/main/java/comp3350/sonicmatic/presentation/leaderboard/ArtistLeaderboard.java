@@ -55,7 +55,8 @@ public class ArtistLeaderboard extends Fragment {
         Leaderboard leaderboard = accessLeaderboard.getLeaderboard();
 
         ArrayList<LeaderboardArtist> artists = leaderboard.getLeaderboard();
-        System.out.println(artists);
+        adapter.setArtistsList(artists);
+        adapter.notifyDataSetChanged();
 
         // Inflate the layout for this fragment
         return root;

@@ -21,12 +21,14 @@ import comp3350.sonicmatic.business.AccessPlaylist;
 import comp3350.sonicmatic.interfaces.IPlaylist;
 import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.presentation.login.UserViewModel;
+import comp3350.sonicmatic.presentation.player.MusicViewModel;
 
 public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdapter.PlaylistMusicViewHolder> {
 
     private ArrayList<ISong> tracks;
     private PlaylistViewModel playlistViewModel;
     private UserViewModel userViewModel;
+    private MusicViewModel musicViewModel;
 
     public PlaylistMusicAdapter(ArrayList<ISong> tracks)
     {
@@ -42,6 +44,7 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
         ViewModelProvider viewModelProvider = new ViewModelProvider((ViewModelStoreOwner) parent.getContext());
         playlistViewModel = viewModelProvider.get(PlaylistViewModel.class);
         userViewModel = viewModelProvider.get(UserViewModel.class);
+        musicViewModel = viewModelProvider.get(MusicViewModel.class);
 
         return new PlaylistMusicViewHolder(itemView);
     }
@@ -61,27 +64,16 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
                 // Update this to have remove song from the current playlist and update the database
                 // to have the updated database
                 IPlaylist currentList = playlistViewModel.getSelectedPlaylist();
-                ArrayList<IPlaylist> playlists = playlistViewModel.getPlaylist().getValue();
-
-                if(playlists != null)
-                {
-                    for(IPlaylist list: playlists)
-                    {
-                        if(currentList.getPlaylistName().equalsIgnoreCase(list.getPlaylistName()))
-                        {
-                            list.removeMusicTracks(musicTrack);
-                        }
-                    }
-                }
 
                 // Remove it from the users playlist from the database
                 AccessPlaylist accessPlaylist = new AccessPlaylist();
                 accessPlaylist.deleteFromPlaylist(currentList.getPlaylistName(), musicTrack, userViewModel.getProfile());
 
-                notifyItemRemoved(holder.getAdapterPosition());
-                Toast.makeText(view.getContext(), "Remove Song",Toast.LENGTH_SHORT).show();
+                tracks.remove(holder.getAdapterPosition());
 
-                removeMusicFromPlaylist(currentList);
+                notifyItemRemoved(holder.getAdapterPosition());
+
+                Toast.makeText(view.getContext(), "Song Removed",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -89,6 +81,7 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
             @Override
             public void onClick(View view) {
                 // Open music player for the clicked music by user
+                musicViewModel.setSelectedTrack(musicTrack);
                 Navigation.findNavController(view).navigate(R.id.musicFragment, null);
             }
         });
@@ -97,11 +90,6 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
     @Override
     public int getItemCount() {
         return tracks.size();
-    }
-
-    private void removeMusicFromPlaylist(IPlaylist playlist)
-    {
-
     }
 
     public class PlaylistMusicViewHolder extends RecyclerView.ViewHolder {

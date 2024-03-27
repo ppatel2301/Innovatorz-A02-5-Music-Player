@@ -10,7 +10,6 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -68,14 +67,6 @@ public class BottomLayoutFragment extends BottomSheetDialogFragment {
                 }
             }
         });
-
-        Button by_added_Seq = root.findViewById(R.id.sort_by_recently_added);
-        by_added_Seq.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updatePlaylist(playlistViewModel.getDefaultSelectedPlaylist().getPlaylist());
-            }
-        });
         return root;
     }
 
@@ -83,10 +74,7 @@ public class BottomLayoutFragment extends BottomSheetDialogFragment {
     {
         if(playlists != null)
         {
-            IPlaylist playlist = playlists.get(playlists.indexOf(list));
-
-            playlist.updatePlaylist(updatedPlaylist);
-
+            playlists.get(playlists.indexOf(list)).updatePlaylist(updatedPlaylist);
             playlistViewModel.updateList(playlists);
         }
     }
@@ -125,15 +113,5 @@ public class BottomLayoutFragment extends BottomSheetDialogFragment {
                 }
             }
         }
-    }
-
-    private void observePlaylist(PlaylistViewModel viewModel)
-    {
-        viewModel.getPlaylist().observe(getViewLifecycleOwner(), new Observer<ArrayList<IPlaylist>>() {
-            @Override
-            public void onChanged(ArrayList<IPlaylist> updatedPlaylist) {
-                playlists = updatedPlaylist;
-            }
-        });
     }
 }

@@ -60,12 +60,13 @@ public class HomeFragment extends Fragment {
             playlistAdapter = new PlaylistAdapter(new ArrayList<>());
         }
 
+        observePlaylist();
+
         // Setting the adapter for the playlist recycler view
         playlistView = root.findViewById(R.id.list_recyler_view);
         playlistView.setAdapter(playlistAdapter);
         playlistView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        observePlaylist();
 
         // Setting the adapter for the song recyler view
         songListView = root.findViewById(R.id.song_recycler_view);

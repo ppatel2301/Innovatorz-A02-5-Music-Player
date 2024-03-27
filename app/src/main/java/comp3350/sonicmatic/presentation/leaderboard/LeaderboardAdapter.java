@@ -14,15 +14,23 @@ import java.util.ArrayList;
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.business.AccessLeaderboard;
 import comp3350.sonicmatic.interfaces.IArtist;
+import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.objects.musicArtist.LeaderboardArtist;
 import comp3350.sonicmatic.persistance.leaderboard.Leaderboard;
 
 public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.LeaderboardViewHolder> {
 
-    private ArrayList<IArtist> artistsList;
+    private ArrayList<LeaderboardArtist> artistsList;
+    private int rank;
 
-    public LeaderboardAdapter(ArrayList<IArtist> artistLst){
+    public LeaderboardAdapter(ArrayList<LeaderboardArtist> artistLst){
         this.artistsList = artistLst;
+        rank = 1;
+    }
+
+    public void setArtistsList(ArrayList<LeaderboardArtist> artistsList)
+    {
+        this.artistsList = artistsList;
     }
 
     @NonNull
@@ -34,9 +42,13 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull LeaderboardViewHolder holder, int position) {
-        IArtist artist = artistsList.get(position);
+        LeaderboardArtist artist = artistsList.get(position);
 
         holder.nameText.setText(artist.getName());
+        holder.metric.setText(String.valueOf(artist.getMetric()));
+        holder.rank.setText(String.valueOf(rank));
+
+        rank+=1;
     }
 
     @Override

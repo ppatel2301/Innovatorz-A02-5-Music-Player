@@ -7,12 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-import comp3350.sonicmatic.interfaces.IArtist;
+import comp3350.sonicmatic.application.Services;
 import comp3350.sonicmatic.interfaces.IPersistentItem;
+import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.objects.musicArtist.LeaderboardArtist;
 import comp3350.sonicmatic.persistance.Persistence;
-import comp3350.sonicmatic.persistance.leaderboard.Leaderboard;
 
 public class LeaderboardPersistence extends Persistence {
 
@@ -24,16 +25,31 @@ public class LeaderboardPersistence extends Persistence {
 
     @Override
     protected Leaderboard fromResultSet(ResultSet rs) throws SQLException {
+        HashMap<String, Integer> mapping = new HashMap<>();
         ArrayList<LeaderboardArtist> leaderboard = new ArrayList<>();
         try {
             while (rs.next()){
-                LeaderboardArtist artist = new LeaderboardArtist(rs.getString("name"), rs.getInt("metric"));
-                leaderboard.add(artist);
+                ISong song = Services.createSongFromPath(rs.getString("file_name_ext"));
+                String artistName = song.getArtist().getName();
+                if (mapping.containsKey(artistName)){
+                    assert (mapping.get(artistName) != null);
+                    mapping.put(artistName, mapping.get(artistName) +1);
+                }
+                else{
+                    mapping.put(artistName, 1);
+                }
             }
         }
         catch (SQLException sqle){
             return NullLeaderboard.getNullLeaderboard();
         }
+
+        for (String key : mapping.keySet())
+        {
+            leaderboard.add(new LeaderboardArtist(key, mapping.get(key)));
+        }
+
+        leaderboard.sort(LeaderboardArtist::compareTo);
         return new Leaderboard(leaderboard);
     }
 
@@ -53,14 +69,7 @@ public class LeaderboardPersistence extends Persistence {
             final int sizeLimit = 5;
 
             @SuppressLint("DefaultLocale") // IDE-inserted line
-            final String query = String.format("WITH artists_per_playlist as " +
-                    "(SELECT PLAYLISTS.name as playlist_name FROM PLAYLISTS " +
-                    "LEFT JOIN PLAYLIST_SONGS on PLAYLISTS.playlist_id = PLAYLIST_SONGS.playlist_id " +
-                    "LEFT JOIN SONGS on PLAYLIST_SONGS.file_name_ext = SONGS.file_name_ext " +
-                    "LEFT JOIN ALBUMS on SONGS.album_id = ALBUMS.album_id " +
-                    "LEFT JOIN PROFILES on ALBUMS.artist_id = PROFILES username) " +
-                    "SELECT PROFILES.display_name, count(playlist_name) " +
-                    "GROUP BY ALBUMS.artist_id LIMIT %d;", sizeLimit);
+            final String query = "SELECT file_name_ext FROM playlist_songs;";
 
             queryResult = statement.executeQuery(query);
 
