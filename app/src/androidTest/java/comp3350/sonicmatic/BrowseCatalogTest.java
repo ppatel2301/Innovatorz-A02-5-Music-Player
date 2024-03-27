@@ -50,7 +50,7 @@ public class BrowseCatalogTest {
     }
 
     @Test
-    public void browseTest() throws UiObjectNotFoundException, IOException {
+    public void browseTest(){
         onView(withId(R.id.navigation_browse)).perform(click());
         SystemClock.sleep(1000);
 
@@ -59,9 +59,8 @@ public class BrowseCatalogTest {
 
         onView(withId(R.id.searchView))
                 .check(matches(isDisplayed()));
-//        onView(isAssignableFrom(SearchView.SearchAutoComplete.class)).perform(typeText("arch"));
 
-//        onView(withId(R.id.searchView)).check(matches(withText("Search results for" + "arch")));
-//        SystemClock.sleep(1000);
+        onView(isAssignableFrom(SearchView.SearchAutoComplete.class)).perform(typeText("arch"));
+        SystemClock.sleep(1000);
     }
 }

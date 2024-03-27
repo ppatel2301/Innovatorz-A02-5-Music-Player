@@ -64,27 +64,19 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
                 // Update this to have remove song from the current playlist and update the database
                 // to have the updated database
                 IPlaylist currentList = playlistViewModel.getSelectedPlaylist();
-                ArrayList<IPlaylist> playlists = playlistViewModel.getPlaylist().getValue();
-
-                if(playlists != null)
-                {
-                    for(IPlaylist list: playlists)
-                    {
-                        if(currentList.getPlaylistName().equalsIgnoreCase(list.getPlaylistName()))
-                        {
-                            list.removeMusicTracks(musicTrack);
-                        }
-                    }
-                }
 
                 // Remove it from the users playlist from the database
                 AccessPlaylist accessPlaylist = new AccessPlaylist();
                 accessPlaylist.deleteFromPlaylist(currentList.getPlaylistName(), musicTrack, userViewModel.getProfile());
 
-                notifyItemRemoved(holder.getAdapterPosition());
-                Toast.makeText(view.getContext(), "Remove Song",Toast.LENGTH_SHORT).show();
+                tracks.remove(holder.getAdapterPosition());
 
-                removeMusicFromPlaylist(currentList);
+                notifyItemRemoved(holder.getAdapterPosition());
+
+                // update to have removed music from playlist
+                playlistViewModel.updateList(accessPlaylist.getPlaylists(userViewModel.getProfile()));
+
+                Toast.makeText(view.getContext(), "Song Removed",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -101,11 +93,6 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
     @Override
     public int getItemCount() {
         return tracks.size();
-    }
-
-    private void removeMusicFromPlaylist(IPlaylist playlist)
-    {
-
     }
 
     public class PlaylistMusicViewHolder extends RecyclerView.ViewHolder {

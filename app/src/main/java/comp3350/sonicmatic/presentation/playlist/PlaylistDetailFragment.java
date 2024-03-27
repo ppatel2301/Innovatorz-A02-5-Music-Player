@@ -66,7 +66,7 @@ public class PlaylistDetailFragment extends Fragment {
         String listName = getArguments().getString("playlistName");
         playlistName.setText(listName);
 
-        addMusicToList(listName, trackList);
+        addMusicToList(trackList);
 
         // Using an adapter to upload a list of music tracks which are in the current list chosen
         // by the user
@@ -84,23 +84,16 @@ public class PlaylistDetailFragment extends Fragment {
         return root;
     }
 
-    private void addMusicToList(String playlistName,RecyclerView list)
+    private void addMusicToList(RecyclerView list)
     {
+        int id = getArguments().getInt("playlistId");
+
         if(playlists != null)
         {
-            for(IPlaylist currentList : playlists)
-            {
-                if(currentList.getPlaylistName().equalsIgnoreCase(playlistName))
-                {
-                    ArrayList<ISong> tracks = currentList.getPlaylist();
-                    if(!tracks.isEmpty())
-                    {
-                        PlaylistMusicAdapter musicAdapter = new PlaylistMusicAdapter(tracks);
-                        list.setAdapter(musicAdapter);
-                        list.setLayoutManager(new LinearLayoutManager(getContext()));
-                    }
-                }
-            }
+            ArrayList<ISong> tracks = playlists.get(id).getPlaylist();
+            PlaylistMusicAdapter musicAdapter = new PlaylistMusicAdapter(tracks);
+            list.setAdapter(musicAdapter);
+            list.setLayoutManager(new LinearLayoutManager(getContext()));
         }
     }
 
@@ -110,8 +103,6 @@ public class PlaylistDetailFragment extends Fragment {
             @Override
             public void onChanged(ArrayList<IPlaylist> updatedPlaylist) {
                 playlists = updatedPlaylist;
-
-                addMusicToList(playlistName.getText().toString(), trackList);
             }
         });
     }

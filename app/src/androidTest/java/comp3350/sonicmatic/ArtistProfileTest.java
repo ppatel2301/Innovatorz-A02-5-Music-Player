@@ -5,17 +5,12 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
-import static org.junit.Assert.assertTrue;
-
 import android.os.SystemClock;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.espresso.Espresso;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.uiautomator.UiObject;
-import androidx.test.uiautomator.UiObjectNotFoundException;
-import androidx.test.uiautomator.UiSelector;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -24,6 +19,9 @@ import org.junit.Test;
 import comp3350.sonicmatic.presentation.MainActivity;
 
 public class ArtistProfileTest {
+
+    private final int MUSIC_X = 100;
+    private final int MUSIC_Y = 600;
 
     @Rule
     public ActivityScenarioRule<MainActivity> activityTestRule = new ActivityScenarioRule<>(MainActivity.class);
@@ -46,27 +44,21 @@ public class ArtistProfileTest {
         SystemClock.sleep(1000);
     }
 
-//    @Test
-//    public void uploadMusicForUserToListen() throws UiObjectNotFoundException {
-//
-//        // Wait for page to load
-//        SystemClock.sleep(1000);
-//
-//        onView(withId(R.id.navigation_profile)).perform(click());
-//
-//        onView(withId(R.id.upload_Tracks)).perform(click());
-//
-//        UiDevice uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-//
-//        UiObject frame = uiDevice.findObject(new UiSelector());
-//
-//        System.out.println(frame.getText());
-//        UiObject child = frame.getChild(frame.getSelector());
-//        System.out.println(child.getChild(child.getSelector()));
-//
-////        clickFirstItem.click();
-////
-////
-////        clickFirstItem.getChild(new UiSelector()).click();
-//    }
+    @Test
+    public void uploadMusicForUserToListen() {
+
+        // Wait for page to load
+        SystemClock.sleep(1000);
+
+        onView(withId(R.id.navigation_profile)).perform(click());
+
+        // opens the upload page (download page)
+        onView(withId(R.id.upload_Tracks)).perform(click());
+
+        UiDevice uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        uiDevice.click(MUSIC_X,MUSIC_Y);
+
+        // Wait for the music to upload to the database
+        SystemClock.sleep(2000);
+    }
 }
