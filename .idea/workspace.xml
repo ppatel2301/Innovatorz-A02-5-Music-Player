@@ -3,7 +3,7 @@
   <component name="AndroidLayouts">
     <shared>
       <config>
-        <device id="pixel_tablet" />
+        <device id="pixel_c" />
       </config>
     </shared>
     <layouts>
@@ -27,7 +27,7 @@
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_collapsed_music_player.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_create_playlist.xml">
         <config>
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
@@ -38,6 +38,11 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_library.xml">
+        <config>
+          <theme>@style/Theme.Sonicmatic</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_login.xml">
         <config>
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
@@ -57,32 +62,17 @@
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_artist_profile_header.xml">
-        <config>
-          <theme>@style/Theme.Sonicmatic</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_music_history.xml">
-        <config>
-          <theme>@style/Theme.Sonicmatic</theme>
-        </config>
-      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_playlist.xml">
         <config>
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_playlist_detail_song.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_playlist_detail.xml">
         <config>
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_playlist_music.xml">
-        <config>
-          <theme>@style/Theme.Sonicmatic</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_search_artist.xml">
         <config>
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
@@ -97,7 +87,12 @@
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/test_bottom_sheet_layout.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/more_info_bottom_sheet_layout.xml">
+        <config>
+          <theme>@style/Theme.Sonicmatic</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml">
         <config>
           <theme>@style/Theme.Sonicmatic</theme>
         </config>
@@ -113,22 +108,14 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b402791-7042-4f6c-9785-470c2bc30ec9" name="Changes" comment="Playlist Persistence tests written but not working?">
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/integrationTests/AccessPlaylistTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/integrationTests/AccessProfileTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/integrationTests/AccessSongTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/accessPlaylistTest/FakePlaylistDB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/accessPlaylistTest/FakePlaylistSongDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+    <list default="true" id="38c60e9b-940f-4e35-8707-8258e86c2537" name="Changes" comment="more songs added. Those not in DB but still in assets for you to use are&#10;- Funeral Inception.mp3&#10;- Catatonia.mp3&#10;- Dopethrone.mp3">
+      <change afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/AllIntegrationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/database/PlaylistPersistenceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/database/PlaylistPersistenceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/database/PlaylistSongPersistenceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/database/PlaylistSongPersistenceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/database/SMDB.script" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/business/AccessPlaylist.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/business/AccessPlaylist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlist/Playlist.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/persistance/playlist/Playlist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/AccessPlaylistTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/accessPlaylistTest/AccessPlaylistTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/accessSongTest/FakeSongDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/comp3350/sonicmatic/business/accessSongTest/FakeSongDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/AllTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/AllTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/integrationTests/AccessPlaylistTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/integrationTests/AccessPlaylistTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/integrationTests/AccessProfileTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/integrationTests/AccessProfileTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/integrationTests/AccessSongTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/comp3350/sonicmatic/integrationTests/AccessSongTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,9 +134,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="layoutResourceFile" />
-        <option value="resourceFile" />
-        <option value="JUnit4 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -157,7 +141,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev-iteration3-playlist-persistence-backup" />
+        <entry key="$PROJECT_DIR$" value="dev-iteration3-ui" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -166,13 +150,12 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 8
+  &quot;associatedIndex&quot;: 4
 }</component>
-  <component name="ProjectId" id="2dQfHQq6L6gFKS3KBlOZXTGDSOr" />
+  <component name="ProjectId" id="2dumLKdJhUuIzUaqlDHEHFnJfrI" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -180,34 +163,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev-iteration3-playlist-persistence&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/elang/StudioProjects/innovators-a02-5/app/src/androidTest/java/comp3350/sonicmatic/integrationTests&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "dev-iteration3-playlist-persistence",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/dharm/Desktop/New folder (2)/innovators-a02-5",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\elang\StudioProjects\innovators-a02-5\app\src\androidTest\java\comp3350\sonicmatic\integrationTests" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\elang\StudioProjects\innovators-a02-5\app\src\main\java\comp3350\sonicmatic\persistance\playlist" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="comp3350.sonicmatic.persistance.playlistSong" />
-    </key>
-  </component>
+}]]></component>
   <component name="RunManager" selected="Android Instrumented Tests.testGetUserPlaylists()">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="Sonicmatic.app.main" />
@@ -586,58 +557,73 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="innovators-a02-5" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="innovators-a02-5" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Android Instrumented Tests.testGetUserPlaylists()" />
-        <item itemvalue="Android Instrumented Tests.PlaylistPersistenceTest" />
-        <item itemvalue="Android Instrumented Tests.PlaylistSongPersistenceTest" />
         <item itemvalue="Android Instrumented Tests.testInsert()" />
+        <item itemvalue="Android Instrumented Tests.testGetUserPlaylists()" />
         <item itemvalue="Android Instrumented Tests.testBadDelete() (1)" />
+        <item itemvalue="Android Instrumented Tests.PlaylistSongPersistenceTest" />
+        <item itemvalue="Android Instrumented Tests.PlaylistPersistenceTest" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4b402791-7042-4f6c-9785-470c2bc30ec9" name="Changes" comment="" />
-      <created>1709945135498</created>
+      <changelist id="38c60e9b-940f-4e35-8707-8258e86c2537" name="Changes" comment="" />
+      <created>1710866283767</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1709945135498</updated>
+      <updated>1710866283767</updated>
     </task>
-    <task id="LOCAL-00001" summary="bug fix - thanks dharm! Package restructure too. Old playlist code fully implemented again">
+    <task id="LOCAL-00001" summary="more songs added. Those not in DB but still in assets for you to use are&#10;- Funeral Inception.mp3&#10;- Catatonia.mp3&#10;- Dopethrone.mp3">
       <option name="closed" value="true" />
-      <created>1710466539223</created>
+      <created>1711506682916</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1710466539223</updated>
+      <updated>1711506682916</updated>
     </task>
-    <task id="LOCAL-00002" summary="Playlist Persistence tests written but not working?">
-      <option name="closed" value="true" />
-      <created>1711040447362</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1711040447362</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="bug fix - thanks dharm! Package restructure too. Old playlist code fully implemented again" />
-    <MESSAGE value="Playlist Persistence tests written but not working?" />
-    <option name="LAST_COMMIT_MESSAGE" value="Playlist Persistence tests written but not working?" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
       <pinned-members>
+        <PinnedItemInfo parentTag="androidx.test.uiautomator.UiObject" memberName="mDevice" />
+        <PinnedItemInfo parentTag="android.content.res.AssetManager" memberName="mValue" />
         <PinnedItemInfo parentTag="comp3350.sonicmatic.presentation.user.UserViewModel" memberName="tracks" />
       </pinned-members>
     </pin-to-top-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Sonicmatic$MusicArtistTest.ic" NAME="MusicArtistTest Coverage Results" MODIFIED="1707884168742" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Sonicmatic$Tests_in__comp3350_sonicmatic_business_accessLeaderboardTest_.ic" NAME="Tests in 'comp3350.sonicmatic.business.accessLeaderboardTest' Coverage Results" MODIFIED="1710800756913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Sonicmatic$AccessLeaderboardTest_testGetLeaderboard.ic" NAME="AccessLeaderboardTest.testGetLeaderboard Coverage Results" MODIFIED="1710800797391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Sonicmatic$PlaylistTest.ic" NAME="PlaylistTest Coverage Results" MODIFIED="1707884186181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Sonicmatic$AlbumTest.ic" NAME="AlbumTest Coverage Results" MODIFIED="1707884151495" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Sonicmatic$AllTests.ic" NAME="AllTests Coverage Results" MODIFIED="1709842909367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

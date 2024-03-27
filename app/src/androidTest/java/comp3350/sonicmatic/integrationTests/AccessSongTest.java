@@ -2,6 +2,10 @@ package comp3350.sonicmatic.integrationTests;
 
 import static org.junit.Assert.assertEquals;
 
+import android.content.Context;
+
+import androidx.test.platform.app.InstrumentationRegistry;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,12 +22,14 @@ import comp3350.sonicmatic.persistance.song.Song;
 @RunWith(JUnit4.class)
 public class AccessSongTest {
 
+    private Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
     private AccessSong accessSong;
     private final String FIRST_SONG = "Archetype.mp3"; //this will be in the assets for sure
 
     @Before
     public void setUp()
     {
+        Services.setContext(context);
         accessSong = new AccessSong(Services.getSongPersistence());
     }
 

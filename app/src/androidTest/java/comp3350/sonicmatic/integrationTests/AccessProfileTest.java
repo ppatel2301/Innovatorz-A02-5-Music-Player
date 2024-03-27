@@ -2,6 +2,10 @@ package comp3350.sonicmatic.integrationTests;
 
 import static org.junit.Assert.assertEquals;
 
+import android.content.Context;
+
+import androidx.test.platform.app.InstrumentationRegistry;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +19,7 @@ import comp3350.sonicmatic.persistance.profile.Profile;
 @RunWith(JUnit4.class)
 public class AccessProfileTest {
 
+    private Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
     private AccessProfile accessProfile;
     private static final String FIRST_UNAME = "Profile11";
     private static final String FIRST_DNAME = "Ronald Gooderian";
@@ -24,6 +29,7 @@ public class AccessProfileTest {
     @Before
     public void setUp()
     {
+        Services.setContext(context);
         accessProfile = new AccessProfile(Services.getProfilePersistence());
     }
 
