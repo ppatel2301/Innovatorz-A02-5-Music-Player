@@ -21,11 +21,9 @@ import comp3350.sonicmatic.persistance.leaderboard.Leaderboard;
 public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.LeaderboardViewHolder> {
 
     private ArrayList<LeaderboardArtist> artistsList;
-    private int rank;
 
     public LeaderboardAdapter(ArrayList<LeaderboardArtist> artistLst){
         this.artistsList = artistLst;
-        rank = 1;
     }
 
     public void setArtistsList(ArrayList<LeaderboardArtist> artistsList)
@@ -46,9 +44,7 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
 
         holder.nameText.setText(artist.getName());
         holder.metric.setText(String.valueOf(artist.getMetric()));
-        holder.rank.setText(String.valueOf(rank));
-
-        rank+=1;
+        holder.rank.setText(String.valueOf(position+1));
     }
 
     @Override

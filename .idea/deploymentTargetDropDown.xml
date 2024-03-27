@@ -16,21 +16,21 @@
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\dharm\.android\avd\Pixel_Tablet_API_34.avd" />
+                  <value value="C:\Users\dharm\.android\avd\Pixel_Tablet_API_34_2.avd" />
                 </Key>
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-03-24T03:57:30.045806Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-03-27T20:40:47.580452200Z" />
         </State>
       </entry>
+      <entry key="testGetAllSongs()">
+        <State />
+      </entry>
+      <entry key="testGetDisplayName()">
+        <State />
+      </entry>
       <entry key="testUserHistory()">
-        <State />
-      </entry>
-      <entry key="uploadMusic()">
-        <State />
-      </entry>
-      <entry key="uploadMusicForUserToListen()">
         <State />
       </entry>
     </value>

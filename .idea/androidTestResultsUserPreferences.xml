@@ -150,6 +150,20 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="-147701813">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Medium_Phone_API_34" value="120" />
+                  <entry key="Pixel_Tablet_API_34" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="-62732003">
           <value>
             <AndroidTestResultsTableState>
@@ -251,6 +265,19 @@
                 <map>
                   <entry key="Duration" value="90" />
                   <entry key="Google Pixel Tablet" value="120" />
+                  <entry key="Pixel_Tablet_API_34" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="1524147953">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
                   <entry key="Pixel_Tablet_API_34" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
