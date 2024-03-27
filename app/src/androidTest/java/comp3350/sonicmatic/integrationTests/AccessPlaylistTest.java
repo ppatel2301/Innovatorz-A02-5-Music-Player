@@ -20,9 +20,6 @@ import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.objects.musicArtist.MusicArtist;
 import comp3350.sonicmatic.objects.musicTrack.MusicTrack;
 import comp3350.sonicmatic.objects.songDuration.SongDuration;
-import comp3350.sonicmatic.persistance.playlist.Playlist;
-import comp3350.sonicmatic.persistance.playlistSong.PlaylistSong;
-import comp3350.sonicmatic.persistance.profile.Profile;
 
 public class AccessPlaylistTest
 {

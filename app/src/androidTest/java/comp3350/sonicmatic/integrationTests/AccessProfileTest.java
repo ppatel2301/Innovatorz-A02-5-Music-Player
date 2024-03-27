@@ -14,7 +14,6 @@ import org.junit.runners.JUnit4;
 import comp3350.sonicmatic.application.Services;
 import comp3350.sonicmatic.business.AccessProfile;
 import comp3350.sonicmatic.persistance.profile.GuestProfile;
-import comp3350.sonicmatic.persistance.profile.Profile;
 
 @RunWith(JUnit4.class)
 public class AccessProfileTest {

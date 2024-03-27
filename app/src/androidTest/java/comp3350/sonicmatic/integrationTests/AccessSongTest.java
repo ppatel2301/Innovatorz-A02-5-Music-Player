@@ -114,6 +114,5 @@ public class AccessSongTest {
         success = !accessSong.deleteSong(DELETE_ME);
 
         assertEquals("Access sogn test: deletion unsuccessful", true, success);
-
     }
 }
