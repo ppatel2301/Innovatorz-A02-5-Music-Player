@@ -23,10 +23,11 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
-import comp3350.sonicmatic.business.AccessPlaylist;
-import comp3350.sonicmatic.business.AccessProfile;
+import comp3350.sonicmatic.business.access.AccessPlaylist;
+import comp3350.sonicmatic.business.access.AccessProfile;
 import comp3350.sonicmatic.databinding.FragmentLoginBinding;
 import comp3350.sonicmatic.interfaces.IPlaylist;
+import comp3350.sonicmatic.presentation.player.MusicViewModel;
 import comp3350.sonicmatic.presentation.playlist.PlaylistViewModel;
 
 public class LoginFragment extends Fragment {
@@ -45,12 +46,14 @@ public class LoginFragment extends Fragment {
 
     private UserViewModel userViewModel;
     private PlaylistViewModel playlistViewModel;
+    private MusicViewModel musicViewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         userViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
         playlistViewModel = new ViewModelProvider(requireActivity()).get(PlaylistViewModel.class);
+        musicViewModel = new ViewModelProvider(requireActivity()).get(MusicViewModel.class);
     }
 
     @Nullable
@@ -168,6 +171,8 @@ public class LoginFragment extends Fragment {
                 }else{
                     playlistViewModel.updateList(userPlaylists);
                 }
+
+                musicViewModel.clearListeningHistory();
             }
         }
         return valid_login_info;

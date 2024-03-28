@@ -1,4 +1,4 @@
-package comp3350.sonicmatic;
+package comp3350.sonicmatic.systemTests;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -13,6 +13,7 @@ import androidx.test.espresso.Espresso;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.contrib.RecyclerViewActions;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import org.hamcrest.Matcher;
@@ -20,6 +21,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.presentation.MainActivity;
 
 public class LeaderBoardTest {
@@ -31,7 +33,7 @@ public class LeaderBoardTest {
         SystemClock.sleep(1000);
 
         // login
-        onView(withId(R.id.login_username)).perform(typeText("Profile11"));
+        onView(ViewMatchers.withId(R.id.login_username)).perform(typeText("Profile11"));
         onView(withId(R.id.login_pass)).perform(typeText("comp3350"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.loginButton)).perform(click());

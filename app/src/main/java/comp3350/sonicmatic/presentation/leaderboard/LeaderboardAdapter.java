@@ -12,20 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
-import comp3350.sonicmatic.business.AccessLeaderboard;
-import comp3350.sonicmatic.interfaces.IArtist;
-import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.objects.musicArtist.LeaderboardArtist;
-import comp3350.sonicmatic.persistance.leaderboard.Leaderboard;
 
 public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.LeaderboardViewHolder> {
 
     private ArrayList<LeaderboardArtist> artistsList;
-    private int rank;
 
     public LeaderboardAdapter(ArrayList<LeaderboardArtist> artistLst){
         this.artistsList = artistLst;
-        rank = 1;
     }
 
     public void setArtistsList(ArrayList<LeaderboardArtist> artistsList)
@@ -46,9 +40,7 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
 
         holder.nameText.setText(artist.getName());
         holder.metric.setText(String.valueOf(artist.getMetric()));
-        holder.rank.setText(String.valueOf(rank));
-
-        rank+=1;
+        holder.rank.setText(String.valueOf(position+1));
     }
 
     @Override

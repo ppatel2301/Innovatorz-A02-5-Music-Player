@@ -39,22 +39,6 @@ public class FakeSongDB extends SongPersistence
         return found;
     }
 
-    private Song getPointerFromStub(String path)
-    {
-        Song s_found = NullSong.getNullSong();
-
-        for(Song s : fakeSongs)
-        {
-            if (s.getFileNameExt().equals(path))
-            {
-                s_found = s; // soft copy
-                break; // learned on a co-op work term that this is okay!
-            }
-        }
-
-        return s_found;
-    }
-
     // method overrides to make stub
     @Override
     public ArrayList<Song> getAll()

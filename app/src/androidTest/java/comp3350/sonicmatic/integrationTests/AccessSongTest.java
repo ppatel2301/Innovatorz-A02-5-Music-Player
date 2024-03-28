@@ -1,6 +1,10 @@
-package comp3350.sonicmatic.business.accessSongTest;
+package comp3350.sonicmatic.integrationTests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import android.content.Context;
+
+import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,43 +13,44 @@ import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
 
+import comp3350.sonicmatic.application.Services;
 import comp3350.sonicmatic.business.access.AccessSong;
 import comp3350.sonicmatic.interfaces.ISong;
+import comp3350.sonicmatic.objects.musicTrack.NullMusicTrack;
 import comp3350.sonicmatic.persistance.song.NullSong;
-import comp3350.sonicmatic.persistance.song.Song;
 
 @RunWith(JUnit4.class)
 public class AccessSongTest {
 
+    private Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
     private AccessSong accessSong;
     private final String FIRST_SONG = "Archetype.mp3"; //this will be in the assets for sure
 
     @Before
     public void setUp()
     {
-        accessSong = new AccessSong(new FakeSongDB(new Song(FIRST_SONG, 0)));
+        Services.setContext(context);
+        accessSong = new AccessSong(Services.getSongPersistence());
     }
 
     @Test
     public void testGetAllSongs()
     {
-        // let's add some more songs in
-        accessSong.insertSong("Combustion.mp3", 0);
-        accessSong.insertSong("Cyberwaste.mp3", 0);
-        accessSong.insertSong("Drone Corpse Aviator.mp3", 0);
-
         ArrayList<ISong> tracks = accessSong.getAllSongs();
         int track_count = tracks.size();
 
-        // should be 4 songs, all should not be the null song
         boolean passed = true;
 
         for (ISong t : tracks)
         {
             passed = !t.getPath().equals(NullSong.getNullSong().getFileNameExt());
+            if (!passed)
+            {
+                break;
+            }
         }
 
-        assertEquals("Access song test: Unpexected track count", true, track_count == 4);
+        assertEquals("Access song test: Unpexected track count", 15, track_count);
         assertEquals("Access song test: Null song detected", true, passed);
     }
 
@@ -60,7 +65,7 @@ public class AccessSongTest {
     @Test
     public void testBadGetSong()
     {
-        boolean success = !accessSong.getSong("jkljkljkl").getPath().equals(NullSong.getNullSong().getFileNameExt());
+        boolean success = accessSong.getSong("jkljkljkl").getPath().equals(NullMusicTrack.getNullMusicTrack().getPath());
 
         assertEquals("Access Song test: got a song incorrectly", true, success);
     }
@@ -68,9 +73,10 @@ public class AccessSongTest {
     @Test
     public void testInsertSong()
     {
-        final String INSERT_PATH = "Cyberwaste.mp3";
+        final String INSERT_PATH = "Catatonia.mp3";
 
-        boolean success = accessSong.insertSong(INSERT_PATH, 0);
+        boolean success = accessSong.insertSong(INSERT_PATH,0);
+        accessSong.deleteSong(INSERT_PATH);
 
         assertEquals("Access song test: could not insert", true, success);
     }
@@ -79,9 +85,9 @@ public class AccessSongTest {
     public void testBadInsertSong()
     {
         // insert a song already in the db
-        boolean success = !accessSong.insertSong(FIRST_SONG, 0);
+        boolean success = accessSong.insertSong(FIRST_SONG, 0);
 
-        assertEquals("Access Song test: inserted a duplicate song", true, success);
+        assertEquals("Access Song test: inserted a duplicate song", false, success);
 
     }
 
@@ -95,8 +101,6 @@ public class AccessSongTest {
 
         success = accessSong.deleteSong(DELETE_ME);
 
-        assertEquals("Access sogn test: deletion unsuccessful", true, success);
-
+        assertEquals("Access song test: deletion unsuccessful", true, success);
     }
-
 }

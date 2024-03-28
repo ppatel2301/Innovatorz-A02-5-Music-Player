@@ -108,6 +108,11 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
                 @Override
                 public void onClick(View view) {
                     musicViewModel.setSelectedTrack(track);
+                    musicViewModel.setSongs(tracks);
+                    musicViewModel.setCurrentSongIndex(holder.getAdapterPosition());
+
+                    view.getRootView().findViewById(R.id.dark_light_mode_toggle).setVisibility(View.GONE);
+
                     Navigation.findNavController(view).navigate(R.id.musicFragment, null);
                 }
             });

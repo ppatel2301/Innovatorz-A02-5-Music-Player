@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
 
-import comp3350.sonicmatic.business.AccessPlaylist;
+import comp3350.sonicmatic.business.access.AccessPlaylist;
 import comp3350.sonicmatic.databinding.FragmentCreatePlaylistBinding;
 import comp3350.sonicmatic.objects.MusicTrackPlaylist;
 import comp3350.sonicmatic.presentation.login.UserViewModel;

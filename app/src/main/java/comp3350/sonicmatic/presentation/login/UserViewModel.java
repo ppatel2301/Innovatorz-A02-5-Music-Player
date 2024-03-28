@@ -1,7 +1,7 @@
 package comp3350.sonicmatic.presentation.login;
 
 import androidx.lifecycle.ViewModel;
-import comp3350.sonicmatic.business.AccessProfile;
+import comp3350.sonicmatic.business.access.AccessProfile;
 
 public class UserViewModel extends ViewModel {
 

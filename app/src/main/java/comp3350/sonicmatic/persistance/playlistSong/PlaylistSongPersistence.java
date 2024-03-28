@@ -94,39 +94,7 @@ public class PlaylistSongPersistence extends Persistence
     @Override
     public PlaylistSong update(IPersistentItem item)
     {
-        PlaylistSong updated;
-
-        if (item != null && item instanceof PlaylistSong)
-        {
-
-            PlaylistSong playlistSong = ((PlaylistSong)(item));
-
-            try(final Connection c = getConnection())
-            {
-                final String update = "UPDATE playlist_songs SET file_name_ext = ?, playlist_id = ? WHERE file_name_ext = ? AND playlist_id = ?";
-                final PreparedStatement statement = c.prepareStatement(update);
-
-                statement.setString(1, playlistSong.getFileNameExt());
-                statement.setString(2, ""+playlistSong.getPlaylistId());
-                statement.setString(3, playlistSong.getFileNameExt());
-                statement.setString(4, ""+playlistSong.getPlaylistId());
-
-                statement.executeUpdate();
-
-                updated = get(playlistSong.makePrimaryKey());
-
-            } catch(final SQLException sqle)
-            {
-                updated = NullPlaylistSong.getNullPlaylistSong();
-            }
-
-        }
-        else
-        {
-            updated = NullPlaylistSong.getNullPlaylistSong();
-        }
-
-        return updated;
+        return NullPlaylistSong.getNullPlaylistSong(); // never update these rows, only insert or delete them
     }
 
     @Override
@@ -177,7 +145,6 @@ public class PlaylistSongPersistence extends Persistence
     public boolean delete(IPersistentItem item)
     {
         boolean success = true;
-        String [] primary_key;
 
         if (item != null && item instanceof PlaylistSong)
         {
@@ -187,10 +154,8 @@ public class PlaylistSongPersistence extends Persistence
                 final String delete = "DELETE FROM playlist_songs WHERE file_name_ext = ? AND playlist_id = ?";
                 final PreparedStatement statement = c.prepareStatement(delete);
 
-                primary_key = ((PlaylistSong)(item)).makePrimaryKey();
-
-                statement.setString(1,primary_key[PlaylistSong.FNAME_INDEX]);
-                statement.setString(2, primary_key[PlaylistSong.ID_INDEX]);
+                statement.setString(1, ((PlaylistSong)(item)).getFileNameExt());
+                statement.setString(2, ""+((PlaylistSong)(item)).getPlaylistId());
 
                 statement.executeUpdate();
 
@@ -208,6 +173,7 @@ public class PlaylistSongPersistence extends Persistence
     }
 
     // ** instance methods **
+
     public ArrayList<PlaylistSong> getPlaylistSongs(String playlistId)
     {
         ArrayList<PlaylistSong> playlistSongs = new ArrayList<PlaylistSong>();

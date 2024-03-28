@@ -1,29 +1,35 @@
-package comp3350.sonicmatic.business.accessProfileTest;
+package comp3350.sonicmatic.integrationTests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import android.content.Context;
+
+import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import comp3350.sonicmatic.application.Services;
 import comp3350.sonicmatic.business.access.AccessProfile;
 import comp3350.sonicmatic.persistance.profile.GuestProfile;
-import comp3350.sonicmatic.persistance.profile.Profile;
 
 @RunWith(JUnit4.class)
 public class AccessProfileTest {
 
+    private Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
     private AccessProfile accessProfile;
-    private static final String FIRST_UNAME = "firstUsername";
-    private static final String FIRST_DNAME = "firstDisplayName";
-    private static final String FIRST_PWD ="pwd";
+    private static final String FIRST_UNAME = "Profile11";
+    private static final String FIRST_DNAME = "Ronald Gooderian";
+    private static final String FIRST_PWD ="comp3350";
     private static final boolean FIRST_PROFILE_IS_ARTIST = false;
 
     @Before
     public void setUp()
     {
-        accessProfile = new AccessProfile(new FakeProfileDB((new Profile(FIRST_UNAME, FIRST_DNAME, FIRST_PWD, FIRST_PROFILE_IS_ARTIST))));
+        Services.setContext(context);
+        accessProfile = new AccessProfile(Services.getProfilePersistence());
     }
 
     @Test
@@ -43,7 +49,7 @@ public class AccessProfileTest {
 
         String username = accessProfile.getUsername();
 
-        assertEquals("Access Profile test: logged in user name incorrect", true, username.equals(FIRST_UNAME) );
+        assertEquals("Access Profile test: logged in user name incorrect", true, username.equals(FIRST_UNAME));
     }
 
     @Test
@@ -110,6 +116,8 @@ public class AccessProfileTest {
         boolean success = accessProfile.changePassword(FIRST_PWD+"changed");
 
         assertEquals("Access Profile test: failed to change password", true, success);
+
+        accessProfile.changePassword(FIRST_PWD); // reset
     }
 
     @Test
