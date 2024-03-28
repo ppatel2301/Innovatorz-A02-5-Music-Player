@@ -17,6 +17,7 @@ import comp3350.sonicmatic.application.Services;
 import comp3350.sonicmatic.business.AccessSong;
 import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.persistance.song.NullSong;
+import comp3350.sonicmatic.objects.musicTrack.NullMusicTrack;
 
 @RunWith(JUnit4.class)
 public class AccessSongTest {
@@ -50,7 +51,7 @@ public class AccessSongTest {
             }
         }
 
-        assertEquals("Access song test: Unpexected track count", 14, track_count);
+        assertEquals("Access song test: Unpexected track count", 15, track_count);
         assertEquals("Access song test: Null song detected", true, passed);
     }
 
@@ -65,7 +66,7 @@ public class AccessSongTest {
     @Test
     public void testBadGetSong()
     {
-        boolean success = accessSong.getSong("jkljkljkl").getPath().equals(NullSong.getNullSong().getFileNameExt());
+        boolean success = accessSong.getSong("jkljkljkl").getPath().equals(NullMusicTrack.getNullMusicTrack().getPath());
 
         assertEquals("Access Song test: got a song incorrectly", true, success);
     }
@@ -73,11 +74,13 @@ public class AccessSongTest {
     @Test
     public void testInsertSong()
     {
-        final String INSERT_PATH = "Lotion.mp3";
+        final String INSERT_PATH = "Catanonia.mp3";
 
         boolean success = accessSong.insertSong(INSERT_PATH,0);
 
         assertEquals("Access song test: could not insert", true, success);
+
+        accessSong.deleteSong("Catanonia.mp3");
     }
 
     @Test

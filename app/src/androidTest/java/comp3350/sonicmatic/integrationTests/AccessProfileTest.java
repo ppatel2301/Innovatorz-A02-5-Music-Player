@@ -49,7 +49,7 @@ public class AccessProfileTest {
 
         String username = accessProfile.getUsername();
 
-        assertEquals("Access Profile test: logged in user name incorrect", true, username.equals(FIRST_UNAME) );
+        assertEquals("Access Profile test: logged in user name incorrect", true, username.equals(FIRST_UNAME));
     }
 
     @Test

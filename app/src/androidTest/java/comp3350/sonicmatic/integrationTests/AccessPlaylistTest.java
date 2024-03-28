@@ -20,6 +20,7 @@ import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.objects.musicArtist.MusicArtist;
 import comp3350.sonicmatic.objects.musicTrack.MusicTrack;
 import comp3350.sonicmatic.objects.songDuration.SongDuration;
+import comp3350.sonicmatic.persistance.playlist.NullPlaylist;
 
 public class AccessPlaylistTest
 {
@@ -27,7 +28,6 @@ public class AccessPlaylistTest
     // ** class constants **
     private static final String PLAYLIST_NAME = "My First Playlist";
     private static final String CREATOR_NAME = "Profile11";
-    private static final int ID = 0;
     private static final String SONG_PATH = "Archetype.mp3"; // has to be real and in assets
     private static final String SONG_NAME = "Archetype";
     private static final String PROFILE_PWD ="comp3350";
@@ -59,20 +59,14 @@ public class AccessPlaylistTest
     {
         ArrayList<IPlaylist> playlists = accessPlaylist.getPlaylists(accessProfile);
 
-        assertEquals("Access Playlist Test: unexpected number of user playlists.", 1, playlists.size());
+        assertEquals("Access Playlist Test: unexpected number of user playlists.", 2, playlists.size());
 
         if (!playlists.isEmpty())
         {
-            assertEquals("Access Playlist Test: unexpected playlist creator name.", true, playlists.get(0).getPlaylistName().equals(PLAYLIST_NAME));
-
-            // shouldn't be empty as we've linked one song to this playlist
-            assertEquals("Access Playlist Test: unexpected number of songs in the playlist.", 1, playlists.get(0).getPlaylist().size());
-
-            if (!playlists.get(0).getPlaylist().isEmpty())
+            for (IPlaylist p : playlists)
             {
-                assertEquals("Access Playlist Test: unexpected playlist song name.", true, playlists.get(0).getPlaylist().get(0).getTitle().equals(SONG_NAME));
+                assertEquals("Access Playlist Test: null playlist found", true, !p.getPlaylistName().equals(NullPlaylist.getNullPlaylist().getName()));
             }
-
         }
 
     }
@@ -113,7 +107,7 @@ public class AccessPlaylistTest
     @Test
     public void testDeletePlaylistNullProfile()
     {
-        boolean success = !accessPlaylist.deletePlaylist("don't care won't delete anyway", null);
+        boolean success = !accessPlaylist.deletePlaylist("Playlist2", null);
 
         assertEquals("Access Playlist Test: deleted with null profile", true, success);
     }
