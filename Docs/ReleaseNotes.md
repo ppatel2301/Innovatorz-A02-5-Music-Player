@@ -2,6 +2,10 @@
 ## General
 Please use this app on landscape orientation only.
 
+### Retrospective
+Link to the required retrospective (which can also be found in the docs folder)
+https://code.cs.umanitoba.ca/comp3350-winter2024/innovators-a02-5/-/blob/main/Docs/RETROSPECTIVE.md
+
 ## Link to apk
 https://umanitoba-my.sharepoint.com/:u:/g/personal/pateld33_myumanitoba_ca/EfGs11QBaCpLlgTpX9zycmwBU9jo0J7djjMTtykV8Ymiiw?e=oYp2yf
 
