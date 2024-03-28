@@ -108,7 +108,7 @@ public class AccessPlaylist {
             all_songs = playlistSongPersistence.getPlaylistSongs(delete_me.getId());
             for (PlaylistSong p : all_songs)
             {
-                playlistPersistence.delete(p);
+                playlistSongPersistence.delete(p);
             }
 
 

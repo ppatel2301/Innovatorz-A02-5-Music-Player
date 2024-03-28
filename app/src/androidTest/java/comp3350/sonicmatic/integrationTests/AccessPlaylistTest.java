@@ -176,7 +176,7 @@ public class AccessPlaylistTest
         accessPlaylist.newPlaylist(PLAYLIST_NAME, accessProfile);
         accessPlaylist.insertIntoPlaylist(PLAYLIST_NAME, delete_me, accessProfile);
 
-        success = !accessPlaylist.deleteFromPlaylist(PLAYLIST_NAME, delete_me, accessProfile);
+        success = accessPlaylist.deleteFromPlaylist(PLAYLIST_NAME, delete_me, accessProfile);
         assertEquals("Access Playlist test: could not delete from playlist.", true, success);
 
         accessPlaylist.deletePlaylist(PLAYLIST_NAME, accessProfile);

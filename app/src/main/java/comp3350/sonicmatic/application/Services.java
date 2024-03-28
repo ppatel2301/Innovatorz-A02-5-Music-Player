@@ -44,6 +44,11 @@ public class Services
 
 
     // ** class methods **
+    public static boolean hasContext()
+    {
+        return context != null;
+    }
+
     public static void setContext(Context env)
     {
         if (env != null)

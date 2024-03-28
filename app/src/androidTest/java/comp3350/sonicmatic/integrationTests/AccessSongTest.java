@@ -51,7 +51,7 @@ public class AccessSongTest {
             }
         }
 
-        assertEquals("Access song test: Unpexected track count", 15, track_count);
+        assertEquals("Access song test: Unpexected track count", 16, track_count);
         assertEquals("Access song test: Null song detected", true, passed);
     }
 
