@@ -86,10 +86,6 @@ public class MusicTest {
         int width = uiDevice.getDisplayWidth()/2;
         int offset = 100;
 
-        uiDevice.click(width, height + offset);
-        SystemClock.sleep(1000);
-        uiDevice.click(width, height + (offset/2));
-        SystemClock.sleep(1000);
         uiDevice.click(width, height + (offset/2));
     }
 }

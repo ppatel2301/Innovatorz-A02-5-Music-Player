@@ -64,13 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String[] AUDIO_BLUETOOTH_ = {
             Manifest.permission.READ_MEDIA_AUDIO,
-            Manifest.permission.MANAGE_EXTERNAL_STORAGE,
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
-            Manifest.permission.BLUETOOTH_SCAN,
-            Manifest.permission.BLUETOOTH_CONNECT,
-            Manifest.permission.BLUETOOTH_PRIVILEGED
+            Manifest.permission.MANAGE_EXTERNAL_STORAGE
     };
 
     private static final String[] AUDIO = {
@@ -89,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
     private UserViewModel userViewModel;
     private View trackHistoryView;
     private ActivityResultLauncher<Intent> picker;
-    private ActivityResultLauncher<Intent> bluetoothEnableLauncher;
     private ActivityResultLauncher<Intent> audioEnableLauncher;
 
     @Override
@@ -121,17 +114,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Hide the status bar
         Objects.requireNonNull(getSupportActionBar()).hide();
-
-        // Initialize launcher for enabling Bluetooth
-        bluetoothEnableLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-            if (result.getResultCode() == RESULT_OK) {
-                // Bluetooth was enabled
-                Toast.makeText(this, "Bluetooth enabled", Toast.LENGTH_SHORT).show();
-            } else {
-                // User didn't enable Bluetooth
-                Toast.makeText(this, "Bluetooth not enabled", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         audioEnableLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
             if (result.getResultCode() == RESULT_OK) {
@@ -270,30 +252,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void enableBluetooth() {
-
-        BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
-        BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
-        if (bluetoothAdapter == null) {
-            // Device does not support Bluetooth
-            Toast.makeText(this, "Bluetooth is not supported on this device", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (!bluetoothAdapter.isEnabled()) {
-            // Bluetooth is not enabled, request to enable it
-            Intent enableBluetoothIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            if (enableBluetoothIntent.resolveActivity(getPackageManager()) != null) {
-                bluetoothEnableLauncher.launch(enableBluetoothIntent);
-            } else {
-                Toast.makeText(this, "No activity found to handle Bluetooth enable request", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            // Bluetooth is already enabled
-            Toast.makeText(this, "Bluetooth is already enabled", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     private void requestPermissions()
     {
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED
@@ -304,22 +262,6 @@ public class MainActivity extends AppCompatActivity {
         }else if(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(this, AUDIO, REQUEST_BLUETOOTH_AUDIO);
-        } else{
-            enableBluetooth();
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == REQUEST_BLUETOOTH_AUDIO)
-        {
-            // Checking whether user granted the permission or not.
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                enableBluetooth();
-            }else{
-                Toast.makeText(this, "Permission Denied.", Toast.LENGTH_SHORT).show();
-            }
         }
     }
 
