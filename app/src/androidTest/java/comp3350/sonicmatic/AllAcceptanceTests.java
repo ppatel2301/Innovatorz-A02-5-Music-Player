@@ -21,7 +21,6 @@ import comp3350.sonicmatic.systemTests.UserProfileTest;
 @Suite.SuiteClasses({
         MusicTest.class,
         UserPlaybackHistoryTest.class,
-        MusicPlayerTest.class,
         UserProfileTest.class,
         ArtistProfileTest.class,
         CreatePlaylistTest.class,

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.application.Services;
 import comp3350.sonicmatic.interfaces.ISong;
+import comp3350.sonicmatic.objects.NoContextSong;
 import comp3350.sonicmatic.objects.musicTrack.NullMusicTrack;
 import comp3350.sonicmatic.persistance.Persistence;
 import comp3350.sonicmatic.persistance.song.Song;
@@ -37,12 +38,23 @@ public class AccessSong
         for (Song s : song_rows)
         {
             ISong toAdd;
-            if(s.getOrigin() == SongPersistence.ACCESS_ASSETS)
+
+            if (Services.hasContext())
             {
-                toAdd = Services.createSongFromPath(s.getFileNameExt());
-            }else{
-                toAdd = Services.createSongPathFromUserUpload(s.getFileNameExt());
+                if(s.getOrigin() == SongPersistence.ACCESS_ASSETS)
+                {
+                    toAdd = Services.createSongFromPath(s.getFileNameExt());
+                }
+                else
+                {
+                    toAdd = Services.createSongPathFromUserUpload(s.getFileNameExt());
+                }
             }
+            else
+            {
+                toAdd = new NoContextSong(s.getFileNameExt());
+            }
+
             music_tracks.add(toAdd);
         }
 
@@ -60,7 +72,14 @@ public class AccessSong
             // if this file is in our database, then we can be sure there is an audio file to match it
             if (from_db.getFileNameExt().equals(path))
             {
-                get_me = Services.createSongFromPath(path);
+                if (Services.hasContext())
+                {
+                    get_me = Services.createSongFromPath(path);
+                }
+                else
+                {
+                    get_me = new NoContextSong(path);
+                }
             }
         }
 

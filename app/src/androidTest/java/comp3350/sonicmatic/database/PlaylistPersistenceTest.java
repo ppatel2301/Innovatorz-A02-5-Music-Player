@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -40,6 +39,8 @@ public class PlaylistPersistenceTest
         assertEquals("Playlist Test: NullPlaylist returned.", true,
                 retrieved.getCreatorUsername().equals(playlist.getCreatorUsername())
                    && retrieved.getName().equals(playlist.getName()));
+
+        playlistPersistence.delete(playlist);
     }
 
     @Test
@@ -55,17 +56,23 @@ public class PlaylistPersistenceTest
     @Test
     public void testGetUserPlaylists()
     {
-        ArrayList<Playlist> userPlaylists = playlistPersistence.getPlaylistsOfUser("Profile11");
+        Playlist playlist1 = new Playlist("PeterPumpkinEater", "new playlist name1");
+        Playlist playlist2 = new Playlist("PeterPumpkinEater", "new playlist name2");
+
+        playlistPersistence.insert(playlist1);
+        playlistPersistence.insert(playlist2);
+
+        ArrayList<Playlist> userPlaylists = playlistPersistence.getPlaylistsOfUser("PeterPumpkinEater");
 
         // expecting two non-null playlists
         assertEquals("Playlist Test: unexpected amount of user playlists.", 2, userPlaylists.size());
-        if (userPlaylists.size() == 2)
+        for (Playlist p : userPlaylists)
         {
-            assertEquals("Playlist test: first playlist of a user was NullPlaylist.", true, !userPlaylists.get(0).getCreatorUsername().equals(NullPlaylist.getNullPlaylist().getName())
-                    && !userPlaylists.get(0).getName().equals(NullPlaylist.getNullPlaylist().getName()));
-            assertEquals("Playlist test: second playlist of a user was NullPlaylist.", true, !userPlaylists.get(1).getCreatorUsername().equals(NullPlaylist.getNullPlaylist().getName())
-                    && !userPlaylists.get(1).getName().equals(NullPlaylist.getNullPlaylist().getName()));
+            assertEquals("Playlist Test: NullPlaylist inside user playlists.", true, !p.getName().equals(NullPlaylist.getNullPlaylist().getName()));
         }
+
+        playlistPersistence.delete(playlist1);
+        playlistPersistence.delete(playlist2);
     }
 
     @Test
@@ -82,13 +89,20 @@ public class PlaylistPersistenceTest
         final String NEW_NAME = "new name123";
 
         Playlist updated;
-        Playlist change_me = playlistPersistence.get("0"); // ID 0 should already be in DB
+        Playlist change_me = new Playlist("Gary", "new playlist to change");
+
+        playlistPersistence.insert(change_me);
+
+        // pointer reassignment, get the playlist with the ID
+        change_me = playlistPersistence.get("new playlist to change", "Gary");
 
         // change the name here in memory, then put it back into storage
         change_me.changeName(NEW_NAME);
         updated = playlistPersistence.update(change_me);
 
         assertEquals("Playlist test: the playlist failed to update. New name was "+updated.getName(), true, updated.getName().equals(NEW_NAME));
+
+        playlistPersistence.delete(change_me);
     }
 
     @Test

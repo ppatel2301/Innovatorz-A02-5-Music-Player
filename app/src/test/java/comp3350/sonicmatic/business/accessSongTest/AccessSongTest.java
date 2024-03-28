@@ -42,7 +42,11 @@ public class AccessSongTest {
 
         for (ISong t : tracks)
         {
-            passed = !t.getPath().equals(NullSong.getNullSong().getFileNameExt());
+            if (t.getPath().equals(NullSong.getNullSong().getFileNameExt()))
+            {
+                passed = false;
+                break;
+            }
         }
 
         assertEquals("Access song test: Unpexected track count", true, track_count == 4);
@@ -60,7 +64,7 @@ public class AccessSongTest {
     @Test
     public void testBadGetSong()
     {
-        boolean success = !accessSong.getSong("jkljkljkl").getPath().equals(NullSong.getNullSong().getFileNameExt());
+        boolean success = accessSong.getSong("jkljkljkl").getPath().equals(NullSong.getNullSong().getFileNameExt());
 
         assertEquals("Access Song test: got a song incorrectly", true, success);
     }
