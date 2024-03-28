@@ -109,8 +109,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="38c60e9b-940f-4e35-8707-8258e86c2537" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/objects/musicArtist/NullMusicArtist.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/objects/musicArtist/NullMusicArtist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/comp3350/sonicmatic/presentation/MainActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
