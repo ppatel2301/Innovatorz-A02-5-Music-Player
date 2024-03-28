@@ -18,6 +18,11 @@ public class PlaylistViewModel extends  ViewModel{
         selectedPlaylist = new MutableLiveData<>();
     }
 
+    public void updateList(ArrayList<IPlaylist> updatedList)
+    {
+        playlists.setValue(updatedList);
+    }
+
     public LiveData<ArrayList<IPlaylist>> getPlaylist(){return playlists;}
 
     public void addPlaylist(IPlaylist playlist)

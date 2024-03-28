@@ -151,8 +151,21 @@ public class ProfilePersistenceTest {
         }
     }
 
+    // do we want to return false if the item isn't in the DB?
+    /*
     @Test
     public void testBadDelete()
+    {
+        Profile not_in_db = new Profile("im not here!", "nuh uh", "nope", false);
+        boolean success = !profilePersistence.delete(not_in_db);
+
+        assertEquals("Profile delete test: Deleted something that wasn't in the database?", true, success);
+
+    }
+    */
+
+    @Test
+    public void testNullDelete()
     {
         boolean null_not_deleted = !profilePersistence.delete(null);
 

@@ -52,7 +52,6 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
 
         holder.playlistImage.setImageResource(R.drawable.default_playlist_img);
         holder.title.setText(playlist.getPlaylistName());
-        holder.user.setText("Playlist - User");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,10 +63,11 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
                 // Creating a bundle to pass data to the playlistDetail fragment
                 Bundle bundle = new Bundle();
                 bundle.putString("playlistName", playlist.getPlaylistName());
+                bundle.putInt("playlistId", holder.getAdapterPosition());
 
                 // Setting the selected playlist
                 playlistViewModel.setSelectedPlaylist(playlist);
-
+                
                 View layout = view.getRootView().findViewById(R.id.collasped_music_layout1);
                 layout.setVisibility(View.GONE);
 
@@ -85,7 +85,6 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
 
         private ImageView playlistImage;
         private TextView title;
-        private TextView user;
 
         public PlaylistViewHolder (@NonNull View view)
         {
@@ -93,7 +92,6 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
 
             playlistImage = itemView.findViewById(R.id.playlist_img);
             title = itemView.findViewById(R.id.add_title);
-            user = itemView.findViewById(R.id.add_user);
         }
     }
 }

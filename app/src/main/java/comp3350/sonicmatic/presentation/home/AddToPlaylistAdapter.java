@@ -9,17 +9,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.interfaces.IPlaylist;
+import comp3350.sonicmatic.presentation.login.UserViewModel;
 
 public class AddToPlaylistAdapter extends RecyclerView.Adapter<AddToPlaylistAdapter.AddToPlaylistHolder> {
 
     private ArrayList<IPlaylist> playlists;
     private ArrayList<IPlaylist> playlistsSelected;
+    private UserViewModel userViewModel;
 
     public AddToPlaylistAdapter(ArrayList<IPlaylist> playlists){
         this.playlists = playlists;
@@ -31,6 +35,7 @@ public class AddToPlaylistAdapter extends RecyclerView.Adapter<AddToPlaylistAdap
     public AddToPlaylistHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Inflates the itemAddToPlaylist
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_add_music_to_playlist, parent, false);
+        userViewModel = new ViewModelProvider((FragmentActivity) parent.getContext()).get(UserViewModel.class);
         return new AddToPlaylistHolder(itemView);
     }
 
@@ -44,7 +49,9 @@ public class AddToPlaylistAdapter extends RecyclerView.Adapter<AddToPlaylistAdap
         //Setting the playlist name
         holder.title.setText(playlist.getPlaylistName());
         holder.image.setBackgroundResource(R.drawable.default_playlist_img);
-        holder.user.setText("Sample User");
+
+        String user = "Playlist - "+ userViewModel.getProfile().getDisplayName();
+        holder.user.setText(user);
 
         // Checkbox to add music to playlists
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -53,8 +60,6 @@ public class AddToPlaylistAdapter extends RecyclerView.Adapter<AddToPlaylistAdap
                 if(isChecked)
                 {
                     playlistsSelected.add(playlist);
-                    // Update the playlist songs in the playlistViewModel and the database
-                    // database update but don't know how???
                 }else{
                     playlistsSelected.remove(playlist);
                 }

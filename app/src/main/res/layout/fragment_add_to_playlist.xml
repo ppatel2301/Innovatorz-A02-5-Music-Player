@@ -13,6 +13,7 @@
         android:layout_marginEnd="563dp"
         android:layout_marginBottom="47dp"
         android:text="Add to Playlist"
+        android:textColor="?android:textColorPrimary"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold"

@@ -2,8 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation"
-    app:startDestination="@+id/navigation_home">
+    android:id="@+id/startDestination"
+    app:startDestination="@+id/loginFragment">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -50,5 +50,17 @@
         android:id="@+id/collaspedMusicFragment"
         android:name="comp3350.sonicmatic.presentation.player.CollaspedMusicFragment"
         tools:layout="@layout/fragment_collapsed_music_player"/>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="comp3350.sonicmatic.presentation.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login"/>
+
+    <fragment
+        android:id="@+id/navigation_leader_board"
+        android:name="comp3350.sonicmatic.presentation.leaderboard.ArtistLeaderboard"
+        android:label="fragment_artist_leaderboard"
+        tools:layout="@layout/fragment_artist_leaderboard" />
 
 </navigation>

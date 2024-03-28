@@ -2,8 +2,8 @@ package comp3350.sonicmatic.objects;
 
 import java.util.ArrayList;
 
-import comp3350.sonicmatic.comparator.MusicComparatorByArtist;
-import comp3350.sonicmatic.comparator.MusicComparatorByTitle;
+import comp3350.sonicmatic.business.comparator.MusicComparatorByArtist;
+import comp3350.sonicmatic.business.comparator.MusicComparatorByTitle;
 
 import comp3350.sonicmatic.interfaces.IPlaylist;
 import comp3350.sonicmatic.interfaces.ISong;
@@ -47,6 +47,11 @@ public class MusicTrackPlaylist implements IPlaylist {
     public void removeMusicTracks(ISong musicTrack)
     {
         playlist.remove(musicTrack);
+    }
+    
+    public void updatePlaylist(ArrayList<ISong> updated)
+    {
+        this.playlist = updated;
     }
 
     public ArrayList<ISong> filterByArtist ()

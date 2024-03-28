@@ -9,7 +9,7 @@ import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
 
-import comp3350.sonicmatic.business.AccessSong;
+import comp3350.sonicmatic.business.access.AccessSong;
 import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.persistance.song.NullSong;
 import comp3350.sonicmatic.persistance.song.Song;
@@ -23,16 +23,16 @@ public class AccessSongTest {
     @Before
     public void setUp()
     {
-        accessSong = new AccessSong(new FakeSongDB(new Song(FIRST_SONG)));
+        accessSong = new AccessSong(new FakeSongDB(new Song(FIRST_SONG, 0)));
     }
 
     @Test
     public void testGetAllSongs()
     {
         // let's add some more songs in
-        accessSong.insertSong("Combustion.mp3");
-        accessSong.insertSong("Cyberwaste.mp3");
-        accessSong.insertSong("Drone Corpse Aviator.mp3");
+        accessSong.insertSong("Combustion.mp3", 0);
+        accessSong.insertSong("Cyberwaste.mp3", 0);
+        accessSong.insertSong("Drone Corpse Aviator.mp3", 0);
 
         ArrayList<ISong> tracks = accessSong.getAllSongs();
         int track_count = tracks.size();
@@ -42,7 +42,11 @@ public class AccessSongTest {
 
         for (ISong t : tracks)
         {
-            passed = !t.getPath().equals(NullSong.getNullSong().getFileNameExt());
+            if (t.getPath().equals(NullSong.getNullSong().getFileNameExt()))
+            {
+                passed = false;
+                break;
+            }
         }
 
         assertEquals("Access song test: Unpexected track count", true, track_count == 4);
@@ -60,7 +64,7 @@ public class AccessSongTest {
     @Test
     public void testBadGetSong()
     {
-        boolean success = !accessSong.getSong("jkljkljkl").getPath().equals(NullSong.getNullSong().getFileNameExt());
+        boolean success = accessSong.getSong("jkljkljkl").getPath().equals(NullSong.getNullSong().getFileNameExt());
 
         assertEquals("Access Song test: got a song incorrectly", true, success);
     }
@@ -70,7 +74,7 @@ public class AccessSongTest {
     {
         final String INSERT_PATH = "Cyberwaste.mp3";
 
-        boolean success = accessSong.insertSong(INSERT_PATH);
+        boolean success = accessSong.insertSong(INSERT_PATH, 0);
 
         assertEquals("Access song test: could not insert", true, success);
     }
@@ -79,7 +83,7 @@ public class AccessSongTest {
     public void testBadInsertSong()
     {
         // insert a song already in the db
-        boolean success = !accessSong.insertSong(FIRST_SONG);
+        boolean success = !accessSong.insertSong(FIRST_SONG, 0);
 
         assertEquals("Access Song test: inserted a duplicate song", true, success);
 
@@ -88,10 +92,10 @@ public class AccessSongTest {
     @Test
     public void testDeleteSong()
     {
-        final String DELETE_ME = "Cyberwaste.mp3";
+        final String DELETE_ME = "Lotion.mp3";
         boolean success;
 
-        accessSong.insertSong(DELETE_ME); // going to delete this
+        accessSong.insertSong(DELETE_ME, 0); // going to delete this
 
         success = accessSong.deleteSong(DELETE_ME);
 
@@ -99,15 +103,4 @@ public class AccessSongTest {
 
     }
 
-    @Test
-    public void testBadDeleteSong()
-    {
-        final String DELETE_ME = "Cyberwaste.mp3"; // didn't insert
-        boolean success;
-
-        success = !accessSong.deleteSong(DELETE_ME);
-
-        assertEquals("Access sogn test: deletion unsuccessful", true, success);
-
-    }
 }

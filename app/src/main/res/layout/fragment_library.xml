@@ -13,8 +13,9 @@
         android:layout_marginStart="88dp"
         android:layout_marginTop="32dp"
         android:text="Your Library"
-        android:textSize="34sp"
+        android:textSize="30sp"
         android:textStyle="bold"
+        android:textColor="?android:textColorPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,8 +27,6 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/baseline_add_24"
-        android:text="-"
-        android:textColor="@color/purple_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toEndOf="@+id/textView"

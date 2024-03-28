@@ -13,6 +13,9 @@ public class MusicViewModel extends ViewModel {
     private ISong musicTrack;
     private MutableLiveData<ArrayList<ISong>> listeningHistory;
     private IPlayer player;
+
+    // used to keep track of music playing
+    private int currentSongIndex = 0;
     private ArrayList<ISong> songs;
 
     public MusicViewModel()
@@ -41,19 +44,9 @@ public class MusicViewModel extends ViewModel {
         listeningHistory.setValue(currentList);
     }
 
-    public MutableLiveData<ArrayList<ISong>> getHistory()
-    {
-        return listeningHistory;
-    }
-
     public void setPlayer(IPlayer player)
     {
         this.player = player;
-    }
-
-    public IPlayer getPlayer()
-    {
-        return player;
     }
 
     public void setSongs(ArrayList<ISong> songs)
@@ -61,9 +54,27 @@ public class MusicViewModel extends ViewModel {
         this.songs = songs;
     }
 
+    public void setCurrentSongIndex(int currentSongIndex) {
+        this.currentSongIndex = currentSongIndex;
+    }
+
+    public IPlayer getPlayer()
+    {
+        return player;
+    }
+
+    public MutableLiveData<ArrayList<ISong>> getHistory()
+    {
+        return listeningHistory;
+    }
+
     public ArrayList<ISong> getSongs()
     {
         return songs;
+    }
+
+    public int getCurrentSongIndex() {
+        return currentSongIndex;
     }
 
     public void clearListeningHistory()
