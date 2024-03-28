@@ -8,9 +8,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
-import comp3350.sonicmatic.business.AccessLeaderboard;
+import comp3350.sonicmatic.business.access.AccessLeaderboard;
 import comp3350.sonicmatic.persistance.leaderboard.Leaderboard;
 import comp3350.sonicmatic.persistance.leaderboard.NullLeaderboard;
 

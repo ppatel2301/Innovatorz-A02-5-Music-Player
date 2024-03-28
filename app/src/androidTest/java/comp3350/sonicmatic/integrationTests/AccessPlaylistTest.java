@@ -13,8 +13,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.application.Services;
-import comp3350.sonicmatic.business.AccessPlaylist;
-import comp3350.sonicmatic.business.AccessProfile;
+import comp3350.sonicmatic.business.access.AccessPlaylist;
+import comp3350.sonicmatic.business.access.AccessProfile;
 import comp3350.sonicmatic.interfaces.IPlaylist;
 import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.objects.musicArtist.MusicArtist;

@@ -13,11 +13,10 @@ import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.nio.file.attribute.AclEntry;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
-import comp3350.sonicmatic.business.AccessPlaylist;
+import comp3350.sonicmatic.business.access.AccessPlaylist;
 import comp3350.sonicmatic.interfaces.IPlaylist;
 import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.presentation.login.UserViewModel;
@@ -83,6 +82,9 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
                 // Open music player for the clicked music by user
                 musicViewModel.setSelectedTrack(musicTrack);
                 musicViewModel.setSongs(tracks);
+                musicViewModel.setCurrentSongIndex(holder.getAdapterPosition());
+                view.getRootView().findViewById(R.id.dark_light_mode_toggle).setVisibility(View.GONE);
+
                 Navigation.findNavController(view).navigate(R.id.musicFragment, null);
             }
         });

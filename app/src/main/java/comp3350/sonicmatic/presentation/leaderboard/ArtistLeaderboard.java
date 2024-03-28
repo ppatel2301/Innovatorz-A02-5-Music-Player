@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.application.Services;
-import comp3350.sonicmatic.business.AccessLeaderboard;
+import comp3350.sonicmatic.business.access.AccessLeaderboard;
 import comp3350.sonicmatic.databinding.FragmentArtistLeaderboardBinding;
 import comp3350.sonicmatic.objects.musicArtist.LeaderboardArtist;
 import comp3350.sonicmatic.persistance.leaderboard.Leaderboard;

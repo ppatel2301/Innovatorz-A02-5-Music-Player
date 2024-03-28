@@ -12,11 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
-import comp3350.sonicmatic.business.AccessLeaderboard;
-import comp3350.sonicmatic.interfaces.IArtist;
-import comp3350.sonicmatic.interfaces.ISong;
 import comp3350.sonicmatic.objects.musicArtist.LeaderboardArtist;
-import comp3350.sonicmatic.persistance.leaderboard.Leaderboard;
 
 public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.LeaderboardViewHolder> {
 

@@ -1,4 +1,4 @@
-package comp3350.sonicmatic;
+package comp3350.sonicmatic.systemTests;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -7,6 +7,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 import android.os.SystemClock;
 
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.espresso.Espresso;
@@ -16,6 +17,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.presentation.MainActivity;
 
 public class ArtistProfileTest {
@@ -31,7 +33,7 @@ public class ArtistProfileTest {
         SystemClock.sleep(1000);
 
         // login in as artist
-        onView(withId(R.id.login_username)).perform(typeText("BenD1337"));
+        onView(ViewMatchers.withId(R.id.login_username)).perform(typeText("BenD1337"));
         onView(withId(R.id.login_pass)).perform(typeText("Password1"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.loginButton)).perform(click());
@@ -57,8 +59,5 @@ public class ArtistProfileTest {
 
         UiDevice uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
         uiDevice.click(MUSIC_X,MUSIC_Y);
-
-        // Wait for the music to upload to the database
-        SystemClock.sleep(2000);
     }
 }

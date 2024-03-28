@@ -49,8 +49,8 @@ import java.util.Objects;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.application.Services;
-import comp3350.sonicmatic.business.AccessProfile;
-import comp3350.sonicmatic.business.AccessSong;
+import comp3350.sonicmatic.business.access.AccessProfile;
+import comp3350.sonicmatic.business.access.AccessSong;
 import comp3350.sonicmatic.databinding.ActivityMainBinding;
 import comp3350.sonicmatic.exceptions.NoMusicException;
 import comp3350.sonicmatic.interfaces.IPlayer;
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     private MusicViewModel musicViewModel;
     private UserViewModel userViewModel;
     private View trackHistoryView;
-    private ActivityResultLauncher<String> picker;
+    private ActivityResultLauncher<Intent> picker;
     private ActivityResultLauncher<Intent> bluetoothEnableLauncher;
     private ActivityResultLauncher<Intent> audioEnableLauncher;
 
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
                 updateGetUsername();
                 trackHistoryView.setVisibility(View.VISIBLE);
 
-                if(!userViewModel.isLoggedOut())
+                if(!userViewModel.isLoggedOut() || userViewModel.getProfile().getDisplayName().equals("Guest"))
                 {
                     layout.setVisibility(View.VISIBLE);
                     binding.navView.setVisibility(View.VISIBLE);
@@ -248,7 +248,9 @@ public class MainActivity extends AppCompatActivity {
         upload_tracks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                picker.launch("audio/*");
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("audio/*");
+                picker.launch(intent);
 
                 // Close the drawer and enable the bottom nav view
                 drawer.closeDrawer(GravityCompat.END);
@@ -367,24 +369,33 @@ public class MainActivity extends AppCompatActivity {
 
     private void initTrackPicker()
     {
-        picker = registerForActivityResult(new ActivityResultContracts.GetContent(),
+        picker = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                 track -> {
                     if(track != null)
                     {
-                        String trackName = getFileName(getApplicationContext(), track);
-
-                        AccessSong accessSong = new AccessSong();
-
-                        boolean inserted = accessSong.insertSong(trackName, 1);
-                        if(inserted)
+                        if(track.getData() != null)
                         {
-                            Toast.makeText(this, "Track uploaded. Can be viewed in the Home/Browse Page", Toast.LENGTH_SHORT).show();
+                            if(track.getData().getData() != null)
+                            {
+                                String trackName = getFileName(getApplicationContext(), track.getData().getData());
+
+                                AccessSong accessSong = new AccessSong();
+
+                                boolean inserted = accessSong.insertSong(trackName, 1);
+                                if(inserted)
+                                {
+                                    Toast.makeText(this, "Track uploaded. Can be viewed in the Home/Browse Page", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(this, "Track already uploaded. View in Home/Browse", Toast.LENGTH_SHORT).show();
+                                }
+                            }
                         }else{
-                            Toast.makeText(this, "Track already uploaded. View in Home/Browse", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Unable to uploaded.Try Again..", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
+
 
     private void disableEnablePlaylistFeature(boolean bool)
     {

@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.comparator;
+package comp3350.sonicmatic.business.comparator;
 
 import java.util.Comparator;
 

@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.business;
+package comp3350.sonicmatic.business.access;
 
 import java.util.ArrayList;
 

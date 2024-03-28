@@ -1,4 +1,4 @@
-package comp3350.sonicmatic.business;
+package comp3350.sonicmatic.business.access;
 
 import comp3350.sonicmatic.application.Services;
 import comp3350.sonicmatic.objects.musicArtist.LeaderboardArtist;

@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import comp3350.sonicmatic.business.AccessProfile;
+import comp3350.sonicmatic.business.access.AccessProfile;
 import comp3350.sonicmatic.persistance.profile.GuestProfile;
 import comp3350.sonicmatic.persistance.profile.Profile;
 
