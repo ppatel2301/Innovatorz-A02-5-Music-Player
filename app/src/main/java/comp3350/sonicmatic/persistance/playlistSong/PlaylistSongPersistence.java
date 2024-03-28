@@ -64,20 +64,19 @@ public class PlaylistSongPersistence extends Persistence
                 final ResultSet query_result;
 
                 statement.setString(1, primaryKey[PlaylistSong.FNAME_INDEX]);
-                statement.setString(2, primaryKey[PlaylistSong.ID_INDEX]);
+                statement.setInt(2, Integer.parseInt(primaryKey[PlaylistSong.ID_INDEX]));
 
                 query_result = statement.executeQuery();
 
                 if(query_result.next())
                 {
-                    query_result.next();
                     retrieved = fromResultSet(query_result);
                 }
 
                 query_result.close();
                 statement.close();
 
-            } catch(final SQLException sqle)
+            } catch(final SQLException | NumberFormatException ex)
             {
                 retrieved = NullPlaylistSong.getNullPlaylistSong();
             }
@@ -104,7 +103,7 @@ public class PlaylistSongPersistence extends Persistence
         PlaylistSong insert_me;
         PlaylistSong in_db;
 
-        if (item != null && item instanceof PlaylistSong)
+        if (item instanceof PlaylistSong)
         {
             insert_me = ((PlaylistSong)(item));
 
@@ -119,7 +118,7 @@ public class PlaylistSongPersistence extends Persistence
                     final PreparedStatement statement = c.prepareStatement(insert);
 
                     statement.setString(1, insert_me.getFileNameExt());
-                    statement.setString(2, ""+insert_me.getPlaylistId());
+                    statement.setInt(2, insert_me.getPlaylistId());
 
                     statement.executeUpdate();
 
@@ -174,7 +173,7 @@ public class PlaylistSongPersistence extends Persistence
 
     // ** instance methods **
 
-    public ArrayList<PlaylistSong> getPlaylistSongs(String playlistId)
+    public ArrayList<PlaylistSong> getPlaylistSongs(int playlistId)
     {
         ArrayList<PlaylistSong> playlistSongs = new ArrayList<PlaylistSong>();
 
@@ -184,7 +183,7 @@ public class PlaylistSongPersistence extends Persistence
             final PreparedStatement statement = c.prepareStatement("SELECT * FROM playlist_songs WHERE playlist_id = ?");
             final ResultSet query_result;
 
-            statement.setString(1, playlistId);
+            statement.setInt(1, playlistId);
             query_result = statement.executeQuery();
 
             while(query_result.next())

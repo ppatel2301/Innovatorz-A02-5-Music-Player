@@ -90,14 +90,13 @@ public class PlaylistPersistence extends Persistence
                 final PreparedStatement statement = c.prepareStatement(update);
 
                 statement.setString(1, playlist.getName());
-                statement.setString(2, playlist.getCreatorUsername());
-                statement.setString(3, playlist.getPrimaryKey());
+                statement.setInt(2, Integer.parseInt(playlist.getPrimaryKey()));
 
                 statement.executeUpdate();
 
                 updated = get(item.getPrimaryKey());
 
-            } catch(final SQLException sqle)
+            } catch(final SQLException | NumberFormatException ex)
             {
                 updated = NullPlaylist.getNullPlaylist();
             }
@@ -124,8 +123,9 @@ public class PlaylistPersistence extends Persistence
         {
             playlist = ((Playlist)(item));
 
-            inside_already = get(playlist.getPrimaryKey()).getPrimaryKey().equals(playlist.getPrimaryKey())
-                    && get(playlist.getName(), playlist.getCreatorUsername()).getId() == NullPlaylist.getNullPlaylist().getId();
+            inside_already =
+                       get(playlist.getPrimaryKey()).getPrimaryKey().equals(playlist.getPrimaryKey()) // if we can get a playlist with this ID, we're in
+                    || get(playlist.getName(), playlist.getCreatorUsername()).getId() != NullPlaylist.getNullPlaylist().getId(); // if we don't get null when quering with this ID, we're in
 
             if (!inside_already)
             {

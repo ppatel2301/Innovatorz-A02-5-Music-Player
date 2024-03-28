@@ -39,7 +39,7 @@ public class AccessPlaylist {
         ArrayList<Playlist> playlists_from_db; // the list of playlists the user who is logged in has
         ArrayList<PlaylistSong> playlist_songs_from_db; // songs in the playlist from a database
 
-        String curr_playlist;
+        int curr_playlist;
         String username = profileAccess.getUsername();
 
         if (!(username.equals(GuestProfile.getGuestProfile().getUsername()) || username.equals(NullProfile.getNullProfile().getUsername())))
@@ -48,7 +48,17 @@ public class AccessPlaylist {
 
             for (Playlist p : playlists_from_db)
             {
-                curr_playlist = p.getPrimaryKey(); // for accessing correct playlist
+
+                try
+                {
+                    curr_playlist = Integer.parseInt(p.getPrimaryKey());
+                }
+                catch (NumberFormatException nfe)
+                {
+                    playlists.clear();
+                    return playlists;
+                }
+
                 playlists.add(new MusicTrackPlaylist(p.getName())); // add a new playlist in
 
                 playlist_songs_from_db = playlistSongPersistence.getPlaylistSongs(curr_playlist); // get all the songs for this playlist
@@ -86,11 +96,24 @@ public class AccessPlaylist {
     public boolean deletePlaylist(String name, AccessProfile profileAccess)
     {
         boolean success = false;
+        ArrayList<PlaylistSong> all_songs = new ArrayList<PlaylistSong>();
+        Playlist delete_me;
 
         if (profileAccess != null && !(profileAccess.getUsername().equals(GuestProfile.getGuestProfile().getUsername()) || profileAccess.getUsername().equals(NullProfile.getNullProfile().getUsername())))
         {
-            success = playlistPersistence.delete(playlistPersistence.get(name, profileAccess.getUsername()));
+            delete_me = playlistPersistence.get(name, profileAccess.getUsername());
+
+            // delete any playlist song rows associated with this playlist
+            all_songs = playlistSongPersistence.getPlaylistSongs(delete_me.getId());
+            for (PlaylistSong p : all_songs)
+            {
+                playlistSongPersistence.delete(p);
+            }
+
+
+            success = playlistPersistence.delete(delete_me);
         }
+
         return success;
     }
 
@@ -107,11 +130,10 @@ public class AccessPlaylist {
 
             if (!(username.equals(GuestProfile.getGuestProfile().getUsername()) || username.equals(NullProfile.getNullProfile().getUsername())))
             {
-                from_db = playlistPersistence.get(name, username);
+                from_db = playlistPersistence.get(name, username); // need to get ID of playlist from DB
 
                 String path = song.getTitle() + ".mp3";
                 new_song = new PlaylistSong(path, from_db.getId());
-                
                 success = playlistSongPersistence.insert(new_song);
             }
         }
@@ -125,13 +147,13 @@ public class AccessPlaylist {
         Playlist from_db;
         PlaylistSong delete_song;
 
-        if (song != null)
+        if (profileAccess != null && song != null)
         {
             username = profileAccess.getUsername();
 
             if (!(username.equals(GuestProfile.getGuestProfile().getUsername()) || username.equals(NullProfile.getNullProfile().getUsername())))
             {
-                from_db = playlistPersistence.get(name, username);
+                from_db = playlistPersistence.get(name, username); // get ID of playlist from db
 
                 String path = song.getTitle() + ".mp3";
                 delete_song = new PlaylistSong(path, from_db.getId());
