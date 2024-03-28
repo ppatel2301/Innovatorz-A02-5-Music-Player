@@ -2,10 +2,7 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="AllAcceptanceTests">
-        <State />
-      </entry>
-      <entry key="UserPlaybackHistoryTest">
+      <entry key="AccessPlaylistTest">
         <State />
       </entry>
       <entry key="app">
@@ -24,13 +21,16 @@
           <timeTargetWasSelectedWithDropDown value="2024-03-27T20:40:47.580452200Z" />
         </State>
       </entry>
-      <entry key="testGetAllSongs()">
+      <entry key="testDeleteFromPlaylist()">
         <State />
       </entry>
-      <entry key="testGetDisplayName()">
+      <entry key="testGetPlaylists()">
         <State />
       </entry>
-      <entry key="testUserHistory()">
+      <entry key="testInsertIntoPlaylist()">
+        <State />
+      </entry>
+      <entry key="testNewBadPlaylist()">
         <State />
       </entry>
     </value>

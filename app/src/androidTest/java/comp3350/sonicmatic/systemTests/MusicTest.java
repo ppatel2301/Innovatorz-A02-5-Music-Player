@@ -1,6 +1,7 @@
-package comp3350.sonicmatic;
+package comp3350.sonicmatic.systemTests;
 
 import androidx.test.espresso.Espresso;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -19,6 +20,7 @@ import android.os.SystemClock;
 
 import androidx.test.espresso.contrib.RecyclerViewActions;
 
+import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.presentation.MainActivity;
 
 @RunWith(AndroidJUnit4.class)
@@ -33,7 +35,7 @@ public class MusicTest {
         SystemClock.sleep(1000);
 
         // login
-        onView(withId(R.id.login_username)).perform(typeText("Profile11"));
+        onView(ViewMatchers.withId(R.id.login_username)).perform(typeText("Profile11"));
         onView(withId(R.id.login_pass)).perform(typeText("comp3350"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.loginButton)).perform(click());

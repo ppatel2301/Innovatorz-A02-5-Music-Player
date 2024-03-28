@@ -49,8 +49,8 @@ import java.util.Objects;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.application.Services;
-import comp3350.sonicmatic.business.AccessProfile;
-import comp3350.sonicmatic.business.AccessSong;
+import comp3350.sonicmatic.business.access.AccessProfile;
+import comp3350.sonicmatic.business.access.AccessSong;
 import comp3350.sonicmatic.databinding.ActivityMainBinding;
 import comp3350.sonicmatic.exceptions.NoMusicException;
 import comp3350.sonicmatic.interfaces.IPlayer;

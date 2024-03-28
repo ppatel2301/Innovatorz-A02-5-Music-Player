@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.SearchView;
 
-import android.os.FileUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
 
-import comp3350.sonicmatic.business.AccessSong;
+import comp3350.sonicmatic.business.access.AccessSong;
 import comp3350.sonicmatic.databinding.FragmentBrowseBinding;
 import comp3350.sonicmatic.interfaces.IArtist;
 import comp3350.sonicmatic.interfaces.ISong;

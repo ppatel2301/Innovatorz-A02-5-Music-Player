@@ -8,10 +8,11 @@ import comp3350.sonicmatic.database.*;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
+        PlaylistPersistenceTest.class,
+        PlaylistSongPersistenceTest.class,
         ProfilePersistenceTest.class,
         SongPersistenceTest.class,
-        PlaylistSongPersistenceTest.class,
-        PlaylistPersistenceTest.class
+        LeaderboardPersistenceTest.class
 })
 
 public class AllPersistenceTests

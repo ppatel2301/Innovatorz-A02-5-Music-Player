@@ -23,8 +23,8 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
-import comp3350.sonicmatic.business.AccessPlaylist;
-import comp3350.sonicmatic.business.AccessProfile;
+import comp3350.sonicmatic.business.access.AccessPlaylist;
+import comp3350.sonicmatic.business.access.AccessProfile;
 import comp3350.sonicmatic.databinding.FragmentLoginBinding;
 import comp3350.sonicmatic.interfaces.IPlaylist;
 import comp3350.sonicmatic.presentation.playlist.PlaylistViewModel;

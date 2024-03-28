@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
-import comp3350.sonicmatic.business.AccessPlaylist;
+import comp3350.sonicmatic.business.access.AccessPlaylist;
 import comp3350.sonicmatic.databinding.FragmentAddToPlaylistBinding;
 import comp3350.sonicmatic.interfaces.IPlaylist;
 import comp3350.sonicmatic.interfaces.ISong;

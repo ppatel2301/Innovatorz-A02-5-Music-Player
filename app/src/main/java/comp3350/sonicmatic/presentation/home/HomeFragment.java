@@ -18,11 +18,10 @@ import java.util.ArrayList;
 
 import comp3350.sonicmatic.R;
 import comp3350.sonicmatic.application.Services;
-import comp3350.sonicmatic.business.AccessSong;
+import comp3350.sonicmatic.business.access.AccessSong;
 import comp3350.sonicmatic.databinding.FragmentHomeBinding;
 import comp3350.sonicmatic.interfaces.IPlaylist;
 import comp3350.sonicmatic.interfaces.ISong;
-import comp3350.sonicmatic.presentation.MainActivity;
 import comp3350.sonicmatic.presentation.player.MusicAdapter;
 import comp3350.sonicmatic.presentation.playlist.PlaylistAdapter;
 import comp3350.sonicmatic.presentation.playlist.PlaylistViewModel;
