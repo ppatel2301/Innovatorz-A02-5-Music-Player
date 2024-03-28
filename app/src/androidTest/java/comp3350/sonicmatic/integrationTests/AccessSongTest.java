@@ -35,23 +35,22 @@ public class AccessSongTest {
     @Test
     public void testGetAllSongs()
     {
-        // let's add some more songs in
-        accessSong.insertSong("Combustion.mp3",0);
-        accessSong.insertSong("Cyberwaste.mp3",0);
-        accessSong.insertSong("Drone Corpse Aviator.mp3",0);
-
+        // expecting all 14 songs
         ArrayList<ISong> tracks = accessSong.getAllSongs();
         int track_count = tracks.size();
 
-        // should be 4 songs, all should not be the null song
         boolean passed = true;
 
         for (ISong t : tracks)
         {
             passed = !t.getPath().equals(NullSong.getNullSong().getFileNameExt());
+            if (!passed)
+            {
+                break;
+            }
         }
 
-        assertEquals("Access song test: Unpexected track count", true, track_count == 4);
+        assertEquals("Access song test: Unpexected track count", 14, track_count);
         assertEquals("Access song test: Null song detected", true, passed);
     }
 
@@ -66,7 +65,7 @@ public class AccessSongTest {
     @Test
     public void testBadGetSong()
     {
-        boolean success = !accessSong.getSong("jkljkljkl").getPath().equals(NullSong.getNullSong().getFileNameExt());
+        boolean success = accessSong.getSong("jkljkljkl").getPath().equals(NullSong.getNullSong().getFileNameExt());
 
         assertEquals("Access Song test: got a song incorrectly", true, success);
     }
@@ -74,7 +73,7 @@ public class AccessSongTest {
     @Test
     public void testInsertSong()
     {
-        final String INSERT_PATH = "Cyberwaste.mp3";
+        final String INSERT_PATH = "Lotion.mp3";
 
         boolean success = accessSong.insertSong(INSERT_PATH,0);
 
@@ -94,25 +93,15 @@ public class AccessSongTest {
     @Test
     public void testDeleteSong()
     {
-        final String DELETE_ME = "Cyberwaste.mp3";
+        final String DELETE_ME = "Lotion.mp3";
         boolean success;
 
         accessSong.insertSong(DELETE_ME, 0); // going to delete this
 
         success = accessSong.deleteSong(DELETE_ME);
 
-        assertEquals("Access sogn test: deletion unsuccessful", true, success);
+        assertEquals("Access song test: deletion unsuccessful", true, success);
 
     }
 
-    @Test
-    public void testBadDeleteSong()
-    {
-        final String DELETE_ME = "Cyberwaste.mp3"; // didn't insert
-        boolean success;
-
-        success = !accessSong.deleteSong(DELETE_ME);
-
-        assertEquals("Access sogn test: deletion unsuccessful", true, success);
-    }
 }

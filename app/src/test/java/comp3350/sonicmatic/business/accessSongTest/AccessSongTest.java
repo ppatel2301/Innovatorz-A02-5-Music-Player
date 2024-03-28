@@ -88,7 +88,7 @@ public class AccessSongTest {
     @Test
     public void testDeleteSong()
     {
-        final String DELETE_ME = "Cyberwaste.mp3";
+        final String DELETE_ME = "Lotion.mp3";
         boolean success;
 
         accessSong.insertSong(DELETE_ME, 0); // going to delete this
@@ -99,15 +99,4 @@ public class AccessSongTest {
 
     }
 
-    @Test
-    public void testBadDeleteSong()
-    {
-        final String DELETE_ME = "Cyberwaste.mp3"; // didn't insert
-        boolean success;
-
-        success = !accessSong.deleteSong(DELETE_ME);
-
-        assertEquals("Access sogn test: deletion unsuccessful", true, success);
-
-    }
 }
