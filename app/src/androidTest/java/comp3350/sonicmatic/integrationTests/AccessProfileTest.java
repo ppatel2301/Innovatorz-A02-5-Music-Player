@@ -116,6 +116,8 @@ public class AccessProfileTest {
         boolean success = accessProfile.changePassword(FIRST_PWD+"changed");
 
         assertEquals("Access Profile test: failed to change password", true, success);
+
+        accessProfile.changePassword(FIRST_PWD); // reset
     }
 
     @Test
