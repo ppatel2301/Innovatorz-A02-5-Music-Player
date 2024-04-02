@@ -1,0 +1,55 @@
+[
+
+    {
+        "videoURL":"<iframe src=\"https://www.youtube.com/embed/tVA58kdsyv8?si=aa_8mlrhv04S5ODM\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+        "feature":"Artist Leaderboard",
+        "featureDescription":"Users can see which artist they listen to the most! This is measured by the number of songs in their playlists by that artist."
+    },
+    {
+        "videoURL":"<iframe src=\"https://www.youtube.com/embed/XUZYNL9x5Vo?si=U2sBqIbrikkrga9r\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+        "feature":"Artist profile",
+        "featureDescription":"The artist has a profile from which they can upload songs to the database, to share with other users."
+    },
+    {
+        "videoURL":"<iframe src=\"https://www.youtube.com/embed/sHdKdgsv14I?si=zaZ1ZwSZ7d3y7B-T\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+        "feature":"Browsable catalog",
+        "featureDescription":"Users can quickly browse the database for whatever song they want to listen to."
+    },
+    {
+        "videoURL":"<iframe src=\"https://www.youtube.com/embed/XxX7PJar3TA?si=reO0mHZfXE6d09A2\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+        "feature":"Community Database",
+        "featureDescription":"Our app has a database full of music available for all users. Here is where the music uploaded by artists goes!"
+    },
+    {
+        "videoURL":"<iframe src=\"https://www.youtube.com/embed/lufeKg_hU7Y?si=yVs4dot7dACsILzM\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+        "feature":"Create and remove from playlist",
+        "featureDescription":"A logged-in user can create and remove playlists."
+    },
+    {
+        "videoURL":"<iframe src=\"https://www.youtube.com/embed/Y1FBM_2kpjo?si=D-21Nz2Kokzyn7uP\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+        "feature":"Dark/Light mode toggle",
+        "featureDescription":"Users can change between a dark and a light mode in the app's settings."
+    },
+    {
+        "videoURL":"<iframe src=\"https://www.youtube.com/embed/ZgsWmW5EcLc?si=TLYFpHmWh7TXSkJC\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+        "feature":"Music Player",
+        "featureDescription":"The user can play music in the app. The Music Player allows for full user control: volume control, skipping, going back, seeking, playing and pausing music."
+    },
+    {
+        "videoURL":"<iframe src=\"https://www.youtube.com/embed/xfecd3sREZI?si=VRPtlB8BUuMnv14s\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+        "feature":"Sort songs",
+        "featureDescription":"The user can sort songs in their playlists by title or artist."
+    },
+    {
+        "videoURL":"<iframe src=\"https://www.youtube.com/embed/Fe2LEemkUTo?si=LI0qEjv1V2xBiEfx\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+        "feature":"User listener profile",
+        "featureDescription":"Our app allows users to log in and create playlists with their favourite songs."
+    },
+    {
+        "videoURL":"<iframe src=\"https://www.youtube.com/embed/G-nuxX78MgY?si=bwgQGe2kuwPR3QK5\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+        "feature":"User uploads",
+        "featureDescription":"Our app allows non-artist users to upload songs that they have in their local storage and mix them in playlists with songs from the database."
+    }
+    
+    
+]

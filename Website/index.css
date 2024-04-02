@@ -1,0 +1,51 @@
+iframe{
+    width:100%;
+}
+body{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+iframe{
+    height: 250px;
+}
+
+footer{
+    margin-top: auto;
+}
+
+.clickable:hover{
+    cursor: pointer;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+#feature-list{
+    list-style: none;
+}
+
+.feature-item{
+    margin: 0 auto auto 1%;
+}
+
+.hidden{
+    display: none;
+}
+
+#main-content{
+    height: 100vh;
+    color: white;
+}
+
+.card-img-top{
+    height: 400px;
+}

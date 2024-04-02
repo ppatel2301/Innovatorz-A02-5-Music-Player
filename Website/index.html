@@ -3,228 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sonicmatic</title>
-    <style>
-        iframe{
-            width:50%;
-        }
-
-        header{
-            text-align:center;
-            background: purple;
-            color:white;
-            padding-top: 1px;
-            padding-bottom:2px;
-        }
-
-        body{
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        nav {
-            height: 4em;
-            background-color: violet;
-            color: white;
-            align-content: center;
-        }
-
-        nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-        
-        nav ul li{
-            margin-right: auto;
-            margin-left: auto;
-            border: 1px;
-        }
-
-        nav ul li a{
-            text-decoration: none;
-            color: white;
-            display: block;
-            padding: 10px;
-        }
-
-        nav ul li a:hover,
-        nav ul li a:focus {
-            background-color: purple;
-        }
-
-        footer{
-            margin-top: auto;
-        }
-
-        #feature-list{
-            list-style: none;
-        }
-        
-        .feature-item{
-            margin: 0 auto auto 1%;
-        }
-
-        .hidden{
-            display: none;
-        }
     
-    </style>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <script src="index.js"></script>
+
+    <!-- Bootstrap scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+    <!--JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>Sonicmatic</title>
 </head>
-<body>
-    <header>
-        <h1 id="sonicmatic-header">Sonicmatic</h1>
-        <p id="subtitle">The new music player!</p>
+<body onload="showFeatures()">
+    <header class="bg-light py-2 px-4">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid justify-content-between">
+                <div>
+                    <a class="navbar-brand mr-auto" href="#" onclick="showSection('sonicmatic'); makeActive(this);">
+                        <img src="./assets/logo.png" alt="Sonicmatic Logo" height="50" class="d-inline-block align-top mx-2">
+                        <span class="text-primary h1">Sonicmatic</span>
+                    </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse mx-4" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class = "nav-item">
+                            <a class="nav-link" href="#" onclick="showSection('vision'); makeActive(this);">Our Vision</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a class="nav-link" href="#" onclick="showSection('members'); makeActive(this);">Contributors</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a class="nav-link" href="#" onclick="showSection('features'); makeActive(this)">Our features</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a class="nav-link" href="#" onclick="showSection('postmortem'); makeActive(this)">Postmortem</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
 
-    <nav>
-        <ul>
-            <li>
-                <a href="#" onclick="showSection('vision')" >Our Vision</a>
-            </li>
-            <li>
-                <a href="#" onclick="showSection('members')">Get to know us</a>
-            </li>
-            <li>
-                <a href="#" onclick="showSection('features')">Our features</a>
-            </li>
-        </ul>
-    </nav>
+    <div id="main-content" class="bg-secondary">
 
-    
-    <section id="vision" class="hidden">
-        <h2>Vision</h2>
-        <p> In a world of enchanting language of melodies, Sonicmatic aims to be a music management platform that 
-            simplifies the music listening experience. Sonicmatic is a space where users can listen to their own or on 
-            demand music while curating their library of songs and sharing their musical experiences with other listeners. </p>
+        <section id="sonicmatic" class="py-2">
+            <div class="row px-4">
+                    <div class="col mx-6  my-auto">
+                        <div id="about" class=" bg-secondary m-2 my-5">
+                            <h2>What is Sonicmatic?</h2>
+                            <p class="lead">Sonicmatic is a music player that provides you with a large music library. It also grants your the ability to listen to music in your device and for artists
+                                to share their work with the world!</p>
+                        </div>
+                        <div id="users" class="col m-2">
+                            <h2>Who is it for?</h2>
+                            <p>
+                                This platform is designed for everyone who listens to and shares music. This includes people who enjoy a few songs to hardcore audiophiles with large libraries of music. For new 
+                                listeners, this project provides an opportunity for them to discover new music and start a collection, whereas established music lovers have the tools to manage their collection 
+                                and continue to seamlessly grow it. This project is also for artists to put their music into circulation and keep track of its success. Moreover, this platform is for listeners who 
+                                like to share and discuss music, which they can do using the chat feature.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="main-page-logo" class="col d-flex justify-content-center my-auto">
+                        <img src="./assets/big-logo.png">
+                    </div>
+                </div>
+        </section>
 
-        <p> This platform will allow its diverse users to have the complete music listening experience, as they listen to the songs they have and discover new music from our database. 
-            They will be able to organize these songs in custom lists or sort them by genre or artists. Moreover, the users will also get to listen to the songs they love with the people 
-            close to them. Our chat feature allows users to share the songs they are listening to with their friends individually or as a group. Listeners can also review and show their 
-            love for their favorite artists and songs and watch them rise on the platform’s leaderboards.</p>
 
-        <p> Sonicmatic not only allows listeners to enjoy but also offers artists to share their music with all users by uploading it to our database, as singles or albums. Artists will be
-            able to view stats such as how many people are listening to them, which songs are the most popular, how many times their music has been shared and what their listeners think of
-            them.</p>
+        <section id="vision" class="p-4 hidden bg-secondary" height="100vh">
+            <div class="container">
+                <h2>Vision</h2>
+                <p class="lead"> In a world of enchanting language of melodies, Sonicmatic aims to be a music management platform that 
+                    simplifies the music listening experience. Sonicmatic is a space where users can listen to their own or on 
+                    demand music while curating their library of songs and sharing their musical experiences with other listeners. </p>
 
-        <p> This platform is designed for everyone who listens to and shares music. This includes people who enjoy a few songs to hardcore audiophiles with large libraries of music. For new 
-            listeners, this project provides an opportunity for them to discover new music and start a collection, whereas established music lovers have the tools to manage their collection 
-            and continue to seamlessly grow it. This project is also for artists to put their music into circulation and keep track of its success. Moreover, this platform is for listeners 
-            who like to share and discuss music, which they can do using the chat feature.  </p>
+                <p> This platform will allow its diverse users to have the complete music listening experience, as they listen to the songs they have and discover new music from our database. 
+                    They will be able to organize these songs in custom lists or sort them by genre or artists. Moreover, the users will also get to listen to the songs they love with the people 
+                    close to them. </p>
 
-        <p> This project’s value lies with the centralization of a person’s music collection and the platform’s powerful music sharing abilities. Firstly, a user can add their personal music
-            collection into this system and manage their library of music. They can then add more music into their collection seamlessly through the platform’s provided library of music.
-            This allows for new listeners to easily start then grow their collection of music, or if they’re already an established audiophile, continue to discover new music easily and 
-            instantly have it in their collection. Secondly, the chat feature provides great value in sharing music with friends and loved ones. This not only helps people to become exposed
-            to more music they might enjoy, but also come together and share valuable bonding moments with one another.</p>
+                <p> Sonicmatic not only allows listeners to enjoy but also offers artists to share their music with all users by uploading it to our database, as singles or albums. Artists will be
+                    able to view stats such as how many people are listening to them, which songs are the most popular, how many times their music has been shared and what their listeners think of
+                    them.</p>
 
-        <p> The success of this platform is based off two criteria. The first will be the total number of songs played (both owned by the user and published on our platform by artists) 
-            exceeding 2,500 monthly. The second will be the total time all users spend listening to music on our platform, exceeding 10,000 monthly.</p>
-    </section>
+                <p> This platform is designed for everyone who listens to and shares music. This includes people who enjoy a few songs to hardcore audiophiles with large libraries of music. For new 
+                    listeners, this project provides an opportunity for them to discover new music and start a collection, whereas established music lovers have the tools to manage their collection 
+                    and continue to seamlessly grow it. This project is also for artists to put their music into circulation and keep track of its success. Moreover, this platform is for listeners 
+                    who like to share and discuss music, which they can do using the chat feature.  </p>
 
-    <section id="members" class="hidden">
-        <h2>Members</h2>
-        <ul>
-            <li>
-                <img src="#"/>
-                <p class="member-name">Dharm Patel</p>
-                <p class="member-bio">Write a short description of yourself</p>
-            </li>
-            <li>
-                <img src="#"/>
-                <p class="member-name">Elan Gabor</p>
-                <p class="member-bio">Write a short description of yourself</p>
-            </li>
-            <li>
-                <img src="#"/>
-                <p class="member-name">Manuel Espinoza</p>
-                <p class="member-bio">Write a short description of yourself</p>
-            </li>
-            <!-- Add more members as needed -->
-        </ul>
-    </section>
+                <p> This project's value lies with the centralization of a person's music collection and the platform's powerful music sharing abilities. Firstly, a user can add their personal music
+                    collection into this system and manage their library of music. They can then add more music into their collection seamlessly through the platform's provided library of music.
+                    This allows for new listeners to easily start then grow their collection of music, or if they're already an established audiophile, continue to discover new music easily and 
+                    instantly have it in their collection. Secondly, the chat feature provides great value in sharing music with friends and loved ones. This not only helps people to become exposed
+                    to more music they might enjoy, but also come together and share valuable bonding moments with one another.</p>
 
-    <section id="features">
-        <h2>Features</h2>
-        <div class="video-container">
-            <!-- Embedded YouTube videos -->
-            <ul id="feature-list">
-                
-                <li class="feature-item">
-                    <h3>Feature 1</h3>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
-                </li>
-                
-                <li class="feature-item">
-                    <h3>Feature 2</h3>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
-                </li>
-                
-                <li class="feature-item">
-                    <h3>Feature 3</h3>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
-                </li>
-                
-                <li class="feature-item">
-                    <h3>Feature 4</h3>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
-                </li>
-                
-                <li class="feature-item">
-                    <h3>Feature 5</h3>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
-                </li>
-                
-                <li class="feature-item">
-                    <h3>Feature 6</h3>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
-                </li>
-                
-                <li class="feature-item">
-                    <h3>Feature 7</h3>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
-                </li>
-                
-                <li class="feature-item">
-                    <h3>Feature 8</h3>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
-                </li>
-                
-                <li class="feature-item">
-                    <h3>Feature 9</h3>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
-                </li>
-                
-                <li class="feature-item">
-                    <h3>Feature 10</h3>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
-                </li>
-                
-                
-            </ul>
-            <!-- Add more embedded videos as needed -->
-        </div>
-    </section>
+                <p> The success of this platform is based off two criteria. The first will be the total number of songs played (both owned by the user and published on our platform by artists) 
+                    exceeding 2,500 monthly. The second will be the total time all users spend listening to music on our platform, exceeding 10,000 monthly.</p>
+            </div>
+        </section>
 
-    <footer>
-        <p>&copy; 2024 Sonicmatic. All rights reserved.</p>
-    </footer>
+        <section id="members" class="p-4 bg-secondary hidden">
+        
+            <div class="container">
+                <h2>
+                    Contributors
+                </h2>
+                <div id="member-card-container" class="row row-cols-1 row-cols-md-3 g-4">
+                    <!--Member card-->
+                    <div class="col">
+                        <div class="card-custom h-100">
+                            <div class="card-body d-flex flex-column">
+                                <img class="card-img-top" src="./assets/DharmPatel.jpg">
+                                <h5 class="card-title align-bottom">Dharm Patel</h5>
+                                <p>Born in India, likes to program in free time and enjoys working in teams.</p>
+                                <p class="bold">During this project, he learned how to make better use of merge commands and how they work in real life scenarios.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Member card-->
+                    <div class="col">
+                        <div class="card-custom h-100">
+                            <div class="card-body d-flex flex-column ">
+                                <img class="card-img-top" src="./assets/ElanGabor.png">
+                                <div>
+                                    <h5 class="card-title">Elan Gabor</h5>
+                                    <p>Born in Toronto and loves writing bios, he placed last in the 2009 Winnipeg open chess tournament. Now he makes OpenGL and Processing projects for fun. What a glow up.</p>
+                                    <p class="bold">During this project, he learned how to make better use of Gitlab and use proper implementations of design patterns. His HSQLDB development skills were also improved on.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Member card-->
+                    <div class="col">
+                        <div class="card-custom h-100">
+                            <div class="card-body d-flex flex-column">
+                                <img class="card-img-top" src=".\assets\ManuelEspinoza.png">
+                                
+                                <div>
+                                    <h5 class="card-title">Manuel Espinoza</h5>
+                                    <p>Born in Peru, he fell in love with programming at a young age (thanks Scratch). He began learning multiple programming languages during high school and mastered none, but at least he can play the guitar!</p>
+                                    <p class="bold">During this project, he learned how to properly use git branches and commits. He also learned how to use git in a team setting.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-     <script>
-        function showSection(sectionId) {
-            var sections = document.getElementsByTagName('section');
-            for (var i = 0; i < sections.length; i++) {
-                if (sections[i].id === sectionId) {
-                    sections[i].classList.remove('hidden');
-                } else {
-                    sections[i].classList.add('hidden');
-                }
-            }
-        }
-    </script>
+                </div>
+            </div>
+            
+        </section>
+
+        <section id="features" class="bg-secondary p-4 hidden">
+            <div class="container">
+                <h2 class="text-light">Features</h2>
+                <div id="video-card-container" class="row row-cols-1 row-cols-md-3 g-4">
+                </div>
+            </div>
+        </section>
+
+        <section id="postmortem" class="bg-secondary p-4 hidden">
+            <div class="container">
+                <h2 class="text-light">Postmortem</h2>
+                <p>The sole area identified for improvement in our iteration two retrospective was the lack of code reviews. Regrettably we did not have any code reviews during iteration three’s 
+                    development. We saw code during video meetings, however there was no formal review, which is visible in our mix of coding styles and comment schemes. We believe this was due 
+                    to our small team; we all had many tasks to complete and code reviews unfortunately did not fit into our time budget. </p>
+                <p>We used Test Driven Development throughout iterations two and three, namely for the data layer, logic layer, and integrations with the logic layer. The pros of this were the isolated 
+                    testing and development of integral pieces of code. However, this was also a con, as data from the UI inputs was not tested and we encountered some unexpected data being sent to our 
+                    highly tested objects near the project deadline. </p>
+                <p>The development of the Bluetooth chat feature went awry during development. This was because it started during iteration three and we had no clear way of testing communication between a 
+                    device and an emulator, and with the project due date approaching this feature had to be scrapped. The developers of this feature did learn quite a bit about Bluetooth and socket 
+                    programming in an android environment which is a great takeaway. </p>
+                <p>If we had a chance to start over, we would do many code reviews, branch reviews, and start with features that were harder to complete. This would allow us to use peer oversight and fail 
+                    early so our future iterations would have less hectic developments. </p>
+            </div>
+        </section>
+
+    </div>
+
 </body>
 </html>
