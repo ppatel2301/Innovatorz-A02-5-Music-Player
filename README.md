@@ -2,6 +2,10 @@
 
 Sonicmatic aims to be a music management platform that simplifies the music listening experience
 
+## Presentation
+
+The presentation is available on [Github Pages](https://mespn.github.io/Sonicmatic/). You can also find the source files on the Website folder in this repository.
+
 ## Vision Statement
 
 - Our [Vision Statement](https://code.cs.umanitoba.ca/comp3350-winter2024/innovators-a02-5/-/blob/main/Docs/Vision%20Statement.md?ref_type=heads) for Iteration 0

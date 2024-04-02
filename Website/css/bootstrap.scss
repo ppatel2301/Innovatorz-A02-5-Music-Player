@@ -1,0 +1,27 @@
+$theme-colors: (
+
+"primary": #05445E,
+"secondary":#189AB4,
+"tertiary":#D4F1F4,
+"active": #F8621B,
+"hover": #03cc25
+);
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+.active-custom{
+    @extend .active;
+
+    color: #F8621B !important;
+}
+
+.nav-link:hover{
+    color:#03cc25;
+}
+
+.card-custom{
+    @extend .card;
+
+    background-color: #D4F1F4;
+}
+
